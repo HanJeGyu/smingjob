@@ -13,5 +13,5 @@ import lombok.Data;
 @Lazy
 public class CorporationDTO {
 
-    private String corId, password, name, ceoName, area, pmName, pmPhone, homepage, address, date_join;
+    private String corId, password, name, ceoName, area, pmName, pmPhone, homepage, address, dateJoin;
 }
