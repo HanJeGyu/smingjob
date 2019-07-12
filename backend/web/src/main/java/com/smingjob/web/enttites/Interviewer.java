@@ -13,6 +13,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 /**
@@ -20,9 +21,10 @@ import lombok.ToString;
  */
 @Entity
 @Getter
+@Setter
 @ToString
-@Table(name = "Interviewer")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "interviewer")
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Interviewer implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -40,6 +42,12 @@ public class Interviewer implements Serializable{
     @Column(name = "area") private String area;
     @Column(name = "location") private String location;
     @Column(name = "date_join") private String dateJoin;
+
+    @Override
+    public String toString(){
+        return String.format("구직자 정보 No: %d|n" + "ID: %s", itvSeq, itvId, pwd,
+        name, birth, phone, email, area, location, dateJoin);
+    }
 
     @Builder
     private Interviewer(String itvId, String pwd, String name, String birth,String phone,

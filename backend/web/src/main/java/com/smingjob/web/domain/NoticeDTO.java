@@ -11,7 +11,7 @@ import lombok.Data;
 public class NoticeDTO {
    private Long noticeSeq;     
    private String title,
-         name,
+         corName,
          content1,
          content2,
          content3,
@@ -21,8 +21,8 @@ public class NoticeDTO {
          area,
          startDate,
          lastDate,
-         tag_location,
-         tag_attribute,
-         tag_career;
+         tagLocation,
+         tagAttribute,
+         tagCareer;
 
 }

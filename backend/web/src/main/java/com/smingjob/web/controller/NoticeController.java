@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600) 
 @RestController
 @RequestMapping("/notices")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600) 
+
 public class NoticeController {    
     @Autowired NoticeDTO notice;    
     @Autowired ModelMapper modelMapper;
@@ -67,7 +67,7 @@ public class NoticeController {
        HashMap<String, String> map = new HashMap<>();
        Notice entity = new Notice();
        entity.setTitle(dto.getTitle());
-       entity.setName(dto.getName());
+       entity.setCorName(dto.getCorName());
        entity.setContent1(dto.getContent1()); 
        entity.setContent2(dto.getContent2()); 
        entity.setContent3(dto.getContent3());
@@ -77,9 +77,9 @@ public class NoticeController {
        entity.setArea(dto.getArea());
        entity.setStartDate(dto.getStartDate());
        entity.setLastDate(dto.getLastDate());
-       entity.setTag_location(dto.getTag_location());
-       entity.setTag_attribute(dto.getTag_attribute());
-       entity.setTag_career(dto.getTag_career());
+       entity.setTagLocation(dto.getTagLocation());
+       entity.setTagAttribute(dto.getTagAttribute());
+       entity.setTagCareer(dto.getTagCareer());
   
     //    System.out.println("entity 저장:"+entity.toString());
        repo.save(entity);
@@ -93,7 +93,7 @@ public class NoticeController {
        Notice entity = repo.findById(Long.parseLong(id)).get();
        entity.setNoticeSeq(Long.parseLong(id));
        entity.setTitle(dto.getTitle());
-       entity.setName(dto.getName());
+       entity.setCorName(dto.getCorName());
        entity.setContent1(dto.getContent1()); 
        entity.setContent2(dto.getContent2()); 
        entity.setContent3(dto.getContent3());
@@ -103,9 +103,9 @@ public class NoticeController {
        entity.setArea(dto.getArea());
        entity.setStartDate(dto.getStartDate());
        entity.setLastDate(dto.getLastDate());
-       entity.setTag_location(dto.getTag_location());
-       entity.setTag_attribute(dto.getTag_attribute());
-       entity.setTag_career(dto.getTag_career());
+       entity.setTagLocation(dto.getTagLocation());
+       entity.setTagAttribute(dto.getTagAttribute());
+       entity.setTagCareer(dto.getTagCareer());
   
     //    System.out.println("entity 저장:"+entity.toString());
        repo.save(entity);

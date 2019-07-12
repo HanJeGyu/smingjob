@@ -23,8 +23,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table(name = "Corporation")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "corporation")
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Corporation implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -41,12 +41,18 @@ public class Corporation implements Serializable{
     @Column(name = "pm_name") private String pmName;
     @Column(name = "pm_phone") private String pmPhone;
     @Column(name = "homepage") private String homepage;
-    @Column(name = "address") private String address;
+    @Column(name = "city") private String city;
     @Column(name = "date_join") private String dateJoin;
+
+    @Override
+    public String toString(){
+        return String.format("기업정보 No: %d|n" + "ID: %s", corSeq, corId, pwd,
+        name, ceoName, area, pmName, pmPhone, homepage, city, dateJoin);
+    }
 
     @Builder
     private Corporation(String corId,String pwd,String name, String ceoName,String area,
-    String pmName, String pmPhone, String homepage, String address, String dateJoin) {
+    String pmName, String pmPhone, String homepage, String city, String dateJoin) {
         this.corId = corId;
         this.pwd = pwd;
         this.name = name;
@@ -55,7 +61,7 @@ public class Corporation implements Serializable{
         this.pmName = pmName;
         this.pmPhone = pmPhone;
         this.homepage = homepage;
-        this.address = address;
+        this.city = city;
         this.dateJoin = dateJoin;
     }
 }

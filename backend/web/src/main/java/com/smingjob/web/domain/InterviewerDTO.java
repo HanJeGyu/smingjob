@@ -12,6 +12,6 @@ import lombok.Data;
 @Component
 @Lazy
 public class InterviewerDTO {
-
+    private Long itvSeq;
     private String itvId, pwd, name, birth, phone, email, area, location, dateJoin;
 }
