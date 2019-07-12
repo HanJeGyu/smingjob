@@ -13,5 +13,5 @@ import lombok.Data;
 @Lazy
 public class InterviewerDTO {
 
-    private String itvId, password, name, birth, phone, email, area, location, dateJoin;
+    private String itvId, pwd, name, birth, phone, email, area, location, dateJoin;
 }
