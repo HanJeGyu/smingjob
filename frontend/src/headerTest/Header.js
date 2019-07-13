@@ -172,7 +172,7 @@ const Header =()=> {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            JOB A LIVE
+            JOB A LIVE TEST
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
