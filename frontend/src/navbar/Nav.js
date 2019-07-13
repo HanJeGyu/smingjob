@@ -112,7 +112,7 @@ const Navbar = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Persistent drawer
+                        JOB A LIVE
             </Typography>
                 </Toolbar>
             </AppBar>
@@ -132,8 +132,8 @@ const Navbar = () => {
                 </div>
                 <Divider />
                 <List>
-                    {['Home','Notice', 'Interview', 'PR'].map((text, index) => (
-                        <ListItem button component="a" href={text}>                           
+                    {['Home', 'Notice', 'Interview', 'PR'].map((text, index) => (
+                        <ListItem button component="a" href={text}>
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
@@ -155,9 +155,6 @@ const Navbar = () => {
                 })}
             >
                 <div className={classes.drawerHeader} />
-               {/*  <Typography paragraph>
-                    내용
-                 </Typography> */}
 
             </main>
         </div>
