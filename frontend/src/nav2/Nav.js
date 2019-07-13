@@ -19,6 +19,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { red, deepPurple, blue } from '@material-ui/core/colors';
 
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -131,8 +132,8 @@ const Navbar = () => {
                 </div>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
+                    {['Home','Notice', 'Interview', 'PR'].map((text, index) => (
+                        <ListItem button component="a" href={text}>                           
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
@@ -140,8 +141,8 @@ const Navbar = () => {
                 </List>
                 <Divider />
                 <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
+                    {['F&Q', 'Login', 'Spam'].map((text, index) => (
+                        <ListItem button component="a" href={text} >
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
@@ -154,9 +155,9 @@ const Navbar = () => {
                 })}
             >
                 <div className={classes.drawerHeader} />
-                <Typography paragraph>
+               {/*  <Typography paragraph>
                     내용
-                 </Typography>
+                 </Typography> */}
 
             </main>
         </div>
