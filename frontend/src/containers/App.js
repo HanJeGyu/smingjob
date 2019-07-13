@@ -8,8 +8,8 @@ import Navbar2 from '../nav2/Nav'
 function App() {
   return (
     <div className='wrapper'>
-         <Header />
-      <Navbar />
+         {/* <Header /> */}
+      {/* <Navbar /> */}
       <Navbar2/>
       <Hello name='smingjob'></Hello>
     </div>
