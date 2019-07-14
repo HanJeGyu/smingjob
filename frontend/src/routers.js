@@ -2,9 +2,11 @@ import React from "react";
 import {Redirect} from "react-router-dom";
 
 /* views */
-import Hello from './components/Hello'
+import Home from './components/Home'
 import Notice from './notice/Notice'
 import Login from './interviewer/Login'
+import AdminHome from './admin/AdminHome';
+
 
 export const routerConfig = [
     {
@@ -14,7 +16,7 @@ export const routerConfig = [
     },
     {
         path: '/home',
-        component: Hello
+        component: Home
     },
     {
         path: '/notice',
@@ -23,5 +25,9 @@ export const routerConfig = [
     {
         path: '/login',
         component: Login
+    },
+    {
+        path: '/admin',
+        component: AdminHome
     }
 ]
