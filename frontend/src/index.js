@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './App.css'
-import App from './containers/App';
+import App from './common/App';
 import * as serviceWorker from './serviceWorker';
 
 /* redux 라우터 추가 */

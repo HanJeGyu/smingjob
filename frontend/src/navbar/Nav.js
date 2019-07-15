@@ -222,13 +222,13 @@ const Navbar = () => {
           ))}
         </List>
       </Drawer>
-      <main
+      {/* <main
         className={clsx(classes.content, {
           [classes.contentShift]: open
         })}
       >
         <div className={classes.drawerHeader} />
-      </main>
+      </main> */}
     </div>
   );
 };

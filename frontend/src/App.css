@@ -38,6 +38,7 @@ html {
   min-height: 100%;
 }
 
-.ma {
+.content {
   margin-bottom: 90px;
+  /* margin-top:20px; */
 }

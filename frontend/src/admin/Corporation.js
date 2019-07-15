@@ -1,7 +1,18 @@
 import React from 'react';
 import MaterialTable from 'material-table';
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { yellow, blue } from '@material-ui/core/colors';
 
 export default function Corporation() {
+
+    const useStyles = makeStyles(theme => ({
+        table: {
+            margin: "100px 50px"
+        }
+
+     })); 
+
+     const classes = useStyles();
   const [state, setState] = React.useState({
     columns: [
       { title: 'Name', field: 'name' },
@@ -33,6 +44,7 @@ export default function Corporation() {
   });
 
   return (
+      <div className={classes.table} >
     <MaterialTable
       title="Corporation User"
       columns={state.columns}
@@ -67,5 +79,6 @@ export default function Corporation() {
           }),
       }}
     />
+    </div>
   );
 }
