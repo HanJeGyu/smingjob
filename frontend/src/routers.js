@@ -14,6 +14,7 @@ import NoticeDetailAdmin from './admin/NoticeDetailAdmin'
 
 
 
+
 export const routerConfig = [
     {
         path: '/',
@@ -31,11 +32,7 @@ export const routerConfig = [
     {
         path: '/noticeDetail',
         component: NoticeDetail
-    },
-    {
-        path: '/noticeList',
-        component: NoticeList
-    },
+    }, 
     {
         path: '/noticeUpload',
         component: NoticeUpload
@@ -47,6 +44,10 @@ export const routerConfig = [
     {
         path: '/NoticeDetailAdmin',
         component: NoticeDetailAdmin
+    },    
+    {
+        path: '/NoticeAdmin',
+        component: NoticeList
     },
     {
         path: '/login',

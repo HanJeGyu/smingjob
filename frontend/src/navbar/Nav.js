@@ -212,7 +212,7 @@ const Navbar = () => {
         <Divider />
         <ListSubheader inset>Admin page</ListSubheader>
         <List>
-          {["PRAdmin", "Alive", "Corporation", "InterviewerAdmin", "NoticeAdmin"].map((text, index) => (
+          {["PR", "Alive", "Corporation", "Interviewer", "Notice"].map((text, index) => (
             <ListItem button component="a" href={text + "Admin"}>
               <ListItemIcon>
                 {<AssignmentIcon />}
