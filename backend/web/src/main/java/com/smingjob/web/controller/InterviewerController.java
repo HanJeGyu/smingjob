@@ -3,6 +3,7 @@ package com.smingjob.web.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Supplier;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -106,4 +107,13 @@ public class InterviewerController {
       return map;
    }
 
+   @PostMapping("/login")
+   public InterviewerDTO login(@RequestBody InterviewerDTO rdto) {
+      try {
+         return modelMapper.map(repo.findByItvIdAndPwd(rdto.getItvId(), rdto.getPwd()), InterviewerDTO.class);
+      } catch (Exception e) {
+         return dto;
+      }
+      
+   }
 }

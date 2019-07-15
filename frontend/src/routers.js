@@ -11,7 +11,7 @@ import NoticeList from './admin/NoticeList'
 import NoticeUpload from './admin/NoticeUpload'
 import NoticeModify from './admin/NoticeModify'
 import NoticeDetailAdmin from './admin/NoticeDetailAdmin'
-
+import InterviewerJoin from './interviewer/Join'
 
 
 
@@ -56,5 +56,9 @@ export const routerConfig = [
     {
         path: '/corporationAdmin',
         component: CorporationAdmin
+    },
+    {
+        path: '/interviewer/join',
+        component: InterviewerJoin
     }
 ]

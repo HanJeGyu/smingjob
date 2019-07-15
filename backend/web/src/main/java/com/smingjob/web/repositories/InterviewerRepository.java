@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InterviewerRepository extends JpaRepository<Interviewer, Long>{
 
-    
+    public Interviewer findByItvIdAndPwd(String itvId, String pwd);
 }

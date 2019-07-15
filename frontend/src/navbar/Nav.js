@@ -135,7 +135,8 @@ const Navbar = () => {
           <Typography variant="h6" className={classes.title} noWrap>
             JOB A LIVE
           </Typography>
-          <Button color="inherit" href="./Login">Login</Button>
+          <Button color="inherit" href="/login">Login</Button>
+          <Button color="inherit" href="/interviewer/join">개인join</Button>
           {auth && (
             <div>
               <IconButton

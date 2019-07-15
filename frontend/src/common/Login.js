@@ -1,17 +1,9 @@
 import React, {useState} from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
+import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Link,
+        Grid, Typography, Container, RadioGroup, Radio} from '@material-ui/core';
+
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
 import axios from 'axios'
 
 
@@ -60,7 +52,7 @@ export default function Login() {
       alert('선택값 오류')
     }
     const data = {
-      itvId: event.target.id.value,
+      itvId: event.target.itvId.value,
       pwd: event.target.pwd.value
     }
     const headers = {
@@ -84,7 +76,7 @@ export default function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login
+          로그인
         </Typography>
         <RadioGroup
           name="selection"
@@ -101,9 +93,9 @@ export default function Login() {
             margin="normal"
             required
             fullWidth
-            id="id"
-            name="id"
-            label="ID"
+            id="itvId"
+            name="itvId"
+            label="아이디"
             autoFocus
           />
           <TextField
@@ -113,7 +105,7 @@ export default function Login() {
             fullWidth
             id="pwd"
             name="pwd"
-            label="Password"
+            label="비밀번호"
             type="password"
             autoComplete="current-password"
           />
