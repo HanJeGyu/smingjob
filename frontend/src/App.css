@@ -31,3 +31,13 @@
     transform: rotate(360deg);
   }
 }
+
+html {
+  /* background-color: blue; */
+  position: relative;
+  min-height: 100%;
+}
+
+.ma {
+  margin-bottom: 90px;
+}

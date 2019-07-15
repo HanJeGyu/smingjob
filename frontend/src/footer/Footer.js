@@ -8,7 +8,7 @@ import { red, purple, grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
   footer: {
-    position: "fixed",
+    position: "absolute",
     bottom: "0",
     width: "100%",
     padding: theme.spacing(0.2),
