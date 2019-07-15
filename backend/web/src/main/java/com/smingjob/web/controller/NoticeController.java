@@ -31,12 +31,6 @@ public class NoticeController {
     @Autowired NoticeDTO notice;    
     @Autowired ModelMapper modelMapper;
     @Autowired NoticeRepository repo;
-    
-    @Bean
-    public ModelMapper modelMapper(){
-        ModelMapper modelMapper = new ModelMapper ();
-        return modelMapper;
-    }
  
     @DeleteMapping("/{id}")
    public void	deleteById(@PathVariable String id){    

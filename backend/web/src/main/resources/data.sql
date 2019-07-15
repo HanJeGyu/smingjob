@@ -12,7 +12,7 @@ CREATE TABLE interviewer
     location   VARCHAR(100)    NULL        COMMENT '희망근무지역', 
     date_join  VARCHAR(8)      NULL        COMMENT '가입일', 
     PRIMARY KEY (itv_seq)
-);
+)DEFAULT CHARSET=utf8;
 
 ALTER TABLE interviewer COMMENT '구직자';
 
@@ -33,7 +33,7 @@ CREATE TABLE corporation
     city       VARCHAR(50)     NULL        COMMENT '도시', 
     date_join  VARCHAR(8)      NULL        COMMENT '가입일', 
     PRIMARY KEY (cor_seq)
-);
+)DEFAULT CHARSET=utf8;
 
 ALTER TABLE corporation COMMENT '기업';
 
@@ -58,7 +58,7 @@ CREATE TABLE jobnotice
     tag_attribute  VARCHAR(100)     NULL        COMMENT '태그-특성', 
     tag_career     VARCHAR(100)     NULL        COMMENT '태그-경력', 
     PRIMARY KEY (notice_seq)
-);
+)DEFAULT CHARSET=utf8;
 
 ALTER TABLE jobnotice COMMENT '공고';
 
@@ -78,7 +78,7 @@ CREATE TABLE alive
     itv_name    VARCHAR(50)     NOT NULL    COMMENT '면접자 이름', 
     itv_phone   VARCHAR(11)     NOT NULL    COMMENT '면접자 연락처', 
     PRIMARY KEY (live_seq)
-);
+)DEFAULT CHARSET=utf8;
 
 ALTER TABLE alive COMMENT '면접';
 
@@ -107,7 +107,7 @@ CREATE TABLE pr
     tag_career     VARCHAR(100)     NULL        COMMENT '태그-경력', 
     date_upload    VARCHAR(8)       NULL        COMMENT '업로드일', 
     PRIMARY KEY (pr_seq)
-);
+)DEFAULT CHARSET=utf8;
 
 ALTER TABLE pr COMMENT '자기PR';
 

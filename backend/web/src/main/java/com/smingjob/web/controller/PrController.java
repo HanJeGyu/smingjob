@@ -35,12 +35,6 @@ public class PrController {
     @Autowired
     ModelMapper modelMapper;
 
-    @Bean
-    public ModelMapper modelMapper() {
-        ModelMapper modelMapper = new ModelMapper();
-        return modelMapper;
-    }
-
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable String id) {
         // System.out.println("deleteById title :" +id);

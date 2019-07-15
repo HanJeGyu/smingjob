@@ -36,12 +36,6 @@ public class CorporationController {
     @Autowired CorporationRepository repo;
     @Autowired ModelMapper modelMapper;
 
-    @Bean
-    public ModelMapper modelMapper(){
-        ModelMapper modelMapper = new ModelMapper ();
-        return modelMapper;
-    }
-
     @DeleteMapping("/{id}")
     public void	deleteById(@PathVariable String id){    
          repo.deleteById(Long.parseLong(id));
