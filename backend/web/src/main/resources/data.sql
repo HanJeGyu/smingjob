@@ -4,6 +4,7 @@ CREATE TABLE interviewer
     itv_seq    INT             NOT NULL    AUTO_INCREMENT COMMENT '구직자_SEQ', 
     itv_id     VARCHAR(50)     NOT NULL    COMMENT '구직자ID', 
     pwd        VARCHAR(50)     NOT NULL    COMMENT '비밀번호', 
+    cor_reg_no VARCHAR(10)     NOT NULL    COMMENT '사업자등록번호',
     name       VARCHAR(50)     NOT NULL    COMMENT '구직자명', 
     birth      VARCHAR(6)      NOT NULL    COMMENT '생년월일', 
     phone      VARCHAR(11)     NOT NULL    COMMENT '연락처', 

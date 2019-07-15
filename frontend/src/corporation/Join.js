@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.secondary.main,
     },
     form: {
-      width: '100%', // Fix IE 11 issue.
+      width: '100%', // Fix IE 11 issue
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
@@ -42,9 +42,9 @@ export default function Join(){
                             fullWidth
                             margin="normal"
                             variant="outlined"
-                            id="name"
-                            name="name"
-                            label="이름"
+                            id="corRegNo"
+                            name="corRegNo"
+                            label="사업자등록번호"
                             autoFocus
                         />
                     </Grid>
@@ -53,10 +53,69 @@ export default function Join(){
                             fullWidth
                             margin="normal"
                             variant="outlined"
-                            id="itvId"
-                            name="itvId"
+                            id="name"
+                            name="name"
+                            label="회사명"
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            id="ceoName"
+                            name="ceoName"
+                            label="대표명"
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            id="area"
+                            name="area"
+                            label="업종"
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            id="city"
+                            name="city"
+                            label="지역"
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            id="homepage"
+                            name="homepage"
+                            label="홈페이지"
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            id="pmName"
+                            name="pmName"
+                            label="가입자명"
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            id="corId"
+                            name="corId"
                             label="아이디"
-                            autoFocus
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -68,56 +127,6 @@ export default function Join(){
                             name="pwd"
                             label="비밀번호"
                             type="password"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="birth"
-                            name="birth"
-                            label="생년월일 6자리"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="phone"
-                            name="phone"
-                            label="휴대폰번호"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="email"
-                            name="email"
-                            label="이메일"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="area"
-                            name="area"
-                            label="희망산업/직군"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="location"
-                            name="location"
-                            label="희망근무지"
                         />
                     </Grid>
                     <Button

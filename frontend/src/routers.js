@@ -13,6 +13,7 @@ import NoticeUpload from './admin/NoticeUpload'
 import NoticeModify from './admin/NoticeModify'
 import NoticeDetailAdmin from './admin/NoticeDetailAdmin'
 import InterviewerJoin from './interviewer/Join'
+import Join from './common/Join'
 
 
 
@@ -63,7 +64,7 @@ export const routerConfig = [
         component: InterviewerAdmin
     },
     {
-        path: '/interviewerJoin',
-        component: InterviewerJoin
-    },
+        path: '/join',
+        component: Join
+    }
 ]

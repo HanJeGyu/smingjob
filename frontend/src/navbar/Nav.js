@@ -125,7 +125,7 @@ const Navbar = () => {
             JOB A LIVE
           </Typography>
           <Button color="inherit" href="/login">Login</Button>
-          <Button color="inherit" href="/interviewerJoin">개인join</Button>
+          <Button color="inherit" href="/join">Join</Button>
           {auth && (
             <div>
               <IconButton
