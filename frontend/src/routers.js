@@ -6,6 +6,11 @@ import Home from './components/Home'
 import Notice from './notice/Notice'
 import Login from './interviewer/Login'
 import AdminHome from './admin/AdminHome';
+import NoticeDetail from './notice/NoticeDetail'
+import NoticeList from './admin/NoticeList'
+import NoticeUpload from './admin/NoticeUpload'
+import NoticeModify from './admin/NoticeModify'
+
 
 
 export const routerConfig = [
@@ -21,6 +26,22 @@ export const routerConfig = [
     {
         path: '/notice',
         component: Notice
+    },
+    {
+        path: '/noticeDetail',
+        component: NoticeDetail
+    },
+    {
+        path: '/noticeList',
+        component: NoticeList
+    },
+    {
+        path: '/noticeUpload',
+        component: NoticeUpload
+    },
+    {
+        path: '/noticeModify',
+        component: NoticeModify
     },
     {
         path: '/login',
