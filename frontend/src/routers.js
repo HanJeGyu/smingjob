@@ -5,7 +5,7 @@ import {Redirect} from "react-router-dom";
 import Home from './components/Home'
 import Notice from './notice/Notice'
 import Login from './interviewer/Login'
-import AdminHome from './admin/AdminHome';
+import CorporationAdmin from './admin/Corporation';
 import NoticeDetail from './notice/NoticeDetail'
 import NoticeList from './admin/NoticeList'
 import NoticeUpload from './admin/NoticeUpload'
@@ -48,7 +48,7 @@ export const routerConfig = [
         component: Login
     },
     {
-        path: '/admin',
-        component: AdminHome
+        path: '/corporationAdmin',
+        component: CorporationAdmin
     }
 ]
