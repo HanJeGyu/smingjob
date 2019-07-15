@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Notice from './notice/Notice'
 import Login from './common/Login'
 import CorporationAdmin from './admin/Corporation';
+import InterviewerAdmin from "./admin/Interviewer";
 import NoticeDetail from './notice/NoticeDetail'
 import NoticeList from './admin/NoticeList'
 import NoticeUpload from './admin/NoticeUpload'
@@ -58,7 +59,11 @@ export const routerConfig = [
         component: CorporationAdmin
     },
     {
-        path: '/interviewer/join',
+        path: '/interviewerAdmin',
+        component: InterviewerAdmin
+    },
+    {
+        path: '/interviewerJoin',
         component: InterviewerJoin
-    }
+    },
 ]

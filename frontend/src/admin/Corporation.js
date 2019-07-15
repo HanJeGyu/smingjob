@@ -1,7 +1,6 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { yellow, blue } from '@material-ui/core/colors';
 
 export default function Corporation() {
 
@@ -46,7 +45,7 @@ export default function Corporation() {
   return (
       <div className={classes.table} >
     <MaterialTable
-      title="Corporation User"
+      title="기업회원 관리"
       columns={state.columns}
       data={state.data}
       editable={{
