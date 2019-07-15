@@ -10,19 +10,10 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-const careers =[
-    {label : '신입'},
-    {label : '경력'},
-    {label : '인턴'},
-    {label : '경력무관'}
-].map(career=> ({
-    value: career.label,
-    label: career.label,
-  }));
 
 
-export default function AddressForm() {
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2019-07-14T21:11:54'));
+export default function NoticeUpload() {
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2019-07-14T18:00:00'));
 
     function handleDateChange(date) {
       setSelectedDate(date);
@@ -58,7 +49,7 @@ export default function AddressForm() {
           <TextField            
             id="career"
             name="career"
-            label="경력사항"
+            label="경력사항 (신입/경력/경력무관/인턴)"
             fullWidth
             autoComplete="lname"
           />
