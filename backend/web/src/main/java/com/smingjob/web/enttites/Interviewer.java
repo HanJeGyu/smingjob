@@ -30,7 +30,7 @@ public class Interviewer implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long itvSeq;
 
     @Column(name = "itv_id") private String itvId;

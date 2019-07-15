@@ -28,7 +28,7 @@ public class Notice implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy =GenerationType.AUTO)
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long noticeSeq;
         
     @Column(name="wtd_title") private String title;
