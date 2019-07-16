@@ -24,11 +24,11 @@ export default function Alive() {
             { title: '면접자 연락처', field: 'itvPhone' },
         ],
         data: [
-            { liveSeq: '1', corName: 'kakao', state: '19950712', startDate: '마감', area: '웹 프로그래머', career: '신입', itvName: '김희나', itvPhone:'01052481388' },
-            { liveSeq: '2', corName: 'nexon', state: '19920318', startDate: '마감', area: '모바일 UI', career: '경력', itvName: '여우리', itvPhone:'01022118446' },
-            { liveSeq: '3', corName: 'naver', state: '19920318', startDate: '마감', area: '웹 디자이너', career: '경력', itvName: '강성훈', itvPhone:'01087752788' },
-            { liveSeq: '4', corName: 'next', state: '19920318', startDate: '진행중', area: '서버 개발자', career: '신입', itvName: '이서진', itvPhone:'01023458865' },
-            { liveSeq: '5', corName: 'oasis', state: '19920318', startDate: '진행예정', area: '웹 프로그래머', career: '경력', itvName: '이유라', itvPhone:'01014584878' }
+            { liveSeq: '1', corName: 'kakao', state: '19950712', startDate: '마감', area: '웹 프로그래머', career: '신입', itvName: '김희나', itvPhone: '01052481388' },
+            { liveSeq: '2', corName: 'nexon', state: '19920318', startDate: '마감', area: '모바일 UI', career: '경력', itvName: '여우리', itvPhone: '01022118446' },
+            { liveSeq: '3', corName: 'naver', state: '19920318', startDate: '마감', area: '웹 디자이너', career: '경력', itvName: '강성훈', itvPhone: '01087752788' },
+            { liveSeq: '4', corName: 'next', state: '19920318', startDate: '진행중', area: '서버 개발자', career: '신입', itvName: '이서진', itvPhone: '01023458865' },
+            { liveSeq: '5', corName: 'oasis', state: '19920318', startDate: '진행예정', area: '웹 프로그래머', career: '경력', itvName: '이유라', itvPhone: '01014584878' }
 
         ],
     });
@@ -39,25 +39,26 @@ export default function Alive() {
                 title="면접 관리"
                 columns={state.columns}
                 data={state.data}
+                onRowClick={((evt, selectedRow) => this.setState({ selectedRow }))}
                 editable={{
-                                        onRowAdd: newData =>
-                                            new Promise(resolve => {
-                                                setTimeout(() => {
-                                                    resolve();
-                                                    const data = [...state.data];
-                                                    data.push(newData);
-                                                    setState({ ...state, data });
-                                                }, 600);
-                                            }),
-                                        onRowUpdate: (newData, oldData) =>
-                                            new Promise(resolve => {
-                                                setTimeout(() => {
-                                                    resolve();
-                                                    const data = [...state.data];
-                                                    data[data.indexOf(oldData)] = newData;
-                                                    setState({ ...state, data });
-                                                }, 600);
-                                            }),
+                    onRowAdd: newData =>
+                        new Promise(resolve => {
+                            setTimeout(() => {
+                                resolve();
+                                const data = [...state.data];
+                                data.push(newData);
+                                setState({ ...state, data });
+                            }, 600);
+                        }),
+                    onRowUpdate: (newData, oldData) =>
+                        new Promise(resolve => {
+                            setTimeout(() => {
+                                resolve();
+                                const data = [...state.data];
+                                data[data.indexOf(oldData)] = newData;
+                                setState({ ...state, data });
+                            }, 600);
+                        }),
                     onRowDelete: oldData =>
                         new Promise(resolve => {
                             setTimeout(() => {
