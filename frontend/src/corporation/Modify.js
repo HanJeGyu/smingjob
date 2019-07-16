@@ -41,7 +41,22 @@ export default function Join(){
                 <Grid container>
                     <Grid sm={1}>
                         <Box lineHeight={6}>
-                            이름
+                            사업자등록번호
+                        </Box>
+                    </Grid>
+                    <Grid sm={11}>
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            id="corRegNo"
+                            name="corRegNo"
+                            disabled
+                        />
+                    </Grid>
+                    <Grid sm={1}>
+                        <Box lineHeight={6}>
+                            회사명
                         </Box>
                     </Grid>
                     <Grid sm={11}>
@@ -51,7 +66,76 @@ export default function Join(){
                             variant="outlined"
                             id="name"
                             name="name"
-                            autoFocus
+                        />
+                    </Grid>
+                    <Grid sm={1}>
+                        <Box lineHeight={6}>
+                            대표명
+                        </Box>
+                    </Grid>
+                    <Grid sm={11}>
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            id="ceoName"
+                            name="ceoName"
+                        />
+                    </Grid>
+                    <Grid sm={1}>
+                        <Box lineHeight={6}>
+                            업종
+                        </Box>
+                    </Grid>
+                    <Grid sm={11}>
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            id="area"
+                            name="area"
+                        />
+                    </Grid>
+                    <Grid sm={1}>
+                        <Box lineHeight={6}>
+                            지역
+                        </Box>
+                    </Grid>
+                    <Grid sm={11}>
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            id="city"
+                            name="city"
+                        />
+                    </Grid>
+                    <Grid sm={1}>
+                        <Box lineHeight={6}>
+                            홈페이지
+                        </Box>
+                    </Grid>
+                    <Grid sm={11}>
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            id="homepage"
+                            name="homepage"
+                        />
+                    </Grid>
+                    <Grid sm={1}>
+                        <Box lineHeight={6}>
+                            가입자명
+                        </Box>
+                    </Grid>
+                    <Grid sm={11}>
+                        <TextField
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            id="pmName"
+                            name="pmName"
                         />
                     </Grid>
                     <Grid sm={1}>
@@ -64,8 +148,9 @@ export default function Join(){
                             fullWidth
                             margin="normal"
                             variant="outlined"
-                            id="itvId"
-                            name="itvId"
+                            id="corId"
+                            name="corId"
+                            disabled
                         />
                     </Grid>
                     <Grid sm={1}>
@@ -81,76 +166,6 @@ export default function Join(){
                             id="pwd"
                             name="pwd"
                             type="password"
-                        />
-                    </Grid>
-                    <Grid sm={1}>
-                        <Box lineHeight={6}>
-                            생년월일
-                        </Box>
-                    </Grid>
-                    <Grid sm={11}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="birth"
-                            name="birth"
-                        />
-                    </Grid>
-                    <Grid sm={1}>
-                        <Box lineHeight={6}>
-                            휴대폰번호
-                        </Box>
-                    </Grid>
-                    <Grid sm={11}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="phone"
-                            name="phone"
-                        />
-                    </Grid>
-                    <Grid sm={1}>
-                        <Box lineHeight={6}>
-                            이메일주소
-                        </Box>
-                    </Grid>
-                    <Grid sm={11}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="email"
-                            name="email"
-                        />
-                    </Grid>
-                    <Grid sm={1}>
-                        <Box lineHeight={6}>
-                            산업/직군
-                        </Box>
-                    </Grid>
-                    <Grid sm={11}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="area"
-                            name="area"
-                        />
-                    </Grid>
-                    <Grid sm={1}>
-                        <Box lineHeight={6}>
-                            희망근무지
-                        </Box>
-                    </Grid>
-                    <Grid sm={11}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="location"
-                            name="location"
                         />
                     </Grid>
                 </Grid>

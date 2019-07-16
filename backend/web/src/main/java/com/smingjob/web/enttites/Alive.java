@@ -35,6 +35,7 @@ public class Alive implements Serializable {
     @Column(name="cor_name") private String corName;
     @Column(name="state") private String state;
     @Column(name="start_date") private String startDate;
+    @Column(name="start_time") private String startTime;
     @Column(name="area") private String area; 
     @Column(name="career") private String career; 
     @Column(name="itv_seq") private Long itvSeq; 
@@ -44,19 +45,21 @@ public class Alive implements Serializable {
 
     @Override
     public String toString(){
-        return "Alive :[live_seq:"+liveSeq+",cor_seq:" +corSeq+", cor_name:"+corName+", state:"+state+", start_date:"+startDate+
-       ", area:"+area+", career:"+career+", itv_seq:"+itvSeq+", itv_name:"+itvName+", itv_phone:"+itvPhone+"]";
+        return "Alive :[live_seq:" + liveSeq + ",cor_seq:" + corSeq + ", cor_name:" + corName + ", state:" + state
+        + ", start_date:" + startDate+ ", start_time" + startTime + ", area:" + area + ", career:" + career 
+        + ", itv_seq:" + itvSeq + ", itv_name:" + itvName + ", itv_phone:" + itvPhone + "]";
     }
 
 
     //생성자
     @Builder
-    private Alive(Long corSeq, String corName,
-    String state, String startDate, String area, String career, Long itvSeq, String itvName, String itvPhone){
+    private Alive(Long corSeq, String corName, String state, String startDate, String startTime,
+                 String area, String career, Long itvSeq, String itvName, String itvPhone){
         this.corSeq = corSeq;
         this.corName =corName;
         this.state = state;
         this.startDate = startDate;
+        this.startTime = startTime;
         this.area = area;
         this.career = career;
         this.itvSeq = itvSeq;

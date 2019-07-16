@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { makeStyles, useTheme, Drawer, CssBaseline, AppBar, 
         List, Typography, Divider, IconButton, ListItem, 
         ListItemText, MenuItem, ListItemIcon, Link,
-        Menu, Button, ListSubheader, Toolbar } 
+        Menu, Button, ListSubheader, Toolbar, Collapse } 
         from "@material-ui/core";
 import { red, deepPurple, blue } from "@material-ui/core/colors";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -13,6 +13,8 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 const drawerWidth = 240;
 
@@ -76,6 +78,9 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
+  },
+  nested: {
+    paddingLeft: theme.spacing(4),
   }
 }));
 
@@ -83,6 +88,7 @@ const Navbar = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [subOnOff, setSubOnOff] = React.useState(false);
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openEl = Boolean(anchorEl);
@@ -100,6 +106,10 @@ const Navbar = () => {
 
   function handleClose() {
     setAnchorEl(null);
+  }
+
+  function handleSubOnOff(){
+    setSubOnOff(!subOnOff)
   }
 
   return (
@@ -153,7 +163,34 @@ const Navbar = () => {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}><Link href="/mypage">My account</Link></MenuItem>
+                <MenuItem onClick={handleSubOnOff}>개인 My account{subOnOff ? <ExpandLess /> : <ExpandMore />}</MenuItem>
+                <Collapse in={subOnOff} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <ListItem button className={classes.nested}>
+                      <ListItemText primary="지원현황" href="/interviewerNotice"/>
+                    </ListItem>
+                    <ListItem button className={classes.nested}>
+                      <ListItemText primary="PR관리" href="/interviewerPr"/>
+                    </ListItem>
+                    <ListItem button className={classes.nested}>
+                    <ListItemText primary="회원정보수정" href="/interviewerModify"/>
+                    </ListItem>
+                  </List>
+                </Collapse>
+                <MenuItem onClick={handleSubOnOff}>기업 My account{subOnOff ? <ExpandLess /> : <ExpandMore />}</MenuItem>
+                <Collapse in={subOnOff} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <ListItem button className={classes.nested}>
+                      <ListItemText primary="공고목록" href="/corporationNotice"/>
+                    </ListItem>
+                    <ListItem button className={classes.nested}>
+                      <ListItemText primary="PR스크랩" href="/corporationPr"/>
+                    </ListItem>
+                    <ListItem button className={classes.nested}>
+                    <ListItemText primary="회원정보수정" href="/corporationModify"/>
+                    </ListItem>
+                  </List>
+                </Collapse>
               </Menu>
             </div>
           )}
