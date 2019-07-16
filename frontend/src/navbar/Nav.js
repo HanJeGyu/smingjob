@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme, Drawer, CssBaseline, AppBar, 
         List, Typography, Divider, IconButton, ListItem, 
-        ListItemText, MenuItem, ListItemIcon,
+        ListItemText, MenuItem, ListItemIcon, Link,
         Menu, Button, ListSubheader, Toolbar } 
         from "@material-ui/core";
 import { red, deepPurple, blue } from "@material-ui/core/colors";
@@ -153,7 +153,7 @@ const Navbar = () => {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}><Link href="/mypage">My account</Link></MenuItem>
               </Menu>
             </div>
           )}

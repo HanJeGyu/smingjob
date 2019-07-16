@@ -12,8 +12,8 @@ import NoticeList from './admin/NoticeList'
 import NoticeUpload from './admin/NoticeUpload'
 import NoticeModify from './admin/NoticeModify'
 import NoticeDetailAdmin from './admin/NoticeDetailAdmin'
-import InterviewerJoin from './interviewer/Join'
 import Join from './common/Join'
+import Mypage from './common/Mypage'
 
 
 
@@ -66,5 +66,9 @@ export const routerConfig = [
     {
         path: '/join',
         component: Join
+    },
+    {
+        path: '/mypage',
+        component: Mypage
     }
 ]
