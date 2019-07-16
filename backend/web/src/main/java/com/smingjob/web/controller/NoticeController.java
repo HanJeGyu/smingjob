@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/notices")
+@RequestMapping("/notice")
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600) 
 
 public class NoticeController {    
@@ -49,7 +49,7 @@ public class NoticeController {
          }        
     return list;
    }
-   @GetMapping("/noticeContent/{id}")
+   @GetMapping("/noticeDetail/{id}")
    public NoticeDTO findById(@PathVariable String id) {
     return modelMapper.map(repo.findById(Long.parseLong(id))
             .orElseThrow(EntityNotFoundException::new),

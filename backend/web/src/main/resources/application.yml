@@ -7,7 +7,7 @@ spring:
     jpa:
         database-platform: org.hibernate.dialect.MariaDB102Dialect
         hibernate:
-            ddl-auto: create
+            ddl-auto: update
 server:
     port: 9000
 

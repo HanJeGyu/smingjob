@@ -22,7 +22,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table(name = "notices")
+@Table(name = "jobnotice")
 public class Notice implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -31,7 +31,7 @@ public class Notice implements Serializable{
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long noticeSeq;
         
-    @Column(name="wtd_title") private String title;
+    @Column(name="title") private String title;
     @Column(name="cor_name") private String corName;
     @Column(name="content1") private String content1;
     @Column(name="content2") private String content2;
