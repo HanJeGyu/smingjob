@@ -167,13 +167,19 @@ const Navbar = () => {
                 <Collapse in={subOnOff} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <ListItem button className={classes.nested}>
-                      <ListItemText primary="지원현황" href="/interviewerNotice"/>
+                      <Link href="/interviewerNotice" underline="none" color="inherit">
+                        <ListItemText primary="지원현황"/>
+                      </Link>
                     </ListItem>
                     <ListItem button className={classes.nested}>
-                      <ListItemText primary="PR관리" href="/interviewerPr"/>
+                      <Link href="/interviewerPr" underline="none" color="inherit">
+                        <ListItemText primary="PR관리"/>
+                      </Link>
                     </ListItem>
                     <ListItem button className={classes.nested}>
-                    <ListItemText primary="회원정보수정" href="/interviewerModify"/>
+                      <Link href="/interviewerModify" underline="none" color="inherit">
+                        <ListItemText primary="회원정보수정"/>
+                      </Link>
                     </ListItem>
                   </List>
                 </Collapse>
@@ -181,13 +187,19 @@ const Navbar = () => {
                 <Collapse in={subOnOff} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <ListItem button className={classes.nested}>
-                      <ListItemText primary="공고목록" href="/corporationNotice"/>
+                      <Link href="/corporationNotice" underline="none" color="inherit">
+                        <ListItemText primary="공고목록"/>
+                      </Link>
                     </ListItem>
                     <ListItem button className={classes.nested}>
-                      <ListItemText primary="PR스크랩" href="/corporationPr"/>
+                      <Link href="/corporationPr" underline="none" color="inherit">
+                        <ListItemText primary="PR스크랩"/>
+                      </Link>
                     </ListItem>
                     <ListItem button className={classes.nested}>
-                    <ListItemText primary="회원정보수정" href="/corporationModify"/>
+                      <Link href="/corporationModify" underline="none" color="inherit">
+                        <ListItemText primary="회원정보수정"/>
+                      </Link>
                     </ListItem>
                   </List>
                 </Collapse>
