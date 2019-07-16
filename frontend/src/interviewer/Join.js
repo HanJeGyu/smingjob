@@ -1,7 +1,6 @@
 import React from 'react'
-import { Container, CssBaseline, Typography, Avatar, Grid, TextField, Button } from '@material-ui/core';
+import { Container, CssBaseline, TextField, Button } from '@material-ui/core';
 
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -34,104 +33,84 @@ export default function Join(){
     return(
         <Container component="main" maxWidth="sm">
             <CssBaseline/>
-            <div className={classes.paper}>
             <form className={classes.form} noValidate>
-                <Grid container>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="name"
-                            name="name"
-                            label="이름"
-                            autoFocus
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="itvId"
-                            name="itvId"
-                            label="아이디"
-                            autoFocus
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="pwd"
-                            name="pwd"
-                            label="비밀번호"
-                            type="password"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="birth"
-                            name="birth"
-                            label="생년월일 6자리"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="phone"
-                            name="phone"
-                            label="휴대폰번호"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="email"
-                            name="email"
-                            label="이메일"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="area"
-                            name="area"
-                            label="희망산업/직군"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="location"
-                            name="location"
-                            label="희망근무지"
-                        />
-                    </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        가입하기
-                    </Button>
-                </Grid>
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="name"
+                    name="name"
+                    label="이름"
+                    autoFocus
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="itvId"
+                    name="itvId"
+                    label="아이디"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="pwd"
+                    name="pwd"
+                    label="비밀번호"
+                    type="password"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="birth"
+                    name="birth"
+                    label="생년월일 6자리"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="phone"
+                    name="phone"
+                    label="휴대폰번호"
+                />
+                <TextField
+                    fullWidth
+                    required
+                    margin="normal"
+                    variant="outlined"
+                    id="email"
+                    name="email"
+                    label="이메일"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="area"
+                    name="area"
+                    label="희망산업/직군"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="location"
+                    name="location"
+                    label="희망근무지"
+                />
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                >
+                    가입하기
+                </Button>
             </form>
-            </div>
         </Container>
     )
 }

@@ -13,7 +13,7 @@ import NoticeUpload from './admin/NoticeUpload'
 import NoticeModify from './admin/NoticeModify'
 import NoticeDetailAdmin from './admin/NoticeDetailAdmin'
 import Join from './common/Join'
-import Mypage from './common/Mypage'
+import Mypage from './interviewer/Mypage'
 import PrAdmin from "./admin/Pr"
 import AliveAdmin from "./admin/Alive";
 

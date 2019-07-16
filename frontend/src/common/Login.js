@@ -61,6 +61,7 @@ export default function Login() {
     }
     axios.post(`${url}/login`, JSON.stringify(data), {headers: headers})
       .then(res=>{
+        console.log(res.data.itvId)
         alert('통신성공')
       })
       .catch(e=>{
@@ -125,7 +126,7 @@ export default function Login() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/join" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

@@ -38,8 +38,8 @@ const useStyles = makeStyles(theme => ({
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(3),
     },
-      submit: {
-        margin: theme.spacing(3, 0, 2),
+    submit: {
+        margin: theme.spacing(3, 0, 2)
     }
 }));
 
@@ -50,10 +50,6 @@ export default function FullWidthTabs() {
 
     function handleChange(event, newValue) {
         setValue(newValue);
-    }
-
-    function handleChangeIndex(index) {
-        setValue(index);
     }
 
     return (

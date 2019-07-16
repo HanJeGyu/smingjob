@@ -34,113 +34,91 @@ export default function Join(){
     return(
         <Container component="main" maxWidth="sm">
             <CssBaseline/>
-            <div className={classes.paper}>
             <form className={classes.form} noValidate>
-                <Grid container>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="corRegNo"
-                            name="corRegNo"
-                            label="사업자등록번호"
-                            autoFocus
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="name"
-                            name="name"
-                            label="회사명"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="ceoName"
-                            name="ceoName"
-                            label="대표명"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="area"
-                            name="area"
-                            label="업종"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="city"
-                            name="city"
-                            label="지역"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="homepage"
-                            name="homepage"
-                            label="홈페이지"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="pmName"
-                            name="pmName"
-                            label="가입자명"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="corId"
-                            name="corId"
-                            label="아이디"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            id="pwd"
-                            name="pwd"
-                            label="비밀번호"
-                            type="password"
-                        />
-                    </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        가입하기
-                    </Button>
-                </Grid>
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="corRegNo"
+                    name="corRegNo"
+                    label="사업자등록번호"
+                    autoFocus
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="name"
+                    name="name"
+                    label="회사명"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="ceoName"
+                    name="ceoName"
+                    label="대표명"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="area"
+                    name="area"
+                    label="업종"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="city"
+                    name="city"
+                    label="지역"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="homepage"
+                    name="homepage"
+                    label="홈페이지"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="pmName"
+                    name="pmName"
+                    label="가입자명"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="corId"
+                    name="corId"
+                    label="아이디"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="pwd"
+                    name="pwd"
+                    label="비밀번호"
+                    type="password"
+                />
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                >
+                    가입하기
+                </Button>
             </form>
-            </div>
         </Container>
     )
 }

@@ -5,8 +5,9 @@ import { makeStyles, useTheme, Tabs, Tab,
         from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
-import InterviewerJoin from '../interviewer/Join'
-import CorporationJoin from '../corporation/Join'
+import InterviewerModify from './Modify'
+import InterviewerNotice from './Notice'
+import InterviewerAlive from './Alive'
 
 function TabContainer({ children, dir }) {
     return (
@@ -53,7 +54,7 @@ export default function FullWidthTabs() {
     }
 
     return (
-        <Container component="main" maxWidth="sm">
+        <Container component="main" maxWidth="lg">
             <CssBaseline/>
             <div className={classes.paper}>
                 <AppBar position="static" color="default">
@@ -64,12 +65,16 @@ export default function FullWidthTabs() {
                         textColor="primary"
                         variant="fullWidth"
                     >
+                    <Tab label="지원현황" />
+                    <Tab label="면접목록" />
+                    <Tab label="PR관리" />
                     <Tab label="회원정보수정" />
-                    <Tab label="면접결과" />
                     </Tabs>
                 </AppBar>
-                {value === 0 && <TabContainer dir={theme.direction}><InterviewerJoin/></TabContainer>}
-                {value === 1 && <TabContainer dir={theme.direction}><CorporationJoin/></TabContainer>}
+                {value === 0 && <TabContainer dir={theme.direction}><InterviewerNotice/></TabContainer>}
+                {value === 1 && <TabContainer dir={theme.direction}><InterviewerAlive/></TabContainer>}
+                {value === 2 && <TabContainer dir={theme.direction}><InterviewerModify/></TabContainer>}
+                {value === 3 && <TabContainer dir={theme.direction}><InterviewerModify/></TabContainer>}
             </div>
         </Container>
     );
