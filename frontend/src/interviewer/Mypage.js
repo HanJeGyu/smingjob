@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import InterviewerModify from './Modify'
 import InterviewerNotice from './Notice'
 import InterviewerAlive from './Alive'
+import PrInterviewer from './Pr';
+import { blue } from '@material-ui/core/colors';
 
 function TabContainer({ children, dir }) {
     return (
@@ -73,7 +75,7 @@ export default function FullWidthTabs() {
                 </AppBar>
                 {value === 0 && <TabContainer dir={theme.direction}><InterviewerNotice/></TabContainer>}
                 {value === 1 && <TabContainer dir={theme.direction}><InterviewerAlive/></TabContainer>}
-                {value === 2 && <TabContainer dir={theme.direction}><InterviewerModify/></TabContainer>}
+                {value === 2 && <TabContainer dir={theme.direction}><PrInterviewer/></TabContainer>}
                 {value === 3 && <TabContainer dir={theme.direction}><InterviewerModify/></TabContainer>}
             </div>
         </Container>
