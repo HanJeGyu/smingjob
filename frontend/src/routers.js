@@ -14,7 +14,8 @@ import NoticeModify from './admin/NoticeModify'
 import NoticeDetailAdmin from './admin/NoticeDetailAdmin'
 import Join from './common/Join'
 import Mypage from './common/Mypage'
-
+import PrAdmin from "./admin/Pr"
+import AliveAdmin from "./admin/Alive";
 
 
 export const routerConfig = [
@@ -70,5 +71,13 @@ export const routerConfig = [
     {
         path: '/mypage',
         component: Mypage
-    }
+    },
+    {
+        path: '/prAdmin',
+        component: PrAdmin
+    },
+    {
+        path: '/aliveAdmin',
+        component: AliveAdmin
+    },
 ]
