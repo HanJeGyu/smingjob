@@ -20,7 +20,7 @@ public class NoticeDTO {
          career,
          area,
          startDate,
-         lastDate,
+         startTime,
          tagLocation,
          tagAttribute,
          tagCareer;

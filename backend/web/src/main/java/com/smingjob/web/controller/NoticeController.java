@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/notice")
+@RequestMapping("/notices")
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600) 
 
 public class NoticeController {    
@@ -70,7 +70,7 @@ public class NoticeController {
        entity.setCareer(dto.getCareer());
        entity.setArea(dto.getArea());
        entity.setStartDate(dto.getStartDate());
-       entity.setLastDate(dto.getLastDate());
+       entity.setStartTime(dto.getStartTime());
        entity.setTagLocation(dto.getTagLocation());
        entity.setTagAttribute(dto.getTagAttribute());
        entity.setTagCareer(dto.getTagCareer());
@@ -96,7 +96,7 @@ public class NoticeController {
        entity.setCareer(dto.getCareer());
        entity.setArea(dto.getArea());
        entity.setStartDate(dto.getStartDate());
-       entity.setLastDate(dto.getLastDate());
+       entity.setStartTime(dto.getStartTime());
        entity.setTagLocation(dto.getTagLocation());
        entity.setTagAttribute(dto.getTagAttribute());
        entity.setTagCareer(dto.getTagCareer());

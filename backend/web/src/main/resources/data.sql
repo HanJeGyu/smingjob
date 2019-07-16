@@ -54,7 +54,7 @@ CREATE TABLE jobnotice
     career         VARCHAR(2)       NOT NULL    COMMENT '요구경력', 
     area           VARCHAR(100)     NOT NULL    COMMENT '산업/직군', 
     start_date     VARCHAR(8)       NOT NULL    COMMENT '시작일', 
-    last_date      VARCHAR(8)       NOT NULL    COMMENT '마감일', 
+    start_Time     VARCHAR(8)       NOT NULL    COMMENT '시작시각', 
     tag_location   VARCHAR(100)     NULL        COMMENT '태그-위치', 
     tag_attribute  VARCHAR(100)     NULL        COMMENT '태그-특성', 
     tag_career     VARCHAR(100)     NULL        COMMENT '태그-경력', 

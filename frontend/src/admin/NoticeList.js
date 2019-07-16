@@ -1,43 +1,49 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 import { makeStyles} from "@material-ui/core/styles";
+import axios from 'axios'
 
 
-export default function NoticeList() {
 
-    const useStyles = makeStyles(theme => ({
-        table: {
-            margin: "100px 50px"
-        }
 
-     })); 
-
-     const classes = useStyles();
-     const [state, setState] = React.useState({
+export default class NoticeList extends React.Component{
+    
+    state={
+        notices: [],
         columns: [
-        { title: '공고명', field: 'title' },
-        { title: '접수일', field: 'startDate', type: 'numeric' },      
-        { title: '접수시각', field: 'startTime', type: 'numeric'},
-        { title: '접수상태', field: 'state', lookup: { 12: '진행중', 15: '진행예정', 17: '마감'},
-        },
-        ],
-        data: [
-        { title: '11', startDate: '190715', startTime: '1800',state: 12 },
-        { title: '22', startDate: '190715', startTime: '1900',state: 15 },
-        { title: '3', startDate: '190716', startTime: '1800',state: 12 },
-        { title: '4', startDate: '190715', startTime: '1800',state: 17 },
-        { title: '5', startDate: '190718', startTime: '1800',state: 12 },
-        { title: '6', startDate: '190719', startTime: '1800',state: 12 },
-        { title: '7', startDate: '190719', startTime: '1800',state: 12 },
-        { title: '88', startDate: '190719', startTime: '1800',state: 12 },
-        { title: '9', startDate: '190719', startTime: '1800',state: 12 },
-        { title: '10000', startDate: '190719', startTime: '1800',state: 12 },
-        
+            { title: '접수상태', field: 'state', lookup: { ing: '진행중', wait: '진행예정', fin: '마감'}},   
+            { title: '공고명', field: 'title' },            
+            { title: '접수일', field: 'startDate', type: 'numeric' },      
+            { title: '접수시각', field: 'startTime', type: 'numeric'},
+                     
+            ],
+    }
 
-        ],
-    });
+    componentDidMount(){
+        axios.get('http://localhost:9000/notices')
+        .then(res=>{
+            const notices = res.data;
+            this.setState({notices});
+        })
+    }
+    render(){
+        let state = this.state;
+        let style = {
+            margin:"100px 100px"
+        }
+        return(
+            <div>
+                <MaterialTable title="공고 관리" columns={state.columns} data={state.notices} style={style} />
+              {/*  {this.state.notices.map(notice => <tr><td>{notice.title}</td><td>{notice.tagLocation}</td></tr>)}  */}
+          
+            </div>
+        )
+    }
+}
 
-    return (
+
+
+ /*    return (
         <div className={classes.table} >
         <MaterialTable
         title="공고 관리"
@@ -75,4 +81,4 @@ export default function NoticeList() {
         />
         </div>
     );
-    }
+    }  */
