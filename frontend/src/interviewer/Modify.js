@@ -21,7 +21,7 @@ class Modify extends React.Component {
             name: '',
             itvId: '',
             pwd: '',
-            brith: '',
+            birth: '',
             phone: '',
             email: '',
             area: '',
@@ -60,8 +60,8 @@ class Modify extends React.Component {
         }
         axios.put(`http://localhost:9000/interviewers/modify`,JSON.stringify(data),{headers: headers})
             .then(res=>{
-                alert('통신성공')
-                console.log(res.data.result)
+                alert('회원정보가 수정 되었습니다.')
+                window.location.reload()
             })
             .catch(e=>{
                 alert('회원정보 수정 실패')
@@ -104,6 +104,7 @@ class Modify extends React.Component {
                                 variant="outlined"
                                 id="itvId"
                                 name="itvId"
+                                value={this.state.itvId}
                                 disabled
                             />
                         </Grid>
@@ -136,6 +137,7 @@ class Modify extends React.Component {
                                 variant="outlined"
                                 id="birth"
                                 name="birth"
+                                value={this.state.birth}
                                 disabled
                             />
                         </Grid>
@@ -220,7 +222,7 @@ class Modify extends React.Component {
 }
 
 Modify.propTypes = {
-    classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired
 };
 
 export default withStyles(useStyles)(Modify)

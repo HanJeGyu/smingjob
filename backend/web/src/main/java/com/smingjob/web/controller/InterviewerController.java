@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Predicate;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -95,10 +94,8 @@ public class InterviewerController {
    @PutMapping("/modify")
    public HashMap<String, String> modify(@RequestBody InterviewerDTO rdto) {
       HashMap<String, String> map = new HashMap<>();
-      System.out.println("ID : " + rdto.getItvId());
-      System.out.println("pw : " + rdto.getPwd());
-      //repo.updateByItvId(rdto.getItvId(), rdto.getPwd());
-      System.out.println("SQL 실행 후");
+      repo.updateByItvId(rdto.getItvId(), rdto.getPwd(), rdto.getName(), 
+                        rdto.getPhone(), rdto.getEmail(), rdto.getArea(), rdto.getLocation());
       map.put("result", "SUCCESS");
       return map;
    }

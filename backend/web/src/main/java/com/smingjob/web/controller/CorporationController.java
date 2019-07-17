@@ -33,76 +33,71 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class CorporationController {
 
-    @Autowired CorporationDTO dto;
-    @Autowired CorporationRepository repo;
-    @Autowired ModelMapper modelMapper;
+   @Autowired CorporationDTO dto;
+   @Autowired CorporationRepository repo;
+   @Autowired ModelMapper modelMapper;
 
-    @DeleteMapping("/{id}")
-    public void	deleteById(@PathVariable String id){    
-         repo.deleteById(Long.parseLong(id));
-    }
+   @DeleteMapping("/{id}")
+   public void	deleteById(@PathVariable String id){    
+      repo.deleteById(Long.parseLong(id));
+   }
  
-    @GetMapping("")
-    public Iterable<CorporationDTO> findAll(){
-        Iterable<Corporation> entities = repo.findAll();
-        List<CorporationDTO> list = new ArrayList<>();
-        for(Corporation s: entities){
-             CorporationDTO cop = modelMapper.map(s, CorporationDTO.class);
-             list.add(cop);
-          }
-          System.out.println(list);        
-     return list;
-    }
-    @GetMapping("/CorporationContent/{id}")
-    public CorporationDTO findById(@PathVariable String id) {
-     return modelMapper.map(repo.findById(Long.parseLong(id))
-             .orElseThrow(EntityNotFoundException::new),
-             CorporationDTO.class);
-    }
+   @GetMapping("")
+   public Iterable<CorporationDTO> findAll(){
+      Iterable<Corporation> entities = repo.findAll();
+      List<CorporationDTO> list = new ArrayList<>();
+      for(Corporation s: entities){
+            CorporationDTO cop = modelMapper.map(s, CorporationDTO.class);
+            list.add(cop);
+         }
+         System.out.println(list);        
+   return list;
+   }
 
-    @PostMapping("/upload")
-    public HashMap<String, String> save(@RequestBody CorporationDTO dto) {
-     //    System.out.println("업로드"+dto.toString());
-        HashMap<String, String> map = new HashMap<>();
+   @GetMapping("/CorporationContent/{id}")
+   public CorporationDTO findById(@PathVariable String id) {
+   return modelMapper.map(repo.findById(Long.parseLong(id))
+            .orElseThrow(EntityNotFoundException::new),
+            CorporationDTO.class);
+   }
 
-        Corporation entity = new Corporation();
-        entity.setCorId(dto.getCorId());
-        entity.setPwd(dto.getPwd());
-        entity.setName(dto.getName()); 
-        entity.setCeoName(dto.getCeoName()); 
-        entity.setArea(dto.getArea());
-        entity.setPmName(dto.getPmName());
-        entity.setPmPhone(dto.getPmPhone());
-        entity.setHomepage(dto.getHomepage());
-        entity.setCity(dto.getCity());
-        entity.setDateJoin(dto.getDateJoin());
-   
-        repo.save(entity);
-        map.put("result", "SUCCESS");
-       return map;
-    }   
-    @PutMapping("/modify/{id}")
-    public HashMap<String, String> modify(@RequestBody CorporationDTO dto,@PathVariable String id) {
-     //    System.out.println("수정"+dto.toString());
-        HashMap<String, String> map = new HashMap<>();
-        Corporation entity = repo.findById(Long.parseLong(id)).get();
-        entity.setCorSeq(Long.parseLong(id));
-        entity.setCorId(dto.getCorId());
-        entity.setPwd(dto.getPwd());
-        entity.setName(dto.getName()); 
-        entity.setCeoName(dto.getCeoName()); 
-        entity.setArea(dto.getArea());
-        entity.setPmName(dto.getPmName());
-        entity.setPmPhone(dto.getPmPhone());
-        entity.setHomepage(dto.getHomepage());
-        entity.setCity(dto.getCity());
-        entity.setDateJoin(dto.getDateJoin());
-   
-     //    System.out.println("entity 저장:"+entity.toString());
-        repo.save(entity);
-        map.put("result", "SUCCESS");
-       return map;
-    }   
+   @GetMapping("/{corId}")
+   public CorporationDTO findByCorId(@PathVariable String corId) {
+      return modelMapper.map(repo.findByCorId(corId).get(), CorporationDTO.class);
+   }
+
+   @PostMapping("/upload")
+   public HashMap<String, String> save(@RequestBody CorporationDTO dto) {
+   //    System.out.println("업로드"+dto.toString());
+      HashMap<String, String> map = new HashMap<>();
+
+      Corporation entity = new Corporation();
+      entity.setCorId(dto.getCorId());
+      entity.setPwd(dto.getPwd());
+      entity.setName(dto.getName()); 
+      entity.setCeoName(dto.getCeoName()); 
+      entity.setArea(dto.getArea());
+      entity.setPmName(dto.getPmName());
+      entity.setPmPhone(dto.getPmPhone());
+      entity.setHomepage(dto.getHomepage());
+      entity.setCity(dto.getCity());
+      entity.setDateJoin(dto.getDateJoin());
+
+      repo.save(entity);
+      map.put("result", "SUCCESS");
+      return map;
+   }   
+
+   @PutMapping("/modify")
+   public HashMap<String, String> modify(@RequestBody CorporationDTO rdto) {
+      HashMap<String, String> map = new HashMap<>();
+      repo.updateByCorId(rdto.getCorId(), rdto.getPwd(), rdto.getName(), 
+                        rdto.getCeoName(), rdto.getArea(), rdto.getPmName(),
+                        rdto.getPmPhone(), rdto.getCity(), rdto.getHomepage());
+      map.put("result", "SUCCESS");
+      return map;
+
+   }
 
    @PostMapping("/login")
    public CorporationDTO login(@RequestBody CorporationDTO rdto) {
