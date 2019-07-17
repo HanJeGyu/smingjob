@@ -55,6 +55,13 @@ public class NoticeController {
             .orElseThrow(EntityNotFoundException::new),
             NoticeDTO.class);
    }
+
+   @GetMapping("/{Title}")
+   public NoticeDTO findByNoticeTitle(@PathVariable String Title) {
+   return modelMapper.map(repo.findByTitle(Title).get(), NoticeDTO.class);
+}
+
+
    @PostMapping("/upload")
    public HashMap<String, String> save(@RequestBody NoticeDTO dto) {
     //    System.out.println("업로드"+dto.toString());

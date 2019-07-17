@@ -34,10 +34,14 @@ export default class Notice extends React.Component{
       
   })
   }
-  
+  detail(e,id){
+    e.preventDefault();
+    window.location = '/NoticeDetail/'+id;
+
+}
   render(){
    /*  let state=this.state;    */  
-    let notices = this.state.notices;
+ 
     let cardGrid ={
       paddingTop: '5%',
       paddingBottom: '5%',
@@ -100,7 +104,7 @@ export default class Notice extends React.Component{
       textAlign: 'center',
       color: 'SteelBlue '
     }
-  
+    let id = this.state.notices.noticeSeq
   return(  
     <React.Fragment>
        {/*검색 */}
@@ -117,10 +121,6 @@ export default class Notice extends React.Component{
           <IconButton style={iconButton} aria-label="Search">
             <SearchIcon />
           </IconButton>
-        {/*  <Divider className={classes.divider} />
-          <IconButton color="primary" className={classes.iconButton} aria-label="Directions">
-            <DirectionsIcon />
-          </IconButton> */}
         </Paper>
        </Container>
 
@@ -128,7 +128,7 @@ export default class Notice extends React.Component{
        <Container style ={cardGrid}  maxWidth="md">
        <Grid container spacing={6} >
         {this.state.notices.map(notice => <Grid item key={notice} xs={12} sm={6} md={4} >
-            <Card style ={card}>           
+            <Card style ={card} onClick={this.detail(id)}>           
               <CardContent style ={cardContent}>                        
                 <Typography style ={area} variant="h10" gutterBottom>
                   {notice.area} - {notice.career}
