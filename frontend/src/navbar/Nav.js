@@ -166,41 +166,35 @@ const Navbar = () => {
                 <MenuItem onClick={handleSubOnOff}>개인 My account{subOnOff ? <ExpandLess /> : <ExpandMore />}</MenuItem>
                 <Collapse in={subOnOff} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                    <ListItem button className={classes.nested}>
-                      <Link href="/interviewerNotice" underline="none" color="inherit">
+                    <Link href="/interviewerNotice" underline="none" color="inherit">
+                      <ListItem button className={classes.nested}>
                         <ListItemText primary="지원현황"/>
-                      </Link>
-                    </ListItem>
-                    <ListItem button className={classes.nested}>
-                      <Link href="/interviewerPr" underline="none" color="inherit">
+                      </ListItem></Link>
+                    <Link href="/interviewerPr" underline="none" color="inherit">
+                      <ListItem button className={classes.nested}>
                         <ListItemText primary="PR관리"/>
-                      </Link>
-                    </ListItem>
-                    <ListItem button className={classes.nested}>
-                      <Link href="/interviewerModify" underline="none" color="inherit">
+                      </ListItem></Link>
+                    <Link href="/interviewerModify" underline="none" color="inherit">
+                      <ListItem button className={classes.nested}>
                         <ListItemText primary="회원정보수정"/>
-                      </Link>
-                    </ListItem>
+                      </ListItem></Link>
                   </List>
                 </Collapse>
                 <MenuItem onClick={handleSubOnOff}>기업 My account{subOnOff ? <ExpandLess /> : <ExpandMore />}</MenuItem>
                 <Collapse in={subOnOff} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
-                    <ListItem button className={classes.nested}>
-                      <Link href="/corporationNotice" underline="none" color="inherit">
+                    <Link href="/corporationNotice" underline="none" color="inherit">
+                      <ListItem button className={classes.nested}>
                         <ListItemText primary="공고목록"/>
-                      </Link>
-                    </ListItem>
-                    <ListItem button className={classes.nested}>
-                      <Link href="/corporationPr" underline="none" color="inherit">
+                      </ListItem></Link>
+                    <Link href="/corporationPr" underline="none" color="inherit">
+                      <ListItem button className={classes.nested}>
                         <ListItemText primary="PR스크랩"/>
-                      </Link>
-                    </ListItem>
-                    <ListItem button className={classes.nested}>
-                      <Link href="/corporationModify" underline="none" color="inherit">
+                      </ListItem></Link>
+                    <Link href="/corporationModify" underline="none" color="inherit">
+                      <ListItem button className={classes.nested}>
                         <ListItemText primary="회원정보수정"/>
-                      </Link>
-                    </ListItem>
+                      </ListItem></Link>
                   </List>
                 </Collapse>
               </Menu>
