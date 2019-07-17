@@ -14,7 +14,7 @@ export default function Alive() {
     const classes = useStyles();
     const [state, setState] = React.useState({
         columns: [
-            { title: '면접번호', field: 'liveSeq' },
+            { title: 'No', field: 'liveSeq' },
             { title: '기업이름', field: 'corName' },
             { title: '진행상태', field: 'state' },
             { title: '시작일시', field: 'startDate' },
@@ -39,7 +39,7 @@ export default function Alive() {
                 title="면접 관리"
                 columns={state.columns}
                 data={state.data}
-                onRowClick={((evt, selectedRow) => this.setState({ selectedRow }))}
+                onRowClick
                 editable={{
                     onRowAdd: newData =>
                         new Promise(resolve => {

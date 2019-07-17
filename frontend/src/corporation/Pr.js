@@ -16,8 +16,8 @@ export default function Pr() {
     const [state, setState] = React.useState({
         columns: [
             { title: '구직자 명', field: 'itvName' },
-            { title: '제목', field: 'heart', type: 'title' },
-            { title: '스크랩일', field: 'upload', type: 'dateScrap' },
+            { title: '제목', field: 'title', type: 'title' },
+            { title: '스크랩일', field: 'dateScrap', type: 'dateScrap' },
         ],
         data: [
             { itvName: '이유나', title: '안녕하십니까 꼼꼼하고 성실한 인재입니다.', dateScrap: '20190615' },
@@ -33,7 +33,7 @@ export default function Pr() {
     return (
         <div className={classes.table} >
             <MaterialTable
-                title="스크랩한 Pr 목록"
+                title="PR 스크랩"
                 columns={state.columns}
                 data={state.data}
                 editable={{
@@ -47,7 +47,7 @@ export default function Pr() {
                             }, 600);
                         }),
                 }}
-                onRowClick={((evt, selectedRow) => this.setState({ selectedRow }))}
+                onRowClick
             />
         </div>
     );

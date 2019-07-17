@@ -1,10 +1,62 @@
-import React from 'react';
-import MaterialTable from 'material-table';
+import React, { Component } from "react";
+import MaterialTable from "material-table";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import axios from 'axios'
 
-export default function Corporation() {
+export default class corporations extends Component {
+  state = {
+    corporations: [],
+    columns: [
+      { title: "기업id", field: "corId" },
+      { title: "기업명", field: "name" },
+      { title: "산업/직군", field: "area" },
+      { title: "인사담당자명", field: "pmName" },
+      { title: "전화번호", field: "pmPhone" },
+      { title: "회사위치", field: "city" },
+      { title: "가입일", field: "dateJoin" }
+    ]
+  };
 
-    const useStyles = makeStyles(theme => ({
+  componentDidMount() {
+    axios.get('http://localhost:9000/corporations')
+    .then(res => {
+        alert('들어옴')
+      const corporations = res.data;
+      this.setState({ corporations });
+  
+    })
+  }
+
+  render() {
+      let state = this.state;
+      let style = {
+          margin: "100px 50px"
+      }
+    return (
+      <div>
+        <MaterialTable
+          title="기업회원 관리"
+          columns={state.columns}
+          data={state.cors}
+          style={style}
+          editable={{
+            onRowDelete: oldData =>
+              new Promise(resolve => {
+                setTimeout(() => {
+                  resolve();
+                  const data = [...state.data];
+                  data.splice(data.indexOf(oldData), 1);
+                  this.setState({ ...state, data });
+                }, 600);
+              })
+          }}
+        />
+      </div>
+    );
+  }
+}
+
+/* const useStyles = makeStyles(theme => ({
         table: {
             margin: "100px 50px"
         }
@@ -31,44 +83,4 @@ export default function Corporation() {
             { corId: 'gsretail', name: 'GS리테일', area: '백화점·유통·도소매', pmName: '서수호', pmPhone: '0289967411', city: '서울 강남구', dateJoin: '20180506' },
 
         ],
-    });
-
-    return (
-        <div className={classes.table} >
-            <MaterialTable
-                title="기업회원 관리"
-                columns={state.columns}
-                data={state.data}
-                editable={{
-/*                     onRowAdd: newData =>
-                        new Promise(resolve => {
-                            setTimeout(() => {
-                                resolve();
-                                const data = [...state.data];
-                                data.push(newData);
-                                setState({ ...state, data });
-                            }, 600);
-                        }), */
-/*                     onRowUpdate: (newData, oldData) =>
-                        new Promise(resolve => {
-                            setTimeout(() => {
-                                resolve();
-                                const data = [...state.data];
-                                data[data.indexOf(oldData)] = newData;
-                                setState({ ...state, data });
-                            }, 600);
-                        }), */
-                    onRowDelete: oldData =>
-                        new Promise(resolve => {
-                            setTimeout(() => {
-                                resolve();
-                                const data = [...state.data];
-                                data.splice(data.indexOf(oldData), 1);
-                                setState({ ...state, data });
-                            }, 600);
-                        }),
-                }}
-            />
-        </div>
-    );
-}
+    }); */

@@ -15,7 +15,7 @@ export default function Pr() {
      const [state, setState] = React.useState({
         columns: [
         { title: '제목', field: 'title' },
-        { title: '받은 하트', field: 'heart', type: 'numeric' },      
+        { title: '스크랩 수', field: 'heart', type: 'numeric' },      
         { title: '업로드일자', field: 'upload', type: 'numeric'},
         ],
         data: [
@@ -46,7 +46,7 @@ export default function Pr() {
                 }, 600);
             }),
         }}
-        onRowClick={((evt, selectedRow) => this.setState({ selectedRow }))}
+        onRowClick
         />
         </div>
     );

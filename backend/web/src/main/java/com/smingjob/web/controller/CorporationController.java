@@ -12,7 +12,6 @@ import com.smingjob.web.repositories.CorporationRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  * CorporationController
  */
 @RestController
-@RequestMapping("/corporation")
+@RequestMapping("/corporations")
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 
 public class CorporationController {
@@ -44,11 +43,10 @@ public class CorporationController {
     @GetMapping("")
     public Iterable<CorporationDTO> findAll(){
         Iterable<Corporation> entities = repo.findAll();
-     //    System.out.println("findall 진입");
         List<CorporationDTO> list = new ArrayList<>();
         for(Corporation s: entities){
-             CorporationDTO noti = modelMapper.map(s, CorporationDTO.class);
-             list.add(noti);
+             CorporationDTO cop = modelMapper.map(s, CorporationDTO.class);
+             list.add(cop);
           }        
      return list;
     }
