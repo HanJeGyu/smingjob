@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     }
   }));
 
-export default function Notice() {
+export default function CorNotice() {
 
      const classes = useStyles();
      const [state, setState] = React.useState({

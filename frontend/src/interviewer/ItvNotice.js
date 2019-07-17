@@ -3,7 +3,7 @@ import MaterialTable from 'material-table';
 import { makeStyles} from "@material-ui/core/styles";
 
 
-export default function Notice() {
+export default function ItvNotice() {
 
     const useStyles = makeStyles(theme => ({
         table: {
