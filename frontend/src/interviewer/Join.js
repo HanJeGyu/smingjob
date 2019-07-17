@@ -11,15 +11,6 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.common.white,
       },
     },
-    paper: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
-    },
     form: {
       width: '100%', // Fix IE 11 issue.
     },
@@ -33,17 +24,17 @@ const useStyles = makeStyles(theme => ({
 export default function Join(){
     const classes = useStyles();
     
-    function handleSubmit(event){
-        event.preventDefault();
+    function handleSubmit(e){
+        e.preventDefault();
         const data = {
-            itvId: event.target.itvId.value,
-            pwd: event.target.pwd.value,
-            name: event.target.name.value,
-            birth: event.target.birth.value,
-            phone: event.target.phone.value,
-            email: event.target.email.value,
-            area: event.target.area.value,
-            location: event.target.location.value
+            itvId: e.target.itvId.value,
+            pwd: e.target.pwd.value,
+            name: e.target.name.value,
+            birth: e.target.birth.value,
+            phone: e.target.phone.value,
+            email: e.target.email.value,
+            area: e.target.area.value,
+            location: e.target.location.value
         }
         const headers = {
             'Content-Type': 'application/json',

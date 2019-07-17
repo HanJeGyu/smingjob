@@ -64,6 +64,11 @@ public class InterviewerController {
             InterviewerDTO.class);
    }
 
+   @GetMapping("/{itvid}")
+      public InterviewerDTO findByItvId(@PathVariable String itvid) {
+      return modelMapper.map(repo.findByItvId(itvid).get(), InterviewerDTO.class);
+   }
+
    @PostMapping("/upload")
    public HashMap<String, String> save(@RequestBody InterviewerDTO dto) {
       // System.out.println("업로드"+dto.toString());
@@ -87,21 +92,13 @@ public class InterviewerController {
       return map;
    }
 
-   @PutMapping("/modify/{id}")
-   public HashMap<String, String> modify(@RequestBody InterviewerDTO dto, @PathVariable String id) {
+   @PutMapping("/modify")
+   public HashMap<String, String> modify(@RequestBody InterviewerDTO rdto) {
       HashMap<String, String> map = new HashMap<>();
-      Interviewer entity = repo.findById(Long.parseLong(id)).get();
-      entity.setItvSeq(Long.parseLong(id));
-      entity.setItvId(dto.getItvId());
-      entity.setPwd(dto.getPwd());
-      entity.setName(dto.getName());
-      entity.setBirth(dto.getBirth());
-      entity.setPhone(dto.getPhone());
-      entity.setEmail(dto.getEmail());
-      entity.setArea(dto.getArea());
-      entity.setLocation(dto.getLocation());
-
-      repo.save(entity);
+      System.out.println("ID : " + rdto.getItvId());
+      System.out.println("pw : " + rdto.getPwd());
+      //repo.updateByItvId(rdto.getItvId(), rdto.getPwd());
+      System.out.println("SQL 실행 후");
       map.put("result", "SUCCESS");
       return map;
    }
