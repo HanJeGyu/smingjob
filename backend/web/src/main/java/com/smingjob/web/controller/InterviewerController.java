@@ -42,18 +42,18 @@ public class InterviewerController {
 
    @DeleteMapping("/{id}")
    public void deleteById(@PathVariable String id) {
-      // System.out.println("deleteById title :" +id);
       repo.deleteById(Long.parseLong(id));
    }
 
    @GetMapping("")
    public Iterable<InterviewerDTO> findAll() {
       Iterable<Interviewer> entities = repo.findAll();
-      // System.out.println("findall 진입");
+      System.out.println("findalldddd 진입");
       List<InterviewerDTO> list = new ArrayList<>();
       for (Interviewer s : entities) {
          InterviewerDTO live = modelMapper.map(s, InterviewerDTO.class);
          list.add(live);
+         System.out.println(list);
       }
       return list;
    }

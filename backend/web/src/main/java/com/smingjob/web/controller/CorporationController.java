@@ -49,7 +49,8 @@ public class CorporationController {
         for(Corporation s: entities){
              CorporationDTO cop = modelMapper.map(s, CorporationDTO.class);
              list.add(cop);
-          }        
+          }
+          System.out.println(list);        
      return list;
     }
     @GetMapping("/CorporationContent/{id}")

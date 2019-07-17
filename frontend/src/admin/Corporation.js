@@ -18,9 +18,8 @@ export default class corporations extends Component {
   };
 
   componentDidMount() {
-    axios.get('http://localhost:9000/corporations')
+    axios.get(`http://localhost:9000/corporations`)
     .then(res => {
-        alert('들어옴')
       const corporations = res.data;
       this.setState({ corporations });
   
@@ -37,7 +36,7 @@ export default class corporations extends Component {
         <MaterialTable
           title="기업회원 관리"
           columns={state.columns}
-          data={state.cors}
+          data={state.corporations}
           style={style}
           editable={{
             onRowDelete: oldData =>
