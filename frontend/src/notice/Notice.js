@@ -34,9 +34,9 @@ export default class Notice extends React.Component{
       
   })
   }
-  detail(e,id){
+  detail(e){
     e.preventDefault();
-    window.location = '/NoticeDetail/'+id;
+    window.location = '/NoticeDetail/';
 
 }
   render(){
