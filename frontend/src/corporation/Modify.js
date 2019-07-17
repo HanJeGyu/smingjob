@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.secondary.main,
     },
     form: {
+        marginTop: theme.spacing(4),
         width: '100%', // Fix IE 11 issue.
     },
     submit: {
@@ -35,7 +36,7 @@ export default function Join(){
     const classes = useStyles();
 
     return(
-        <Container component="main" maxWidth="lx">
+        <Container component="main" maxWidth="lg">
             <CssBaseline/>
             <form className={classes.form} noValidate>
                 <Grid container>

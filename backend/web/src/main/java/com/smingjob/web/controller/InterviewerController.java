@@ -1,9 +1,11 @@
 package com.smingjob.web.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Supplier;
+import java.util.function.Predicate;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -13,7 +15,6 @@ import com.smingjob.web.repositories.InterviewerRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
  * InterviewerController
  */
 @RestController
-@RequestMapping("/interviewer")
+@RequestMapping("/interviewers")
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 
 public class InterviewerController {
@@ -88,7 +89,6 @@ public class InterviewerController {
 
    @PutMapping("/modify/{id}")
    public HashMap<String, String> modify(@RequestBody InterviewerDTO dto, @PathVariable String id) {
-      // System.out.println("수정"+dto.toString());
       HashMap<String, String> map = new HashMap<>();
       Interviewer entity = repo.findById(Long.parseLong(id)).get();
       entity.setItvSeq(Long.parseLong(id));
@@ -101,7 +101,6 @@ public class InterviewerController {
       entity.setArea(dto.getArea());
       entity.setLocation(dto.getLocation());
 
-      // System.out.println("entity 저장:"+entity.toString());
       repo.save(entity);
       map.put("result", "SUCCESS");
       return map;
@@ -110,10 +109,38 @@ public class InterviewerController {
    @PostMapping("/login")
    public InterviewerDTO login(@RequestBody InterviewerDTO rdto) {
       try {
+/*          Predicate<Interviewer> predicate;
+         boolean re = predicate.test(repo.findByItvId((rdto.getItvId())).; */
          return modelMapper.map(repo.findByItvIdAndPwd(rdto.getItvId(), rdto.getPwd()), InterviewerDTO.class);
       } catch (Exception e) {
          return dto;
       }
-      
    }
+
+   @PostMapping("/join")
+   public HashMap<String, String> join(@RequestBody InterviewerDTO rdto) {
+      HashMap<String, String> map = new HashMap<>();
+      SimpleDateFormat yyyymmdd = new SimpleDateFormat("yyyyMMdd");
+      String dateJoin = yyyymmdd.format(new Date());
+      try {
+         repo.save(Interviewer.builder()
+                              .itvId(rdto.getItvId())
+                              .pwd(rdto.getPwd())
+                              .name(rdto.getName())
+                              .birth(rdto.getBirth())
+                              .phone(rdto.getPhone())
+                              .email(rdto.getEmail())
+                              .area(rdto.getArea())
+                              .location(rdto.getLocation())
+                              .dateJoin(dateJoin)
+                              .build());
+         map.put("result", "SUCCESS");
+         return map;
+      }catch(Exception e){
+         System.out.println("회원가입 error : " + e);
+         map.put("result", "FAIL");
+         return map;
+     }
+   }
+   
 }

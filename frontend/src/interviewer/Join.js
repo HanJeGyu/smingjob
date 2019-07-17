@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, CssBaseline, TextField, Button } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 
 
 const useStyles = makeStyles(theme => ({
@@ -27,13 +28,41 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
+  
+
 export default function Join(){
     const classes = useStyles();
+    
+    function handleSubmit(event){
+        event.preventDefault();
+        const data = {
+            itvId: event.target.itvId.value,
+            pwd: event.target.pwd.value,
+            name: event.target.name.value,
+            birth: event.target.birth.value,
+            phone: event.target.phone.value,
+            email: event.target.email.value,
+            area: event.target.area.value,
+            location: event.target.location.value
+        }
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'JWT fefege..'
+        }
+        axios.post(`http://localhost:9000/interviewers/join`,JSON.stringify(data),{headers: headers})
+            .then(res=>{
+                alert('회원가입 성공')
+                console.log(res.data.result)
+            })
+            .catch(e=>{
+                alert('실패')
+            })
+    }
 
     return(
         <Container component="main" maxWidth="sm">
             <CssBaseline/>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} noValidate onSubmit={handleSubmit}>
                 <TextField
                     fullWidth
                     margin="normal"

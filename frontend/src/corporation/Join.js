@@ -1,9 +1,8 @@
 import React from 'react'
 import { Container, CssBaseline, Typography, Avatar, Grid, TextField, Button } from '@material-ui/core';
 
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
-
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -31,10 +30,38 @@ const useStyles = makeStyles(theme => ({
 export default function Join(){
     const classes = useStyles();
 
+    function handleSubmit(event){
+        event.preventDefault();
+        const data = {
+            corId: event.target.corId.value,
+            pwd: event.target.pwd.value,
+            corRegNo: event.target.corRegNo.value,
+            name: event.target.name.value,
+            ceoName: event.target.ceoName.value,
+            area: event.target.area.value,
+            pmName: event.target.pmName.value,
+            pmPhone: event.target.pmPhone.value,
+            homepage: event.target.homepage.value,
+            city: event.target.city.value
+        }
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'JWT fefege..'
+        }
+        axios.post(`http://localhost:9000/corporations/join`,JSON.stringify(data),{headers: headers})
+            .then(res=>{
+                alert('회원가입 성공')
+                console.log(res.data.result)
+            })
+            .catch(e=>{
+                alert('실패')
+            })
+    }
+
     return(
         <Container component="main" maxWidth="sm">
             <CssBaseline/>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} noValidate onSubmit={handleSubmit}>
                 <TextField
                     fullWidth
                     margin="normal"
@@ -91,6 +118,14 @@ export default function Join(){
                     id="pmName"
                     name="pmName"
                     label="가입자명"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="pmPhone"
+                    name="pmPhone"
+                    label="가입자연락처"
                 />
                 <TextField
                     fullWidth

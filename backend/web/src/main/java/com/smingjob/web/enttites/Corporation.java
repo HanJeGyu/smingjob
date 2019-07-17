@@ -35,7 +35,7 @@ public class Corporation implements Serializable{
 
     @Column(name = "cor_id") private String corId;
     @Column(name = "pwd") private String pwd;
-    @Column(name = "corRegNo") private String corRegNo;
+    @Column(name = "cor_reg_no") private String corRegNo;
     @Column(name = "name") private String name;
     @Column(name = "ceo_name") private String ceoName;
     @Column(name = "area") private String area;

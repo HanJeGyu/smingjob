@@ -41,13 +41,13 @@ export default function Login() {
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault(event);
     console.log(`회원종류 1: 개인회원, 2: 기업회원 \n선택된 라디오버튼${value}`)
     let url = ''
     if(value==='1'){
-      url = 'http://localhost:9000/interviewer'
+      url = 'http://localhost:9000/interviewers'
     }else if(value==='2'){
-      url = 'http://localhost:9000/corporation'
+      url = 'http://localhost:9000/corporations'
     }else{
       alert('선택값 오류')
     }
@@ -61,8 +61,8 @@ export default function Login() {
     }
     axios.post(`${url}/login`, JSON.stringify(data), {headers: headers})
       .then(res=>{
-        console.log(res.data.itvId)
-        alert('통신성공')
+        alert(`${res.data.itvId} 님 환영합니다.`)
+/*         this.props.history.push('/home'); */
       })
       .catch(e=>{
         alert('로그인에 실패하였습니다.')

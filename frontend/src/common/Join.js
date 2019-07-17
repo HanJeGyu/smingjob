@@ -10,7 +10,7 @@ import CorporationJoin from '../corporation/Join'
 
 function TabContainer({ children, dir }) {
     return (
-        <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
+        <Typography component="div" dir={dir} style={{ padding: 10 }}>
             {children}
         </Typography>
     );
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
         },
     },
     paper: {
-        marginTop: theme.spacing(8),
+        marginTop: theme.spacing(5),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

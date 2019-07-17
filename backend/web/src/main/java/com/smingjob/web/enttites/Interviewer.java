@@ -51,7 +51,7 @@ public class Interviewer implements Serializable{
 
     @Builder
     private Interviewer(String itvId, String pwd, String name, String birth,String phone,
-    String email,String area,String location,String dateJoin){       
+    String email,String area,String location, String dateJoin){       
         this.itvId = itvId;
         this.pwd = pwd;        
         this.name = name;
@@ -61,5 +61,5 @@ public class Interviewer implements Serializable{
         this.area = area;
         this.location = location;
         this.dateJoin = dateJoin;
-        }
+    }
 }
