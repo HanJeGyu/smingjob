@@ -35,11 +35,13 @@ export default class NoticeUpload extends React.Component {
 
     handleChange=(e)=>{
       this.setState({[e.target.name]: e.target.value})
+      console.log("change")
     }
 
     handleSubmit = event =>{
-       event.preventDefault();          
-      const notices = {
+      event.preventDefault();   
+      const noticeSeq = '1';       
+      const data = {
        title: event.target.title.value,
        area: event.target.area.value,
        career: event.target.career.value,
@@ -50,17 +52,18 @@ export default class NoticeUpload extends React.Component {
        state: event.target.state.value,
        corName: event.target.corName.value,    
      };
-        axios({
-            method: 'post',
-            url: `http://localhost:9000/notices/modify/`,
-            data: notices,
-            headers: {
-              // 'Authorization': `bearer ${token}`,
-            'Content-Type': 'application/json'
-            }, 
-            
-          });
-      }        
+     const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT fefege..'
+       }
+       axios.put(`http://localhost:9000/notices/modify/${noticeSeq}`,JSON.stringify(data),{headers: headers})
+            .then(res=>{       
+              /*   window.location.reload() */
+            })
+            .catch(e=>{                
+            })
+    }
+    
  /*      selectedDate(){
         React.useState(new Date('2019-07-14T18:00:00'))
       }
@@ -68,10 +71,10 @@ export default class NoticeUpload extends React.Component {
         this.setState({startTime: date.target.value})
       }  */
     componentWillMount=()=>{
-        const title = '제목...';
-        axios.get(`http://localhost:9000/notices/${title}`)
+        const noticeSeq = '1';
+        axios.get(`http://localhost:9000/notices/${noticeSeq}`)
             .then(res=>{
-                this.setState(res.data)
+               this.setState(res.data)
                console.log(res.data)
             })
             .catch(e=>{           
@@ -117,6 +120,7 @@ export default class NoticeUpload extends React.Component {
                   label="기업명"
                   fullWidth
                   autoComplete="corName"
+                  value={this.state.corName}
                   onChange={this.handleChange}
                 />
               </Grid> 
@@ -127,6 +131,7 @@ export default class NoticeUpload extends React.Component {
                   label="직무"
                   fullWidth
                   autoComplete="area"
+                  value={this.state.area}
                   onChange={this.handleChange}
                 />
               </Grid> 
@@ -137,6 +142,7 @@ export default class NoticeUpload extends React.Component {
                   label="경력사항 (신입/경력/경력무관/인턴)"
                   fullWidth
                   autoComplete="career"
+                  value={this.state.career}
                   onChange={this.handleChange}
                 />
               </Grid>
@@ -149,39 +155,54 @@ export default class NoticeUpload extends React.Component {
                   rows="5"
                   fullWidth
                   autoComplete="content"
+                  value={this.state.content}
                   onChange={this.handleChange}
                 />
               </Grid>     
               <Grid item xs={12} sm={4}>
                 <TextField            
                   id="tagLocation"
-                  name="tag_Location"
+                  name="tagLocation"
                   label="#위치 태그"
                   fullWidth
-                  autoComplete="tag_Location"
+                  autoComplete="tagLocation"
+                  value={this.state.tagLocation}
                   onChange={this.handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
                 <TextField            
                   id="tagAttribute"
-                  name="tag_attribute"
+                  name="tagAttribute"
                   label="#특성 태그"
                   fullWidth
-                  autoComplete="tag_attribute"
+                  autoComplete="tagAttribute"
+                  value={this.state.tagAttribute}
                   onChange={this.handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
                 <TextField            
                   id="tagCareer"
-                  name="tag_career"
+                  name="tagCareer"
                   label="#요구경력 태그"
                   fullWidth
-                  autoComplete="tag_career"
+                  autoComplete="tagCareer"
+                  value={this.state.tagCareer}
                   onChange={this.handleChange}
                 />
-              </Grid>    
+              </Grid>   
+              <Grid item xs={12} >
+                <TextField            
+                  id="state"
+                  name="state"
+                  label="진행상태"
+                  fullWidth
+                  autoComplete="state"
+                  value={this.state.state}
+                  onChange={this.handleChange}
+                />
+              </Grid> 
 
      {/*       <MuiPickersUtilsProvider utils={DateFnsUtils}>    
           <Grid item xs={6} sm={3} > 
@@ -209,7 +230,7 @@ export default class NoticeUpload extends React.Component {
           </MuiPickersUtilsProvider>   */}   
           <Grid container spacing={10}><p style={margin}></p></Grid>
           <Grid container spacing={3}>
-            <Button size="Large" style={btn} color="primary"  type="submit">Upload</Button>   </Grid>
+            <Button size="Large" style={btn} color="primary"  type="submit">수정</Button>   </Grid>
           </Grid>
             </Container>
             </form>

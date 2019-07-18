@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface NoticeRepository extends JpaRepository<Notice, Long>{
-    public Optional<Notice> findByTitle(String title);
-
+    /* public Optional<Notice> findByTitle(String title); */
+    public Optional<Notice> findByNoticeSeq(Long noticeSeq);
   
 }

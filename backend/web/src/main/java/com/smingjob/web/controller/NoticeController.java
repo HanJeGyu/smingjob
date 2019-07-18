@@ -56,9 +56,9 @@ public class NoticeController {
             NoticeDTO.class);
    }
 
-   @GetMapping("/{Title}")
-   public NoticeDTO findByNoticeTitle(@PathVariable String Title) {
-   return modelMapper.map(repo.findByTitle(Title).get(), NoticeDTO.class);
+   @GetMapping("/{noticeSeq}")
+   public NoticeDTO findByNoticeTitle(@PathVariable String noticeSeq) {
+   return modelMapper.map(repo.findByNoticeSeq(Long.parseLong(noticeSeq)).get(), NoticeDTO.class);
 }
 
 
@@ -87,12 +87,12 @@ public class NoticeController {
        map.put("result", "SUCCESS");
       return map;
    }   
-   @PutMapping("/modify/{id}")
-   public HashMap<String, String> modify(@RequestBody NoticeDTO dto,@PathVariable String id) {
+   @PutMapping("/modify/{noticeSeq}")
+   public HashMap<String, String> modify(@RequestBody NoticeDTO dto,@PathVariable String noticeSeq) {
     //    System.out.println("수정"+dto.toString());
        HashMap<String, String> map = new HashMap<>();
-       Notice entity = repo.findById(Long.parseLong(id)).get();
-       entity.setNoticeSeq(Long.parseLong(id));
+       Notice entity = repo.findByNoticeSeq(Long.parseLong(noticeSeq)).get();
+       entity.setNoticeSeq(Long.parseLong(noticeSeq));
        entity.setTitle(dto.getTitle());
        entity.setCorName(dto.getCorName());
        entity.setContent1(dto.getContent1()); 
