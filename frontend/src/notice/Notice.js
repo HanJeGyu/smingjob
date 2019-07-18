@@ -34,11 +34,11 @@ export default class Notice extends React.Component{
       
   })
   }
-  detail(e){
+ /*  detail(e){
     e.preventDefault();
     window.location = '/NoticeDetail/';
 
-}
+} */
   render(){
    /*  let state=this.state;    */  
  
@@ -128,7 +128,7 @@ export default class Notice extends React.Component{
        <Container style ={cardGrid}  maxWidth="md">
        <Grid container spacing={6} >
         {this.state.notices.map(notice => <Grid item key={notice} xs={12} sm={6} md={4} >
-            <Card style ={card} onClick={this.detail(id)}>           
+            <Card style ={card} /* onClick={this.detail(id)} */>           
               <CardContent style ={cardContent}>                        
                 <Typography style ={area} variant="h10" gutterBottom>
                   {notice.area} - {notice.career}

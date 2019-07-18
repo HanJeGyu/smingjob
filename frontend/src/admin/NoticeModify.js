@@ -21,20 +21,22 @@ export default class NoticeUpload extends React.Component {
       title:'',
       area:'',
       career:'',
-      content:'',
+      content1:'',
       tagLocation:'',
       tagAttribute:'',
       tagCareer:'',
       state:'',
       corName: '',
+      startDate:'',
       startTime:'',
     };
    
   }
 
-handleChange=(e)=>{
-  this.setState({[e.target.name]: e.target.value})
-}
+    handleChange=(e)=>{
+      this.setState({[e.target.name]: e.target.value})
+    }
+
     handleSubmit = event =>{
        event.preventDefault();          
       const notices = {
@@ -45,12 +47,12 @@ handleChange=(e)=>{
        tagLocation: event.target.tagLocation.value,
        tagAttribute: event.target.tagAttribute.value,
        tagCareer: event.target.tagCareer.value,
-       state: '진행중',
+       state: event.target.state.value,
        corName: event.target.corName.value,    
      };
         axios({
             method: 'post',
-            url: `http://localhost:9000/notices/modify/76`,
+            url: `http://localhost:9000/notices/modify/`,
             data: notices,
             headers: {
               // 'Authorization': `bearer ${token}`,
@@ -65,7 +67,7 @@ handleChange=(e)=>{
       handleDateChange=date=> {
         this.setState({startTime: date.target.value})
       }  */
-      componentWillMount=()=>{
+    componentWillMount=()=>{
         const title = '제목...';
         axios.get(`http://localhost:9000/notices/${title}`)
             .then(res=>{
