@@ -3,15 +3,14 @@ import {Redirect} from "react-router-dom";
 
 /* views */
 import Home from './components/Home'
-import Notice from './notice/Notice'
 import Login from './common/Login'
 import CorporationAdmin from './admin/Corporation';
 import InterviewerAdmin from "./admin/Interviewer";
-import NoticeDetail from './notice/NoticeDetail'
-import NoticeList from './admin/NoticeList'
-import NoticeUpload from './admin/NoticeUpload'
-import NoticeModify from './admin/NoticeModify'
-import NoticeDetailAdmin from './admin/NoticeDetailAdmin'
+import NoticeDetail from './notice/NoticeDetailAdmin'
+import NoticeList from './notice/NoticeList'
+import NoticeUpload from './notice/NoticeUpload'
+import NoticeModify from './notice/NoticeModify'
+import NoticeDetailAdmin from './notice/NoticeDetailAdmin'
 import Join from './common/Join'
 import InterviewerNotice from './interviewer/ItvNotice'
 import InterviewerModify from './interviewer/Modify'
@@ -19,7 +18,8 @@ import InterviewerPr from './interviewer/Pr'
 import CorporationNotice from './corporation/CorNotice'
 import CorporationModify from './corporation/Modify'
 import CorporationPr from './corporation/Pr'
-import PrAdmin from "./admin/Pr"
+import PrAdmin from "./pr/Pr"
+import PrUpload from "./pr/PrUpload"
 import AliveAdmin from "./admin/Alive";
 
 
@@ -33,10 +33,7 @@ export const routerConfig = [
         path: '/home',
         component: Home
     },
-    {
-        path: '/notice',
-        component: Notice
-    },
+
     {
         path: '/noticeDetail',
         component: NoticeDetail
@@ -100,6 +97,10 @@ export const routerConfig = [
     {
         path: '/prAdmin',
         component: PrAdmin
+    },
+    {
+        path: '/prUpload',
+        component: PrUpload
     },
     {
         path: '/aliveAdmin',

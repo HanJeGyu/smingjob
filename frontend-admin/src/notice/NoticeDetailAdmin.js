@@ -129,6 +129,13 @@ console.log("지원");
           <Grid container spacing={3}>
             <Button size="Large" style={btn} color="primary" onClick={this.apply}>지원하기</Button>   </Grid>
           </Grid> 
+
+          <Button size="small" color="primary">
+                      View
+                    </Button>
+                    <Button size="small" color="primary">
+                      수정
+                    </Button>
           </Container>
          
           </React.Fragment>

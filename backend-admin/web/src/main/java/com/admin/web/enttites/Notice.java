@@ -22,7 +22,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table(name = "jobnotice")
+@Table(name = "notice")
 public class Notice implements Serializable{
 
     private static final long serialVersionUID = 1L;

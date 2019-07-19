@@ -38,7 +38,7 @@ export default class NoticeDetail extends React.Component {
     const title = '제목...';
     axios.get(`http://localhost:9000/notices/${title}`)
         .then(res=>{
-            this.setState(res.data)
+           this.setState(res.data)
            console.log(res.data)
         })
         .catch(e=>{           
