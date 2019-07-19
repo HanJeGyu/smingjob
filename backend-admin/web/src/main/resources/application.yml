@@ -1,0 +1,17 @@
+
+spring:
+    datasource:
+        url: jdbc:mariadb://smingjob.csgjnxajgfhs.ap-northeast-2.rds.amazonaws.com:3306/smingjob
+        driverClassName: org.mariadb.jdbc.Driver
+        username: smingjob
+        password: smingjob
+    jpa:
+        database-platform: org.hibernate.dialect.MariaDB102Dialect
+        hibernate:
+            ddl-auto: update
+server:
+    port: 9001
+
+logging:
+    level:
+        org.springframework.security: debug
