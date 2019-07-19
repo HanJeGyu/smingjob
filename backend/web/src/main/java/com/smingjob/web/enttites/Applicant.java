@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -31,24 +33,20 @@ public class Applicant implements Serializable{
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long applicantSeq;
         
-    @Column(name="notice_seq") private Long noticeSeq;
-    @Column(name="title") private String title;
-    @Column(name="cor_name") private String corName;
     @Column(name="itv_seq") private Long itvSeq;
-    @Column(name="itv_id") private String itvId;
-    @Column(name="name") private String name;
-    @Column(name="start_date") private String startDate;
-    @Column(name="start_time") private String startTime;
     @Column(name="state") private String state;
+
+/*     @ManyToOne
+    @JoinColumn(name = "notice_seq")
+    private Notice notice; */
 
     @Override
     public String toString(){
-        return String.format("고객정보 No: %d|n" + "ID: %s", applicantSeq, noticeSeq, itvSeq, state);
+        return String.format("고객정보 No: %d|n" + "ID: %s", applicantSeq, itvSeq, state);
     }
 
     @Builder
-    private Applicant(Long noticeSeq, Long itvSeq, String state){       
-        this.noticeSeq = noticeSeq;
+    private Applicant(Long itvSeq, String state){
         this.itvSeq = itvSeq;
         this.state = state;
     }

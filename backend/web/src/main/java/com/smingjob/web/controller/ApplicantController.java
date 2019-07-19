@@ -37,8 +37,9 @@ public class ApplicantController {
     @Autowired
     ModelMapper modelMapper;
 
-/*     @PostMapping("/noticeList")
-    public ApplicantDTO login(@RequestBody ApplicantDTO rdto) {
-        return modelMapper.map(repo.findByItvIdAndPwd(rdto.getItvId(), rdto.getPwd()), ApplicantDTO.class);
-   } */
+/*     @GetMapping("/noticeList")
+    public String noticeList(@RequestBody ApplicantDTO rdto) {
+        repo.getNoticeList(Long.parseLong("1"));
+        return "1";
+    } */
 }

@@ -13,7 +13,7 @@ import lombok.Data;
 @Lazy
 public class ApplicantDTO {
     private Long applicantSeq, noticeSeq, itvSeq;
-    private String title, corName, itvId, name, startDate, startTime, state;
+    private String state;
 }
 
 
