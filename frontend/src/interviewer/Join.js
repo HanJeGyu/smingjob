@@ -4,22 +4,19 @@ import { Container, CssBaseline, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
-
 const useStyles = makeStyles(theme => ({
     '@global': {
-      body: {
-        backgroundColor: theme.palette.common.white,
-      },
+        body: {
+            backgroundColor: theme.palette.common.white,
+        },
     },
     form: {
-      width: '100%', // Fix IE 11 issue.
+        width: '100%', // Fix IE 11 issue.
     },
     submit: {
-      margin: theme.spacing(3, 0, 2),
+        margin: theme.spacing(3, 0, 2),
     },
-  }));
-
-  
+}));
 
 export default function Join(){
     const classes = useStyles();

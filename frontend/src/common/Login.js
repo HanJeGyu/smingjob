@@ -36,12 +36,12 @@ export default function Login() {
   const classes = useStyles();
   const [value, setValue] = useState('1')
 
-  function handleChange(event){
-    setValue(event.target.value)
+  function handleChange(e){
+    setValue(e.target.value)
   }
 
-  function handleSubmit(event) {
-    event.preventDefault(event);
+  function handleSubmit(e) {
+    e.preventDefault();
     console.log(`회원종류 1: 개인회원, 2: 기업회원 \n선택된 라디오버튼${value}`)
     let url = ''
     if(value==='1'){
@@ -52,8 +52,8 @@ export default function Login() {
       alert('선택값 오류')
     }
     const data = {
-      itvId: event.target.itvId.value,
-      pwd: event.target.pwd.value
+      itvId: e.target.itvId.value,
+      pwd: e.target.pwd.value
     }
     const headers = {
       'Content-Type': 'application/json',

@@ -10,7 +10,7 @@ const useStyles = theme => ({
     }
 }); 
 
-class ItvNotice extends React.Component {
+class ItvAlive extends React.Component {
     constructor(props){
         super(props)
         this.state={
@@ -18,19 +18,12 @@ class ItvNotice extends React.Component {
             columns: [
                 { title: '공고명', field: 'title' },
                 { title: '회사명', field: 'corName' },
-                { title: '접수시작일', field: 'startDate', type: 'numeric' },
-                { title: '접수시작시간', field: 'startTime', type: 'numeric' },
-                { title: '접수상태', field: 'state', lookup: { 0: '미지원', 1: '접수중', 2: '접수완료', 3: '지원실패', 99: '참여불가'}},
+                { title: '면접일', field: 'startDate', type: 'numeric' },
+                { title: '면접시작시간', field: 'startTime', type: 'numeric' },
+                { title: '면접결과', field: 'result', lookup: { 0: '미진행', 1: '매칭성공', 2: '확인중', 3: '실패'}},
             ],
             data: []
         }
-    }
-    componentWillMount(){
-        
-        axios.get('http://localhost:9000/applicant/noticeList')
-        .then(res=>{
-            this.setState(res.data);
-        })
     }
 
     render(){
@@ -38,7 +31,7 @@ class ItvNotice extends React.Component {
         return (
             <div className={classes.table} >
                 <MaterialTable
-                title="지원목록"
+                title="면접목록"
                 columns={this.state.columns}
                 data={this.state.data}
                 editable={{
@@ -49,4 +42,4 @@ class ItvNotice extends React.Component {
     }
 }
 
-export default withStyles(useStyles)(ItvNotice);
+export default withStyles(useStyles)(ItvAlive);

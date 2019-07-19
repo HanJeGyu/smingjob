@@ -116,3 +116,47 @@ ALTER TABLE pr COMMENT '자기PR';
 ALTER TABLE pr
     ADD CONSTRAINT FK_pr_itv_seq_interviewer_itv_seq FOREIGN KEY (itv_seq)
         REFERENCES  (itv_seq) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+
+
+
+/* 지원자관리 테이블 */
+CREATE TABLE applicant
+(
+    applicant_seq   INT             NOT NULL    AUTO_INCREMENT COMMENT '지원자관리_seq',
+    notice_seq      INT             NOT NULL    COMMENT '공고_seq', 
+    title           VARCHAR(100)    NOT NULL    COMMENT '제목', 
+    cor_name        VARCHAR(50)     NOT NULL    COMMENT '기업명', 
+    itv_seq         INT             NOT NULL    COMMENT '구직자_seq', 
+    itv_id          VARCHAR(50)     NOT NULL    COMMENT '구직자ID', 
+    name            VARCHAR(50)     NOT NULL    COMMENT '구직자명', 
+    start_date      VARCHAR(8)      NOT NULL    COMMENT '접수시작일', 
+    start_time      VARCHAR(8)      NOT NULL    COMMENT '접수시작시각', 
+    state           VARCHAR(2)      NOT NULL    COMMENT '지원상태', 
+    PRIMARY KEY (applicant_seq)
+)DEFAULT CHARSET=utf8;
+
+/* 면접자관리 테이블 */
+/* CREATE TABLE aliveinterviewer
+(
+    live_itv_seq    INT             NOT NULL    AUTO_INCREMENT COMMENT '면접자_seq', 
+    live_seq        INT             NOT NULL    COMMENT '면접seq', 
+    start_date      VARCHAR(8)      NOT NULL    COMMENT '면접일', 
+    start_time      VARCHAR(8)      NOT NULL    COMMENT '면접시작시간', 
+    itv_seq         INT             NOT NULL    COMMENT '구직자 SEQ', 
+    itv_name        VARCHAR(50)     NOT NULL    COMMENT '구직자명', 
+    itv_phone       VARCHAR(50)     NOT NULL    COMMENT '구직자 연락처', 
+    result          VARCHAR(8)      NOT NULL    COMMENT '면접결과', 
+    PRIMARY KEY (applicant_seq)
+)DEFAULT CHARSET=utf8; */
+
+/* 면접자관리 테이블 test */
+CREATE TABLE aliveinterviewer
+(
+    live_itv_seq    INT             NOT NULL    AUTO_INCREMENT COMMENT '면접자_seq', 
+    live_seq        INT             NOT NULL    COMMENT '면접seq', 
+    itv_seq         INT             NOT NULL    COMMENT '구직자 SEQ', 
+    result          VARCHAR(8)      NOT NULL    COMMENT '면접결과', 
+    PRIMARY KEY (live_itv_seq)
+)DEFAULT CHARSET=utf8;
+
