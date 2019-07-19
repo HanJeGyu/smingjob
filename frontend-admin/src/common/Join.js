@@ -1,25 +1,9 @@
-import React, {useState} from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles, useTheme, Tabs, Tab,
-        AppBar, Container, CssBaseline } 
-        from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import React from 'react'
+import { Container, CssBaseline, TextField, Button } from '@material-ui/core';
 
-import InterviewerJoin from '../interviewer/Join'
-import CorporationJoin from '../corporation/Join'
+import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 
-function TabContainer({ children, dir }) {
-    return (
-        <Typography component="div" dir={dir} style={{ padding: 10 }}>
-            {children}
-        </Typography>
-    );
-}
-
-TabContainer.propTypes = {
-    children: PropTypes.node.isRequired,
-    dir: PropTypes.string.isRequired,
-};
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -43,34 +27,116 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function FullWidthTabs() {
+export default function Join(){
     const classes = useStyles();
-    const theme = useTheme();
-    const [value, setValue] = useState(0);
-
-    function handleChange(event, newValue) {
-        setValue(newValue);
+    
+    function handleSubmit(e){
+        e.preventDefault();
+        const data = {
+            itvId: e.target.itvId.value,
+            pwd: e.target.pwd.value,
+            name: e.target.name.value,
+            birth: e.target.birth.value,
+            phone: e.target.phone.value,
+            email: e.target.email.value,
+            area: e.target.area.value,
+            location: e.target.location.value
+        }
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'JWT fefege..'
+        }
+        axios.post(`http://localhost:9001/interviewers/join`,JSON.stringify(data),{headers: headers})
+            .then(res=>{
+                alert('회원가입 성공')
+                console.log(res.data.result)
+            })
+            .catch(e=>{
+                alert('실패')
+            })
     }
 
-    return (
+    return(
         <Container component="main" maxWidth="sm">
             <CssBaseline/>
-            <div className={classes.paper}>
-                <AppBar position="static" color="default">
-                    <Tabs
-                        value={value}
-                        onChange={handleChange}
-                        indicatorColor="primary"
-                        textColor="primary"
-                        variant="fullWidth"
-                    >
-                    <Tab label="개인회원가입" />
-                    <Tab label="기업회원가입" />
-                    </Tabs>
-                </AppBar>
-                {value === 0 && <TabContainer dir={theme.direction}><InterviewerJoin/></TabContainer>}
-                {value === 1 && <TabContainer dir={theme.direction}><CorporationJoin/></TabContainer>}
-            </div>
+            <form className={classes.form} noValidate onSubmit={handleSubmit}>
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="name"
+                    name="name"
+                    label="이름"
+                    autoFocus
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="itvId"
+                    name="itvId"
+                    label="아이디"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="pwd"
+                    name="pwd"
+                    label="비밀번호"
+                    type="password"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="birth"
+                    name="birth"
+                    label="생년월일 6자리"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="phone"
+                    name="phone"
+                    label="휴대폰번호"
+                />
+                <TextField
+                    fullWidth
+                    required
+                    margin="normal"
+                    variant="outlined"
+                    id="email"
+                    name="email"
+                    label="이메일"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="area"
+                    name="area"
+                    label="희망산업/직군"
+                />
+                <TextField
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                    id="location"
+                    name="location"
+                    label="희망근무지"
+                />
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                >
+                    가입하기
+                </Button>
+            </form>
         </Container>
-    );
+    )
 }

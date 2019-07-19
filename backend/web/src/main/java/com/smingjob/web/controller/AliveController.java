@@ -12,7 +12,6 @@ import com.smingjob.web.repositories.AliveRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,50 +57,5 @@ public class AliveController {
    public AliveDTO findById(@PathVariable String id) {
       return modelMapper.map(repo.findById(Long.parseLong(id)).orElseThrow(EntityNotFoundException::new),
             AliveDTO.class);
-   }
-
-   @PostMapping("/upload")
-   public HashMap<String, String> save(@RequestBody AliveDTO dto) {
-      // System.out.println("업로드"+dto.toString());
-      HashMap<String, String> map = new HashMap<>();
-
-      Alive entity = new Alive();
-      entity.setLiveSeq(dto.getLiveSeq());
-      entity.setCorSeq(dto.getCorSeq());
-      entity.setCorName(dto.getCorName());
-      entity.setState(dto.getState());
-      entity.setStartDate(dto.getStartDate());
-      entity.setArea(dto.getArea());
-      entity.setCareer(dto.getCareer());
-      entity.setItvSeq(dto.getItvSeq());
-      entity.setItvName(dto.getItvName());
-      entity.setItvPhone(dto.getItvPhone());
-
-      // System.out.println("entity 저장:"+entity.toString());
-      repo.save(entity);
-      map.put("result", "SUCCESS");
-      return map;
-   }
-
-   @PutMapping("/modify/{id}")
-   public HashMap<String, String> modify(@RequestBody AliveDTO dto, @PathVariable String id) {
-      // System.out.println("수정"+dto.toString());
-      HashMap<String, String> map = new HashMap<>();
-      Alive entity = repo.findById(Long.parseLong(id)).get();
-      entity.setLiveSeq(Long.parseLong(id));
-      entity.setCorSeq(dto.getCorSeq());
-      entity.setCorName(dto.getCorName());
-      entity.setState(dto.getState());
-      entity.setStartDate(dto.getStartDate());
-      entity.setArea(dto.getArea());
-      entity.setCareer(dto.getCareer());
-      entity.setItvSeq(dto.getItvSeq());
-      entity.setItvName(dto.getItvName());
-      entity.setItvPhone(dto.getItvPhone());
-
-      // System.out.println("entity 저장:"+entity.toString());
-      repo.save(entity);
-      map.put("result", "SUCCESS");
-      return map;
    }
 }

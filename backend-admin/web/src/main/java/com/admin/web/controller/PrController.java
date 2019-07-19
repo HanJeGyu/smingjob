@@ -59,30 +59,6 @@ public class PrController {
                 PrDTO.class);
     }
 
-    @PostMapping("/upload")
-    public HashMap<String, String> save(@RequestBody PrDTO dto) {
-        // System.out.println("업로드"+dto.toString());
-        HashMap<String, String> map = new HashMap<>();
-        
-        Pr entity = new Pr();
-        entity.setPrSeq(dto.getPrSeq());
-        entity.setItvSeq(dto.getItvSeq());
-        entity.setPhone(dto.getPhone());
-        entity.setTitle(dto.getTitle());
-        entity.setContent(dto.getContent());
-        entity.setArea(dto.getArea());
-        entity.setPrLocation(dto.getPrLocation());
-        entity.setTagLocation(dto.getTagLocation());
-        entity.setTagAttribute(dto.getTagAttribute());
-        entity.setTagCareer(dto.getTagCareer());
-        entity.setDateUpload(dto.getDateUpload());
-
-        // System.out.println("entity 저장:"+entity.toString());
-        repo.save(entity);
-        map.put("result", "SUCCESS");
-        return map;
-    }
-
     @PutMapping("/modify/{id}")
     public HashMap<String, String> modify(@RequestBody PrDTO dto, @PathVariable String id) {
         // System.out.println("수정"+dto.toString());

@@ -68,29 +68,6 @@ public class InterviewerController {
       return modelMapper.map(repo.findByItvId(itvid).get(), InterviewerDTO.class);
    }
 
-   @PostMapping("/upload")
-   public HashMap<String, String> save(@RequestBody InterviewerDTO dto) {
-      // System.out.println("업로드"+dto.toString());
-      HashMap<String, String> map = new HashMap<>();
-
-      // private String itvId, pwd, name, birth, phone, email, area, location,
-      // dateJoin;
-      Interviewer entity = new Interviewer();
-      entity.setItvId(dto.getItvId());
-      entity.setPwd(dto.getPwd());
-      entity.setName(dto.getName());
-      entity.setBirth(dto.getBirth());
-      entity.setPhone(dto.getPhone());
-      entity.setEmail(dto.getEmail());
-      entity.setArea(dto.getArea());
-      entity.setLocation(dto.getLocation());
-
-      // System.out.println("entity 저장:"+entity.toString());
-      repo.save(entity);
-      map.put("result", "SUCCESS");
-      return map;
-   }
-
    @PutMapping("/modify")
    public HashMap<String, String> modify(@RequestBody InterviewerDTO rdto) {
       HashMap<String, String> map = new HashMap<>();
@@ -99,42 +76,4 @@ public class InterviewerController {
       map.put("result", "SUCCESS");
       return map;
    }
-
-   @PostMapping("/login")
-   public InterviewerDTO login(@RequestBody InterviewerDTO rdto) {
-      try {
-/*          Predicate<Interviewer> predicate;
-         boolean re = predicate.test(repo.findByItvId((rdto.getItvId())).; */
-         return modelMapper.map(repo.findByItvIdAndPwd(rdto.getItvId(), rdto.getPwd()), InterviewerDTO.class);
-      } catch (Exception e) {
-         return dto;
-      }
-   }
-
-   @PostMapping("/join")
-   public HashMap<String, String> join(@RequestBody InterviewerDTO rdto) {
-      HashMap<String, String> map = new HashMap<>();
-      SimpleDateFormat yyyymmdd = new SimpleDateFormat("yyyyMMdd");
-      String dateJoin = yyyymmdd.format(new Date());
-      try {
-         repo.save(Interviewer.builder()
-                              .itvId(rdto.getItvId())
-                              .pwd(rdto.getPwd())
-                              .name(rdto.getName())
-                              .birth(rdto.getBirth())
-                              .phone(rdto.getPhone())
-                              .email(rdto.getEmail())
-                              .area(rdto.getArea())
-                              .location(rdto.getLocation())
-                              .dateJoin(dateJoin)
-                              .build());
-         map.put("result", "SUCCESS");
-         return map;
-      }catch(Exception e){
-         System.out.println("회원가입 error : " + e);
-         map.put("result", "FAIL");
-         return map;
-     }
-   }
-   
 }

@@ -5,8 +5,7 @@ import {Redirect} from "react-router-dom";
 import Home from './components/Home'
 import Notice from './notice/Notice'
 import Login from './common/Login'
-import CorporationAdmin from './admin/Corporation';
-import InterviewerAdmin from "./admin/Interviewer";
+
 import NoticeDetail from './notice/NoticeDetail'
 import Join from './common/Join'
 import InterviewerNotice from './interviewer/ItvNotice'
@@ -15,11 +14,9 @@ import InterviewerPr from './interviewer/Pr'
 import CorporationNotice from './corporation/CorNotice'
 import CorporationModify from './corporation/Modify'
 import CorporationPr from './corporation/Pr'
-import PrAdmin from "./admin/Pr"
+
 import PrUpload from "./pr/PrUpload"
 import PrDetail from "./pr/PrDetail"
-import AliveAdmin from "./admin/Alive";
-
 
 export const routerConfig = [
     {
@@ -42,14 +39,6 @@ export const routerConfig = [
     {
         path: '/login',
         component: Login
-    },
-    {
-        path: '/corporationAdmin',
-        component: CorporationAdmin
-    },
-    {
-        path: '/interviewerAdmin',
-        component: InterviewerAdmin
     },
     {
         path: '/join',
@@ -78,11 +67,7 @@ export const routerConfig = [
     {
         path: '/corporationPr',
         component: CorporationPr
-    },
-    {
-        path: '/prAdmin',
-        component: PrAdmin
-    },  
+    }, 
     {
         path: '/prUpload',
         component: PrUpload
@@ -90,9 +75,5 @@ export const routerConfig = [
     {
         path: '/prDetail',
         component: PrDetail
-    },
-    {
-        path: '/aliveAdmin',
-        component: AliveAdmin
     },
 ]

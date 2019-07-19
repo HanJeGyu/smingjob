@@ -12,14 +12,9 @@ import NoticeUpload from './notice/NoticeUpload'
 import NoticeModify from './notice/NoticeModify'
 import NoticeDetailAdmin from './notice/NoticeDetailAdmin'
 import Join from './common/Join'
-import InterviewerNotice from './interviewer/ItvNotice'
 import InterviewerModify from './interviewer/Modify'
-import InterviewerPr from './interviewer/Pr'
-import CorporationNotice from './corporation/CorNotice'
 import CorporationModify from './corporation/Modify'
-import CorporationPr from './corporation/Pr'
 import PrAdmin from "./pr/Pr"
-import PrUpload from "./pr/PrUpload"
 import AliveAdmin from "./admin/Alive";
 
 
@@ -27,13 +22,12 @@ export const routerConfig = [
     {
         path: '/',
         exact: true,
-        component: () => <Redirect to="/notice" />
+        component: () => <Redirect to="/home" />
     },
     {
         path: '/home',
         component: Home
     },
-
     {
         path: '/noticeDetail',
         component: NoticeDetail
@@ -71,36 +65,16 @@ export const routerConfig = [
         component: Join
     },
     {
-        path: '/interviewerNotice',
-        component: InterviewerNotice
-    },
-    {
         path: '/interviewerModify',
         component: InterviewerModify
-    },
-    {
-        path: '/interviewerPr',
-        component: InterviewerPr
-    },
-    {
-        path: '/corporationNotice',
-        component: CorporationNotice
     },
     {
         path: '/corporationModify',
         component: CorporationModify
     },
     {
-        path: '/corporationPr',
-        component: CorporationPr
-    },
-    {
         path: '/prAdmin',
         component: PrAdmin
-    },
-    {
-        path: '/prUpload',
-        component: PrUpload
     },
     {
         path: '/aliveAdmin',

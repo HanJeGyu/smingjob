@@ -28,11 +28,11 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600) 
 
 public class NoticeController {    
-    @Autowired NoticeDTO notice;    
-    @Autowired ModelMapper modelMapper;
-    @Autowired NoticeRepository repo;
+   @Autowired NoticeDTO notice;    
+   @Autowired ModelMapper modelMapper;
+   @Autowired NoticeRepository repo;
  
-    @DeleteMapping("/{id}")
+   @DeleteMapping("/{id}")
    public void	deleteById(@PathVariable String id){    
         // System.out.println("deleteById title :" +id);   
         repo.deleteById(Long.parseLong(id));
@@ -49,6 +49,7 @@ public class NoticeController {
          }        
     return list;
    }
+
    @GetMapping("/noticeDetail/{id}")
    public NoticeDTO findById(@PathVariable String id) {
     return modelMapper.map(repo.findById(Long.parseLong(id))
@@ -58,59 +59,6 @@ public class NoticeController {
 
    @GetMapping("/{noticeSeq}")
    public NoticeDTO findByNoticeTitle(@PathVariable String noticeSeq) {
-   return modelMapper.map(repo.findByNoticeSeq(Long.parseLong(noticeSeq)).get(), NoticeDTO.class);
-}
-
-
-   @PostMapping("/upload")
-   public HashMap<String, String> save(@RequestBody NoticeDTO dto) {
-    //    System.out.println("업로드"+dto.toString());
-       HashMap<String, String> map = new HashMap<>();
-       Notice entity = new Notice();
-       entity.setTitle(dto.getTitle());
-       entity.setCorName(dto.getCorName());
-       entity.setContent1(dto.getContent1()); 
-       entity.setContent2(dto.getContent2()); 
-       entity.setContent3(dto.getContent3());
-       entity.setContent4(dto.getContent4());
-       entity.setState(dto.getState());
-       entity.setCareer(dto.getCareer());
-       entity.setArea(dto.getArea());
-       entity.setStartDate(dto.getStartDate());
-       entity.setStartTime(dto.getStartTime());
-       entity.setTagLocation(dto.getTagLocation());
-       entity.setTagAttribute(dto.getTagAttribute());
-       entity.setTagCareer(dto.getTagCareer());
-  
-    //    System.out.println("entity 저장:"+entity.toString());
-       repo.save(entity);
-       map.put("result", "SUCCESS");
-      return map;
-   }   
-   @PutMapping("/modify/{noticeSeq}")
-   public HashMap<String, String> modify(@RequestBody NoticeDTO dto,@PathVariable String noticeSeq) {
-    //    System.out.println("수정"+dto.toString());
-       HashMap<String, String> map = new HashMap<>();
-       Notice entity = repo.findByNoticeSeq(Long.parseLong(noticeSeq)).get();
-       entity.setNoticeSeq(Long.parseLong(noticeSeq));
-       entity.setTitle(dto.getTitle());
-       entity.setCorName(dto.getCorName());
-       entity.setContent1(dto.getContent1()); 
-       entity.setContent2(dto.getContent2()); 
-       entity.setContent3(dto.getContent3());
-       entity.setContent4(dto.getContent4());
-       entity.setState(dto.getState());
-       entity.setCareer(dto.getCareer());
-       entity.setArea(dto.getArea());
-       entity.setStartDate(dto.getStartDate());
-       entity.setStartTime(dto.getStartTime());
-       entity.setTagLocation(dto.getTagLocation());
-       entity.setTagAttribute(dto.getTagAttribute());
-       entity.setTagCareer(dto.getTagCareer());
-  
-    //    System.out.println("entity 저장:"+entity.toString());
-       repo.save(entity);
-       map.put("result", "SUCCESS");
-      return map;
-   }   
+      return modelMapper.map(repo.findByNoticeSeq(Long.parseLong(noticeSeq)).get(), NoticeDTO.class);
+   } 
 }
