@@ -14,9 +14,11 @@ import InterviewerPr from './interviewer/Pr'
 import CorporationNotice from './corporation/CorNotice'
 import CorporationModify from './corporation/Modify'
 import CorporationPr from './corporation/Pr'
+import PRUpload from "./pr/PRUpload"
+import PRDetail from "./pr/PRDetail"
+import PR from "./pr/PR"
+import Alive from "./alive/Alive" 
 
-import PrUpload from "./pr/PrUpload"
-import PrDetail from "./pr/PrDetail"
 
 export const routerConfig = [
     {
@@ -70,10 +72,18 @@ export const routerConfig = [
     }, 
     {
         path: '/prUpload',
-        component: PrUpload
+        component: PRUpload
     },
     {
         path: '/prDetail',
-        component: PrDetail
+        component: PRDetail
+    },
+    {
+        path: '/pr',
+        component: PR
+    },
+    {
+        path: '/alive',
+        component: Alive
     },
 ]

@@ -34,6 +34,7 @@ public class Pr implements Serializable {
     
     @Column(name="itv_seq") private Long itvSeq;
     @Column(name="phone") private String phone;
+    @Column(name="name") private String name;
     @Column(name="title") private String title;
     @Column(name="content") private String content;
     @Column(name="area") private String area; 
@@ -46,17 +47,18 @@ public class Pr implements Serializable {
     @Override
     public String toString(){
 
-        return "Pr :[prSeq:"+prSeq+",itvSeq:" +itvSeq+", phone:"+phone+", title:"+title+", content:"+content+
+        return "Pr :[prSeq:"+prSeq+",itvSeq:" +itvSeq+", phone:"+phone+", name:"+name+", title:"+title+", content:"+content+
        ", area:"+area+", prLocation:"+prLocation+", tagLocation:"+tagLocation+", tagAttribute:"+tagAttribute+", tagCareer:"+tagCareer+", dateUpload:"+dateUpload + "]";
     }
 
 
     //생성자
     @Builder
-    private Pr(Long itvSeq, String phone,
+    private Pr(Long itvSeq, String phone, String name,
     String title, String content, String area, String prLocation, String tagLocation, String tagAttribute, String tagCareer, String dateUpload){
         this.itvSeq = itvSeq;
         this.phone =phone;
+        this.name = name;
         this.title = title;
         this.content = content;
         this.area = area;

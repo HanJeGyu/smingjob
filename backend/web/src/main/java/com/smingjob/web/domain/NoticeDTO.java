@@ -12,10 +12,7 @@ public class NoticeDTO {
    private Long noticeSeq;     
    private String title,
          corName,
-         content1,
-         content2,
-         content3,
-         content4,
+         content,
          state,
          career,
          area,

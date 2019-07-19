@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/pr")
+@RequestMapping("/prs")
 @CrossOrigin(origins = "http://localhost:3001", maxAge = 3600)
 
 public class PrController {
@@ -47,13 +47,13 @@ public class PrController {
         // System.out.println("findall 진입");
         List<PrDTO> list = new ArrayList<>();
         for (Pr s : entities) {
-            PrDTO noti = modelMapper.map(s, PrDTO.class);
-            list.add(noti);
+            PrDTO pr = modelMapper.map(s, PrDTO.class);
+            list.add(pr);
         }
         return list;
     }
 
-    @GetMapping("/PrContent/{id}")
+    @GetMapping("/PrDetail/{id}")
     public PrDTO findById(@PathVariable String id) {
         return modelMapper.map(repo.findById(Long.parseLong(id)).orElseThrow(EntityNotFoundException::new),
                 PrDTO.class);

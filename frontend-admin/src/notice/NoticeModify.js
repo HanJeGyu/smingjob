@@ -21,7 +21,7 @@ export default class NoticeUpload extends React.Component {
       title:'',
       area:'',
       career:'',
-      content1:'',
+      content:'',
       tagLocation:'',
       tagAttribute:'',
       tagCareer:'',
@@ -45,7 +45,7 @@ export default class NoticeUpload extends React.Component {
        title: event.target.title.value,
        area: event.target.area.value,
        career: event.target.career.value,
-       content1: event.target.content1.value,
+       content: event.target.content.value,
        tagLocation: event.target.tagLocation.value,
        tagAttribute: event.target.tagAttribute.value,
        tagCareer: event.target.tagCareer.value,
@@ -148,7 +148,7 @@ export default class NoticeUpload extends React.Component {
               </Grid>
               <Grid item xs={12}>
                 <TextField            
-                  id="content1"
+                  id="content"
                   name="content"
                   label="모집 개요"
                   multiline

@@ -22,7 +22,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table(name = "jobnotice")
+@Table(name = "notice")
 public class Notice implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -33,10 +33,7 @@ public class Notice implements Serializable{
         
     @Column(name="title") private String title;
     @Column(name="cor_name") private String corName;
-    @Column(name="content1") private String content1;
-    @Column(name="content2") private String content2;
-    @Column(name="content3") private String content3;
-    @Column(name="content4") private String content4;
+    @Column(name="content") private String content;
     @Column(name="state")private String state;
     @Column(name="career")private String career ;
     @Column(name="area")private String area;
@@ -49,20 +46,17 @@ public class Notice implements Serializable{
     @Override
     public String toString(){
         return String.format("고객정보 No: %d|n" + "ID: %s", noticeSeq, title,corName,
-        content1,content2,content3,content4,state,career,area,startDate,startTime,
+        content,state,career,area,startDate,startTime,
         tagLocation,tagAttribute,tagCareer);
     }
 
     @Builder
-    private Notice(String title, String corName, String content1, String content2,String content3,
-    String content4,String state,String career,String area,String startDate,String startTime,
+    private Notice(String title, String corName, String content,String state,
+    String career,String area,String startDate,String startTime,
     String tagLocation,String tagAttribute,String tagCareer){       
         this.title = title;
         this.corName = corName;        
-        this.content1 = content1;
-        this.content2 = content2;
-        this.content3 = content3;
-        this.content4 = content4;
+        this.content = content;       
         this.state = state;
         this.career = career;
         this.area = area;

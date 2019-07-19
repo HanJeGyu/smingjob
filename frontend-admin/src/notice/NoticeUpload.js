@@ -23,7 +23,7 @@ export default class NoticeUpload extends React.Component {
       title:'',
       area:'',
       career:'',
-      content1:'',
+      content:'',
       tagLocation:'',
       tagAttribute:'',
       tagCareer:'',
@@ -39,24 +39,24 @@ export default class NoticeUpload extends React.Component {
     }
 
     changeTextData = (text) => {
-      this.setState({content1: text})
+      this.setState({content: text})
       console.log(text);     
     }
 
     handleSubmit = (event) =>{
        event.preventDefault();   
-      
+ /*      
        console.log("========");
        console.log(event.target);
        console.log("========");
 
-      console.log("con:"+this.state.content1)
+      console.log("con:"+this.state.content) */
 
       const notices = {
       title: event.target.title.value,
       area: event.target.area.value,
       career: event.target.career.value,  
-      content1 : this.state.content1,  
+      content : this.state.content,  
       tagLocation: event.target.tagLocation.value,
       tagAttribute: event.target.tagAttribute.value,
       tagCareer: event.target.tagCareer.value,
@@ -144,7 +144,7 @@ export default class NoticeUpload extends React.Component {
               </Grid>
            {/*    < Grid item xs={12}>
                 <TextField            
-                  id="content1"
+                  id="content"
                   name="content"
                   label="모집 개요"
                   multiline
@@ -156,7 +156,7 @@ export default class NoticeUpload extends React.Component {
               </Grid>  */}
               <Grid item xs={12}>
               <CKEditor
-                    id="content1"                    
+                    id="content"                    
                     editor={ ClassicEditor }
                     data="<p>모집 개요<p>"
                     onInit={ editor => {                        

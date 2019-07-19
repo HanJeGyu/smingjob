@@ -35,10 +35,10 @@ export default class NoticeDetail extends React.Component {
    
   }
   componentWillMount=()=>{
-    const title = '제목...';
-    axios.get(`http://localhost:9000/notices/${title}`)
+    const noticeSeq = '98';  
+    axios.get(`http://localhost:9000/notices/${noticeSeq}`)
         .then(res=>{
-           this.setState(res.data)
+            this.setState(res.data)
            console.log(res.data)
         })
         .catch(e=>{           
@@ -64,7 +64,8 @@ console.log("지원");
     let margin={
       margin:"70px"
     } 
-      return(
+    let codes = this.state.content
+   return(
     <React.Fragment>
        
       <Container  style={style} maxWidth="md" >
@@ -94,9 +95,10 @@ console.log("지원");
                 </Typography>   
               </Grid>
               <Grid item xs={12}>
-              <Typography>
-              {this.state.content1}
-                </Typography>               
+              {/* <Typography>
+              {this.state.content}
+                </Typography>  */}   
+                <div dangerouslySetInnerHTML={ {__html: codes} }></div>           
               </Grid>     
               <Grid item xs={12} sm={4}>
               <Typography>
@@ -129,6 +131,13 @@ console.log("지원");
           <Grid container spacing={3}>
             <Button size="Large" style={btn} color="primary" onClick={this.apply}>지원하기</Button>   </Grid>
           </Grid> 
+
+          <Button size="small" color="primary">
+                      View
+                    </Button>
+                    <Button size="small" color="primary">
+                      수정
+                    </Button>
           </Container>
          
           </React.Fragment>

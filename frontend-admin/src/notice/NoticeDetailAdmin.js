@@ -35,7 +35,7 @@ export default class NoticeDetail extends React.Component {
    
   }
   componentWillMount=()=>{
-    const noticeSeq = '95';  
+    const noticeSeq = '98';  
     axios.get(`http://localhost:9001/notices/${noticeSeq}`)
         .then(res=>{
             this.setState(res.data)
@@ -64,7 +64,7 @@ console.log("지원");
     let margin={
       margin:"70px"
     } 
-    let codes = this.state.content1
+    let codes = this.state.content
    return(
     <React.Fragment>
        
@@ -96,7 +96,7 @@ console.log("지원");
               </Grid>
               <Grid item xs={12}>
               {/* <Typography>
-              {this.state.content1}
+              {this.state.content}
                 </Typography>  */}   
                 <div dangerouslySetInnerHTML={ {__html: codes} }></div>           
               </Grid>     

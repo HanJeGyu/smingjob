@@ -69,10 +69,7 @@ public class NoticeController {
        Notice entity = new Notice();
        entity.setTitle(dto.getTitle());
        entity.setCorName(dto.getCorName());
-       entity.setContent1(dto.getContent1()); 
-       entity.setContent2(dto.getContent2()); 
-       entity.setContent3(dto.getContent3());
-       entity.setContent4(dto.getContent4());
+       entity.setContent(dto.getContent());        
        entity.setState(dto.getState());
        entity.setCareer(dto.getCareer());
        entity.setArea(dto.getArea());
@@ -95,10 +92,7 @@ public class NoticeController {
        entity.setNoticeSeq(Long.parseLong(noticeSeq));
        entity.setTitle(dto.getTitle());
        entity.setCorName(dto.getCorName());
-       entity.setContent1(dto.getContent1()); 
-       entity.setContent2(dto.getContent2()); 
-       entity.setContent3(dto.getContent3());
-       entity.setContent4(dto.getContent4());
+       entity.setContent(dto.getContent());       
        entity.setState(dto.getState());
        entity.setCareer(dto.getCareer());
        entity.setArea(dto.getArea());
