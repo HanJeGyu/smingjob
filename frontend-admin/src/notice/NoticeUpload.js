@@ -12,6 +12,8 @@ import {
 import axios from 'axios'
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default class NoticeUpload extends React.Component {
 
@@ -21,7 +23,7 @@ export default class NoticeUpload extends React.Component {
       title:'',
       area:'',
       career:'',
-      content:'',
+      content1:'',
       tagLocation:'',
       tagAttribute:'',
       tagCareer:'',
@@ -32,33 +34,46 @@ export default class NoticeUpload extends React.Component {
    
   }
 
-handleChange=(e)=>{
-  this.setState({[e.target.name]: e.target.value})
-}
-    handleSubmit = event =>{
-       event.preventDefault();          
+    handleChange=(e)=>{
+      this.setState({[e.target.name]: e.target.value})
+    }
+
+    changeTextData = (text) => {
+      this.setState({content1: text})
+      console.log(text);     
+    }
+
+    handleSubmit = (event) =>{
+       event.preventDefault();   
+      
+       console.log("========");
+       console.log(event.target);
+       console.log("========");
+
+      console.log("con:"+this.state.content1)
+
       const notices = {
-       title: event.target.title.value,
-       area: event.target.area.value,
-       career: event.target.career.value,
-       content1: event.target.content1.value,
-       tagLocation: event.target.tagLocation.value,
-       tagAttribute: event.target.tagAttribute.value,
-       tagCareer: event.target.tagCareer.value,
-       state: '진행중',
-       corName: event.target.corName.value,    
+      title: event.target.title.value,
+      area: event.target.area.value,
+      career: event.target.career.value,  
+      content1 : this.state.content1,  
+      tagLocation: event.target.tagLocation.value,
+      tagAttribute: event.target.tagAttribute.value,
+      tagCareer: event.target.tagCareer.value,
+      state: '진행중',
+      corName: event.target.corName.value,    
      };
         axios({
-            method: 'post',
-            url: 'http://localhost:9001/notices/upload',
-            data: notices,
-            headers: {
-              // 'Authorization': `bearer ${token}`,
+             method: 'post',
+             url: 'http://localhost:9001/notices/upload',
+             data: notices,
+             headers: {
+               // 'Authorization': `bearer ${token}`,
             'Content-Type': 'application/json'
-            }, 
+             }, 
             
-          });
-      }        
+           });
+    }        
  /*      selectedDate(){
         React.useState(new Date('2019-07-14T18:00:00'))
       }
@@ -127,7 +142,7 @@ handleChange=(e)=>{
                   onChange={this.handleChange}
                 />
               </Grid>
-              <Grid item xs={12}>
+           {/*    < Grid item xs={12}>
                 <TextField            
                   id="content1"
                   name="content"
@@ -138,7 +153,22 @@ handleChange=(e)=>{
                   autoComplete="content"
                   onChange={this.handleChange}
                 />
-              </Grid>     
+              </Grid>  */}
+              <Grid item xs={12}>
+              <CKEditor
+                    id="content1"                    
+                    editor={ ClassicEditor }
+                    data="<p>모집 개요<p>"
+                    onInit={ editor => {                        
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        console.log( { event, editor, data } );
+                        this.changeTextData(data)
+                    } }
+                />
+              </Grid> 
               <Grid item xs={12} sm={4}>
                 <TextField            
                   id="tagLocation"
@@ -196,7 +226,7 @@ handleChange=(e)=>{
           </MuiPickersUtilsProvider>   */}   
           <Grid container spacing={10}><p style={margin}></p></Grid>
           <Grid container spacing={3}>
-            <Button size="Large" style={btn} color="primary"  type="submit">Upload</Button>   </Grid>
+            <Button size="large" style={btn} color="primary"  type="submit">Upload</Button>   </Grid>
           </Grid>
             </Container>
             </form>

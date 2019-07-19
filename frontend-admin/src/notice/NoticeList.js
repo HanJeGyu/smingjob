@@ -48,11 +48,11 @@ export default class NoticeList extends React.Component{
     render(){
         let state = this.state;
         let style = {
-            margin:"100px",
+            margin:"100px 50px",
             marginBottom:"0"
         }
         let btn = {
-            marginLeft:"100px",
+            marginLeft:"50px",
             padding:"0",
             paddingTop:"5px"
         
