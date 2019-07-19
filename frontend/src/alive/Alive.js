@@ -36,7 +36,18 @@ export default class Alive extends React.Component{
       flexGrow: 1,
     }
     let area ={
-      color: '#404040',
+      color: '#404040',      
+    }
+    let date={
+      textAlign: 'center',
+      color: '#3e4444 ',
+      fontWeight: 'bold',
+    }
+    let time={
+      textAlign: 'center',
+      color: '#3e4444 ',
+      letterSpacing: '6px',
+      fontWeight: 'bold',
     }
     let title ={
       textAlign: 'center',
@@ -45,13 +56,10 @@ export default class Alive extends React.Component{
     }
     let state = {
       textAlign: 'right',
-      color: '#ba3838',
+      color: 'SteelBlue',
       fontWeight: 'bold'
     }
-    let tags= {
-      textAlign: 'center',
-      color: 'SteelBlue '
-    }  
+   
   return(  
     <React.Fragment>
        <Container style ={cardGrid}  maxWidth="md">
@@ -63,14 +71,14 @@ export default class Alive extends React.Component{
                   {alive.area} - {alive.career}
                 </Typography> 
                 <Typography><p /></Typography>      
-                <Typography style={title}>
+                <Typography style={date} variant="h5" gutterBottom>
                   {alive.startDate}
                 </Typography>  
-                <Typography style={title}>
+                <Typography style={time} variant="h5" gutterBottom>
                   {alive.startTime}
                 </Typography>        
                 <Typography><p /></Typography>                    
-                <Typography style={title} gutterBottom variant="h4" component="h2" >
+                <Typography style={title} gutterBottom variant="h3" component="h2" >
                   {alive.corName}
                 </Typography>        
                 <Typography><p /></Typography>    

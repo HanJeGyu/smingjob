@@ -81,9 +81,9 @@ export const routerConfig = [
     {
         path: '/pr',
         component: PR
-    },
+    }, 
     {
-        path: '/alive',
+        path: '/interview',
         component: Alive
     },
 ]
