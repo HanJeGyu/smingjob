@@ -112,7 +112,9 @@ const Navbar = () => {
   }
   
   function handleClick(){
-
+    localStorage.removeItem('authSeq')
+    localStorage.removeItem('authId')
+    document.location.href = '/'
   }
 
   return (

@@ -24,7 +24,7 @@ export const routerConfig = [
     {
         path: '/',
         exact: true,
-        component: () => <Redirect to="/notice" />
+        component: () => <Redirect to="/home" />
     },
     {
         path: '/home',
