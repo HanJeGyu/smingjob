@@ -129,7 +129,6 @@ const Navbar = () => {
           <Typography variant="h6" className={classes.title} noWrap>
             JOB A LIVE 관리자
           </Typography>
-          <Button color="inherit" href="/login">Login</Button>
         </Toolbar>
       </AppBar>
       <Drawer

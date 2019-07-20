@@ -77,7 +77,7 @@ export default function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login
+          Admin Login
         </Typography>
         <RadioGroup
           name="selection"
@@ -85,8 +85,6 @@ export default function Login() {
           onChange={handleChange}
           row
         >
-{/*           <FormControlLabel value="1" control={<Radio />} label="개인회원" />
-          <FormControlLabel value="2" control={<Radio />} label="기업회원" /> */}
         </RadioGroup>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
@@ -119,18 +117,6 @@ export default function Login() {
           >
             Login In
           </Button>
-{/*           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="/join" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid> */}
         </form>
       </div>
     </Container>
