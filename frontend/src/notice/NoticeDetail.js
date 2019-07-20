@@ -12,6 +12,7 @@ import {
 import axios from 'axios'
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
+import { textAlign } from '@material-ui/system';
 
 export default class NoticeDetail extends React.Component {
 
@@ -64,58 +65,63 @@ console.log("지원");
     let margin={
       margin:"70px"
     } 
+    let taggrid={
+      fontWeight:'bold',
+      letterSpacing: '2px',
+      color:'#336699'
+    }
+   
     let codes = this.state.content
    return(
     <React.Fragment>
        
-      <Container  style={style} maxWidth="md" >
+      <Container variant="outline" style={style} maxWidth="md" >
             <Typography variant="h6" gutterBottom>
               공고 
             </Typography> 
 
             <Grid container spacing={3}>
               <Grid item xs={12} >
-              <Typography>
-                {this.state.title}
-                </Typography>
+                <TextField 
+                  label="공고 제목"
+                  value={this.state.title}
+                  fullWidth                 
+                  ReadOnly
+                />
               </Grid>
               <Grid item xs={12} sm={4}>
-              <Typography>
-                {this.state.area}
-                </Typography>
+                <TextField 
+                  label="기업명"
+                  value={this.state.corName}
+                  fullWidth   
+                  ReadOnly           
+                />
               </Grid> 
               <Grid item xs={12} sm={4}>
-              <Typography>
-                {this.state.corName}
-                </Typography>
+                <TextField  
+                  label="직무"
+                  value={this.state.area}
+                  fullWidth
+                  ReadOnly
+                />
               </Grid> 
               <Grid item xs={12} sm={4}>
-              <Typography>
-              {this.state.career}
-                </Typography>   
+                <TextField 
+                  label="요구경력 및 직급"
+                  value={this.state.career}
+                  fullWidth
+                  ReadOnly                 
+                />
               </Grid>
-              <Grid item xs={12}>
-              {/* <Typography>
-              {this.state.content}
-                </Typography>  */}   
-                <div dangerouslySetInnerHTML={ {__html: codes} }></div>           
+              <Grid item xs={12}>   
+                <div  dangerouslySetInnerHTML={ {__html: codes} }></div>           
               </Grid>     
-              <Grid item xs={12} sm={4}>
-              <Typography>
-              #{this.state.tagLocation}
-                </Typography>                
+      
+               <Grid >
+              <Typography style={taggrid} >#{this.state.tagLocation}  #{this.state.tagAttribute} #{this.state.tagCareer} </Typography>
               </Grid>
-              <Grid item xs={12} sm={4}>
-              <Typography>
-              #{this.state.tagAttribute}
-                </Typography>               
-              </Grid>
-              <Grid item xs={12} sm={4}>
-              <Typography>
-              #{this.state.tagCareer}
-                </Typography>               
-              </Grid>    
-
+        
+             
               <Grid item xs={12} sm={4}>
               <Typography>
               {this.state.startDate}
