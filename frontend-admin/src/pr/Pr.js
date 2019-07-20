@@ -17,14 +17,14 @@ export default class Pr extends Component {
   };
 
   componentDidMount() {
-    axios.get("http://localhost:9001/pr").then(res => {
+    axios.get("http://localhost:9001/prs").then(res => {
       const pr = res.data;
       this.setState({ pr });
     });
   }
 
   delete(id) {
-    axios.delete("http://localhost:9001/pr/" + id).then(res => {
+    axios.delete("http://localhost:9001/prs/" + id).then(res => {
       window.location.reload();
     });
   }
