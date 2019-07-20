@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -44,12 +45,6 @@ public class Corporation implements Serializable{
     @Column(name = "homepage") private String homepage;
     @Column(name = "city") private String city;
     @Column(name = "date_join") private String dateJoin;
-
-    @Override
-    public String toString(){
-        return String.format("기업정보 No: %d|n" + "ID: %s", corSeq, corId, pwd,
-        corRegNo, name, ceoName, area, pmName, pmPhone, homepage, city, dateJoin);
-    }
 
     @Builder
     private Corporation(String corId,String pwd, String corRegNo, String name, String ceoName,

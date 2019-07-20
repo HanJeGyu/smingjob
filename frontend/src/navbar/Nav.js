@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { makeStyles, useTheme, Drawer, CssBaseline, AppBar, 
         List, Typography, Divider, IconButton, ListItem, 
         ListItemText, MenuItem, ListItemIcon, Link,
-        Menu, Button, ListSubheader, Toolbar, Collapse } 
+        Menu, Button, Toolbar, Collapse } 
         from "@material-ui/core";
 import { red, deepPurple, blue } from "@material-ui/core/colors";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -12,7 +12,6 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
@@ -243,17 +242,6 @@ const Navbar = () => {
           ))}
         </List>
         <Divider />
-        <ListSubheader inset>Admin page</ListSubheader>
-        <List>
-          {["PR", "Alive", "Corporation", "Interviewer", "Notice"].map((text, index) => (
-            <ListItem button component="a" href={text + "Admin"}>
-              <ListItemIcon>
-                {<AssignmentIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
       {/* <main
         className={clsx(classes.content, {

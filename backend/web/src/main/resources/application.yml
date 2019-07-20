@@ -8,6 +8,8 @@ spring:
         database-platform: org.hibernate.dialect.MariaDB102Dialect
         hibernate:
             ddl-auto: update
+        show-sql: true
+        
 server:
     port: 9000
 

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -42,7 +44,10 @@ public class Alive implements Serializable {
     @Column(name="itv_name") private String itvName; 
     @Column(name="itv_phone") private String itvPhone; 
 
-
+    @OneToOne
+    @JoinColumn(name = "notice_seq")
+    private Notice notice;
+    
     @Override
     public String toString(){
         return "Alive :[live_seq:" + liveSeq + ",cor_seq:" + corSeq + ", cor_name:" + corName + ", state:" + state

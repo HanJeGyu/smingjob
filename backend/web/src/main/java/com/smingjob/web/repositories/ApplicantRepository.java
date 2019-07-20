@@ -1,6 +1,7 @@
 package com.smingjob.web.repositories;
 
 import java.util.List;
+import java.util.Map;
 
 import com.smingjob.web.enttites.Applicant;
 
@@ -14,6 +15,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ApplicantRepository extends JpaRepository<Applicant, Long>{
 
-/*     @Query("SELECT a.state FROM Applicant a JOIN a.notice b ON a.noticeSeq = b.noticeSeq WHERE a.noticeSeq = ?1")
-    public List<Applicant> getNoticeList(Long noticeSeq); */
+    @Query("SELECT n.title as title, n.corName as corName, "
+        + "n.startDate as startDate, n.startTime as startTime, a.state as state "
+        + "FROM Applicant a JOIN a.notice n "
+        + "WHERE a.itvSeq = ?1")
+    public List<Map<String,Object>> getNoticeList(Long itvSeq);
 }

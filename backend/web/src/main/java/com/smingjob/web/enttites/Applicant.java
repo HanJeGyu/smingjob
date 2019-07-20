@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,19 +35,8 @@ public class Applicant implements Serializable{
     @Column(name="itv_seq") private Long itvSeq;
     @Column(name="state") private String state;
 
-/*     @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "notice_seq")
-    private Notice notice; */
-
-    @Override
-    public String toString(){
-        return String.format("고객정보 No: %d|n" + "ID: %s", applicantSeq, itvSeq, state);
-    }
-
-    @Builder
-    private Applicant(Long itvSeq, String state){
-        this.itvSeq = itvSeq;
-        this.state = state;
-    }
+    private Notice notice;
 
 }

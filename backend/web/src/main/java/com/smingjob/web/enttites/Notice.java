@@ -1,12 +1,17 @@
 package com.smingjob.web.enttites;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -43,6 +48,12 @@ public class Notice implements Serializable{
     @Column(name="tag_attribute")private String tagAttribute ;
     @Column(name="tag_career")private String tagCareer;
     
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "notice")
+    private List<Applicant> applicants;
+
+    @OneToOne(mappedBy = "notice")
+    private Alive alive;
+
     @Override
     public String toString(){
         return String.format("고객정보 No: %d|n" + "ID: %s", noticeSeq, title,corName,

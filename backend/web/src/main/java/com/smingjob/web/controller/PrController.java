@@ -52,6 +52,15 @@ public class PrController {
         return list;
     }
 
+    @GetMapping("{itvSeq}")
+    public List<Pr> findAllById(@PathVariable String itvSeq) {
+        List<Pr> entities = repo.findByItvSeq(Long.parseLong(itvSeq));
+        for (Pr s : entities) {
+/*             System.out.println(s.get); */
+        }
+        return entities;
+    }
+
     @GetMapping("/PrDetail/{id}")
     public PrDTO findById(@PathVariable String id) {
         return modelMapper.map(repo.findById(Long.parseLong(id)).orElseThrow(EntityNotFoundException::new),

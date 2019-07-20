@@ -28,7 +28,7 @@ class Modify extends React.Component {
             location: ''
         }
     }
-    componentWillMount(){
+    componentDidMount(){
         const itvid = 'test'
         axios.get(`http://localhost:9000/interviewers/${itvid}`)
             .then(res=>{

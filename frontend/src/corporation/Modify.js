@@ -30,7 +30,7 @@ class Modify extends React.Component {
             homepage: ''
         }
     }
-    componentWillMount(){
+    componentDidMount(){
         const corId = 'kakao'
         axios.get(`http://localhost:9000/corporations/${corId}`)
             .then(res=>{

@@ -26,6 +26,17 @@ class ItvAlive extends React.Component {
         }
     }
 
+/*     componentDidMount(){
+        const itvId = '1'
+        axios.get(`http://localhost:9000/applicant/alivelist/${itvId}`)
+        .then(res=>{
+            this.setState({data: res.data});
+        })
+        .catch(e=>{
+            alert('데이터를 불러오지 못했습니다.')
+        })
+    } */
+
     render(){
         const { classes } = this.props
         return (

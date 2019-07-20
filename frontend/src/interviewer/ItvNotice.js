@@ -5,8 +5,12 @@ import axios from 'axios'
 
 const useStyles = theme => ({
     table: {
-        margin:"100px",
-        marginBottom:"0"
+        width: '100%',
+        minWidth: 1500,
+        margin: "100px 50px"
+    },
+    tableWrapper: {
+        overflowX: 'auto',
     }
 }); 
 
@@ -14,7 +18,6 @@ class ItvNotice extends React.Component {
     constructor(props){
         super(props)
         this.state={
-            notices: [],
             columns: [
                 { title: '공고명', field: 'title' },
                 { title: '회사명', field: 'corName' },
@@ -25,25 +28,30 @@ class ItvNotice extends React.Component {
             data: []
         }
     }
-    componentWillMount(){
-        
-        axios.get('http://localhost:9000/applicant/noticeList')
+
+    componentDidMount(){
+        const itvId = '1'
+        axios.get(`http://localhost:9000/applicant/noticeList/${itvId}`)
         .then(res=>{
-            this.setState(res.data);
+            this.setState({data: res.data});
+        })
+        .catch(e=>{
+            alert('데이터를 불러오지 못했습니다.\n관리자에게 문의해 주세요')
         })
     }
 
     render(){
         const { classes } = this.props
         return (
-            <div className={classes.table} >
+            <div className={classes.tableWrapper} >
                 <MaterialTable
-                title="지원목록"
-                columns={this.state.columns}
-                data={this.state.data}
-                editable={{
-                }}
-            />
+                    className={classes.table}
+                    title="지원목록"
+                    columns={this.state.columns}
+                    data={this.state.data}
+                    editable={{
+                    }}
+                />
             </div>
         );
     }
