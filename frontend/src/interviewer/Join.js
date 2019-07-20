@@ -118,6 +118,7 @@ export default function Join(){
                 />
                 <TextField
                     fullWidth
+                    required
                     margin="normal"
                     variant="outlined"
                     id="phone"
@@ -128,6 +129,7 @@ export default function Join(){
                 />
                 <TextField
                     fullWidth
+                    required
                     margin="normal"
                     variant="outlined"
                     id="email"

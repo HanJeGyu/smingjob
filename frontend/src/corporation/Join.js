@@ -58,21 +58,50 @@ export default function Join(){
             })
     }
 
+    function handleChange(e){
+        e.preventDefault();
+        const num = e.target.value.replace(/[^0-9]/g, "")
+        let phone = ''
+        if(num.length < 4) {
+            return num;
+        } else if(num.length < 7) {
+            phone += num.substr(0, 3);
+            phone += "-";
+            phone += num.substr(3);
+        } else if(num.length < 11) {
+            phone += num.substr(0, 3);
+            phone += "-";
+            phone += num.substr(3, 3);
+            phone += "-";
+            phone += num.substr(6);
+        } else {
+            phone += num.substr(0, 3);
+            phone += "-";
+            phone += num.substr(3, 4);
+            phone += "-";
+            phone += num.substr(7);
+        }
+        e.target.value = phone
+    }
+
     return(
         <Container component="main" maxWidth="sm">
             <CssBaseline/>
             <form className={classes.form} noValidate onSubmit={handleSubmit}>
                 <TextField
                     fullWidth
+                    required
                     margin="normal"
                     variant="outlined"
                     id="corRegNo"
                     name="corRegNo"
                     label="사업자등록번호"
+                    inputProps={{maxLength: 12}}
                     autoFocus
                 />
                 <TextField
                     fullWidth
+                    required
                     margin="normal"
                     variant="outlined"
                     id="name"
@@ -81,6 +110,7 @@ export default function Join(){
                 />
                 <TextField
                     fullWidth
+                    required
                     margin="normal"
                     variant="outlined"
                     id="ceoName"
@@ -89,6 +119,7 @@ export default function Join(){
                 />
                 <TextField
                     fullWidth
+                    required
                     margin="normal"
                     variant="outlined"
                     id="area"
@@ -113,6 +144,7 @@ export default function Join(){
                 />
                 <TextField
                     fullWidth
+                    required
                     margin="normal"
                     variant="outlined"
                     id="pmName"
@@ -121,14 +153,18 @@ export default function Join(){
                 />
                 <TextField
                     fullWidth
+                    required
                     margin="normal"
                     variant="outlined"
                     id="pmPhone"
                     name="pmPhone"
                     label="가입자연락처"
+                    inputProps={{maxLength: 13}}
+                    onChange={handleChange}
                 />
                 <TextField
                     fullWidth
+                    required
                     margin="normal"
                     variant="outlined"
                     id="corId"
@@ -137,6 +173,7 @@ export default function Join(){
                 />
                 <TextField
                     fullWidth
+                    required
                     margin="normal"
                     variant="outlined"
                     id="pwd"

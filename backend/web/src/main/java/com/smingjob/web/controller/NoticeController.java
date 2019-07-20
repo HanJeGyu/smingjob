@@ -58,6 +58,7 @@ public class NoticeController {
       return modelMapper.map(repo.findByNoticeSeq(Long.parseLong(noticeSeq)).get(), NoticeDTO.class);
    } 
 
+   /* 사용자 마이페이지 공고 목록 */
    @GetMapping("/noticeLiveList/{corSeq}")
    public List<Map<String, Object>> noticeLiveList(@PathVariable String corSeq){
       return repo.getNoticeLiveList(Long.parseLong(corSeq));

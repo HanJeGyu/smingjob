@@ -110,6 +110,10 @@ const Navbar = () => {
   function handleSubOnOff(){
     setSubOnOff(!subOnOff)
   }
+  
+  function handleClick(){
+
+  }
 
   return (
     <div className={classes.root}>
@@ -133,8 +137,9 @@ const Navbar = () => {
           <Typography variant="h6" className={classes.title} noWrap>
             JOB A LIVE
           </Typography>
-          <Button color="inherit" href="/login">Login</Button>
-          <Button color="inherit" href="/join">Join</Button>
+          {localStorage.getItem('authId') ? 
+            <Button color="inherit" onClick={handleClick}>Logout</Button> 
+            : <p><Button color="inherit" href="/login">Login</Button><Button color="inherit" href="/join">Join</Button></p>}
           {auth && (
             <div>
               <IconButton

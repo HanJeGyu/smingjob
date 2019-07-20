@@ -51,7 +51,7 @@ public class Notice implements Serializable{
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "notice")
     private List<Applicant> applicants;
 
-    @OneToOne(mappedBy = "notice")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "notice")
     private Alive alive;
 
     @Override

@@ -6,7 +6,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 
-
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
@@ -43,30 +42,45 @@ export default function Login() {
   function handleSubmit(e) {
     e.preventDefault();
     console.log(`회원종류 1: 개인회원, 2: 기업회원 \n선택된 라디오버튼${value}`)
-    let url = ''
-    if(value==='1'){
-      url = 'http://localhost:9000/interviewers'
-    }else if(value==='2'){
-      url = 'http://localhost:9000/corporations'
-    }else{
-      alert('선택값 오류')
-    }
-    const data = {
-      itvId: e.target.itvId.value,
-      pwd: e.target.pwd.value
-    }
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': 'JWT fefege..'
     }
-    axios.post(`${url}/login`, JSON.stringify(data), {headers: headers})
+    if(value==='1'){
+      const url = 'http://localhost:9000/interviewers'
+      const data = {
+        itvId: e.target.loginId.value,
+        pwd: e.target.pwd.value
+      }
+      axios.post(`${url}/login`, JSON.stringify(data), {headers: headers})
       .then(res=>{
-        alert(`${res.data.itvId} 님 환영합니다.`)
-/*         this.props.history.push('/home'); */
+        alert(`${res.data.name} 님 환영합니다.`)
+        localStorage.setItem('authSeq', res.data.itvSeq)
+        localStorage.setItem('authId', res.data.itvId)
+        document.location.href = '/'
       })
       .catch(e=>{
         alert('로그인에 실패하였습니다.')
       })
+    }else if(value==='2'){
+      const url = 'http://localhost:9000/corporations'
+      const data = {
+        corId: e.target.loginId.value,
+        pwd: e.target.pwd.value
+      }
+      axios.post(`${url}/login`, JSON.stringify(data), {headers: headers})
+      .then(res=>{
+        alert(`${res.data.name} 님 환영합니다.`)
+        localStorage.setItem('authSeq', res.data.corSeq)
+        localStorage.setItem('authId', res.data.corId)
+        document.location.href = '/'
+      })
+      .catch(e=>{
+        alert('로그인에 실패하였습니다.')
+      })
+    }else{
+      alert('선택값 오류')
+    }
   }
 
   return (
@@ -94,8 +108,8 @@ export default function Login() {
             margin="normal"
             required
             fullWidth
-            id="itvId"
-            name="itvId"
+            id="loginId"
+            name="loginId"
             label="아이디"
             autoFocus
           />
