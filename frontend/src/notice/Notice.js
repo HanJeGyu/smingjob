@@ -19,13 +19,25 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
 import axios from 'axios'
-
+import Pagination from "material-ui-flat-pagination";
 
 export default class Notice extends React.Component{
- 
-  state={
-    notices:[]
-  }
+  constructor(props) {
+    super(props);
+     this.state={
+      notices:[],
+        minValue: 0,
+        maxValue: 6,          
+        offset:0 
+  } 
+}
+changePage=(pageNum,offset)=> {
+  console.log(pageNum)
+  this.setState({ minValue: (pageNum - 1)*6,
+                  maxValue: pageNum * 6, 
+                  offset});
+
+}
   componentDidMount(){
     axios.get('http://localhost:9000/notices')
     .then(res=>{
@@ -40,11 +52,8 @@ export default class Notice extends React.Component{
 
 } */
   render(){
-   /*  let state=this.state;    */  
- 
     let cardGrid ={
-      paddingTop: '5%',
-      paddingBottom: '5%',
+      paddingTop: '3%',      
     }
     let  card= {
       height: '100%',
@@ -52,19 +61,10 @@ export default class Notice extends React.Component{
       flexDirection: 'column',
       backgroundColor: '#e3ecf4'
     }
-    let cardMedia= {
-      paddingTop: '56.25%', // 16:9
-    }
     let cardContent= {
       flexGrow: 1,
     }
-    let root= {
-      flexShrink: 0,
-      //color: palette.text.secondary,
-      marginLeft: '2.5%',
-      textAlign:'center',
-      marginTop: '30px'
-    }
+  
     let searching= {
       padding: '2px 4px',  
       display: 'flex',
@@ -81,11 +81,7 @@ export default class Notice extends React.Component{
     let iconButton= {
       padding: 10,
     }
-    let divider= {
-      width: 1,
-      height: 28,
-      margin: 4,
-    }
+   
     let area ={
       color: '#404040',
       
@@ -104,7 +100,11 @@ export default class Notice extends React.Component{
       textAlign: 'center',
       color: 'SteelBlue '
     }
-    let id = this.state.notices.noticeSeq
+    let page={
+      textAlign:'center',
+      margin:'3%'
+    }
+    let data = this.state.notices;    
   return(  
     <React.Fragment>
        {/*검색 */}
@@ -127,7 +127,7 @@ export default class Notice extends React.Component{
 
        <Container style ={cardGrid}  maxWidth="md">
        <Grid container spacing={6} >
-        {this.state.notices.map(notice => <Grid item key={notice} xs={12} sm={6} md={4} >
+        {data && data.slice(this.state.minValue,this.state.maxValue).map(notice => <Grid item key={notice} xs={12} sm={6} md={4} >
             <Card style ={card} /* onClick={this.detail(id)} */>           
               <CardContent style ={cardContent}>                        
                 <Typography style ={area} variant="h10" gutterBottom>
@@ -152,6 +152,13 @@ export default class Notice extends React.Component{
              </Grid>
               )}
               </Grid>
+              <div style={page}>
+             <Pagination
+                  limit={6}
+                  total={this.state.notices.length}
+                  offset={this.state.offset}
+                  onClick={(e, offset) =>this.changePage(offset/6+1, offset)}
+                /> </div>
               </Container>
               </React.Fragment>
 

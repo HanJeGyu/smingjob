@@ -13,13 +13,28 @@ import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import axios from 'axios'
+import Pagination from "material-ui-flat-pagination";
+
 
 
 export default class PR extends React.Component{
- 
-  state={
-    prs:[]
-  }
+  constructor(props) {
+    super(props);
+     this.state={
+        prs:[],
+        minValue: 0,
+        maxValue: 6,          
+        offset:0 
+  } 
+}
+
+changePage=(pageNum,offset)=> {
+  console.log(pageNum)
+  this.setState({ minValue: (pageNum - 1)*6,
+                  maxValue: pageNum * 6, 
+                  offset});
+
+}
   componentDidMount(){
     axios.get('http://localhost:9000/prs')
     .then(res=>{
@@ -27,10 +42,11 @@ export default class PR extends React.Component{
       this.setState({prs});      
   })
   }
-  render(){
+
+  render(){    
+ 
     let cardGrid ={
-      paddingTop: '5%',
-      paddingBottom: '5%',
+      paddingTop: '3%',      
     }
     let  card= {
       height: '100%',
@@ -57,10 +73,7 @@ export default class PR extends React.Component{
     let iconButton= {
       padding: 10,
     } 
-    let area ={
-      color: '#404040',
-      
-    }
+
     let name={
         textAlign: 'center',
         letterSpacing: '8px',
@@ -80,10 +93,16 @@ export default class PR extends React.Component{
       color: 'SteelBlue ',
       fontWeight: 'bold',
       letterSpacing: '1.5px',
-      paddingLeft:'10px' 
+      paddingLeft: '10%',           
     }
- 
+    let page={
+      textAlign:'center',
+      margin:'3%'
+    }
+  let data = this.state.prs;
+
   return(  
+   
     <React.Fragment>
        {/*검색 */}
        <Container  maxWidth="md">   
@@ -102,7 +121,7 @@ export default class PR extends React.Component{
 
        <Container style ={cardGrid}  maxWidth="md">
        <Grid container spacing={6} >
-        {this.state.prs.map(pr => <Grid item key={pr} xs={12} sm={6} md={4} >
+        {data && data.slice(this.state.minValue,this.state.maxValue).map(pr => <Grid item key={pr} xs={12} sm={6} md={4} >
             <Card style ={card} /* onClick={this.detail(id)} */>           
               <CardContent style ={cardContent}>  
                 <Typography><p /></Typography>                       
@@ -128,8 +147,16 @@ export default class PR extends React.Component{
              </Grid>
               )}
               </Grid>
+            <div style={page}>
+             <Pagination
+                  limit={6}
+                  total={this.state.prs.length}
+                  offset={this.state.offset}
+                  onClick={(e, offset) =>this.changePage(offset/6+1, offset)}
+                /> </div>
               </Container>
               </React.Fragment>
+            
 
   )
 }

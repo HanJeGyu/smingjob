@@ -5,13 +5,25 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import axios from 'axios'
-
+import Pagination from "material-ui-flat-pagination";
 
 export default class Alive extends React.Component{
- 
-  state={
-    alives:[]
-  }
+  constructor(props) {
+    super(props);
+     this.state={
+        alives:[],
+        minValue: 0,
+        maxValue: 6,          
+        offset:0 
+  } 
+}
+changePage=(pageNum,offset)=> {
+  console.log(pageNum)
+  this.setState({ minValue: (pageNum - 1)*6,
+                  maxValue: pageNum * 6, 
+                  offset});
+
+}
   componentDidMount(){
     axios.get('http://localhost:9000/alives')
     .then(res=>{
@@ -23,8 +35,7 @@ export default class Alive extends React.Component{
  
   render(){ 
     let cardGrid ={
-      paddingTop: '5%',
-      paddingBottom: '5%',
+      paddingTop: '3%',      
     }
     let  card= {
       height: '100%',
@@ -59,12 +70,16 @@ export default class Alive extends React.Component{
       color: 'SteelBlue',
       fontWeight: 'bold'
     }
-   
+    let page={
+      textAlign:'center',
+      margin:'3%'
+    }
+    let data = this.state.alives;
   return(  
     <React.Fragment>
        <Container style ={cardGrid}  maxWidth="md">
        <Grid container spacing={6} >
-        {this.state.alives.map(alive => <Grid item key={alive} xs={12} sm={6} md={4} >
+       {data && data.slice(this.state.minValue,this.state.maxValue).map(alive => <Grid item key={alive} xs={12} sm={6} md={4} >
             <Card style ={card} /* onClick={this.detail(id)} */>           
               <CardContent style ={cardContent}>                        
                 <Typography style ={area} variant="h10" gutterBottom>
@@ -92,6 +107,13 @@ export default class Alive extends React.Component{
              </Grid>
               )}
               </Grid>
+              <div style={page}>
+             <Pagination
+                  limit={6}
+                  total={this.state.alives.length}
+                  offset={this.state.offset}
+                  onClick={(e, offset) =>this.changePage(offset/6+1, offset)}
+                /> </div>
               </Container>
               </React.Fragment>
 
