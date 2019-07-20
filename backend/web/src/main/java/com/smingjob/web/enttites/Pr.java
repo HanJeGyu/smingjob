@@ -38,7 +38,6 @@ public class Pr implements Serializable {
     @Column(name="title") private String title;
     @Column(name="content") private String content;
     @Column(name="area") private String area; 
-    @Column(name="pr_location") private String prLocation; 
     @Column(name="tag_location") private String tagLocation; 
     @Column(name="tag_attribute") private String tagAttribute; 
     @Column(name="tag_career") private String tagCareer; 
@@ -48,21 +47,20 @@ public class Pr implements Serializable {
     public String toString(){
 
         return "Pr :[prSeq:"+prSeq+",itvSeq:" +itvSeq+", phone:"+phone+", name:"+name+", title:"+title+", content:"+content+
-       ", area:"+area+", prLocation:"+prLocation+", tagLocation:"+tagLocation+", tagAttribute:"+tagAttribute+", tagCareer:"+tagCareer+", dateUpload:"+dateUpload + "]";
+       ", area:"+area+", tagLocation:"+tagLocation+", tagAttribute:"+tagAttribute+", tagCareer:"+tagCareer+", dateUpload:"+dateUpload + "]";
     }
 
 
     //생성자
     @Builder
     private Pr(Long itvSeq, String phone, String name,
-    String title, String content, String area, String prLocation, String tagLocation, String tagAttribute, String tagCareer, String dateUpload){
+    String title, String content, String area, String tagLocation, String tagAttribute, String tagCareer, String dateUpload){
         this.itvSeq = itvSeq;
         this.phone =phone;
         this.name = name;
         this.title = title;
         this.content = content;
         this.area = area;
-        this.prLocation = prLocation;
         this.tagLocation = tagLocation;
         this.tagAttribute = tagAttribute;
         this.tagCareer = tagCareer;

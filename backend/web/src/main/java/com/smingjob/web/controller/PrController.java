@@ -79,8 +79,7 @@ public class PrController {
         entity.setName(dto.getName());
         entity.setTitle(dto.getTitle());
         entity.setContent(dto.getContent());
-        entity.setArea(dto.getArea());
-        entity.setPrLocation(dto.getPrLocation());
+        entity.setArea(dto.getArea());  
         entity.setTagLocation(dto.getTagLocation());
         entity.setTagAttribute(dto.getTagAttribute());
         entity.setTagCareer(dto.getTagCareer());
@@ -104,7 +103,6 @@ public class PrController {
         entity.setTitle(dto.getTitle());
         entity.setContent(dto.getContent());
         entity.setArea(dto.getArea());
-        entity.setPrLocation(dto.getPrLocation());
         entity.setTagLocation(dto.getTagLocation());
         entity.setTagAttribute(dto.getTagAttribute());
         entity.setTagCareer(dto.getTagCareer());

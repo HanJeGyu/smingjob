@@ -12,6 +12,6 @@ import lombok.Data;
 @Lazy
 public class PrDTO {
     private Long prSeq, itvSeq;
-    private String phone, title, content, area, prLocation, tagLocation, tagAttribute, tagCareer, dateUpload;
+    private String phone, title, content, area, tagLocation, tagAttribute, tagCareer, dateUpload;
     
 }
