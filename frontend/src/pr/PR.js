@@ -42,7 +42,12 @@ changePage=(pageNum,offset)=> {
       this.setState({prs});      
   })
   }
-
+  detail(seq){
+    console.log("seq:"+seq);
+     localStorage.prSeq=seq;
+     window.location = '/PRDetail/'+localStorage.prSeq;    
+  
+} 
   render(){    
  
     let cardGrid ={
@@ -121,8 +126,9 @@ changePage=(pageNum,offset)=> {
 
        <Container style ={cardGrid}  maxWidth="md">
        <Grid container spacing={6} >
-        {data && data.slice(this.state.minValue,this.state.maxValue).map(pr => <Grid item key={pr} xs={12} sm={6} md={4} >
-            <Card style ={card} /* onClick={this.detail(id)} */>           
+        {data && data.slice(this.state.minValue,this.state.maxValue).map(pr => 
+        <Grid item key={pr} xs={12} sm={6} md={4} onClick={()=>this.detail(pr.prSeq)}>
+            <Card style ={card} >           
               <CardContent style ={cardContent}>  
                 <Typography><p /></Typography>                       
                 <Typography style={name} gutterBottom variant="h4" component="h2" >

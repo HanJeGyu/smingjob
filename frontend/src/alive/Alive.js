@@ -32,7 +32,12 @@ changePage=(pageNum,offset)=> {
       
   })
   }
- 
+  detail(seq){
+    console.log("seq:"+seq);
+    localStorage.aliveSeq=seq;
+     window.location = '/AliveDetail/'+localStorage.aliveSeq; 
+    
+} 
   render(){ 
     let cardGrid ={
       paddingTop: '3%',      
@@ -79,7 +84,8 @@ changePage=(pageNum,offset)=> {
     <React.Fragment>
        <Container style ={cardGrid}  maxWidth="md">
        <Grid container spacing={6} >
-       {data && data.slice(this.state.minValue,this.state.maxValue).map(alive => <Grid item key={alive} xs={12} sm={6} md={4} >
+       {data && data.slice(this.state.minValue,this.state.maxValue).map(alive => 
+       <Grid item key={alive} xs={12} sm={6} md={4} onClick={()=>this.detail(alive.liveSeq)}>
             <Card style ={card} /* onClick={this.detail(id)} */>           
               <CardContent style ={cardContent}>                        
                 <Typography style ={area} variant="h10" gutterBottom>

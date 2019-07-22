@@ -46,11 +46,13 @@ changePage=(pageNum,offset)=> {
       
   })
   }
- /*  detail(e){
-    e.preventDefault();
-    window.location = '/NoticeDetail/';
 
-} */
+   detail(seq){
+    console.log("seq:"+seq);
+    localStorage.noticeSeq=seq;
+    window.location = '/NoticeDetail/'+localStorage.noticeSeq;      
+   /*  document.location.href = '/NoticeDetail'+localStorage.noticeSeq  */
+} 
   render(){
     let cardGrid ={
       paddingTop: '3%',      
@@ -126,10 +128,12 @@ changePage=(pageNum,offset)=> {
 
 
        <Container style ={cardGrid}  maxWidth="md">
-       <Grid container spacing={6} >
-        {data && data.slice(this.state.minValue,this.state.maxValue).map(notice => <Grid item key={notice} xs={12} sm={6} md={4} >
-            <Card style ={card} /* onClick={this.detail(id)} */>           
-              <CardContent style ={cardContent}>                        
+       <Grid container spacing={6}  >
+        {data && data.slice(this.state.minValue,this.state.maxValue).map(notice =>
+           <Grid item key={notice} xs={12} sm={6} md={4}    onClick={()=>this.detail(notice.noticeSeq)} >
+            
+            <Card style ={card} >           
+              <CardContent style ={cardContent} >                        
                 <Typography style ={area} variant="h10" gutterBottom>
                   {notice.area} - {notice.career}
                 </Typography> 
@@ -148,8 +152,9 @@ changePage=(pageNum,offset)=> {
               
               </CardContent>
           
-            </Card>           
-             </Grid>
+            </Card>       
+            </Grid>    
+            
               )}
               </Grid>
               <div style={page}>
