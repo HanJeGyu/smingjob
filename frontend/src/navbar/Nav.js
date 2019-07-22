@@ -167,7 +167,7 @@ const Navbar = () => {
         <Divider />
         <List>
           {["Home", "Notice", "Interview", "PR"].map((text, index) => (
-            <ListItem button component="a" href={text} className={classes.list_item}>
+            <ListItem button component="a" href={'/' + text} className={classes.list_item}>
                   <ListItemIcon>
                   {index === 0 ? <HomeIcon /> : index === 1 ? <NotificationsActiveIcon /> : index === 2 ? <VoiceChatIcon /> :  <PanToolIcon />}
                   </ListItemIcon>
@@ -178,7 +178,7 @@ const Navbar = () => {
         <Divider />
         <List>
           {["FAQ"].map((text, index) => (
-            <ListItem button component="a" href={text} className={classes.list_item}>
+            <ListItem button component="a" href={'/' + text} className={classes.list_item}>
               <ListItemIcon>
               <QuestionAnswerIcon />
               </ListItemIcon>
