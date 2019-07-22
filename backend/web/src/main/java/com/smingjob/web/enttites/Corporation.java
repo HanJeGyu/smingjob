@@ -1,12 +1,16 @@
 package com.smingjob.web.enttites;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -46,6 +50,9 @@ public class Corporation implements Serializable{
     @Column(name = "homepage") private String homepage;
     @Column(name = "city") private String city;
     @Column(name = "date_join") private String dateJoin;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "corporation")
+    private List<Scrap> scraps;
 
     @Builder
     private Corporation(String corId,String pwd, String corRegNo, String name, String ceoName,

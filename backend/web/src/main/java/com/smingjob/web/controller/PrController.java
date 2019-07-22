@@ -52,7 +52,7 @@ public class PrController {
         return list;
     }
 
-    @GetMapping("{itvSeq}")
+    @GetMapping("/{itvSeq}")
     public List<Pr> findAllById(@PathVariable String itvSeq) {
         List<Pr> entities = repo.findByItvSeq(Long.parseLong(itvSeq));
         for (Pr s : entities) {

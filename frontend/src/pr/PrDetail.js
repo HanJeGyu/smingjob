@@ -1,34 +1,46 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
-import { render } from 'react-dom';
+import React, { Component } from "react";
+import axios from "axios";
+import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
+import { render } from "react-dom";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import PermPhoneMsgIcon from "@material-ui/icons/PermPhoneMsg";
+import PhoneIcon from "@material-ui/icons/Phone";
+import StayCurrentPortraitIcon from "@material-ui/icons/StayCurrentPortrait"
+import AssignmentIndIcon from "@material-ui/icons/AssignmentInd"
+import PersonIcon from "@material-ui/icons/Person"
 
 export default class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            gallery: []
-        }
-    }
-    componentDidMount() {
-       /*
+  constructor(props) {
+    super(props);
+    this.state = {
+      gallery: []
+    };
+  }
+  componentDidMount() {
+    /*
        const seq = localStorage.prSeq;  
        axios.get(`http://localhost:9000/prs/${seq}`)
-       */       
-        axios.get('https://res.cloudinary.com/du6wt3fmd/image/list/mp4.json')
-            .then(res => {
-                console.log(res.data.resources);
-                this.setState({gallery: res.data.resources});
-            });
-    }
-    uploadWidget() {
-       // . . .
-    }
-    render(){
-        return (
-            <div className="main">
-                <h1>Galleria</h1>
-                <div className="gallery">
+       */
+
+    axios
+      .get("https://res.cloudinary.com/du6wt3fmd/image/list/mp4.json")
+      .then(res => {
+        console.log(res.data.resources);
+        this.setState({ gallery: res.data.resources });
+      });
+  }
+  uploadWidget() {
+    // . . .
+  }
+  render() {
+    return (
+      <div className="main">
+        <h1>Galleria</h1>
+        <FavoriteIcon className="favorite_icon" color="error" fontSize="large" /* onClick={DetailFunction} *//>
+        <StayCurrentPortraitIcon color="Primary" fontSize="large"/>
+
+        {/*                 <div className="gallery">
                     <CloudinaryContext cloudName="du6wt3fmd">
                         {
                             this.state.gallery.map(data => {
@@ -54,10 +66,8 @@ export default class Main extends Component {
                         }
                     </CloudinaryContext>
                     <div className="clearfix"></div>
-                </div>
-            </div>
-
-        );
-    }
+                </div> */}
+      </div>
+    );
+  }
 }
-
