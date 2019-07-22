@@ -6,13 +6,14 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import PermPhoneMsgIcon from "@material-ui/icons/PermPhoneMsg";
 import PhoneIcon from "@material-ui/icons/Phone";
-import StayCurrentPortraitIcon from "@material-ui/icons/StayCurrentPortrait"
-import AssignmentIndIcon from "@material-ui/icons/AssignmentInd"
-import PersonIcon from "@material-ui/icons/Person"
+import StayCurrentPortraitIcon from "@material-ui/icons/StayCurrentPortrait";
+import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
+import PersonIcon from "@material-ui/icons/Person";
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       gallery: []
     };
@@ -30,6 +31,30 @@ export default class Main extends Component {
         this.setState({ gallery: res.data.resources });
       });
   }
+  SendScrap = () => {
+    const data = {
+      prSeq: localStorage.getItem("prSeq"),
+      authSeq: localStorage.getItem("authSeq")
+    };
+    alert(localStorage.getItem("prSeq"));
+    alert(localStorage.getItem("authSeq"));
+    alert("ㅗㅑ");
+
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: "JWT fefege.."
+    };
+    axios
+      .post(`http://localhost:9000/scraps/`, JSON.stringify(data), {
+        headers: headers
+      })
+      .then(res => {
+
+      })
+      .catch(e => {
+
+      });
+  };
   uploadWidget() {
     // . . .
   }
@@ -37,8 +62,13 @@ export default class Main extends Component {
     return (
       <div className="main">
         <h1>Galleria</h1>
-        <FavoriteIcon className="favorite_icon" color="error" fontSize="large" /* onClick={DetailFunction} *//>
-        <StayCurrentPortraitIcon color="Primary" fontSize="large"/>
+        <FavoriteIcon
+          className="favorite_icon"
+          color="error"
+          fontSize="large"
+          onClick={this.SendScrap}
+        />
+        <StayCurrentPortraitIcon color="Primary" fontSize="large" />
 
         {/*                 <div className="gallery">
                     <CloudinaryContext cloudName="du6wt3fmd">
