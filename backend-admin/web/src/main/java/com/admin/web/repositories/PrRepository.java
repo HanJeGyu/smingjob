@@ -17,7 +17,10 @@ public interface PrRepository extends JpaRepository<Pr, Long>{
         + "FROM Applicant a JOIN a.notice n "
         + "WHERE a.itvSeq = ?1") */
 
-    @Query("SELECT i.itvId, p.phone, p.title, p.content, p.dateUpload"
-        + "FROM  Pr p JOIN p.interviewer i")    
+    /* @Query("SELECT i.itvId AS itvId, p.phone AS phone, p.title AS title, p.content AS content, p.dateUpload AS dateUpload"
+        + "FROM Pr p JOIN p.printerviewer i")    
+    public List<Map<String, Object>> getPrList(); */
+    @Query("SELECT i.itvId AS itvId, p.phone AS phone, p.title AS title, p.content AS content, p.dateUpload AS dateUpload "
+        + "FROM Pr p JOIN p.interviewer i")
     public List<Map<String, Object>> getPrList();
 }

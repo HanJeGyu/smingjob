@@ -3,6 +3,7 @@ package com.admin.web.enttites;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,7 +47,7 @@ public class Interviewer implements Serializable{
     @Column(name = "location") private String location;
     @Column(name = "date_join") private String dateJoin;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "interviewer")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "interviewer")
     private List<Pr> prs;  
 
     @Override
