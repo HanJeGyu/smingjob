@@ -35,8 +35,8 @@ export default class NoticeDetail extends React.Component {
    
   }
   componentWillMount=()=>{
-    const noticeSeq = '98';  
-    axios.get(`http://localhost:9001/notices/${noticeSeq}`)
+    const seq = localStorage.noticeadminSeq;  
+    axios.get(`http://localhost:9001/notices/${seq}`)
         .then(res=>{
             this.setState(res.data)
            console.log(res.data)

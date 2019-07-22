@@ -6,18 +6,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import FirstPageIcon from '@material-ui/icons/FirstPage';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import LastPageIcon from '@material-ui/icons/LastPage';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
-import Divider from '@material-ui/core/Divider';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import DirectionsIcon from '@material-ui/icons/Directions';
 import axios from 'axios'
 import Pagination from "material-ui-flat-pagination";
 
@@ -25,10 +17,11 @@ export default class Notice extends React.Component{
   constructor(props) {
     super(props);
      this.state={
-      notices:[],
+        notices:[],
         minValue: 0,
         maxValue: 6,          
-        offset:0 
+        offset:0 ,
+        keyword:''
   } 
 }
 changePage=(pageNum,offset)=> {
@@ -52,6 +45,25 @@ changePage=(pageNum,offset)=> {
     localStorage.noticeSeq=seq;
     window.location = '/NoticeDetail/'+localStorage.noticeSeq;      
    /*  document.location.href = '/NoticeDetail'+localStorage.noticeSeq  */
+} 
+
+
+ typing=(e)=>{
+      this.setState({keyword: e.target.value})
+      console.log(this.state.keyword);
+      }
+
+ searching=(e)=>{
+        e.preventDefault();          
+        const key =this.state.keyword;
+        console.log("key:"+key)
+        axios.get('http://localhost:9000/notices/search/'+key)
+        .then(res=>{
+          const notices = res.data;
+          this.setState({notices});
+          console.log("data:"+res.data)
+      })
+    
 } 
   render(){
     let cardGrid ={
@@ -110,22 +122,22 @@ changePage=(pageNum,offset)=> {
   return(  
     <React.Fragment>
        {/*검색 */}
+       <form onSubmit={this.searching}>
        <Container  maxWidth="md">   
-          <Paper style={searching} >
-      {/*    <IconButton className={classes.iconButton} aria-label="Menu">
-            <MenuIcon />
-          </IconButton> */}
+          <Paper style={searching} >   
+             
           <InputBase
             style={input}
             placeholder="지역. 직무 등 키워드를 입력해주세요."
             inputProps={{ 'aria-label': '검색' }}
+            onChange={this.typing}
           />
-          <IconButton style={iconButton} aria-label="Search">
+          <IconButton style={iconButton} aria-label="Search" type="submit">
             <SearchIcon />
           </IconButton>
         </Paper>
        </Container>
-
+          </form>
 
        <Container style ={cardGrid}  maxWidth="md">
        <Grid container spacing={6}  >

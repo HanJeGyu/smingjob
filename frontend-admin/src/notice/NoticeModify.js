@@ -50,7 +50,9 @@ export default class NoticeUpload extends React.Component {
        tagAttribute: event.target.tagAttribute.value,
        tagCareer: event.target.tagCareer.value,
        state: event.target.state.value,
-       corName: event.target.corName.value,    
+       corName: event.target.corName.value,   
+       startDate: event.target.startDate.value,
+       startTime: event.target.startTime.value 
      };
      const headers = {
       'Content-Type': 'application/json',
@@ -64,12 +66,7 @@ export default class NoticeUpload extends React.Component {
             })
     }
     
- /*      selectedDate(){
-        React.useState(new Date('2019-07-14T18:00:00'))
-      }
-      handleDateChange=date=> {
-        this.setState({startTime: date.target.value})
-      }  */
+
     componentWillMount=()=>{
         const noticeSeq = '1';
         axios.get(`http://localhost:9001/notices/${noticeSeq}`)
@@ -204,30 +201,37 @@ export default class NoticeUpload extends React.Component {
                 />
               </Grid> 
 
-     {/*       <MuiPickersUtilsProvider utils={DateFnsUtils}>    
-          <Grid item xs={6} sm={3} > 
-              <KeyboardDatePicker
-                margin="normal"
-                id="mui-pickers-date"
-                label="접수 시작일"
-                value={this.selectedDate}
-                onChange={this.handleDateChange}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
-              /></Grid>        
-            <Grid item xs={6} sm={3}>
-              <KeyboardTimePicker
-                margin="normal"
-                id="mui-pickers-time"
-                label="접수 시작시각"
-                value={this.selectedDate}
-                onChange={this.handleDateChange}
-                KeyboardButtonProps={{
-                  'aria-label': 'change time',
-                }}
-              /></Grid>
-          </MuiPickersUtilsProvider>   */}   
+              <Grid item xs={4} sm={2}> 
+              <TextField
+                  id="startDate"
+                  name="startDate"
+                  label="접수일"
+                  type="date"                                   
+                  defaultValue="2019-05-24"
+                  onChange={this.handleChange}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  />
+              
+              </Grid>        
+              <Grid item xs={4} sm={2} > 
+              <TextField
+                  id="startTime"
+                  name="startTime"
+                  label="접수시각"
+                  type="time"
+                  defaultValue="11:00"
+                  onChange={this.handleChange}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  inputProps={{
+                    step: 300, 
+                  }}
+                />
+
+              </Grid> 
           <Grid container spacing={10}><p style={margin}></p></Grid>
           <Grid container spacing={3}>
             <Button size="Large" style={btn} color="primary"  type="submit">수정</Button>   </Grid>

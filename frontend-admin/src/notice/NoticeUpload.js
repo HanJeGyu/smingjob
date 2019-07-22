@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -16,8 +16,11 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
-export default function NoticeUpload() {  
-  const [value, setValues] = useState({
+export default class NoticeUpload extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state={  
       title:'',
       area:'',
       career:'',
@@ -29,53 +32,47 @@ export default function NoticeUpload() {
       corName: '',
       startDate:'',
       startTime:'',
-  });
-  
-  function handleChange(e){
-    e.preventDefault();
-    setValues({[e.target.name]: e.target.value})
+    };   
   }
-  function handleDateChange(date){
-    setValues({startDate: date})
-    console.log(date);     
-  }
-  function changeTextData(text){
-    setValues({content: text})
-    console.log(text);  
+ 
+    handleChange=(e)=>{
+      this.setState({[e.target.name]: e.target.value})
     }
 
-  function handleSubmit(event){
-    
-    event.preventDefault();
-   
-    const notices = {
+    changeTextData = (text) => {
+      this.setState({content: text})
+      console.log(text);     
+    }
+
+    handleSubmit = (event) =>{
+       event.preventDefault();    
+
+      const notices = {
       title: event.target.title.value,
       area: event.target.area.value,
       career: event.target.career.value,  
-      content : value.content,  
+      content : this.state.content,  
       tagLocation: event.target.tagLocation.value,
       tagAttribute: event.target.tagAttribute.value,
       tagCareer: event.target.tagCareer.value,
       state: '진행중',
       corName: event.target.corName.value,  
-      startDate: value.startDate,
-      startTime: value.startTime, 
-      };
-      /* console.log(notices.startDate); */
-      axios({
-        method: 'post',
-        url: 'http://localhost:9001/notices/upload',
-        data: notices,
-        headers: {        
-       'Content-Type': 'application/json',
-       'Authorization': 'JWT fefege..'
-        },    
-      }).catch(error => {
-        console.log(error.message);
-      });
+      startDate: event.target.startDate.value,
+      startTime: event.target.startTime.value,
+     };
+        axios({
+             method: 'post',
+             url: 'http://localhost:9001/notices/upload',
+             data: notices,
+             headers: {           
+            'Content-Type': 'application/json'
+             }, 
+            
+           });
     }        
-/* 
+
       
+    render(){     
       let style = {
         marginTop:"100px",   
             
@@ -87,11 +84,11 @@ export default function NoticeUpload() {
     }
     let margin={
       margin:"70px"
-    } */
+    }
       return(
       <React.Fragment>
-         <form onSubmit={handleSubmit}>
-        <Container /*  style={style} */ maxWidth="md" >
+         <form onSubmit={this.handleSubmit}>
+        <Container  style={style} maxWidth="md" >
             <Typography variant="h6" gutterBottom>
               공고 업로드
             </Typography>
@@ -103,7 +100,7 @@ export default function NoticeUpload() {
                   label="공고 제목"
                   fullWidth
                   autoComplete="title"
-                  onChange={handleChange}
+                  onChange={this.handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -113,7 +110,7 @@ export default function NoticeUpload() {
                   label="기업명"
                   fullWidth
                   autoComplete="corName"
-                  onChange={handleChange}
+                  onChange={this.handleChange}
                 />
               </Grid> 
               <Grid item xs={12} sm={4}>
@@ -123,7 +120,7 @@ export default function NoticeUpload() {
                   label="직무"
                   fullWidth
                   autoComplete="area"
-                  onChange={handleChange}
+                  onChange={this.handleChange}
                 />
               </Grid> 
               <Grid item xs={12} sm={4}>
@@ -133,7 +130,7 @@ export default function NoticeUpload() {
                   label="경력사항 (신입/경력/경력무관/인턴)"
                   fullWidth
                   autoComplete="career"
-                  onChange={handleChange}
+                  onChange={this.handleChange}
                 />
               </Grid>  
               <Grid item xs={12}>
@@ -147,7 +144,7 @@ export default function NoticeUpload() {
                     onChange={ ( event, editor ) => {
                         const data = editor.getData();
                         console.log( { event, editor, data } );
-                        changeTextData(data)
+                        this.changeTextData(data)
                     } }
                 />
               </Grid> 
@@ -158,7 +155,7 @@ export default function NoticeUpload() {
                   label="#위치 태그"
                   fullWidth
                   autoComplete="tag_Location"
-                  onChange={handleChange}
+                  onChange={this.handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -168,7 +165,7 @@ export default function NoticeUpload() {
                   label="#특성 태그"
                   fullWidth
                   autoComplete="tag_attribute"
-                  onChange={handleChange}
+                  onChange={this.handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -178,33 +175,32 @@ export default function NoticeUpload() {
                   label="#요구경력 태그"
                   fullWidth
                   autoComplete="tag_career"
-                  onChange={handleChange}
+                  onChange={this.handleChange}
                 />
               </Grid>    
 
-    
-              <Grid item xs={6} sm={3} > 
+              <Grid item xs={4} sm={2}> 
               <TextField
                   id="startDate"
                   name="startDate"
-                  label="Birthday"
-                  type="date"
+                  label="접수일"
+                  type="date"                                   
                   defaultValue="2019-05-24"
-                  onChange={handleDateChange}
+                  onChange={this.handleChange}
                   InputLabelProps={{
                     shrink: true,
                   }}
                   />
               
-              </Grid> 
-              <Grid item xs={6} sm={3} > 
+              </Grid>        
+              <Grid item xs={4} sm={2} > 
               <TextField
                   id="startTime"
                   name="startTime"
-                  label="Alarm clock"
+                  label="접수시각"
                   type="time"
-                  defaultValue="07:30"
-                  onChange={handleChange}
+                  defaultValue="11:00"
+                  onChange={this.handleChange}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -214,10 +210,10 @@ export default function NoticeUpload() {
                 />
 
               </Grid> 
-        
-          <Grid container spacing={10}><p /* style={margin} */></p></Grid>
+     
+          <Grid container spacing={10}><p style={margin}></p></Grid>
           <Grid container spacing={3}>
-            <Button size="large" /* style={btn} */ color="primary"  type="submit">Upload</Button>   </Grid>
+            <Button size="large" style={btn} color="primary"  type="submit">Upload</Button>   </Grid>
           </Grid>
             </Container>
             </form>
@@ -226,3 +222,4 @@ export default function NoticeUpload() {
 
       )
     }
+}

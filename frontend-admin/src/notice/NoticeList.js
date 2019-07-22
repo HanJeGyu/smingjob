@@ -3,28 +3,34 @@ import MaterialTable from 'material-table';
 import { makeStyles} from "@material-ui/core/styles";
 import axios from 'axios'
 import Button from '@material-ui/core/Button';
+import { ExpansionPanelDetails } from '@material-ui/core';
+import { tsConstructSignatureDeclaration } from '@babel/types';
 
 
 
 export default class NoticeList extends React.Component{
+    
+
     constructor(props){
         super(props)
-
+        
 
     this.state={
         notices: [],
         columns: [
-            { title: '접수상태', field: 'state'},   
+            { title: '접수상태', field: 'state'}, 
+            { title: 'noticeseq', field: 'noticeSeq'}, 
             { title: '공고명', field: 'title' },            
             { title: '기업명', field: 'corName' },      
             { title: '모집부문', field: 'area'},
             { title: '요구경력', field: 'career'},
             { title: '접수일', field: 'startDate', type: 'numeric' },      
-            { title: '접수시각', field: 'startTime', type: 'numeric'},
-                     
+            { title: '접수시각', field: 'startTime', type: 'numeric'},                     
             ],
+            
     }
 }
+
     componentDidMount(){
         axios.get('http://localhost:9001/notices')
         .then(res=>{
@@ -44,8 +50,22 @@ export default class NoticeList extends React.Component{
             
         })
     }
-
+   /*  detail(seq){
+    console.log("seq:"+seq);
+    localStorage.noticeSeq=seq;
+    window.location = '/noticeDetail/'+localStorage.noticeSeq; 
+    } */
+     detail=(seq)=>{
+       /*  localStorage.noticeadminSeq =this.state.notices.noticeSeq;
+        const seq = localStorage.noticeadminSeq 
+         console.log("seq"+localStorage.noticeadminSeq) */
+         console.log("seq:"+seq);
+        window.location = '/noticeDetail/'+seq; 
+        
+        } 
+       
     render(){
+        /* let seq= state.notices.noticeSeq */
         let state = this.state;
         let style = {
             margin:"100px 50px",
@@ -63,7 +83,11 @@ export default class NoticeList extends React.Component{
             <div>
                 <MaterialTable title="공고 관리" 
                 columns={state.columns} 
-                data={state.notices} 
+                data={state.notices}                 
+               
+               /* onRowClick={(e) => {
+                  seq= e.dataItem.noticeSeq
+                   this.detail(this.state.notices.noticeSeq)}} */
                 style={style}
                 editable={{
                     onRowDelete: oldData =>
@@ -71,8 +95,28 @@ export default class NoticeList extends React.Component{
                             setTimeout(() => {
                                 resolve();
                                 this.delete(oldData.noticeSeq);
+                                console.log("seq"+oldData.noticeSeq)
                             }, 600);
                         }),
+                  /*       onRowClick: clickedData =>
+                        new Promise(resolve => {
+                            setTimeout(() => {
+                                resolve();
+                                this.detail(clickedData.noticeSeq);
+                            }, 600);
+                        }), */
+                   /*  onRowClick: (row) =>
+                     function(row){
+                            const seq = row.noticeSeq;
+                            console.log("seq:"+seq);
+                    }  
+                    new Promise(resolve => {
+                        setTimeout(() => {
+                            resolve();
+                            this.detail(row.noticeSeq);
+                        }, 600);
+                    }),
+                             */
                 }}
                 
                 />

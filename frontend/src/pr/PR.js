@@ -24,7 +24,8 @@ export default class PR extends React.Component{
         prs:[],
         minValue: 0,
         maxValue: 6,          
-        offset:0 
+        offset:0 ,
+        keyword:''
   } 
 }
 
@@ -48,6 +49,24 @@ changePage=(pageNum,offset)=> {
      window.location = '/PRDetail/'+localStorage.prSeq;    
   
 } 
+typing=(e)=>{
+  this.setState({keyword: e.target.value})
+  console.log(this.state.keyword);
+  }
+
+searching=(e)=>{
+    e.preventDefault();          
+    const key =this.state.keyword;
+    console.log("key:"+key)
+    axios.get('http://localhost:9000/prs/search/'+key)
+    .then(res=>{
+      const prs = res.data;
+      this.setState({prs});
+      console.log("data:"+res.data)
+  })
+
+} 
+
   render(){    
  
     let cardGrid ={
@@ -110,18 +129,22 @@ changePage=(pageNum,offset)=> {
    
     <React.Fragment>
        {/*검색 */}
+       <form onSubmit={this.searching}>
        <Container  maxWidth="md">   
-          <Paper style={searching} >
+          <Paper style={searching} >   
+             
           <InputBase
             style={input}
             placeholder="지역. 직무 등 키워드를 입력해주세요."
             inputProps={{ 'aria-label': '검색' }}
+            onChange={this.typing}
           />
-          <IconButton style={iconButton} aria-label="Search">
+          <IconButton style={iconButton} aria-label="Search" type="submit">
             <SearchIcon />
           </IconButton>
         </Paper>
        </Container>
+          </form>
 
 
        <Container style ={cardGrid}  maxWidth="md">

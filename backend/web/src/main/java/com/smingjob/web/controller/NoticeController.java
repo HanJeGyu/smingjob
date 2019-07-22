@@ -46,6 +46,20 @@ public class NoticeController {
     return list;
    }
 
+  @GetMapping("/search/{keyword}")
+   public Iterable<NoticeDTO> search(@PathVariable String keyword){
+      /* System.out.println("search 진입"+keyword); */
+       Iterable<Notice> entities = repo.searchAll(keyword);
+       List<NoticeDTO> list = new ArrayList<>();
+       for(Notice s: entities){
+            NoticeDTO noti = modelMapper.map(s, NoticeDTO.class);
+            list.add(noti);
+         }      
+        // System.out.println("noti"+entities);
+        
+    return list;
+   }
+ 
    @GetMapping("/noticeDetail/{id}")
    public NoticeDTO findById(@PathVariable String id) {
     return modelMapper.map(repo.findById(Long.parseLong(id))

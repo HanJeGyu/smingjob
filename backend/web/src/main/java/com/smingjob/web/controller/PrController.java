@@ -52,6 +52,18 @@ public class PrController {
         return list;
     }
 
+    @GetMapping("/search/{keyword}")
+    public Iterable<PrDTO> search(@PathVariable String keyword) {
+        Iterable<Pr> entities = repo.searchAll(keyword);        
+        List<PrDTO> list = new ArrayList<>();
+        for (Pr s : entities) {
+            PrDTO pr = modelMapper.map(s, PrDTO.class);
+            list.add(pr);
+        }
+        return list;
+    }
+
+
     @GetMapping("{itvSeq}")
     public List<Pr> findAllById(@PathVariable String itvSeq) {
         List<Pr> entities = repo.findByItvSeq(Long.parseLong(itvSeq));
