@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -32,7 +34,7 @@ public class Pr implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long prSeq;
     
-    @Column(name="itv_seq") private Long itvSeq;
+    // @Column(name="itv_seq") private Long itvSeq;
     @Column(name="phone") private String phone;
     @Column(name="title") private String title;
     @Column(name="content") private String content;
@@ -42,16 +44,21 @@ public class Pr implements Serializable {
     @Column(name="tag_career") private String tagCareer; 
     @Column(name="date_upload") private String dateUpload; 
 
-    @Override
+    @ManyToOne
+    @JoinColumn(name = "itv_seq")
+    private Interviewer interviewer;  
+
+
+/*     @Override
     public String toString(){
 
         return "Pr :[prSeq:"+prSeq+",itvSeq:" +itvSeq+", phone:"+phone+", title:"+title+", content:"+content+
        ", area:"+area+", tagLocation:"+tagLocation+", tagAttribute:"+tagAttribute+", tagCareer:"+tagCareer+", dateUpload:"+dateUpload + "]";
     }
-
+ */
 
     //생성자
-    @Builder
+/*     @Builder
     private Pr(Long itvSeq, String phone,
     String title, String content, String area, String tagLocation, String tagAttribute, String tagCareer, String dateUpload){
         this.itvSeq = itvSeq;
@@ -63,6 +70,6 @@ public class Pr implements Serializable {
         this.tagAttribute = tagAttribute;
         this.tagCareer = tagCareer;
         this.dateUpload = dateUpload;
-    }
+    } */
     
 }

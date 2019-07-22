@@ -1,26 +1,44 @@
 import React from "react";
 import clsx from "clsx";
-import { makeStyles, useTheme, Drawer, CssBaseline, AppBar, 
-        List, Typography, Divider, IconButton, ListItem, 
-        ListItemText, MenuItem, ListItemIcon, Link,
-        Menu, Button, ListSubheader, Toolbar, Collapse } 
-        from "@material-ui/core";
+import {
+  makeStyles,
+  useTheme,
+  Drawer,
+  CssBaseline,
+  AppBar,
+  List,
+  Typography,
+  Divider,
+  IconButton,
+  ListItem,
+  ListItemText,
+  MenuItem,
+  ListItemIcon,
+  Link,
+  Menu,
+  Button,
+  ListSubheader,
+  Toolbar,
+  Collapse
+} from "@material-ui/core";
 import { red, deepPurple, blue } from "@material-ui/core/colors";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import PetsIcon from "@material-ui/icons/Pets";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
     // display: "relative",
-    flexGrow: 1,
+    flexGrow: 1
   },
 
   title: {
-    flexGrow: 1,
+    flexGrow: 1
   },
 
   appBar: {
@@ -75,7 +93,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 0
   },
   nested: {
-    paddingLeft: theme.spacing(4),
+    paddingLeft: theme.spacing(4)
   }
 }));
 
@@ -103,15 +121,15 @@ const Navbar = () => {
     setAnchorEl(null);
   }
 
-  function handleSubOnOff(){
-    setSubOnOff(!subOnOff)
+  function handleSubOnOff() {
+    setSubOnOff(!subOnOff);
   }
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="static"   //fixed에서 변경
+        position="static" //fixed에서 변경
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open
         })}
@@ -152,14 +170,18 @@ const Navbar = () => {
         <Divider />
         <ListSubheader inset>Admin</ListSubheader>
         <List>
-          {["PR", "Alive", "Corporation", "Interviewer", "Notice"].map((text, index) => (
-            <ListItem button component="a" href={text + "Admin"}>
-              <ListItemIcon>
-                {<AssignmentIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {["PR", "Alive", "Corporation", "Interviewer", "Notice"].map(
+            (text, index) => (
+              <ListItem button component="a" href={text + "Admin"}>
+                {
+                  <ListItemIcon>
+                  {index % 2 === 0 ? <PetsIcon /> : <FavoriteIcon />}
+                  </ListItemIcon>
+                }
+                <ListItemText primary={text} />
+              </ListItem>
+            )
+          )}
         </List>
       </Drawer>
       {/* <main

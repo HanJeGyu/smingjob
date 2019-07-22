@@ -53,6 +53,19 @@ public class PrController {
         return list;
     }
 
+    /* @GetMapping("")
+    public List<Map<String, Object>> findAll() {
+        // System.out.println("findall 진입");
+        List<PrDTO> list = new ArrayList<>();
+        for (Pr s : entities) {
+            PrDTO pr = modelMapper.map(s, PrDTO.class);
+            list.add(pr);
+        }
+
+        
+        return repo.getPrList();
+    } */
+
     @GetMapping("/PrDetail/{id}")
     public PrDTO findById(@PathVariable String id) {
         return modelMapper.map(repo.findById(Long.parseLong(id)).orElseThrow(EntityNotFoundException::new),
@@ -65,7 +78,7 @@ public class PrController {
         HashMap<String, String> map = new HashMap<>();
         Pr entity = repo.findById(Long.parseLong(id)).get();
         entity.setPrSeq(Long.parseLong(id));
-        entity.setItvSeq(dto.getItvSeq());
+        // entity.setItvSeq(dto.getItvSeq());
         entity.setPhone(dto.getPhone());
         entity.setTitle(dto.getTitle());
         entity.setContent(dto.getContent());
