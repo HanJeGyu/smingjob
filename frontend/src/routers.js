@@ -9,6 +9,7 @@ import Login from './common/Login'
 import NoticeDetail from './notice/NoticeDetail'
 import Join from './common/Join'
 import InterviewerNotice from './interviewer/ItvNotice'
+import InterviewerAlive from './interviewer/ItvAlive'
 import InterviewerModify from './interviewer/Modify'
 import InterviewerPr from './interviewer/Pr'
 import CorporationNotice from './corporation/CorNotice'
@@ -49,6 +50,10 @@ export const routerConfig = [
     {
         path: '/interviewerNotice',
         component: InterviewerNotice
+    },
+    {
+        path: '/interviewerAlive',
+        component: InterviewerAlive
     },
     {
         path: '/interviewerModify',

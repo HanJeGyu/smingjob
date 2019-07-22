@@ -41,45 +41,52 @@ export default function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(`회원종류 1: 개인회원, 2: 기업회원 \n선택된 라디오버튼${value}`)
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': 'JWT fefege..'
-    }
-    if(value==='1'){
-      const url = 'http://localhost:9000/interviewers'
-      const data = {
-        itvId: e.target.loginId.value,
-        pwd: e.target.pwd.value
-      }
-      axios.post(`${url}/login`, JSON.stringify(data), {headers: headers})
-      .then(res=>{
-        alert(`${res.data.name} 님 환영합니다.`)
-        localStorage.setItem('authSeq', res.data.itvSeq)
-        localStorage.setItem('authId', res.data.itvId)
-        document.location.href = '/'
-      })
-      .catch(e=>{
-        alert('로그인에 실패하였습니다.')
-      })
-    }else if(value==='2'){
-      const url = 'http://localhost:9000/corporations'
-      const data = {
-        corId: e.target.loginId.value,
-        pwd: e.target.pwd.value
-      }
-      axios.post(`${url}/login`, JSON.stringify(data), {headers: headers})
-      .then(res=>{
-        alert(`${res.data.name} 님 환영합니다.`)
-        localStorage.setItem('authSeq', res.data.corSeq)
-        localStorage.setItem('authId', res.data.corId)
-        document.location.href = '/'
-      })
-      .catch(e=>{
-        alert('로그인에 실패하였습니다.')
-      })
+    if(e.target.loginId.value===""){
+      alert('아이디를 입력해주세요.')
+    }else if(e.target.pwd.value===""){
+      alert('비밀번호를 입력해주세요.')
     }else{
-      alert('선택값 오류')
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'JWT fefege..'
+      }
+      if(value==='1'){
+        const url = 'http://localhost:9000/interviewers'
+        const data = {
+          itvId: e.target.loginId.value,
+          pwd: e.target.pwd.value
+        }
+        axios.post(`${url}/login`, JSON.stringify(data), {headers: headers})
+        .then(res=>{
+          alert(`${res.data.name} 님 환영합니다.`)
+          localStorage.setItem('authSeq', res.data.itvSeq)
+          localStorage.setItem('authId', res.data.itvId)
+          localStorage.setItem('authType', value)
+          document.location.href = '/'
+        })
+        .catch(e=>{
+          alert('가입된 회원정보를 찾지 못했습니다.')
+        })
+      }else if(value==='2'){
+        const url = 'http://localhost:9000/corporations'
+        const data = {
+          corId: e.target.loginId.value,
+          pwd: e.target.pwd.value
+        }
+        axios.post(`${url}/login`, JSON.stringify(data), {headers: headers})
+        .then(res=>{
+          alert(`${res.data.name} 님 환영합니다.`)
+          localStorage.setItem('authSeq', res.data.corSeq)
+          localStorage.setItem('authId', res.data.corId)
+          localStorage.setItem('authType', value)
+          document.location.href = '/'
+        })
+        .catch(e=>{
+          alert('가입된 회원정보를 찾지 못했습니다.')
+        })
+      }else{
+        alert('선택값 오류')
+      }
     }
   }
 
@@ -134,11 +141,11 @@ export default function Login() {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
+            {/* <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
-            </Grid>
+            </Grid> */}
             <Grid item>
               <Link href="/join" variant="body2">
                 {"Don't have an account? Sign Up"}

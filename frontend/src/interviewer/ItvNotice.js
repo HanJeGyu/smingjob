@@ -30,7 +30,7 @@ class ItvNotice extends React.Component {
     }
 
     componentDidMount(){
-        const itvId = '1'
+        const itvId = localStorage.getItem('authId')
         axios.get(`http://localhost:9000/applicant/noticeList/${itvId}`)
         .then(res=>{
             this.setState({data: res.data});
