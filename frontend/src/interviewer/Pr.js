@@ -15,12 +15,13 @@ class Pr extends React.Component {
     constructor(props){
         super(props)
         this.state = {
+            pr: [],
             columns: [
                 { title: '제목', field: 'title' },
-                { title: '스크랩 수', field: 'heart', type: 'numeric' },      
-                { title: '업로드일자', field: 'upload', type: 'numeric'},
+                { title: '스크랩 수', field: 'countScarp', type: 'numeric' },      
+                { title: '업로드일자', field: 'dateUpload'},
             ],
-            data: []
+
 /*             data: [
                 { title: '안녕하십니까 꼼꼼하고 성실한 인재입니다.', heart: '1', upload: '20190615'},
                 { title: '안녕하십니까 꼼꼼하고 성실한 인재입니다.', heart: '3', upload: '20180910'},
@@ -31,25 +32,27 @@ class Pr extends React.Component {
         }
     }
 
-/*     componentDidMount(){
-        const itvId = '1'
-        axios.get(`http://localhost:9000/pr/${itvId}`)
+    componentDidMount(){
+        const itvId = localStorage.getItem('authSeq')
+        axios.get(`http://localhost:9000/prs/${itvId}`)
         .then(res=>{
-            this.setState({data: res.data});
+            const pr = res.data;
+            this.setState({pr});
         })
         .catch(e=>{
             alert('데이터를 불러오지 못했습니다.')
         })
-    } */
+    }
 
     render(){
+        let state = this.state;
         const { classes } = this.props
         return (
             <div className={classes.table} >
             <MaterialTable
             title="자기 PR 목록"
-            columns={this.state.columns}
-            data={this.state.data}
+            columns={state.columns}
+            data={state.pr}
             editable={{
                 onRowDelete: oldData =>
                 new Promise(resolve => {
@@ -63,6 +66,7 @@ class Pr extends React.Component {
             }}
             onRowClick
             />
+            <div>{localStorage.getItem('authSeq')}</div>
             </div>
         );
     }

@@ -28,6 +28,8 @@ export default function Join(){
             alert('아이디는 필수 입력정보 입니다.')
         }else if(e.target.pwd.value===''){
             alert('비밀번호는 필수 입력정보 입니다.')
+        }else if(e.target.pwdchk.value===''){
+            alert('비밀번호 확인은 필수 입력정보 입니다.')
         }else if(e.target.pwdchk.value!==e.target.pwd.value){
             alert('비밀번호가 일치하지 않습니다.')
         }else if(e.target.name.value===''){
@@ -102,32 +104,61 @@ export default function Join(){
         // 하이픈(-) 추가
         if(e.target.name==='phone'){
             const num = e.target.value.replace(/[^0-9]/g, '')
+            const checkStr = /^01([0|1|6|7|8|9]?)$/;
             let phone = ''
-            if(num.length < 4) {
-                return num;
-            } else if(num.length < 7) {
-                phone += num.substr(0, 3);
-                phone += "-";
-                phone += num.substr(3);
-            } else if(num.length < 11) {
-                phone += num.substr(0, 3);
-                phone += "-";
-                phone += num.substr(3, 3);
-                phone += "-";
-                phone += num.substr(6);
-            } else {
-                phone += num.substr(0, 3);
-                phone += "-";
-                phone += num.substr(3, 4);
-                phone += "-";
-                phone += num.substr(7);
+            // 휴대전화 일때
+            if(checkStr.test(num.substr(0,3))){
+                if(num.length < 10) {
+                    phone = num;
+                }else if(num.length == 10) {
+                    phone += num.substr(0, 3);
+                    phone += "-";
+                    phone += num.substr(3, 3);
+                    phone += "-";
+                    phone += num.substr(6);
+                }else if(num.length == 11){
+                    phone += num.substr(0, 3);
+                    phone += "-";
+                    phone += num.substr(3, 4);
+                    phone += "-";
+                    phone += num.substr(7);
+                }
+            }else{ 
+            // 일반전화 일때
+                if(num.length < 9) {
+                    phone = num;
+                }else if(num.length == 9) {
+                    phone = num.substr(0, 2);
+                    phone += "-";
+                    phone += num.substr(2, 3);
+                    phone += "-";
+                    phone += num.substr(5);
+                }else if(num.length == 10 && num.substr(0,2) == '02') {
+                    phone = num.substr(0, 2);
+                    phone += "-";
+                    phone += num.substr(2, 4);
+                    phone += "-";
+                    phone += num.substr(6);
+                }else if(num.length == 10 && num.substr(0,2) != '02') {
+                    phone = num.substr(0, 3);
+                    phone += "-";
+                    phone += num.substr(3, 3);
+                    phone += "-";
+                    phone += num.substr(6);
+                }else if(num.length == 11) {
+                    phone = num.substr(0, 3);
+                    phone += "-";
+                    phone += num.substr(3, 4);
+                    phone += "-";
+                    phone += num.substr(7);
+                }
             }
             e.target.value = phone
         }
     }
 
     return(
-        <Container component="main" maxWidth="sm">
+        <Container component="main" maxWidth="auto">
             <CssBaseline/>
             <form className={classes.form} noValidate onSubmit={handleSubmit} onChange={handleValidation}>
                 <TextField

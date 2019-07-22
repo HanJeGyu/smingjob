@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
         },
     },
     paper: {
-        marginTop: theme.spacing(5),
+        marginTop: theme.spacing(2),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -53,7 +53,7 @@ export default function FullWidthTabs() {
     }
 
     return (
-        <Container component="main" maxWidth="sm">
+        <Container component="main" maxWidth="auto">
             <CssBaseline/>
             <div className={classes.paper}>
                 <AppBar position="static" color="default">

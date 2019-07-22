@@ -31,7 +31,7 @@ class Modify extends React.Component {
         }
     }
     componentDidMount(){
-        const corId = 'kakao'
+        const corId = localStorage.getItem('authId')
         axios.get(`http://localhost:9000/corporations/${corId}`)
             .then(res=>{
                 this.setState(res.data)
@@ -42,6 +42,89 @@ class Modify extends React.Component {
     }
 
     handleChange=(e)=>{
+        e.preventDefault();
+        // 공백 제거
+        if(e.target.name!=='name' && e.target.name!=='area'
+            && e.target.name!=='city' && e.target.name!=='ceoName'){
+            if((e.target.value).search(/\s/) != -1){
+                e.target.value = e.target.value.replace(' ','')
+            }
+        }
+        // 특수문자 제거 : 사업자번호, 회사명, 대표명, 가입자명, 연락처, 아이디
+        if(e.target.name==='name' || e.target.name==='ceoName' 
+            || e.target.name==='pmName' || e.target.name==='pmPhone'){
+            const checkStr = /[`~!@#$%^&*{}<>()+=_|\-\-\\\'\"\.\,;:\/?]/gi;
+            e.target.value = e.target.value.replace(checkStr,'')
+        }
+        // 한글 제거 : 사업자번호, 연락처, 아이디
+        if(e.target.name==='corRegNo' || e.target.name==='pmPhone'){
+            const checkStr = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi
+            e.target.value = e.target.value.replace(checkStr, '')
+        }
+        // 영문 제거 : 사업자번호, 연락처
+        if(e.target.name==='corRegNo' || e.target.name==='pmPhone'){
+            const checkStr = /[a-zA-Z]/gi
+            e.target.value = e.target.value.replace(checkStr, '')
+        }
+        // 숫자 제거 : 가입자이름
+        if(e.target.name==='pmName'){
+            const checkStr = /[0-9]/gi
+            e.target.value = e.target.value.replace(checkStr, '')
+        }
+        // 하이픈(-) 추가 가입자연락처
+        if(e.target.name==='pmPhone'){
+            const num = e.target.value.replace(/[^0-9]/g, '')
+            const checkStr = /^01([0|1|6|7|8|9]?)$/;
+            let phone = ''
+            // 휴대전화 일때
+            if(checkStr.test(num.substr(0,3))){
+                if(num.length < 10) {
+                    phone = num;
+                }else if(num.length == 10) {
+                    phone += num.substr(0, 3);
+                    phone += "-";
+                    phone += num.substr(3, 3);
+                    phone += "-";
+                    phone += num.substr(6);
+                }else if(num.length == 11){
+                    phone += num.substr(0, 3);
+                    phone += "-";
+                    phone += num.substr(3, 4);
+                    phone += "-";
+                    phone += num.substr(7);
+                }
+            }else{ 
+            // 일반전화 일때
+                if(num.length < 9) {
+                    phone = num;
+                }else if(num.length == 9) {
+                    phone = num.substr(0, 2);
+                    phone += "-";
+                    phone += num.substr(2, 3);
+                    phone += "-";
+                    phone += num.substr(5);
+                }else if(num.length == 10 && num.substr(0,2) == '02') {
+                    phone = num.substr(0, 2);
+                    phone += "-";
+                    phone += num.substr(2, 4);
+                    phone += "-";
+                    phone += num.substr(6);
+                }else if(num.length == 10 && num.substr(0,2) != '02') {
+                    phone = num.substr(0, 3);
+                    phone += "-";
+                    phone += num.substr(3, 3);
+                    phone += "-";
+                    phone += num.substr(6);
+                }else if(num.length == 11) {
+                    phone = num.substr(0, 3);
+                    phone += "-";
+                    phone += num.substr(3, 4);
+                    phone += "-";
+                    phone += num.substr(7);
+                }
+            }
+            e.target.value = phone
+        }
         this.setState({[e.target.name]: e.target.value})
     }
 
@@ -55,6 +138,7 @@ class Modify extends React.Component {
             area: e.target.area.value,
             pmName: e.target.pmName.value,
             pmPhone: e.target.pmPhone.value,
+            pmEmail: e.target.pmEmail.value,
             city: e.target.city.value,
             homepage: e.target.homepage.value
         }
@@ -77,7 +161,7 @@ class Modify extends React.Component {
         return(
             <Container component="main" maxWidth="lg">
                 <CssBaseline/>
-                <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
+                <form className={classes.form} noValidate onSubmit={this.handleSubmit} onChange={this.handleChange}>
                     <Grid container>
                         <Grid sm={1}>
                             <Box lineHeight={6}>
@@ -108,7 +192,7 @@ class Modify extends React.Component {
                                 id="name"
                                 name="name"
                                 value={this.state.name}
-                                onChange={this.handleChange}
+                                inputProps={{maxLength: 33}}
                             />
                         </Grid>
                         <Grid sm={1}>
@@ -124,7 +208,7 @@ class Modify extends React.Component {
                                 id="ceoName"
                                 name="ceoName"
                                 value={this.state.ceoName}
-                                onChange={this.handleChange}
+                                inputProps={{maxLength: 16}}
                             />
                         </Grid>
                         <Grid sm={1}>
@@ -140,7 +224,7 @@ class Modify extends React.Component {
                                 id="area"
                                 name="area"
                                 value={this.state.area}
-                                onChange={this.handleChange}
+                                inputProps={{maxLength: 33}}
                             />
                         </Grid>
                         <Grid sm={1}>
@@ -156,7 +240,7 @@ class Modify extends React.Component {
                                 id="city"
                                 name="city"
                                 value={this.state.city}
-                                onChange={this.handleChange}
+                                inputProps={{maxLength: 33}}
                             />
                         </Grid>
                         <Grid sm={1}>
@@ -172,7 +256,7 @@ class Modify extends React.Component {
                                 id="homepage"
                                 name="homepage"
                                 value={this.state.homepage}
-                                onChange={this.handleChange}
+                                inputProps={{maxLength: 99}}
                             />
                         </Grid>
                         <Grid sm={1}>
@@ -188,7 +272,7 @@ class Modify extends React.Component {
                                 id="pmName"
                                 name="pmName"
                                 value={this.state.pmName}
-                                onChange={this.handleChange}
+                                inputProps={{maxLength: 16}}
                             />
                         </Grid>
                         <Grid sm={1}>
@@ -204,7 +288,23 @@ class Modify extends React.Component {
                                 id="pmPhone"
                                 name="pmPhone"
                                 value={this.state.pmPhone}
-                                onChange={this.handleChange}
+                                inputProps={{maxLength: 13}}
+                            />
+                        </Grid>
+                        <Grid sm={1}>
+                            <Box lineHeight={6}>
+                                가입자이메일
+                            </Box>
+                        </Grid>
+                        <Grid sm={11}>
+                            <TextField
+                                fullWidth
+                                margin="normal"
+                                variant="outlined"
+                                id="pmEmail"
+                                name="pmEmail"
+                                value={this.state.pmEmail}
+                                inputProps={{maxLength: 97}}
                             />
                         </Grid>
                         <Grid sm={1}>
@@ -236,7 +336,7 @@ class Modify extends React.Component {
                                 id="pwd"
                                 name="pwd"
                                 value={this.state.pwd}
-                                onChange={this.handleChange}
+                                inputProps={{maxLength: 18}}
                                 type="password"
                             />
                         </Grid>

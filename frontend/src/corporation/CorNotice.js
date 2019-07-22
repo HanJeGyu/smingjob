@@ -33,7 +33,7 @@ class CorNotice extends React.Component {
     }
     
     componentDidMount=()=>{
-        const corSeq = 5
+        const corSeq = localStorage.getItem('authSeq')
         axios.get(`http://localhost:9000/notices/noticeLiveList/${corSeq}`)
             .then(res=>{
                 this.setState({data: res.data})
