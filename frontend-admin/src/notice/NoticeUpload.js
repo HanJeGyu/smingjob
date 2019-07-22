@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -15,11 +15,9 @@ import PropTypes from 'prop-types';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-export default class NoticeUpload extends React.Component {
 
-  constructor(props){
-    super(props);
-    this.state={  
+export default function NoticeUpload() {  
+  const [value, setValues] = useState({
       title:'',
       area:'',
       career:'',
@@ -29,59 +27,55 @@ export default class NoticeUpload extends React.Component {
       tagCareer:'',
       state:'',
       corName: '',
+      startDate:'',
       startTime:'',
-    };
-   
+  });
+  
+  function handleChange(e){
+    e.preventDefault();
+    setValues({[e.target.name]: e.target.value})
   }
-
-    handleChange=(e)=>{
-      this.setState({[e.target.name]: e.target.value})
+  function handleDateChange(date){
+    setValues({startDate: date})
+    console.log(date);     
+  }
+  function changeTextData(text){
+    setValues({content: text})
+    console.log(text);  
     }
 
-    changeTextData = (text) => {
-      this.setState({content: text})
-      console.log(text);     
-    }
-
-    handleSubmit = (event) =>{
-       event.preventDefault();   
- /*      
-       console.log("========");
-       console.log(event.target);
-       console.log("========");
-
-      console.log("con:"+this.state.content) */
-
-      const notices = {
+  function handleSubmit(event){
+    
+    event.preventDefault();
+   
+    const notices = {
       title: event.target.title.value,
       area: event.target.area.value,
       career: event.target.career.value,  
-      content : this.state.content,  
+      content : value.content,  
       tagLocation: event.target.tagLocation.value,
       tagAttribute: event.target.tagAttribute.value,
       tagCareer: event.target.tagCareer.value,
       state: '진행중',
-      corName: event.target.corName.value,    
-     };
-        axios({
-             method: 'post',
-             url: 'http://localhost:9001/notices/upload',
-             data: notices,
-             headers: {
-               // 'Authorization': `bearer ${token}`,
-            'Content-Type': 'application/json'
-             }, 
-            
-           });
+      corName: event.target.corName.value,  
+      startDate: value.startDate,
+      startTime: value.startTime, 
+      };
+      /* console.log(notices.startDate); */
+      axios({
+        method: 'post',
+        url: 'http://localhost:9001/notices/upload',
+        data: notices,
+        headers: {        
+       'Content-Type': 'application/json',
+       'Authorization': 'JWT fefege..'
+        },    
+      }).catch(error => {
+        console.log(error.message);
+      });
     }        
- /*      selectedDate(){
-        React.useState(new Date('2019-07-14T18:00:00'))
-      }
-      handleDateChange=date=> {
-        this.setState({startTime: date.target.value})
-      }  */
+/* 
       
-    render(){     
       let style = {
         marginTop:"100px",   
             
@@ -93,11 +87,11 @@ export default class NoticeUpload extends React.Component {
     }
     let margin={
       margin:"70px"
-    }
+    } */
       return(
       <React.Fragment>
-         <form onSubmit={this.handleSubmit}>
-        <Container  style={style} maxWidth="md" >
+         <form onSubmit={handleSubmit}>
+        <Container /*  style={style} */ maxWidth="md" >
             <Typography variant="h6" gutterBottom>
               공고 업로드
             </Typography>
@@ -109,7 +103,7 @@ export default class NoticeUpload extends React.Component {
                   label="공고 제목"
                   fullWidth
                   autoComplete="title"
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -119,7 +113,7 @@ export default class NoticeUpload extends React.Component {
                   label="기업명"
                   fullWidth
                   autoComplete="corName"
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                 />
               </Grid> 
               <Grid item xs={12} sm={4}>
@@ -129,7 +123,7 @@ export default class NoticeUpload extends React.Component {
                   label="직무"
                   fullWidth
                   autoComplete="area"
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                 />
               </Grid> 
               <Grid item xs={12} sm={4}>
@@ -139,21 +133,9 @@ export default class NoticeUpload extends React.Component {
                   label="경력사항 (신입/경력/경력무관/인턴)"
                   fullWidth
                   autoComplete="career"
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                 />
-              </Grid>
-           {/*    < Grid item xs={12}>
-                <TextField            
-                  id="content"
-                  name="content"
-                  label="모집 개요"
-                  multiline
-                  rows="5"
-                  fullWidth
-                  autoComplete="content"
-                  onChange={this.handleChange}
-                />
-              </Grid>  */}
+              </Grid>  
               <Grid item xs={12}>
               <CKEditor
                     id="content"                    
@@ -165,7 +147,7 @@ export default class NoticeUpload extends React.Component {
                     onChange={ ( event, editor ) => {
                         const data = editor.getData();
                         console.log( { event, editor, data } );
-                        this.changeTextData(data)
+                        changeTextData(data)
                     } }
                 />
               </Grid> 
@@ -176,7 +158,7 @@ export default class NoticeUpload extends React.Component {
                   label="#위치 태그"
                   fullWidth
                   autoComplete="tag_Location"
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -186,7 +168,7 @@ export default class NoticeUpload extends React.Component {
                   label="#특성 태그"
                   fullWidth
                   autoComplete="tag_attribute"
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -196,37 +178,46 @@ export default class NoticeUpload extends React.Component {
                   label="#요구경력 태그"
                   fullWidth
                   autoComplete="tag_career"
-                  onChange={this.handleChange}
+                  onChange={handleChange}
                 />
               </Grid>    
 
-     {/*       <MuiPickersUtilsProvider utils={DateFnsUtils}>    
-          <Grid item xs={6} sm={3} > 
-              <KeyboardDatePicker
-                margin="normal"
-                id="mui-pickers-date"
-                label="접수 시작일"
-                value={this.selectedDate}
-                onChange={this.handleDateChange}
-                KeyboardButtonProps={{
-                  'aria-label': 'change date',
-                }}
-              /></Grid>        
-            <Grid item xs={6} sm={3}>
-              <KeyboardTimePicker
-                margin="normal"
-                id="mui-pickers-time"
-                label="접수 시작시각"
-                value={this.selectedDate}
-                onChange={this.handleDateChange}
-                KeyboardButtonProps={{
-                  'aria-label': 'change time',
-                }}
-              /></Grid>
-          </MuiPickersUtilsProvider>   */}   
-          <Grid container spacing={10}><p style={margin}></p></Grid>
+    
+              <Grid item xs={6} sm={3} > 
+              <TextField
+                  id="startDate"
+                  name="startDate"
+                  label="Birthday"
+                  type="date"
+                  defaultValue="2019-05-24"
+                  onChange={handleDateChange}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  />
+              
+              </Grid> 
+              <Grid item xs={6} sm={3} > 
+              <TextField
+                  id="startTime"
+                  name="startTime"
+                  label="Alarm clock"
+                  type="time"
+                  defaultValue="07:30"
+                  onChange={handleChange}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  inputProps={{
+                    step: 300, 
+                  }}
+                />
+
+              </Grid> 
+        
+          <Grid container spacing={10}><p /* style={margin} */></p></Grid>
           <Grid container spacing={3}>
-            <Button size="large" style={btn} color="primary"  type="submit">Upload</Button>   </Grid>
+            <Button size="large" /* style={btn} */ color="primary"  type="submit">Upload</Button>   </Grid>
           </Grid>
             </Container>
             </form>
@@ -235,10 +226,3 @@ export default class NoticeUpload extends React.Component {
 
       )
     }
-}
- /*   const [selectedDate, setSelectedDate] = React.useState(new Date('2019-07-14T18:00:00'));
-
-    handleDateChange(date) {
-      setSelectedDate(date);
-    } 
-    */

@@ -11,7 +11,10 @@ export default class Main extends Component {
         }
     }
     componentDidMount() {
-        // Request for images tagged xmas       
+       /*
+       const seq = localStorage.prSeq;  
+       axios.get(`http://localhost:9000/prs/${seq}`)
+       */       
         axios.get('https://res.cloudinary.com/du6wt3fmd/image/list/mp4.json')
             .then(res => {
                 console.log(res.data.resources);
