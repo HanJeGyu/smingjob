@@ -52,8 +52,11 @@ public class Scrap implements Serializable{
     
        //생성자
        @Builder
-       private Scrap(Long corSeq){
-        //    this.corSeq = corSeq;
+       private Scrap(Corporation corporation, Pr pr, String dateScrap){
+           this.corporation = corporation;
+           this.pr = pr;
+           this.dateScrap = dateScrap;
+
        } 
     
 }

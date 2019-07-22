@@ -1,4 +1,7 @@
 package com.smingjob.web.domain;
+import com.smingjob.web.enttites.Corporation;
+import com.smingjob.web.enttites.Pr;
+
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +14,9 @@ import lombok.Data;
 @Component
 @Lazy
 public class ScrapDTO {
-    private Long scrapSeq, corSeq, prSeq;
+    private Long scrapSeq; 
+    private Corporation corSeq;
+    private Pr prSeq;
     private String dateScrap;
     
 }
