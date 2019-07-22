@@ -93,7 +93,7 @@ public class CorporationController {
       HashMap<String, String> map = new HashMap<>();
       repo.updateByCorId(rdto.getCorId(), rdto.getPwd(), rdto.getName(), 
                         rdto.getCeoName(), rdto.getArea(), rdto.getPmName(),
-                        rdto.getPmPhone(), rdto.getCity(), rdto.getHomepage());
+                        rdto.getPmPhone(), rdto.getPmEmail(), rdto.getCity(), rdto.getHomepage());
       map.put("result", "SUCCESS");
       return map;
 
@@ -124,6 +124,7 @@ public class CorporationController {
                               .area(rdto.getArea())
                               .pmName(rdto.getPmName())
                               .pmPhone(rdto.getPmPhone())
+                              .pmEmail(rdto.getPmEmail())
                               .homepage(rdto.getHomepage())
                               .city(rdto.getCity())
                               .dateJoin(dateJoin)

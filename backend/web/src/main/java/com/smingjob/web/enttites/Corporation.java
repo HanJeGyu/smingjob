@@ -42,13 +42,14 @@ public class Corporation implements Serializable{
     @Column(name = "area") private String area;
     @Column(name = "pm_name") private String pmName;
     @Column(name = "pm_phone") private String pmPhone;
+    @Column(name = "pm_email") private String pmEmail;
     @Column(name = "homepage") private String homepage;
     @Column(name = "city") private String city;
     @Column(name = "date_join") private String dateJoin;
 
     @Builder
     private Corporation(String corId,String pwd, String corRegNo, String name, String ceoName,
-        String area, String pmName, String pmPhone, String homepage, String city, String dateJoin) {
+        String area, String pmName, String pmPhone, String pmEmail, String homepage, String city, String dateJoin) {
         this.corId = corId;
         this.pwd = pwd;
         this.corRegNo = corRegNo;
@@ -57,6 +58,7 @@ public class Corporation implements Serializable{
         this.area = area;
         this.pmName = pmName;
         this.pmPhone = pmPhone;
+        this.pmEmail = pmEmail;
         this.homepage = homepage;
         this.city = city;
         this.dateJoin = dateJoin;

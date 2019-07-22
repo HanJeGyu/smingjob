@@ -29,10 +29,12 @@ public interface CorporationRepository extends JpaRepository<Corporation, Long>{
         + "        area = ?5, "
         + "        pmName = ?6, "
         + "        pmPhone = ?7, "
-        + "        city = ?8, "
-        + "        homepage = ?9 "
+        + "        pmEmail = ?8, "
+        + "        city = ?9, "
+        + "        homepage = ?10 "
         + "  WHERE corId = ?1")
     public void updateByCorId(String corId, String pwd, String name, 
                             String ceoName, String area, String pmName, 
-                            String pmPhone, String city, String homepage);
+                            String pmPhone, String pmEmail, String city, 
+                            String homepage);
 }

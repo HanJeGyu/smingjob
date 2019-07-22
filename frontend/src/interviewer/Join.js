@@ -23,60 +23,113 @@ export default function Join(){
     
     function handleSubmit(e){
         e.preventDefault();
-        const data = {
-            itvId: e.target.itvId.value,
-            pwd: e.target.pwd.value,
-            name: e.target.name.value,
-            birth: e.target.birth.value,
-            phone: e.target.phone.value,
-            email: e.target.email.value,
-            area: e.target.area.value,
-            location: e.target.location.value
+        const checkStr = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        if(e.target.itvId.value===''){
+            alert('아이디는 필수 입력정보 입니다.')
+        }else if(e.target.pwd.value===''){
+            alert('비밀번호는 필수 입력정보 입니다.')
+        }else if(e.target.pwdchk.value!==e.target.pwd.value){
+            alert('비밀번호가 일치하지 않습니다.')
+        }else if(e.target.name.value===''){
+            alert('이름은 필수 입력정보 입니다.')
+        }else if(e.target.birth.value===''){
+            alert('생년월일은 필수 입력정보 입니다.')
+        }else if(e.target.birth.value.length < 6){
+            alert('생년월일 6자리를 입력해 주세요.')
+        }else if(e.target.email.value===''){
+            alert('이메일은 필수 입력정보 입니다.')
+        }else if((e.target.email.value).match(checkStr)===null){
+            alert('이메일 형식이 옳바르지 않습니다.')
+        }else{
+            const data = {
+                itvId: e.target.itvId.value,
+                pwd: e.target.pwd.value,
+                name: e.target.name.value,
+                birth: e.target.birth.value,
+                phone: e.target.phone.value,
+                email: e.target.email.value,
+                area: e.target.area.value,
+                location: e.target.location.value
+            }
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'JWT fefege..'
+            }
+            axios.post(`http://localhost:9000/interviewers/join`,JSON.stringify(data),{headers: headers})
+                .then(res=>{
+                    alert('회원가입 되었습니다.\n로그인 후 이용해 주세요')
+                    document.location.href = '/login'
+                })
+                .catch(e=>{
+                    alert('회원가입에 실패하였습니다.')
+                })
         }
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': 'JWT fefege..'
-        }
-        axios.post(`http://localhost:9000/interviewers/join`,JSON.stringify(data),{headers: headers})
-            .then(res=>{
-                alert('회원가입 성공')
-                console.log(res.data.result)
-            })
-            .catch(e=>{
-                alert('실패')
-            })
     }
 
-    function handleChange(e){
+    function handleValidation(e){
         e.preventDefault();
-        const num = e.target.value.replace(/[^0-9]/g, "")
-        let phone = ''
-        if(num.length < 4) {
-            return num;
-        } else if(num.length < 7) {
-            phone += num.substr(0, 3);
-            phone += "-";
-            phone += num.substr(3);
-        } else if(num.length < 11) {
-            phone += num.substr(0, 3);
-            phone += "-";
-            phone += num.substr(3, 3);
-            phone += "-";
-            phone += num.substr(6);
-        } else {
-            phone += num.substr(0, 3);
-            phone += "-";
-            phone += num.substr(3, 4);
-            phone += "-";
-            phone += num.substr(7);
+        // 공백 제거
+        if(e.target.name!=='area' && e.target.name!=='location'){
+            if((e.target.value).search(/\s/) != -1){
+                e.target.value = e.target.value.replace(' ','')
+            }
         }
-        e.target.value = phone
+        // 특수문자 제거 : 이름, 아이디, 생년월일, 휴대폰번호, 산업/직군, 근무지
+        if(e.target.name!=='area' && e.target.name!=='email'
+            && e.target.name!=='pwd' && e.target.name!=='pwdchk'){
+            const checkStr = /[`~!@#$%^&*{}<>()+=_|\-\-\\\'\"\.\,;:\/?]/gi;
+            e.target.value = e.target.value.replace(checkStr,'')
+/*             if(checkChar.test(e.target.value)){
+                e.target.value = e.target.value.replace(checkChar,'')
+            } */
+        }
+        // 한글 제거 : 아이디, 생년월일, 휴대폰번호
+        if(e.target.name!=='area' && e.target.name!=='location'
+            && e.target.name!=='email' && e.target.name!=='name'){
+            const checkStr = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi
+            e.target.value = e.target.value.replace(checkStr, '')
+        }
+        // 영문 제거 : 생년월일, 휴대폰번호
+        if(e.target.name==='birth' || e.target.name==='phone'){
+            const checkStr = /[a-zA-Z]/gi
+            e.target.value = e.target.value.replace(checkStr, '')
+        }
+        // 숫자 제거 : 이름
+        if(e.target.name==='name'){
+            const checkStr = /[0-9]/gi
+            e.target.value = e.target.value.replace(checkStr, '')
+        }
+        // 하이픈(-) 추가
+        if(e.target.name==='phone'){
+            const num = e.target.value.replace(/[^0-9]/g, '')
+            let phone = ''
+            if(num.length < 4) {
+                return num;
+            } else if(num.length < 7) {
+                phone += num.substr(0, 3);
+                phone += "-";
+                phone += num.substr(3);
+            } else if(num.length < 11) {
+                phone += num.substr(0, 3);
+                phone += "-";
+                phone += num.substr(3, 3);
+                phone += "-";
+                phone += num.substr(6);
+            } else {
+                phone += num.substr(0, 3);
+                phone += "-";
+                phone += num.substr(3, 4);
+                phone += "-";
+                phone += num.substr(7);
+            }
+            e.target.value = phone
+        }
     }
 
     return(
         <Container component="main" maxWidth="sm">
             <CssBaseline/>
-            <form className={classes.form} noValidate onSubmit={handleSubmit}>
+            <form className={classes.form} noValidate onSubmit={handleSubmit} onChange={handleValidation}>
                 <TextField
                     fullWidth
                     required
@@ -85,6 +138,7 @@ export default function Join(){
                     id="name"
                     name="name"
                     label="이름"
+                    inputProps={{maxLength: 16}}
                     autoFocus
                 />
                 <TextField
@@ -94,6 +148,7 @@ export default function Join(){
                     variant="outlined"
                     id="itvId"
                     name="itvId"
+                    inputProps={{maxLength: 25}}
                     label="아이디"
                 />
                 <TextField
@@ -104,6 +159,18 @@ export default function Join(){
                     id="pwd"
                     name="pwd"
                     label="비밀번호"
+                    inputProps={{maxLength: 18}}
+                    type="password"
+                />
+                <TextField
+                    fullWidth
+                    required
+                    margin="normal"
+                    variant="outlined"
+                    id="pwdchk"
+                    name="pwdchk"
+                    label="비밀번호 확인"
+                    inputProps={{maxLength: 18}}
                     type="password"
                 />
                 <TextField
@@ -125,7 +192,6 @@ export default function Join(){
                     name="phone"
                     label="휴대폰번호"
                     inputProps={{maxLength: 13}}
-                    onChange={handleChange}
                 />
                 <TextField
                     fullWidth
@@ -135,6 +201,7 @@ export default function Join(){
                     id="email"
                     name="email"
                     label="이메일"
+                    inputProps={{maxLength: 97}}
                 />
                 <TextField
                     fullWidth
@@ -143,6 +210,7 @@ export default function Join(){
                     id="area"
                     name="area"
                     label="희망산업/직군"
+                    inputProps={{maxLength: 33}}
                 />
                 <TextField
                     fullWidth
@@ -151,6 +219,7 @@ export default function Join(){
                     id="location"
                     name="location"
                     label="희망근무지"
+                    inputProps={{maxLength: 33}}
                 />
                 <Button
                     type="submit"
