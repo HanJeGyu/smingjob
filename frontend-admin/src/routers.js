@@ -4,8 +4,8 @@ import {Redirect} from "react-router-dom";
 /* views */
 
 import Login from './common/Login'
-import CorporationAdmin from './admin/Corporation';
-import InterviewerAdmin from "./admin/Interviewer";
+import CorporationAdmin from './admin/Corporation'
+import InterviewerAdmin from "./admin/Interviewer"
 import NoticeDetail from './notice/NoticeDetailAdmin'
 import NoticeList from './notice/NoticeList'
 import NoticeUpload from './notice/NoticeUpload'
@@ -15,8 +15,8 @@ import Join from './common/Join'
 import InterviewerModify from './interviewer/Modify'
 import CorporationModify from './corporation/Modify'
 import PrAdmin from "./pr/Pr"
-import AliveAdmin from "./admin/Alive";
-
+import AliveAdmin from "./admin/Alive"
+import LoginAdmin from "./common/Login"
 
 export const routerConfig = [
     {
@@ -80,4 +80,8 @@ export const routerConfig = [
         path: '/aliveAdmin',
         component: AliveAdmin
     },
+    {
+        path: '/homeAdmin',
+        component: LoginAdmin
+    }
 ]

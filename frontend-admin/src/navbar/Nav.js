@@ -28,6 +28,17 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import PetsIcon from "@material-ui/icons/Pets";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import BusinessIcon from "@material-ui/icons/Business";
+import PersonIcon from "@material-ui/icons/Person";
+import OndemandVideoIcon from "@material-ui/icons/OndemandVideo";
+import VoiceChatIcon from "@material-ui/icons/VoiceChat"; //ALIVE
+import SlideshowIcon from "@material-ui/icons/Slideshow"; //PR
+import ListAltIcon from "@material-ui/icons/ListAlt"; //공고
+import RecordVoiceOverIcon from "@material-ui/icons/RecordVoiceOver"; //ALIVE
+import PanToolIcon from "@material-ui/icons/PanTool"; //PR
+import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive"; //공고
+import SwitchVideoIcon from "@material-ui/icons/SwitchVideo"; //ALIVE
+import HomeIcon from "@material-ui/icons/Home"; 
 
 const drawerWidth = 240;
 
@@ -94,6 +105,10 @@ const useStyles = makeStyles(theme => ({
   },
   nested: {
     paddingLeft: theme.spacing(4)
+  },
+  list_item: {
+    paddingTop: 20,
+    paddingBottom: 20
   }
 }));
 
@@ -168,14 +183,31 @@ const Navbar = () => {
           </IconButton>
         </div>
         <Divider />
-        <ListSubheader inset>Admin</ListSubheader>
+        {/* <ListSubheader inset>Admin</ListSubheader> */}
         <List>
-          {["PR", "Alive", "Corporation", "Interviewer", "Notice"].map(
+          {["Home", "PR", "Alive", "Corporation", "Interviewer", "Notice"].map(
             (text, index) => (
-              <ListItem button component="a" href={text + "Admin"}>
+              <ListItem
+                button
+                component="a"
+                href={text + "Admin"}
+                className={classes.list_item}
+              >
                 {
                   <ListItemIcon>
-                  {index % 2 === 0 ? <PetsIcon /> : <FavoriteIcon />}
+                    {index === 0 ? (
+                      <HomeIcon />
+                    ) : index === 1 ? (
+                      <PanToolIcon />
+                    ) : index === 2 ? (
+                      <VoiceChatIcon />
+                    ) : index === 3 ? (
+                      <BusinessIcon />
+                    ) : index === 4 ? (
+                      <PersonIcon />
+                    ) : (
+                      <NotificationsActiveIcon />
+                    )}
                   </ListItemIcon>
                 }
                 <ListItemText primary={text} />

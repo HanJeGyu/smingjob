@@ -8,7 +8,7 @@ export default class Pr extends Component {
     pr: [],
     columns: [
     //   { title: "No", field: "prSeq" },
-      { title: "구직자ID", field: "id" },
+      { title: "구직자ID", field: "itvId" },
       { title: "연락처", field: "phone" },
       { title: "제목", field: "title" },
       { title: "동영상", field: "content" },

@@ -5,7 +5,7 @@ import { makeStyles, useTheme, Drawer, CssBaseline, AppBar,
         ListItemText, MenuItem, ListItemIcon, Link,
         Menu, Button, Toolbar, Collapse } 
         from "@material-ui/core";
-import { red, deepPurple, blue } from "@material-ui/core/colors";
+import { red, deepPurple, blue, yellow } from "@material-ui/core/colors";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
@@ -14,6 +14,19 @@ import MailIcon from "@material-ui/icons/Mail";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+
+import BusinessIcon from "@material-ui/icons/Business";
+import PersonIcon from "@material-ui/icons/Person";
+import OndemandVideoIcon from "@material-ui/icons/OndemandVideo";
+import VoiceChatIcon from "@material-ui/icons/VoiceChat"; //ALIVE
+import SlideshowIcon from "@material-ui/icons/Slideshow"; //PR
+import ListAltIcon from "@material-ui/icons/ListAlt"; //공고
+import RecordVoiceOverIcon from "@material-ui/icons/RecordVoiceOver";  //ALIVE
+import PanToolIcon from "@material-ui/icons/PanTool"; //PR
+import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive"; //공고
+import SwitchVideoIcon from "@material-ui/icons/SwitchVideo"; //ALIVE
+import HomeIcon from "@material-ui/icons/Home"; //Home
+import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer"; //FAQ
 
 const drawerWidth = 240;
 
@@ -80,6 +93,10 @@ const useStyles = makeStyles(theme => ({
   },
   nested: {
     paddingLeft: theme.spacing(4),
+  },
+  list_item: {
+    paddingTop: 20,
+    paddingBottom: 20
   }
 }));
 
@@ -229,20 +246,20 @@ const Navbar = () => {
         <Divider />
         <List>
           {["Home", "Notice", "Interview", "PR"].map((text, index) => (
-            <ListItem button component="a" href={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
+            <ListItem button component="a" href={text} className={classes.list_item}>
+                  <ListItemIcon>
+                  {index === 0 ? <HomeIcon /> : index === 1 ? <NotificationsActiveIcon /> : index === 2 ? <VoiceChatIcon /> :  <PanToolIcon />}
+                  </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {["F&Q"].map((text, index) => (
-            <ListItem button component="a" href={text}>
+          {["FAQ"].map((text, index) => (
+            <ListItem button component="a" href={text} className={classes.list_item}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              <QuestionAnswerIcon />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>

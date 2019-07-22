@@ -1,8 +1,10 @@
 package com.admin.web.controller;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -42,6 +44,11 @@ public class PrController {
     }
 
     @GetMapping("")
+    public List<Map<String,Object>> findAll() {
+        return repo.getPrList();
+    }
+
+/*     @GetMapping("")
     public Iterable<PrDTO> findAll() {
         Iterable<Pr> entities = repo.findAll();
         // System.out.println("findall 진입");
@@ -51,19 +58,6 @@ public class PrController {
             list.add(pr);
         }
         return list;
-    }
-
-    /* @GetMapping("")
-    public List<Map<String, Object>> findAll() {
-        // System.out.println("findall 진입");
-        List<PrDTO> list = new ArrayList<>();
-        for (Pr s : entities) {
-            PrDTO pr = modelMapper.map(s, PrDTO.class);
-            list.add(pr);
-        }
-
-        
-        return repo.getPrList();
     } */
 
     @GetMapping("/PrDetail/{id}")
