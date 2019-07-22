@@ -1,12 +1,16 @@
 package com.smingjob.web.enttites;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -43,6 +47,11 @@ public class Interviewer implements Serializable{
     @Column(name = "location") private String location;
     @Column(name = "date_join") private String dateJoin;
 
+/*     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "interviewer")
+    private List<Pr> prs;   */
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "interviewer")
+    private List<Awaiter> awaiters;
+    
     @Override
     public String toString(){
         return String.format("구직자 정보 No: %d|n" + "ID: %s", itvSeq, itvId, pwd,

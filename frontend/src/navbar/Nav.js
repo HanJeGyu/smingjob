@@ -109,7 +109,7 @@ const Navbar = () => {
     setOpen(false);
   }
   
-  function handleClick(){
+  function handleLogout(){
     localStorage.removeItem('authSeq')
     localStorage.removeItem('authId')
     localStorage.removeItem('authType')
@@ -139,7 +139,7 @@ const Navbar = () => {
             JOB A LIVE
           </Typography>
           {localStorage.getItem('authId') ? 
-            <Button color="inherit" onClick={handleClick}>Logout</Button> 
+            <Button color="inherit" onClick={handleLogout}>Logout</Button> 
             : <p><Button color="inherit" href="/login">Login</Button><Button color="inherit" href="/join">Join</Button></p>}
           {localStorage.getItem('authId') && (
             <Account></Account>

@@ -30,48 +30,75 @@ const useStyles = makeStyles(theme => ({
 export default function Join(){
     const classes = useStyles();
 
-    function handleSubmit(event){
-        event.preventDefault();
-        const data = {
-            corId: event.target.corId.value,
-            pwd: event.target.pwd.value,
-            corRegNo: event.target.corRegNo.value,
-            name: event.target.name.value,
-            ceoName: event.target.ceoName.value,
-            area: event.target.area.value,
-            pmName: event.target.pmName.value,
-            pmPhone: event.target.pmPhone.value,
-            pmEmail: event.target.pmEmail.value,
-            homepage: event.target.homepage.value,
-            city: event.target.city.value
+    function handleSubmit(e){
+        e.preventDefault();
+        const checkStr = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        if(e.target.corRegNo.value===''){
+            alert('사업자등록번호는 필수 입력정보 입니다.')
+        }else if(e.target.name.value===''){
+            alert('회사명은 필수 입력정보 입니다.')
+        }else if(e.target.ceoName.value===''){
+            alert('대표명은 필수 입력정보 입니다.')
+        }else if(e.target.area.value===''){
+            alert('업종은 필수 입력정보 입니다.')
+        }else if(e.target.pmName.value===''){
+            alert('가임자명은 필수 입력정보 입니다.')
+        }else if(e.target.pmPhone.value===''){
+            alert('가입자연락처는 필수 입력정보 입니다.')
+        }else if(e.target.pmEmail.value===''){
+            alert('가입자이메일은 필수 입력정보 입니다.')
+        }else if((e.target.pmEmail.value).match(checkStr)===null){
+            alert('이메일 형식이 옳바르지 않습니다.')
+        }else if(e.target.corId.value===''){
+            alert('아이디는 필수 입력정보 입니다.')
+        }else if(e.target.pwd.value===''){
+            alert('비밀번호는 필수 입력정보 입니다.')
+        }else if(e.target.pwdchk.value===''){
+            alert('비밀번호 확인은 필수 입력정보 입니다.')
+        }else if(e.target.pwdchk.value!==e.target.pwd.value){
+            alert('비밀번호가 일치하지 않습니다.')
+        }else{
+            const data = {
+                corId: e.target.corId.value,
+                pwd: e.target.pwd.value,
+                corRegNo: e.target.corRegNo.value,
+                name: e.target.name.value,
+                ceoName: e.target.ceoName.value,
+                area: e.target.area.value,
+                pmName: e.target.pmName.value,
+                pmPhone: e.target.pmPhone.value,
+                pmEmail: e.target.pmEmail.value,
+                homepage: e.target.homepage.value,
+                city: e.target.city.value
+            }
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'JWT fefege..'
+            }
+            axios.post(`http://localhost:9000/corporations/join`,JSON.stringify(data),{headers: headers})
+                .then(res=>{
+                    alert('회원가입 되었습니다.\n로그인 후 이용해 주세요')
+                    document.location.href = '/login'
+                })
+                .catch(e=>{
+                    alert('회원가입에 실패하였습니다.')
+                })
         }
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': 'JWT fefege..'
-        }
-        axios.post(`http://localhost:9000/corporations/join`,JSON.stringify(data),{headers: headers})
-            .then(res=>{
-                alert('회원가입 되었습니다.\n로그인 후 이용해 주세요')
-                document.location.href = '/login'
-            })
-            .catch(e=>{
-                alert('회원가입에 실패하였습니다.')
-            })
     }
 
     function handleValidation(e){
         e.preventDefault();
         // 공백 제거
         if(e.target.name!=='name' && e.target.name!=='area'
-            && e.target.name!=='city'){
+            && e.target.name!=='city' && e.target.name!=='ceoName'){
             if((e.target.value).search(/\s/) != -1){
                 e.target.value = e.target.value.replace(' ','')
             }
         }
         // 특수문자 제거 : 사업자번호, 회사명, 대표명, 가입자명, 연락처, 아이디
         if(e.target.name==='corRegNo' || e.target.name==='name'
-            || e.target.name==='ceoName' || e.target.name!=='pmName'
-            || e.target.name==='pmPhone' || e.target.name!=='corId'){
+            || e.target.name==='ceoName' || e.target.name==='pmName'
+            || e.target.name==='pmPhone' || e.target.name==='corId'){
             const checkStr = /[`~!@#$%^&*{}<>()+=_|\-\-\\\'\"\.\,;:\/?]/gi;
             e.target.value = e.target.value.replace(checkStr,'')
         }
@@ -86,7 +113,7 @@ export default function Join(){
             const checkStr = /[a-zA-Z]/gi
             e.target.value = e.target.value.replace(checkStr, '')
         }
-        // 숫자 제거 : 이름
+        // 숫자 제거 : 가입자이름
         if(e.target.name==='pmName'){
             const checkStr = /[0-9]/gi
             e.target.value = e.target.value.replace(checkStr, '')
@@ -96,7 +123,7 @@ export default function Join(){
             const num = e.target.value.replace(/[^0-9]/g, '')
             let phone = ''
             if(num.length < 4) {
-                return num;
+                phone = num;
             } else if(num.length < 7) {
                 phone += num.substr(0, 3);
                 phone += "-";
@@ -144,7 +171,7 @@ export default function Join(){
     }
 
     return(
-        <Container component="main" maxWidth="sm">
+        <Container component="main" maxWidth="auto">
             <CssBaseline/>
             <form className={classes.form} noValidate onSubmit={handleSubmit} onChange={handleValidation}>
                 <TextField
@@ -254,6 +281,17 @@ export default function Join(){
                     id="pwd"
                     name="pwd"
                     label="비밀번호"
+                    type="password"
+                    inputProps={{maxLength: 18}}
+                />
+                <TextField
+                    fullWidth
+                    required
+                    margin="normal"
+                    variant="outlined"
+                    id="pwdchk"
+                    name="pwdchk"
+                    label="비밀번호 확인"
                     type="password"
                     inputProps={{maxLength: 18}}
                 />

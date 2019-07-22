@@ -66,7 +66,7 @@ const Account = () => {
                       <ListItem button className={classes.nested}>
                         <ListItemText primary="지원현황"/>
                       </ListItem></Link>
-                    <Link href="/interviewerNotice" underline="none" color="inherit">
+                    <Link href="/interviewerAlive" underline="none" color="inherit">
                       <ListItem button className={classes.nested}>
                         <ListItemText primary="면접목록"/>
                       </ListItem></Link>

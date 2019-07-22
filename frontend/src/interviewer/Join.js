@@ -28,6 +28,8 @@ export default function Join(){
             alert('아이디는 필수 입력정보 입니다.')
         }else if(e.target.pwd.value===''){
             alert('비밀번호는 필수 입력정보 입니다.')
+        }else if(e.target.pwdchk.value===''){
+            alert('비밀번호 확인은 필수 입력정보 입니다.')
         }else if(e.target.pwdchk.value!==e.target.pwd.value){
             alert('비밀번호가 일치하지 않습니다.')
         }else if(e.target.name.value===''){
@@ -104,7 +106,7 @@ export default function Join(){
             const num = e.target.value.replace(/[^0-9]/g, '')
             let phone = ''
             if(num.length < 4) {
-                return num;
+                phone = num;
             } else if(num.length < 7) {
                 phone += num.substr(0, 3);
                 phone += "-";
@@ -127,7 +129,7 @@ export default function Join(){
     }
 
     return(
-        <Container component="main" maxWidth="sm">
+        <Container component="main" maxWidth="auto">
             <CssBaseline/>
             <form className={classes.form} noValidate onSubmit={handleSubmit} onChange={handleValidation}>
                 <TextField

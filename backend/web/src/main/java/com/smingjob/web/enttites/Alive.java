@@ -1,7 +1,9 @@
 package com.smingjob.web.enttites;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -45,6 +48,9 @@ public class Alive implements Serializable {
     @Column(name="itv_name") private String itvName; 
     @Column(name="itv_phone") private String itvPhone; 
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "alive")
+    private List<Awaiter> awaiters;
+    
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "notice_seq")
     private Notice notice;
@@ -55,7 +61,6 @@ public class Alive implements Serializable {
         + ", start_date:" + startDate+ ", start_time" + startTime + ", area:" + area + ", career:" + career 
         + ", itv_seq:" + itvSeq + ", itv_name:" + itvName + ", itv_phone:" + itvPhone + "]";
     }
-
 
     //생성자
     @Builder

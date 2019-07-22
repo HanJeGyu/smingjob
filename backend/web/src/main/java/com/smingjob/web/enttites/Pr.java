@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -43,6 +45,10 @@ public class Pr implements Serializable {
     @Column(name="tag_career") private String tagCareer; 
     @Column(name="date_upload") private String dateUpload; 
 
+/*     @ManyToOne
+    @JoinColumn(name = "itv_seq")
+    private Interviewer interviewer;   */
+    
     @Override
     public String toString(){
 
