@@ -1,4 +1,4 @@
-package com.smingjob.web.domain;
+package com.admin.web.domain;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

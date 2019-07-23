@@ -68,7 +68,7 @@ public class NoticeController {
    }
 
    @GetMapping("/{noticeSeq}")
-   public NoticeDTO findByNoticeTitle(@PathVariable String noticeSeq) {
+   public NoticeDTO findByNoticeSeq(@PathVariable String noticeSeq) {
       return modelMapper.map(repo.findByNoticeSeq(Long.parseLong(noticeSeq)).get(), NoticeDTO.class);
    } 
 

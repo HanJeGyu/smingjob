@@ -104,7 +104,7 @@ export default class NoticeUpload extends React.Component {
          <form onSubmit={this.handleSubmit}>
         <Container  style={style} maxWidth="md" >
             <Typography variant="h6" gutterBottom>
-              공고 업로드
+              공고 수정
             </Typography>
             <Grid container spacing={3}>
               <Grid item xs={12} >

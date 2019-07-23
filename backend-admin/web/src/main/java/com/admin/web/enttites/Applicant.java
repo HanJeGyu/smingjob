@@ -1,4 +1,4 @@
-package com.smingjob.web.enttites;
+package com.admin.web.enttites;
 
 import java.io.Serializable;
 
