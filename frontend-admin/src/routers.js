@@ -17,6 +17,7 @@ import CorporationModify from './corporation/Modify'
 import PrAdmin from "./pr/Pr"
 import AliveAdmin from "./admin/Alive"
 import LoginAdmin from "./common/Login"
+import Test from "./notice/test"
 
 export const routerConfig = [
     {
@@ -83,5 +84,9 @@ export const routerConfig = [
     {
         path: '/homeAdmin',
         component: LoginAdmin
+    },
+    {
+        path: '/test',
+        component: Test
     }
 ]

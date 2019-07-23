@@ -30,7 +30,8 @@ export default class NoticeDetail extends React.Component {
       corName: '',
       startDate: '',
       startTime:'',
-      
+
+    
     };
    
   }
@@ -44,6 +45,7 @@ export default class NoticeDetail extends React.Component {
         .catch(e=>{           
            console.log(e.res)
         })
+   
 }
 
 gomodify(seq){
@@ -130,8 +132,11 @@ gomodify(seq){
               </Grid> 
      
           <Grid container spacing={10}><p style={margin}></p></Grid>
-          <Grid container spacing={12}>
+         
+         
+          <Grid >
           지원자 목록 
+
           </Grid>
           </Grid> 
 

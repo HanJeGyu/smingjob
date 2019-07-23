@@ -3,6 +3,9 @@ package com.admin.web.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.admin.web.domain.ApplicantDTO;
+import com.admin.web.domain.InterviewerDTO;
+import com.admin.web.enttites.Applicant;
 import com.admin.web.repositories.ApplicantRepository;
 
 import org.modelmapper.ModelMapper;
@@ -16,19 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/applicants")
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3001", maxAge = 3600)
 public class ApplicantController {
 
     @Autowired
     ApplicantRepository repo;
     @Autowired
     ModelMapper modelMapper;
+  
 
-    /* 개인회원 마이페이지 지원현황 */
-    @GetMapping("/noticeList/{itvSeq}")
-    public List<Map<String,Object>> noticeList(@PathVariable String itvSeq) {
-        return repo.getNoticeList(Long.parseLong(itvSeq));
+    //공고디테일 내 지원자 리스트
+    @GetMapping("/{noticeSeq}")
+    public List<Applicant> getApplicants(@PathVariable String noticeSeq){
+        return repo.getApplicantList(Long.parseLong(noticeSeq));
     }
-
-
+    
 }

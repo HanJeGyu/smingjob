@@ -37,6 +37,6 @@ public class Applicant implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "notice_seq")
-    private Notice notice;
+    private Notice noticeSeq;
 
 }

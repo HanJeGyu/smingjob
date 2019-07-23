@@ -8,6 +8,7 @@ import javax.persistence.EntityNotFoundException;
 
 import com.admin.web.domain.NoticeDTO;
 import com.admin.web.enttites.Notice;
+import com.admin.web.repositories.ApplicantRepository;
 import com.admin.web.repositories.NoticeRepository;
 
 import org.modelmapper.ModelMapper;
@@ -31,7 +32,8 @@ public class NoticeController {
     @Autowired NoticeDTO notice;    
     @Autowired ModelMapper modelMapper;
     @Autowired NoticeRepository repo;
- 
+    @Autowired ApplicantRepository apprepo;
+
     @DeleteMapping("/{id}")
    public void	deleteById(@PathVariable String id){    
         // System.out.println("deleteById title :" +id);   
@@ -54,13 +56,15 @@ public class NoticeController {
     return modelMapper.map(repo.findById(Long.parseLong(id))
             .orElseThrow(EntityNotFoundException::new),
             NoticeDTO.class);
+           
    }
 
    @GetMapping("/{noticeSeq}")
    public NoticeDTO findByNoticeSeq(@PathVariable String noticeSeq) {
    return modelMapper.map(repo.findByNoticeSeq(Long.parseLong(noticeSeq)).get(), NoticeDTO.class);
+          
 }
-
+   
 
    @PostMapping("/upload")
    public HashMap<String, String> save(@RequestBody NoticeDTO dto) {
