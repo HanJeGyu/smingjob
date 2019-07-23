@@ -16,7 +16,7 @@ import CorporationNotice from './corporation/CorNotice'
 import CorporationModify from './corporation/Modify'
 import CorporationPr from './corporation/Pr'
 import PRUpload from "./pr/PRUpload"
-import PRDetail from "./pr/PRDetail"
+import PRDetail from "./pr/Detail"
 import PR from "./pr/PR"
 import Alive from "./alive/Alive" 
 
