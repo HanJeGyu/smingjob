@@ -14,9 +14,7 @@ import lombok.Data;
 @Component
 @Lazy
 public class ScrapDTO {
-    private Long scrapSeq; 
-    private Corporation corSeq;
-    private Pr prSeq;
+    private Long scrapSeq, corSeq, prSeq;
     private String dateScrap;
     
 }
