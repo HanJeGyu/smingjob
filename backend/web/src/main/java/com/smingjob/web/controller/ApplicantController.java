@@ -31,11 +31,11 @@ public class ApplicantController {
     ModelMapper modelMapper;
 
     /* 개인회원 마이페이지 지원현황 */
-/*     @GetMapping("/noticeList/{itvSeq}")
+      @GetMapping("/noticeList/{itvSeq}")
     public List<Map<String,Object>> noticeList(@PathVariable String itvSeq) {
         return repo.getNoticeList(Long.parseLong(itvSeq));
-    }
- */
+    } 
+ 
 /*     @PostMapping("")
     public void tetetet(@RequestBody ApplicantDTO rdto) {
         System.out.println("itvSeq : " + rdto.getItvSeq());
