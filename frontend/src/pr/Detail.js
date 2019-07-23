@@ -33,8 +33,8 @@ export default class Main extends Component {
   }
   SendScrap = () => {
     const data = {
-      prSeq: localStorage.getItem("prSeq"),
-      corSeq: localStorage.getItem("authSeq")
+      corSeq: localStorage.getItem("authSeq"),
+      prSeq: localStorage.getItem("prSeq")
     };
     alert(localStorage.getItem("prSeq"));
     alert(localStorage.getItem("authSeq"));

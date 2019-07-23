@@ -9,12 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -49,14 +46,5 @@ public class Scrap implements Serializable{
 
     @Column(name="date_scrap") 
     private String dateScrap;
-    
-       //생성자
-       @Builder
-       private Scrap(Corporation corporation, Pr pr, String dateScrap){
-           this.corporation = corporation;
-           this.pr = pr;
-           this.dateScrap = dateScrap;
-
-       } 
     
 }

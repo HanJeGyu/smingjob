@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import com.smingjob.web.domain.ScrapDTO;
+import com.smingjob.web.enttites.Applicant;
 import com.smingjob.web.enttites.Scrap;
 import com.smingjob.web.repositories.ScrapRepository;
 
@@ -37,12 +38,14 @@ public class ScrapController {
         HashMap<String, String> map = new HashMap<>();
         SimpleDateFormat yyyymmdd = new SimpleDateFormat("yyyyMMdd");
         String dateScrap = yyyymmdd.format(new Date());
-        Scrap entity = new Scrap();
-        entity.setCorporation(dto.getCorSeq());
-        entity.setScrapSeq(dto.getScrapSeq());
-        entity.setDateScrap(dateScrap);
+        dto.setDateScrap(dateScrap);
+        // Scrap s = new Scrap();
+        System.out.println("corse =========" +dto.getCorSeq() + dto.getCorSeq().getClass());
+        System.out.println("pr_seq=========" + dto.getPrSeq().getClass());
+        System.out.println(dto);
+        // s.setCorporation(dto.getCorSeq());
+        repo.save(modelMapper.map(dto, Scrap.class));
 
-        repo.save(entity);
         map.put("result", "SUCCESS");
         return map;
     }
