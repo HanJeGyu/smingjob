@@ -12,6 +12,9 @@ import {
 import axios from 'axios'
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 
 export default class NoticeUpload extends React.Component {
 
@@ -32,33 +35,38 @@ export default class NoticeUpload extends React.Component {
     };
    
   }
+  handleChange=(e)=>{
+    this.setState({[e.target.name]: e.target.value})
+  }
 
-    handleChange=(e)=>{
-      this.setState({[e.target.name]: e.target.value})
-      console.log("change")
-    }
+  changeTextData = (text) => {
+    this.setState({content: text})
+    console.log(text);     
+  }
 
-    handleSubmit = event =>{
-      event.preventDefault();   
-      const noticeSeq = '1';       
-      const data = {
-       title: event.target.title.value,
-       area: event.target.area.value,
-       career: event.target.career.value,
-       content: event.target.content.value,
-       tagLocation: event.target.tagLocation.value,
-       tagAttribute: event.target.tagAttribute.value,
-       tagCareer: event.target.tagCareer.value,
-       state: event.target.state.value,
-       corName: event.target.corName.value,   
-       startDate: event.target.startDate.value,
-       startTime: event.target.startTime.value 
-     };
+  handleSubmit = (event) =>{
+     event.preventDefault();    
+
+    const notices = {
+    title: event.target.title.value,
+    area: event.target.area.value,
+    career: event.target.career.value,  
+    content : this.state.content,  
+    tagLocation: event.target.tagLocation.value,
+    tagAttribute: event.target.tagAttribute.value,
+    tagCareer: event.target.tagCareer.value,
+    state: event.target.state.value,
+    corName: event.target.corName.value,  
+    startDate: event.target.startDate.value,
+    startTime: event.target.startTime.value,
+   };
      const headers = {
       'Content-Type': 'application/json',
       'Authorization': 'JWT fefege..'
        }
-       axios.put(`http://localhost:9001/notices/modify/${noticeSeq}`,JSON.stringify(data),{headers: headers})
+       const seq = localStorage.noticeSeq;
+       
+       axios.put(`http://localhost:9001/notices/modify/${seq}`,JSON.stringify(notices),{headers: headers})
             .then(res=>{       
               /*   window.location.reload() */
             })
@@ -68,8 +76,8 @@ export default class NoticeUpload extends React.Component {
     
 
     componentWillMount=()=>{
-        const noticeSeq = '1';
-        axios.get(`http://localhost:9001/notices/${noticeSeq}`)
+        const seq = localStorage.noticeSeq;
+        axios.get(`http://localhost:9001/notices/${seq}`)
             .then(res=>{
                this.setState(res.data)
                console.log(res.data)
@@ -144,18 +152,20 @@ export default class NoticeUpload extends React.Component {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField            
-                  id="content"
-                  name="content"
-                  label="모집 개요"
-                  multiline
-                  rows="5"
-                  fullWidth
-                  autoComplete="content"
-                  value={this.state.content}
-                  onChange={this.handleChange}
+              <CKEditor
+                    id="content"                    
+                    editor={ ClassicEditor }
+                    data="<p>모집 개요<p>"
+                    onInit={ editor => {                        
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        console.log( { event, editor, data } );
+                        this.changeTextData(data)
+                    } }
                 />
-              </Grid>     
+              </Grid> 
               <Grid item xs={12} sm={4}>
                 <TextField            
                   id="tagLocation"

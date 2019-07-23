@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component  } from "react";
 import axios from "axios";
 import { CloudinaryContext, Transformation, Image } from "cloudinary-react";
 import { render } from "react-dom";
