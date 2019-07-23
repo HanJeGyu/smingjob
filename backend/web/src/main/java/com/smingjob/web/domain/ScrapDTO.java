@@ -1,6 +1,4 @@
 package com.smingjob.web.domain;
-import com.smingjob.web.enttites.Corporation;
-import com.smingjob.web.enttites.Pr;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

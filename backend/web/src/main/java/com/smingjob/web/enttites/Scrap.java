@@ -34,7 +34,7 @@ public class Scrap implements Serializable{
     private Long scrapSeq;
 
     // @Column(name="itv_seq") private Long itvSeq;
-
+    
     @ManyToOne
     @JoinColumn(name="cor_seq") 
     private Corporation corporation;
