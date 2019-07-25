@@ -146,7 +146,7 @@ gomodify(seq){
 
           <Grid item xs={12}>
           지원자 목록 
-          
+
           </Grid>
           </Container>
          
@@ -156,9 +156,4 @@ gomodify(seq){
       )
     }
 }
- /* const [selectedDate, setSelectedDate] = React.useState(new Date('2019-07-14T18:00:00'));
-
-    handleDateChange(date) {
-      setSelectedDate(date);
-    }  */
 

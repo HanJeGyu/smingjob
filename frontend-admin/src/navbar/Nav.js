@@ -190,7 +190,7 @@ const Navbar = () => {
               <ListItem
                 button
                 component="a"
-                href={text + "Admin"}
+                href={'/' +text + "Admin"}
                 className={classes.list_item}
               >
                 {

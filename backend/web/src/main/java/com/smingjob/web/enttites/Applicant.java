@@ -34,9 +34,10 @@ public class Applicant implements Serializable{
         
     @Column(name="itv_seq") private Long itvSeq;
     @Column(name="app_state") private String appState;
-
+    //@Column(name="notice_seq") private Long noticeSeq;
+   
     @ManyToOne
     @JoinColumn(name = "notice_seq")
     private Notice notice;
-
+ 
 }

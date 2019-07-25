@@ -1,10 +1,12 @@
 package com.smingjob.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.smingjob.web.domain.ApplicantDTO;
 import com.smingjob.web.enttites.Applicant;
+import com.smingjob.web.enttites.Notice;
 import com.smingjob.web.repositories.ApplicantRepository;
 
 import org.modelmapper.ModelMapper;
@@ -31,10 +33,10 @@ public class ApplicantController {
     ModelMapper modelMapper;
 
     /* 개인회원 마이페이지 지원현황 */
-      @GetMapping("/noticeList/{itvSeq}")
+/*       @GetMapping("/noticeList/{itvSeq}")
     public List<Map<String,Object>> noticeList(@PathVariable String itvSeq) {
         return repo.getNoticeList(Long.parseLong(itvSeq));
-    } 
+    }  */
  
 /*     @PostMapping("")
     public void tetetet(@RequestBody ApplicantDTO rdto) {
@@ -42,4 +44,29 @@ public class ApplicantController {
         System.out.println("noticeSeq : " + rdto.getNoticeSeq());
         repo.save(modelMapper.map(rdto, Applicant.class));
     } */
+
+    @PostMapping("/{itvSeq}apply{noticeSeq}")
+    public HashMap<String, String> apply(@PathVariable String itvSeq, @PathVariable String noticeSeq) {   
+        /* System.out.println("======================"+itvSeq+ noticeSeq); */
+        HashMap<String, String> map = new HashMap<>();
+     
+        Long count = Long.parseLong( repo.countApply(Long.parseLong(itvSeq), Long.parseLong(noticeSeq)));
+       
+        if(count>=1){
+            System.out.println("중복");
+        }else{
+         Notice no = new Notice();
+         no.setNoticeSeq(Long.parseLong(noticeSeq));
+
+         Applicant entity = new Applicant();
+         entity.setItvSeq(Long.parseLong(itvSeq));
+         entity.setNotice(no);
+         entity.setAppState("대기");
+         repo.save(entity);       
+        }
+
+        map.put("result", "SUCCESS");
+       return map;
+    }  
+    
 }

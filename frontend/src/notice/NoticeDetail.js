@@ -49,8 +49,16 @@ export default class NoticeDetail extends React.Component {
 }
 apply=()=>{
 console.log("지원");
-//지원하기 메소드...
+const itv = localStorage.authSeq;
+const notiSeq = localStorage.noticeSeq;
+console.log(itv, notiSeq);
 
+axios.post('http://localhost:9000/applicants/'+itv+'apply'+notiSeq,
+ {
+  itvSeq: ''
+})
+.then( response => { console.log(response) } )
+.catch( response => { console.log(response) } );
 }
 
     render(){     

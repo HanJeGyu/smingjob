@@ -49,7 +49,7 @@ public class Notice implements Serializable{
     @Column(name="tag_career")private String tagCareer;
     
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "notice")
-    private List<Applicant> applicants;
+    private List<Applicant> applicants; 
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "notice")
     private Alive alive;

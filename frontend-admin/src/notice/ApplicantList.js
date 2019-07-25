@@ -36,6 +36,16 @@ export default class ApplicantList extends Component {
      })
    
     }
+     changeAppState=(seq)=>{
+   
+      axios.put('http://localhost:9001/applicants/'+seq)
+              .then(res=>{       
+                window.location.reload();
+              })
+              .catch(e=>{                
+              })
+    } 
+    
     render() {
         const state = this.state;
         return (
@@ -43,8 +53,9 @@ export default class ApplicantList extends Component {
                <MaterialTable title="지원자 관리" 
                 columns={state.columns} 
                 data={state.applicants}  
-                onRowClick={(event, rowData)=> {
-                    console.log('rowData', rowData.itvSeq);                    
+                 onRowClick={(event, rowData)=> {
+                    console.log('rowData', rowData.applicantSeq);
+                    this.changeAppState(rowData.applicantSeq);                     
                   }}
                 />  
               
