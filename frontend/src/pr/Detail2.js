@@ -19,7 +19,7 @@ export default class Main extends Component {
       scrapSeq: "",
       corSeq: localStorage.getItem("authSeq"),
       prSeq: localStorage.getItem("prSeq"),
-      countNum: ""
+      countNum: 0
     };
   }
 
@@ -35,19 +35,9 @@ export default class Main extends Component {
         console.log(res.data.resources);
         this.setState({ gallery: res.data.resources });
       });
-
-    // 만약 현재 기업 seq랑 현재 pr seq가 일치하는 데이터가 있으면
-    //click을 true로 없으면 false로 셋팅함.
-    axios
-    .get(`http://localhost:9000/scraps/${this.state.corSeq}/${this.state.prSeq}`)
-    .then(res => {
-       this.setState({countNum : res.data }); 
-    })
-    .catch(e => {});
   }
-  
-  SendScrap = () => {
 
+  SendScrap = () => {
     if (this.state.countNum < 1) {
       const data = {
         corSeq: this.state.corSeq,
@@ -58,23 +48,22 @@ export default class Main extends Component {
         "Content-Type": "application/json",
         Authorization: "JWT fefege.."
       };
+
       axios
         .post(`http://localhost:9000/scraps/`, JSON.stringify(data), {
           headers: headers
         })
         .then(res => {
-          this.setState({scrapSeq : res.data});
-          localStorage.setItem('scrapSeq', res.data)
-          this.setState({countNum : 1});
+          this.setState({ scrapSeq: res.data });
+          this.setState({ countNum: 1 });
           alert("찜하기!");
         })
         .catch(e => {});
-
     } else {
       axios
-        .delete(`http://localhost:9000/scraps/${localStorage.getItem('scrapSeq')}`)
+        .delete(`http://localhost:9000/scraps/${this.state.scrapSeq}`)
         .then(e => {
-          this.setState({countNum : 0});
+          this.setState({ countNum: 0 });
           alert("찜하기 취소");
         })
         .catch(e => {});
@@ -89,8 +78,7 @@ export default class Main extends Component {
         <h1>Galleria</h1>
         <span>{this.state.test}</span>
 
-      {/* 기업만 아이콘들 보이게 처리해야함. */}
-      {/* 이미 스크랩 했을 시 채워진 하트, 스크랩 한 적 없으면 빈 하트로 표시*/}
+        {/* 이미 스크랩 했을 시 채워진 하트, 스크랩 한 적 없으면 빈 하트로 표시*/}
         {this.state.countNum >= 1 ? (
           <FavoriteIcon
             className="favorite_icon"
