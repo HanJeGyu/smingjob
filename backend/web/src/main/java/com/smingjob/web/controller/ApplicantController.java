@@ -33,18 +33,13 @@ public class ApplicantController {
     ModelMapper modelMapper;
 
     /* 개인회원 마이페이지 지원현황 */
-/*       @GetMapping("/noticeList/{itvSeq}")
+       @GetMapping("/noticeList/{itvSeq}")
     public List<Map<String,Object>> noticeList(@PathVariable String itvSeq) {
         return repo.getNoticeList(Long.parseLong(itvSeq));
-    }  */
+    }  
  
-/*     @PostMapping("")
-    public void tetetet(@RequestBody ApplicantDTO rdto) {
-        System.out.println("itvSeq : " + rdto.getItvSeq());
-        System.out.println("noticeSeq : " + rdto.getNoticeSeq());
-        repo.save(modelMapper.map(rdto, Applicant.class));
-    } */
 
+    //공고디테일에서 면접 지원하기
     @PostMapping("/{itvSeq}apply{noticeSeq}")
     public HashMap<String, String> apply(@PathVariable String itvSeq, @PathVariable String noticeSeq) {   
         /* System.out.println("======================"+itvSeq+ noticeSeq); */

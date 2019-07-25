@@ -33,12 +33,13 @@ public class ApplicantController {
     ModelMapper modelMapper;
   
 
-    //공고디테일 내 지원자 리스트
+    //지원자 리스트 불러오기
     @GetMapping("/{noticeSeq}")
     public List<Map<String,Object>> getApplicants(@PathVariable String noticeSeq){
       return repo.getApplicantList(Long.parseLong(noticeSeq));
     }
     
+    //지원자리스트 대기/승인 상태 변경처리
     @PutMapping("/{appSeq}")
    public HashMap<String, String> modify( @PathVariable String appSeq) {   
        HashMap<String, String> map = new HashMap<>();
@@ -52,20 +53,5 @@ public class ApplicantController {
        map.put("result", "SUCCESS");
       return map;
    }   
-/*    @PostMapping("/{itvSeq}apply{noticeSeq}")
-   public HashMap<String, String> save(@PathVariable String itvSeq, @PathVariable String noticeSeq) {   
-       HashMap<String, String> map = new HashMap<>();
-       Applicant entity = repo.findByNoticeSeq(Long.parseLong(noticeSeq)).get();
-       if(entity.getItvSeq().equals(Long.parseLong(itvSeq))){
-           System.out.println("중복");
-       }else{
-        Applicant entity2 = new Applicant();
-        entity2.setItvSeq(Long.parseLong(itvSeq));
-        entity2.setNoticeSeq(Long.parseLong(noticeSeq));
-        repo.save(entity2);
-        map.put("result", "SUCCESS");
-       }             
-       
-      return map;
-   }   */ 
+
 } 

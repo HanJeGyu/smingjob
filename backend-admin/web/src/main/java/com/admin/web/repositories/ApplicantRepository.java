@@ -27,5 +27,5 @@ public interface ApplicantRepository extends JpaRepository<Applicant, Long>{
 public List<Map<String,Object>> getApplicantList(Long noticeSeq);
 
 public Optional<Applicant> findByApplicantSeq(Long applicantSeq);
-public Optional<Applicant> findByNoticeSeq(Long noticeSeq);
+
 }

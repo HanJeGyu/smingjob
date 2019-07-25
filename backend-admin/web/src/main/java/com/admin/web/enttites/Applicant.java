@@ -55,6 +55,4 @@ public class Applicant implements Serializable{
     } 
 
 }
-/**
- * InnerApplicant
- */
+
