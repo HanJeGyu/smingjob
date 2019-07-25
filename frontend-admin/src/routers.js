@@ -16,8 +16,10 @@ import InterviewerModify from './interviewer/Modify'
 import CorporationModify from './corporation/Modify'
 import PrAdmin from "./pr/Pr"
 import AliveAdmin from "./admin/Alive"
+import AliveDetail from "./admin/AliveDetail"
 import LoginAdmin from "./common/Login"
-import Test from "./notice/test"
+import Test from "./notice/ApplicantList"
+import PRDetail from "./pr/PRDetail";
 
 export const routerConfig = [
     {
@@ -78,8 +80,16 @@ export const routerConfig = [
         component: PrAdmin
     },
     {
+        path: '/prDetail',
+        component: PRDetail
+    },
+    {
         path: '/aliveAdmin',
         component: AliveAdmin
+    },
+    {
+        path: '/aliveDetail',
+        component: AliveDetail
     },
     {
         path: '/homeAdmin',

@@ -50,19 +50,12 @@ export default class NoticeList extends React.Component{
             
         })
     }
-   /*  detail(seq){
+    goDetail=(seq)=>{
     console.log("seq:"+seq);
-    localStorage.noticeSeq=seq;
-    window.location = '/noticeDetail/'+localStorage.noticeSeq; 
-    } */
-     detail=(seq)=>{
-       /*  localStorage.noticeadminSeq =this.state.notices.noticeSeq;
-        const seq = localStorage.noticeadminSeq 
-         console.log("seq"+localStorage.noticeadminSeq) */
-         console.log("seq:"+seq);
-        window.location = '/noticeDetail/'+seq; 
-        
-        } 
+    localStorage.noticeadminSeq=seq;
+    window.location = '/noticeDetail/'+localStorage.noticeadminSeq; 
+    } 
+     
        
     render(){
         /* let seq= state.notices.noticeSeq */
@@ -89,6 +82,10 @@ export default class NoticeList extends React.Component{
                   seq= e.dataItem.noticeSeq
                    this.detail(this.state.notices.noticeSeq)}} */
                 style={style}
+                onRowClick={(event, rowData)=> {
+                    console.log('rowData', rowData.noticeSeq);  
+                    this.goDetail(rowData.noticeSeq);                  
+                  }}
                 editable={{
                     onRowDelete: oldData =>
                         new Promise(resolve => {
@@ -98,25 +95,7 @@ export default class NoticeList extends React.Component{
                                 console.log("seq"+oldData.noticeSeq)
                             }, 600);
                         }),
-                  /*       onRowClick: clickedData =>
-                        new Promise(resolve => {
-                            setTimeout(() => {
-                                resolve();
-                                this.detail(clickedData.noticeSeq);
-                            }, 600);
-                        }), */
-                   /*  onRowClick: (row) =>
-                     function(row){
-                            const seq = row.noticeSeq;
-                            console.log("seq:"+seq);
-                    }  
-                    new Promise(resolve => {
-                        setTimeout(() => {
-                            resolve();
-                            this.detail(row.noticeSeq);
-                        }, 600);
-                    }),
-                             */
+                 
                 }}
                 
                 />

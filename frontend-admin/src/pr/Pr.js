@@ -28,6 +28,11 @@ export default class Pr extends Component {
       window.location.reload();
     });
   }
+  goDetail=(seq)=>{
+    console.log("seq:"+seq);
+    localStorage.pradminSeq=seq;
+    window.location = '/prDetail/'+localStorage.pradminSeq; 
+    } 
 
   render() {
     let state = this.state;
@@ -43,6 +48,9 @@ export default class Pr extends Component {
           onRowClick="moodal"
           data={state.pr}
           style={style}
+          onRowClick={(event, rowData)=> { 
+            this.goDetail(rowData.prSeq);                  
+          }}
           editable={{
             onRowDelete: oldData =>
               new Promise(resolve => {

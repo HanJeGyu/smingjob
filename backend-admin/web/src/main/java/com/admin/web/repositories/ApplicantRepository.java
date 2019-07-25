@@ -19,15 +19,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ApplicantRepository extends JpaRepository<Applicant, Long>{
 
-   /*  @Query("SELECT n.title as title, n.corName as corName, "
-        + "n.startDate as startDate, n.startTime as startTime, a.appState as state "
-        + "FROM Applicant a JOIN a.notice n "
-        + "WHERE a.itvSeq = ?1")
-    public List<Map<String,Object>> getNoticeList(Long itvSeq); */
-
-    @Query("select i.name, i.email, i.phone, i.birth,i.location,i.area, a.appState "
-        +"from Applicant a join Interviewer i "
-        +"where a.itvSeq = i.itvSeq and a.noticeSeq=?1" )
-    public List<Applicant> getApplicantList(Long noticeSeq);
-
+    @Query("select i.name as name , i.birth as birth, i.phone as phone, i.email as email, i.area as area, i.location as location, i.itvSeq as itvSeq, a.appState as appState "
+    +"from Applicant a , Interviewer i "
+    +"where a.itvSeq = i.itvSeq and a.noticeSeq=?1" )
+public List<Map<String,Object>> getApplicantList(Long noticeSeq);
 }

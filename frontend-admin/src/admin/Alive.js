@@ -32,6 +32,11 @@ export default class Alive extends Component {
       window.location.reload();
     })
   }
+  goDetail=(seq)=>{
+    console.log("seq:"+seq);
+    localStorage.aliveadminSeq=seq;
+    window.location = '/aliveDetail/'+localStorage.aliveadminSeq; 
+    } 
 
   render() {
       let state = this.state;
@@ -46,7 +51,9 @@ export default class Alive extends Component {
           columns={state.columns}
           data={state.alives}
           style= {style}
-          onRowClick
+          onRowClick={(event, rowData)=> {             
+            this.goDetail(rowData.liveSeq);                  
+          }}
           editable={{
             onRowAdd: newData =>
               new Promise(resolve => {

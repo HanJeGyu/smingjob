@@ -37,7 +37,7 @@ export default class NoticeDetail extends React.Component {
   }
   componentWillMount=()=>{
     const seq = localStorage.noticeadminSeq;  
-    axios.get('http://localhost:9001/notices/72')
+    axios.get('http://localhost:9001/notices/'+seq)
         .then(res=>{
             this.setState(res.data)
            console.log(res.data)
@@ -134,10 +134,7 @@ gomodify(seq){
           <Grid container spacing={10}><p style={margin}></p></Grid>
          
          
-          <Grid >
-          지원자 목록 
-
-          </Grid>
+       
           </Grid> 
 
           <Button size="small" color="primary">
@@ -146,6 +143,11 @@ gomodify(seq){
                     <Button size="small" color="primary" onClick={()=>this.gomodify(this.state.noticeSeq)}>
                       수정
                     </Button>
+
+          <Grid item xs={12}>
+          지원자 목록 
+          
+          </Grid>
           </Container>
          
           </React.Fragment>

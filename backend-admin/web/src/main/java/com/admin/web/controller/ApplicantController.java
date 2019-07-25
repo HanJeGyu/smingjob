@@ -1,11 +1,13 @@
 package com.admin.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.admin.web.domain.ApplicantDTO;
 import com.admin.web.domain.InterviewerDTO;
 import com.admin.web.enttites.Applicant;
+import com.admin.web.enttites.Interviewer;
 import com.admin.web.repositories.ApplicantRepository;
 
 import org.modelmapper.ModelMapper;
@@ -30,8 +32,10 @@ public class ApplicantController {
 
     //공고디테일 내 지원자 리스트
     @GetMapping("/{noticeSeq}")
-    public List<Applicant> getApplicants(@PathVariable String noticeSeq){
-        return repo.getApplicantList(Long.parseLong(noticeSeq));
+    public List<Map<String,Object>> getApplicants(@PathVariable String noticeSeq){
+      return repo.getApplicantList(Long.parseLong(noticeSeq));
+     
+      
     }
     
-}
+} 

@@ -50,6 +50,9 @@ public class Interviewer implements Serializable{
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "interviewer")
     private List<Pr> prs;  
 
+/*     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "interviewer")
+    private List<Applicant> applicants;   */
+
     @Override
     public String toString(){
         return String.format("구직자 정보 No: %d|n" + "ID: %s", itvSeq, itvId, pwd,
@@ -69,4 +72,6 @@ public class Interviewer implements Serializable{
         this.location = location;
         this.dateJoin = dateJoin;
     }
+
+
 }

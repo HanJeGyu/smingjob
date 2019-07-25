@@ -1,6 +1,7 @@
 package com.admin.web.enttites;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,12 +35,26 @@ public class Applicant implements Serializable{
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long applicantSeq;
-        
-    @Column(name="itv_seq") private Long itvSeq;
+    
+    @Column(name="itv_seq") private Long itvSeq; 
     @Column(name="app_state") private String appState;
 
-    @ManyToOne
-    @JoinColumn(name = "notice_seq")
-    private Notice noticeSeq;
+    @Column(name="notice_seq")private Long noticeSeq;
+
+    @Override
+    public String toString(){
+        return String.format("지원자 No: %d|n" + "ID: %s", applicantSeq, appState, noticeSeq);
+    }
+
+    @Builder
+    private Applicant( Long itvSeq, String appState, Long noticeSeq){
+        this.itvSeq = itvSeq;
+        this.appState = appState;     
+        this.noticeSeq = noticeSeq;
+
+    } 
 
 }
+/**
+ * InnerApplicant
+ */

@@ -31,6 +31,7 @@ export default class NoticeDetail extends React.Component {
       corName: '',
       startDate: '',
       startTime:'',
+      itvSeq:'',
       
     };
    

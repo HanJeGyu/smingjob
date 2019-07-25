@@ -48,6 +48,8 @@ public class Notice implements Serializable{
     @Column(name="tag_attribute")private String tagAttribute ;
     @Column(name="tag_career")private String tagCareer;
 
+ 
+   
 
     @Override
     public String toString(){
