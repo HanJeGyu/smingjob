@@ -72,7 +72,7 @@ export default function Join(){
         e.preventDefault();
         // 공백 제거
         if(e.target.name!=='area' && e.target.name!=='location'){
-            if((e.target.value).search(/\s/) != -1){
+            if((e.target.value).search(/\s/) !== -1){
                 e.target.value = e.target.value.replace(' ','')
             }
         }
@@ -110,13 +110,13 @@ export default function Join(){
             if(checkStr.test(num.substr(0,3))){
                 if(num.length < 10) {
                     phone = num;
-                }else if(num.length == 10) {
+                }else if(num.length === 10) {
                     phone += num.substr(0, 3);
                     phone += "-";
                     phone += num.substr(3, 3);
                     phone += "-";
                     phone += num.substr(6);
-                }else if(num.length == 11){
+                }else if(num.length === 11){
                     phone += num.substr(0, 3);
                     phone += "-";
                     phone += num.substr(3, 4);
@@ -127,25 +127,25 @@ export default function Join(){
             // 일반전화 일때
                 if(num.length < 9) {
                     phone = num;
-                }else if(num.length == 9) {
+                }else if(num.length === 9) {
                     phone = num.substr(0, 2);
                     phone += "-";
                     phone += num.substr(2, 3);
                     phone += "-";
                     phone += num.substr(5);
-                }else if(num.length == 10 && num.substr(0,2) == '02') {
+                }else if(num.length === 10 && num.substr(0,2) === '02') {
                     phone = num.substr(0, 2);
                     phone += "-";
                     phone += num.substr(2, 4);
                     phone += "-";
                     phone += num.substr(6);
-                }else if(num.length == 10 && num.substr(0,2) != '02') {
+                }else if(num.length === 10 && num.substr(0,2) !== '02') {
                     phone = num.substr(0, 3);
                     phone += "-";
                     phone += num.substr(3, 3);
                     phone += "-";
                     phone += num.substr(6);
-                }else if(num.length == 11) {
+                }else if(num.length === 11) {
                     phone = num.substr(0, 3);
                     phone += "-";
                     phone += num.substr(3, 4);

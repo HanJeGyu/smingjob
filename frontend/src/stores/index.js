@@ -5,12 +5,10 @@ import reducers from '../reducers'
 
 export const history = createBrowserHistory()
 
-function configureStore(){
+function configureStore(history){
     return createStore(
         reducers(history),
-        applyMiddleware(
-            
-        )
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 }
 

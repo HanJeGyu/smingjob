@@ -18,7 +18,7 @@ public interface NoticeRepository extends JpaRepository<Notice, Long>{
 
     @Query("SELECT n.title AS title, n.startDate AS noticeStartDate, "
         + "n.startTime AS noticeStartTime, a.startDate AS aliveStartDate, "
-        + "a.startTime AS aliveStartTime, a.state AS state, a.liveSeq AS list "
+        + "a.startTime AS aliveStartTime, a.state AS state, a.liveSeq AS liveSeq "
         + "FROM Notice n JOIN n.alive a "
         + "WHERE a.corSeq = ?1")
     public List<Map<String, Object>> getNoticeLiveList(Long corSeq);

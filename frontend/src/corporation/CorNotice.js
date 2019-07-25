@@ -2,7 +2,13 @@ import React from 'react';
 import MaterialTable from 'material-table';
 import { withStyles } from "@material-ui/core/styles";
 import axios from 'axios'
+import { blue } from '@material-ui/core/colors';
+import Modal from '@material-ui/core/Modal';
 
+import ApplicantModal from './ApplicantModal'
+
+const top = 50 + Math.round(Math.random() * 20) - 10;
+const left = 50 + Math.round(Math.random() * 20) - 10;
 
 const useStyles = theme => ({
     table: {
@@ -12,23 +18,38 @@ const useStyles = theme => ({
     },
     tableWrapper: {
         overflowX: 'auto',
-    }
+    },
+    modal: {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
+        position: 'absolute',
+        width: 600,
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 4),
+        outline: 'none',
+    },
 });
 
 class CorNotice extends React.Component {
-    constructor(props){
-        super(props)
+    constructor(){
+        super()
         this.state = {
             columns: [
                 { title: '공고명', field: 'title' },
                 { title: '접수일', field: 'noticeStartDate', type: 'numeric' },
-                { title: '접수시작시각', field: 'noticeStartTime', type: 'numeric'},
+                { title: '접수시작시각', field: 'noticeStartTime', type: 'numeric' },
                 { title: '면접일', field: 'aliveStartDate', type: 'numeric' },
                 { title: '면접시작시각', field: 'aliveStartTime', type: 'numeric' },
                 { title: '진행상태', field: 'state', lookup: { 1: '접수중', 2: '면접예정', 3: '종료', 99: '중단'}},
-                { title: '면접자목록', field: 'list'}
+                { field: 'list2', emptyValue: '면접자목록' },
+                { title: '면접자목록SEQ', field: 'liveSeq', hidden: true }
             ],
-            data: []
+            data: [],
+            open: false,
+            liveSeq: ''
         }
     }
     
@@ -43,8 +64,20 @@ class CorNotice extends React.Component {
             })
     }
 
+    handleClick=(e, rowData)=>{
+        if(e.target.innerHTML==='면접자목록'){
+            this.setState({liveSeq: rowData.liveSeq})
+            this.setState({open: true})
+        }
+    }
+
+    handleClose = () => {
+        this.setState({open:false})
+    };
+
     render(){
         const { classes } = this.props
+        
         return (
             <div className={classes.tableWrapper} >
             <MaterialTable
@@ -52,9 +85,20 @@ class CorNotice extends React.Component {
                 title="공고목록"
                 columns={this.state.columns}
                 data={this.state.data}
+                onRowClick={this.handleClick}
                 editable={{
                 }}
             />
+            <Modal
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={this.state.open}
+            onClose={this.handleClose}
+            >
+                <div className={classes.modal}>
+                    <ApplicantModal liveSeq={this.state.liveSeq} />
+                </div>
+            </Modal>
             </div>
         );
     }

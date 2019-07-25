@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, CssBaseline, Typography, Avatar, Grid, TextField, Button } from '@material-ui/core';
+import { Container, CssBaseline, TextField, Button } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
@@ -91,7 +91,7 @@ export default function Join(){
         // 공백 제거
         if(e.target.name!=='name' && e.target.name!=='area'
             && e.target.name!=='city' && e.target.name!=='ceoName'){
-            if((e.target.value).search(/\s/) != -1){
+            if((e.target.value).search(/\s/) !== -1){
                 e.target.value = e.target.value.replace(' ','')
             }
         }

@@ -21,7 +21,6 @@ class Pr extends React.Component {
                 { title: '스크랩 수', field: 'countScarp', type: 'numeric' },      
                 { title: '업로드일자', field: 'dateUpload'},
             ],
-
 /*             data: [
                 { title: '안녕하십니까 꼼꼼하고 성실한 인재입니다.', heart: '1', upload: '20190615'},
                 { title: '안녕하십니까 꼼꼼하고 성실한 인재입니다.', heart: '3', upload: '20180910'},
@@ -66,7 +65,6 @@ class Pr extends React.Component {
             }}
             onRowClick
             />
-            <div>{localStorage.getItem('authSeq')}</div>
             </div>
         );
     }
