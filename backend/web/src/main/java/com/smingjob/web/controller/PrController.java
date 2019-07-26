@@ -96,6 +96,7 @@ public class PrController {
         entity.setTagAttribute(dto.getTagAttribute());
         entity.setTagCareer(dto.getTagCareer());
         entity.setDateUpload(dto.getDateUpload());
+        entity.setUrl(dto.getUrl());
 
         // System.out.println("entity 저장:"+entity.toString());
         repo.save(entity);
@@ -119,7 +120,8 @@ public class PrController {
         entity.setTagAttribute(dto.getTagAttribute());
         entity.setTagCareer(dto.getTagCareer());
         entity.setDateUpload(dto.getDateUpload());
-
+        entity.setUrl(dto.getUrl());
+        
         // System.out.println("entity 저장:"+entity.toString());
         repo.save(entity);
         map.put("result", "SUCCESS");
