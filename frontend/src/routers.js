@@ -18,6 +18,7 @@ import CorporationPr from './corporation/Pr'
 import PRUpload from "./pr/PRUpload"
 import PRDetail from "./pr/Detail"
 import PR from "./pr/PR"
+import PRTest2 from "./pr/PRtest2"
 import Alive from "./alive/Alive" 
 
 
@@ -90,5 +91,9 @@ export const routerConfig = [
     {
         path: '/interview',
         component: Alive
+    },
+    {
+        path: '/test',
+        component: PRTest2
     },
 ]
