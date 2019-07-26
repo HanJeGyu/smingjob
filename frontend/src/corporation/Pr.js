@@ -35,6 +35,13 @@ class Pr extends React.Component {
         })
     }
 
+    delete(id) {
+        axios.delete("http://localhost:9000/scraps/" + id).then(res => {
+          alert('삭제완료')
+          window.location.reload();
+        });
+      }
+
     render(){
         let state = this.state;
         const { classes } = this.props
@@ -49,9 +56,7 @@ class Pr extends React.Component {
                             new Promise(resolve => {
                                 setTimeout(() => {
                                     resolve();
-                                    const data = [...this.state.data];
-                                    data.splice(data.indexOf(oldData), 1);
-                                    this.setState({ ...this.state, data });
+                                    this.delete(oldData.scrapSeq);
                                 }, 600);
                             }),
                     }}

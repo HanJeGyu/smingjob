@@ -34,8 +34,6 @@ public class Scrap implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long scrapSeq;
-
-    // @Column(name="itv_seq") private Long itvSeq;
     
     @JsonIgnore
     @ManyToOne

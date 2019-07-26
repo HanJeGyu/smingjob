@@ -97,7 +97,7 @@ export default class Main extends Component {
         <h1>Galleria</h1>
         <span>{this.state.test}</span>
 
-      {/* 기업만 아이콘들 보이게 처리해야함. */}
+      {/* 기업만 아이콘들 보이게 처리. */}
       {/* 이미 스크랩 했을 시 채워진 하트, 스크랩 한 적 없으면 빈 하트로 표시*/}
       {localStorage.getItem('authType') === '2' ?  this.state.countNum >= 1 ? (
           <FavoriteIcon
@@ -113,7 +113,7 @@ export default class Main extends Component {
             fontSize="large"
             onClick={this.SendScrap}
           />
-        ) : "interviewer" }
+        ) : "interviewer는 " }
 {/*         {this.state.countNum >= 1 ? (
           <FavoriteIcon
             className="favorite_icon"

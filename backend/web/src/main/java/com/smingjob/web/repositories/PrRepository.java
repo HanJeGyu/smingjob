@@ -22,7 +22,7 @@ public interface PrRepository extends JpaRepository<Pr, Long> {
     @Query("SELECT p.title as title, p.dateUpload as dateUpload, p.prSeq as prSeq ,(SELECT COUNT(s) FROM p.scraps s) AS count FROM Pr p WHERE p.itvSeq = ?1")
     public List<Map<String, Object>> findAllAndCount(Long itvSeq);
 
-    @Query("select p.name as name, p.title as title, s.dateScrap as dateScrap from Pr p join p.scraps s where s.corporation.corSeq = ?1")
+    @Query("select p.name as name, p.title as title, s.dateScrap as dateScrap, s.scrapSeq as scrapSeq from Pr p join p.scraps s where s.corporation.corSeq = ?1")
     public List<Map<String, Object>> corFindAllById(Long corSeq);
 
 }
