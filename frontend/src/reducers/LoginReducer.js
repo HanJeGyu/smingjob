@@ -1,23 +1,27 @@
-const LoginReducer = (state={authSeq:null}, action={}) => {
-    console.log("LoginReducer", state, action)
-    console.log(`authSeq : ${action.authSeq}`)
-    //console.log(`authId : ${action.authId}`)
-    //console.log(`authType : ${action.authType}`)
-    //console.log(`state : ${state.authSeq}`)
+const LoginReducer = (state={}, action={}) => {
+
     switch(action.type){
         case 'LOGIN':
             console.log(`로그인 진입`)
             state.authSeq = action.authSeq
-            //state.authId = action.authId
-            //state.authType = action.authType
-            return {authSeq: state.authSeq}
+            state.authId = action.authId
+            state.authType = action.authType
+            return {
+                authSeq: state.authSeq, 
+                authId: state.authId, 
+                authType: state.authType
+            }
         case 'LOGOUT':
             state.authSeq = null
             state.authId = null
             state.authType = null
-            return state
+            return {
+                authSeq: state.authSeq, 
+                authId: state.authId, 
+                authType: state.authType
+            }
         default:
-            return state
+            return {...state}
     }
 }
 

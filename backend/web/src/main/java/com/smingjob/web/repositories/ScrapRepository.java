@@ -15,4 +15,6 @@ public interface ScrapRepository extends JpaRepository<Scrap, Long>{
     @Query("SELECT COUNT(*) FROM Scrap WHERE cor_seq = ?1 AND pr_seq = ?2")
     public String checkCount(String corSeq, String prSeq);
     
+    @Query("SELECT scrapSeq FROM Scrap WHERE cor_seq = ?1 AND pr_seq = ?2")
+    public String getScrapSeq(String corSeq, String prSeq);
 }

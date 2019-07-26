@@ -3,9 +3,11 @@ package com.smingjob.web.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.smingjob.web.domain.PrDTO;
 import com.smingjob.web.enttites.Pr;
 import com.smingjob.web.repositories.PrRepository;
@@ -48,7 +50,9 @@ public class PrController {
         for (Pr s : entities) {
             PrDTO pr = modelMapper.map(s, PrDTO.class);
             list.add(pr);
+            // System.out.println(list);
         }
+
         return list;
     }
 
@@ -65,12 +69,29 @@ public class PrController {
 
 
     @GetMapping("{itvSeq}")
-    public List<Pr> findAllById(@PathVariable String itvSeq) {
-        List<Pr> entities = repo.findByItvSeq(Long.parseLong(itvSeq));
+    public List<Map<String, Object>> findAllAndCount(@PathVariable String itvSeq) {
+/*         List<Pr> entities = repo.findByItvSeq(Long.parseLong(itvSeq));
         for (Pr s : entities) {
-/*             System.out.println(s.get); */
-        }
-        return entities;
+        } */
+        return repo.findAllAndCount(Long.parseLong(itvSeq));
+    }
+
+
+    // 기업이 스크랩한 목록 불러옴
+    @GetMapping("/cor/{corSeq}")
+    public List<Map<String, Object>> findAllById(@PathVariable String corSeq) {
+        
+/*         List<Pr> entities = repo.corFindAllById(Long.parseLong(corSeq));
+        List<PrDTO> list = new ArrayList<>();
+        for (Pr s : entities) {
+            PrDTO pr = modelMapper.map(s, PrDTO.class);
+            list.add(pr);
+            System.out.println("list찍음======================="+list);
+            // System.out.println(list);
+         }
+         return list; */
+        // return repo.findAllAndCount(Long.parseLong(corSeq));
+        return repo.corFindAllById(Long.parseLong(corSeq));
     }
 
     @GetMapping("/PrDetail/{id}")

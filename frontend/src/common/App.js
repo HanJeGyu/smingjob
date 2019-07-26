@@ -5,8 +5,6 @@ import Footer from '../footer/Footer'
 import { routerConfig } from '../routers'
 import { Route } from 'react-router-dom'
 
-import Home from '../components/Home'
-
 function App() {
   return (
     <div className='wrapper'>

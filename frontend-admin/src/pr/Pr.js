@@ -7,7 +7,7 @@ export default class Pr extends Component {
   state = {
     pr: [],
     columns: [
-    //   { title: "No", field: "prSeq" },
+      //   { title: "No", field: "prSeq" },
       { title: "구직자ID", field: "itvId" },
       { title: "연락처", field: "phone" },
       { title: "제목", field: "title" },
@@ -28,11 +28,11 @@ export default class Pr extends Component {
       window.location.reload();
     });
   }
-  goDetail=(seq)=>{
-    console.log("seq:"+seq);
-    localStorage.pradminSeq=seq;
-    window.location = '/prDetail/'+localStorage.pradminSeq; 
-    } 
+  goDetail = seq => {
+    alert("seq:" + seq);
+    // localStorage.pradminSeq=seq;
+    window.location = "http://localhost:9000/prDetail/" + seq;
+  };
 
   render() {
     let state = this.state;
@@ -45,12 +45,15 @@ export default class Pr extends Component {
         <MaterialTable
           title="자기 PR 관리"
           columns={state.columns}
-          onRowClick="moodal"
+          // onRowClick="moodal"
           data={state.pr}
           style={style}
-          onRowClick={(event, rowData)=> { 
-            this.goDetail(rowData.prSeq);                  
+
+          onRowClick={(event, rowData) => {
+            alert('rowData'+ rowData.prSeq);
+            // this.goDetail(rowData.prSeq);
           }}
+
           editable={{
             onRowDelete: oldData =>
               new Promise(resolve => {

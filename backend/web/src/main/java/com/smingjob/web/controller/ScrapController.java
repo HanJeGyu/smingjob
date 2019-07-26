@@ -73,4 +73,13 @@ public class ScrapController {
         return repo.checkCount(corSeq, prSeq);
     }
 
+    @GetMapping("/getScrapSeq/{corSeq}/{prSeq}")
+    public String getScrapSeq(@PathVariable String corSeq, @PathVariable String prSeq) {
+        System.out.println("corSeq====="+corSeq);
+        System.out.println("prSeq======"+prSeq);
+        System.out.println("count====="+repo.checkCount(corSeq, prSeq));
+        return repo.getScrapSeq(corSeq, prSeq);
+    }
+    
+
 }

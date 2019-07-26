@@ -29,12 +29,12 @@ export default class Main extends Component {
        axios.get(`http://localhost:9000/prs/${seq}`)
        */
 
-    axios
+/*     axios
       .get("https://res.cloudinary.com/du6wt3fmd/image/list/mp4.json")
       .then(res => {
         console.log(res.data.resources);
         this.setState({ gallery: res.data.resources });
-      });
+      }); */
 
     // 만약 현재 기업 seq랑 현재 pr seq가 일치하는 데이터가 있으면
     //click을 true로 없으면 false로 셋팅함.
@@ -47,7 +47,6 @@ export default class Main extends Component {
   }
   
   SendScrap = () => {
-
     if (this.state.countNum < 1) {
       const data = {
         corSeq: this.state.corSeq,
@@ -63,21 +62,30 @@ export default class Main extends Component {
           headers: headers
         })
         .then(res => {
-          this.setState({scrapSeq : res.data});
-          localStorage.setItem('scrapSeq', res.data)
+          // this.setState({scrapSeq : res.data});
           this.setState({countNum : 1});
           alert("찜하기!");
         })
         .catch(e => {});
 
     } else {
-      axios
-        .delete(`http://localhost:9000/scraps/${localStorage.getItem('scrapSeq')}`)
-        .then(e => {
-          this.setState({countNum : 0});
-          alert("찜하기 취소");
+        axios
+        .get(`http://localhost:9000/scraps/getScrapSeq/${this.state.corSeq}/${this.state.prSeq}`)
+        .then(res => {
+           this.setState({scrapSeq : res.data }); 
+           axios
+           .delete(`http://localhost:9000/scraps/${this.state.scrapSeq}`)
+           .then(e => {
+             this.setState({countNum : 0});
+             alert("찜하기 취소");
+           })
+           .catch(e => {});
         })
-        .catch(e => {});
+        .catch(e=>{
+          alert("실패");
+        }) 
+      
+  
     }
   };
   uploadWidget() {
@@ -89,9 +97,9 @@ export default class Main extends Component {
         <h1>Galleria</h1>
         <span>{this.state.test}</span>
 
-      {/* 기업만 아이콘들 보이게 처리해야함. */}
+      {/* 기업만 아이콘들 보이게 처리. */}
       {/* 이미 스크랩 했을 시 채워진 하트, 스크랩 한 적 없으면 빈 하트로 표시*/}
-        {this.state.countNum >= 1 ? (
+      {localStorage.getItem('authType') === '2' ?  this.state.countNum >= 1 ? (
           <FavoriteIcon
             className="favorite_icon"
             color="error"
@@ -105,9 +113,24 @@ export default class Main extends Component {
             fontSize="large"
             onClick={this.SendScrap}
           />
-        )}
-
-        <StayCurrentPortraitIcon color="Primary" fontSize="large" />
+        ) : "interviewer는 " }
+{/*         {this.state.countNum >= 1 ? (
+          <FavoriteIcon
+            className="favorite_icon"
+            color="error"
+            fontSize="large"
+            onClick={this.SendScrap}
+          />
+        ) : (
+          <FavoriteBorderIcon
+            className="favorite_border_icon"
+            color="error"
+            fontSize="large"
+            onClick={this.SendScrap}
+          />
+        )} */}
+        {localStorage.getItem('authType') === '2' ? <StayCurrentPortraitIcon color="Primary" fontSize="large" /> : '안보이지롱'}
+        {/* <StayCurrentPortraitIcon color="Primary" fontSize="large" /> */}
 
         {/*                 <div className="gallery">
                     <CloudinaryContext cloudName="du6wt3fmd">

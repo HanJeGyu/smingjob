@@ -9,16 +9,9 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
-import BusinessIcon from "@material-ui/icons/Business";
-import PersonIcon from "@material-ui/icons/Person";
-import OndemandVideoIcon from "@material-ui/icons/OndemandVideo";
 import VoiceChatIcon from "@material-ui/icons/VoiceChat"; //ALIVE
-import SlideshowIcon from "@material-ui/icons/Slideshow"; //PR
-import ListAltIcon from "@material-ui/icons/ListAlt"; //공고
-import RecordVoiceOverIcon from "@material-ui/icons/RecordVoiceOver";  //ALIVE
 import PanToolIcon from "@material-ui/icons/PanTool"; //PR
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive"; //공고
-import SwitchVideoIcon from "@material-ui/icons/SwitchVideo"; //ALIVE
 import HomeIcon from "@material-ui/icons/Home"; //Home
 import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer"; //FAQ
 
@@ -96,7 +89,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Navbar = () => {
+const Navbar = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -113,6 +106,7 @@ const Navbar = () => {
     localStorage.removeItem('authSeq')
     localStorage.removeItem('authId')
     localStorage.removeItem('authType')
+    //this.props.history.push('/')
     document.location.href = '/'
   }
 
@@ -138,8 +132,8 @@ const Navbar = () => {
           <Typography variant="h6" className={classes.title} noWrap>
             JOB A LIVE
           </Typography>
-          {localStorage.getItem('authId') ? 
-            <Button color="inherit" onClick={handleLogout}>Logout</Button> 
+          {localStorage.getItem('authSeq') ? 
+            <Button color="inherit" onClick={handleLogout}>Logout</Button>
             : <p><Button color="inherit" href="/login">Login</Button><Button color="inherit" href="/join">Join</Button></p>}
           {localStorage.getItem('authId') && (
             <Account></Account>
