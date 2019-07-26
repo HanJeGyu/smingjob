@@ -15,8 +15,6 @@ import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive"; //
 import HomeIcon from "@material-ui/icons/Home"; //Home
 import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer"; //FAQ
 
-import { connect } from 'react-redux'
-
 import Account from './Account'
 
 const drawerWidth = 240;
@@ -95,7 +93,6 @@ const Navbar = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const {auth} = props
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -106,10 +103,11 @@ const Navbar = (props) => {
   }
   
   function handleLogout(){
-    props.dispatch({
-      type:'LOGOUT'
-      })
+    localStorage.removeItem('authSeq')
+    localStorage.removeItem('authId')
+    localStorage.removeItem('authType')
     //this.props.history.push('/')
+    document.location.href = '/'
   }
 
   return (
@@ -134,11 +132,11 @@ const Navbar = (props) => {
           <Typography variant="h6" className={classes.title} noWrap>
             JOB A LIVE
           </Typography>
-          {auth.authSeq ? 
+          {localStorage.getItem('authSeq') ? 
             <Button color="inherit" onClick={handleLogout}>Logout</Button>
             : <p><Button color="inherit" href="/login">Login</Button><Button color="inherit" href="/join">Join</Button></p>}
-          {auth.authId && (
-            <Account authType={auth.authType}></Account>
+          {localStorage.getItem('authId') && (
+            <Account></Account>
           )}
         </Toolbar>
       </AppBar>
@@ -195,8 +193,4 @@ const Navbar = (props) => {
   );
 };
 
-const mapStateToProps=({loginReducer})=>{
-  return {auth:loginReducer}
-}
-
-export default connect(mapStateToProps)(Navbar);
+export default Navbar;

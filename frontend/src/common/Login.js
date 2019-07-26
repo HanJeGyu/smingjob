@@ -64,17 +64,18 @@ class Login extends React.Component {
         axios.post(`${url}/login`, JSON.stringify(data), {headers: headers})
         .then(res=>{
           alert(`${res.data.name} 님 환영합니다.`)
-          this.props.dispatch({
+/*           this.props.dispatch({
             type:'LOGIN', 
             authSeq: res.data.itvSeq, 
             authId: res.data.itvId,
             authType: this.state.value
             })
-          this.props.history.push('/')
-/*          localStorage.setItem('authSeq', res.data.itvSeq)
+          this.props.history.push('/') */
+          localStorage.setItem('authSeq', res.data.itvSeq)
           localStorage.setItem('authId', res.data.itvId)
-          localStorage.setItem('authType', this.value)
-          document.location.href = '/' */
+          localStorage.setItem('authType', this.state.value)
+          document.location.href='/'
+          //this.props.history.push('/')
         })
         .catch(e=>{
           alert('가입된 회원정보를 찾지 못했습니다.')
@@ -88,17 +89,18 @@ class Login extends React.Component {
         axios.post(`${url}/login`, JSON.stringify(data), {headers: headers})
         .then(res=>{
           alert(`${res.data.name} 님 환영합니다.`)
-          this.props.dispatch({
+/*           this.props.dispatch({
             type:'LOGIN', 
             authSeq: res.data.corSeq, 
             authId: res.data.corId,
             authType: this.state.value
             })
-          this.props.history.push('/')
-/*           localStorage.setItem('authSeq', res.data.corSeq)
+          this.props.history.push('/') */
+          localStorage.setItem('authSeq', res.data.corSeq)
           localStorage.setItem('authId', res.data.corId)
-          localStorage.setItem('authType', this.value)
-          document.location.href = '/' */
+          localStorage.setItem('authType', this.state.value)
+          document.location.href='/'
+          //this.props.history.push('/')
         })
         .catch(e=>{
           alert('가입된 회원정보를 찾지 못했습니다.')

@@ -1,4 +1,5 @@
 const LoginReducer = (state={}, action={}) => {
+
     switch(action.type){
         case 'LOGIN':
             console.log(`로그인 진입`)
@@ -20,7 +21,7 @@ const LoginReducer = (state={}, action={}) => {
                 authType: state.authType
             }
         default:
-            return state
+            return {...state}
     }
 }
 

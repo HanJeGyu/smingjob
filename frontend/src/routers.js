@@ -2,7 +2,7 @@ import React from "react";
 import {Redirect} from "react-router-dom";
 
 /* views */
-import Home from './components/Home'
+import Home from './common/Home'
 import Notice from './notice/Notice'
 import Login from './common/Login'
 

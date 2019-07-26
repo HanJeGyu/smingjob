@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     }
     }));
 
-const Account = ({authType}) => {
+const Account = () => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [subOnOff, setSubOnOff] = React.useState(false);
@@ -59,7 +59,7 @@ const Account = ({authType}) => {
             >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleSubOnOff}>My account{subOnOff ? <ExpandLess /> : <ExpandMore />}</MenuItem>
-                {authType==="1" ? 
+                {localStorage.getItem('authType')==="1" ? 
                 <Collapse in={subOnOff} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <Link href="/interviewerNotice" underline="none" color="inherit">
