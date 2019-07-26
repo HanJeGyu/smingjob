@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,10 +37,12 @@ public class Scrap implements Serializable{
 
     // @Column(name="itv_seq") private Long itvSeq;
     
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="cor_seq") 
     private Corporation corporation;
     
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="pr_seq") 
     private Pr pr;
