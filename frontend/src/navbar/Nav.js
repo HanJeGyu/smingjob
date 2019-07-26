@@ -9,18 +9,13 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
-import BusinessIcon from "@material-ui/icons/Business";
-import PersonIcon from "@material-ui/icons/Person";
-import OndemandVideoIcon from "@material-ui/icons/OndemandVideo";
 import VoiceChatIcon from "@material-ui/icons/VoiceChat"; //ALIVE
-import SlideshowIcon from "@material-ui/icons/Slideshow"; //PR
-import ListAltIcon from "@material-ui/icons/ListAlt"; //공고
-import RecordVoiceOverIcon from "@material-ui/icons/RecordVoiceOver";  //ALIVE
 import PanToolIcon from "@material-ui/icons/PanTool"; //PR
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive"; //공고
-import SwitchVideoIcon from "@material-ui/icons/SwitchVideo"; //ALIVE
 import HomeIcon from "@material-ui/icons/Home"; //Home
 import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer"; //FAQ
+
+import { connect } from 'react-redux'
 
 import Account from './Account'
 
@@ -96,10 +91,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Navbar = () => {
+const Navbar = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const {auth} = props
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -110,10 +106,10 @@ const Navbar = () => {
   }
   
   function handleLogout(){
-    localStorage.removeItem('authSeq')
-    localStorage.removeItem('authId')
-    localStorage.removeItem('authType')
-    document.location.href = '/'
+    props.dispatch({
+      type:'LOGOUT'
+      })
+    //this.props.history.push('/')
   }
 
   return (
@@ -138,11 +134,11 @@ const Navbar = () => {
           <Typography variant="h6" className={classes.title} noWrap>
             JOB A LIVE
           </Typography>
-          {localStorage.getItem('authId') ? 
-            <Button color="inherit" onClick={handleLogout}>Logout</Button> 
+          {auth.authSeq ? 
+            <Button color="inherit" onClick={handleLogout}>Logout</Button>
             : <p><Button color="inherit" href="/login">Login</Button><Button color="inherit" href="/join">Join</Button></p>}
-          {localStorage.getItem('authId') && (
-            <Account></Account>
+          {auth.authId && (
+            <Account authType={auth.authType}></Account>
           )}
         </Toolbar>
       </AppBar>
@@ -199,4 +195,8 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps=({loginReducer})=>{
+  return {auth:loginReducer}
+}
+
+export default connect(mapStateToProps)(Navbar);
