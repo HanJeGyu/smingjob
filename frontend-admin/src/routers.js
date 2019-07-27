@@ -3,6 +3,7 @@ import {Redirect} from "react-router-dom";
 
 /* views */
 
+import Home from './common/Home'
 import Login from './common/Login'
 import CorporationAdmin from './admin/Corporation'
 import InterviewerAdmin from "./admin/Interviewer"
@@ -25,12 +26,12 @@ export const routerConfig = [
     {
         path: '/',
         exact: true,
-        component: () => <Redirect to="/login" />
+        component: () => <Redirect to="/home" />
     },
-/*     {
+    {
         path: '/home',
         component: Home
-    }, */
+    },
     {
         path: '/noticeDetail',
         component: NoticeDetail

@@ -27,6 +27,7 @@ import lombok.Setter;
 
 public class Alive implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long liveSeq;

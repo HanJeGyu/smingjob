@@ -140,3 +140,11 @@ CREATE TABLE awaiter
     PRIMARY KEY (awaiter_seq)
 )DEFAULT CHARSET=utf8;
 
+/* 관리자 테이블 */
+CREATE TABLE manager
+(
+    manager_seq     BIGINT          NOT NULL    AUTO_INCREMENT COMMENT '관리자SEQ',
+    manager_id      VARCHAR(50)     NOT NULL    COMMENT '관리자ID',
+    pwd             VARCHAR(50)     NOT NULL    COMMENT '비밀번호',
+    PRIMARY KEY (manager_seq)
+)DEFAULT CHARSET=utf8;

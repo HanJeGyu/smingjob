@@ -36,36 +36,32 @@ export default function Login() {
   const classes = useStyles();
   const [value, setValue] = useState('1')
 
-  function handleChange(event){
-    setValue(event.target.value)
+  function handleChange(e){
+    setValue(e.target.value)
   }
 
-  function handleSubmit(event) {
-    event.preventDefault(event);
-    console.log(`회원종류 1: 개인회원, 2: 기업회원 \n선택된 라디오버튼${value}`)
-    let url = ''
-    if(value==='1'){
-      url = 'http://localhost:9001/interviewers'
-    }else if(value==='2'){
-      url = 'http://localhost:9001/corporations'
-    }else{
-      alert('선택값 오류')
-    }
+  function handleSubmit(e) {
+    e.preventDefault();
     const data = {
-      itvId: event.target.itvId.value,
-      pwd: event.target.pwd.value
+      managerId: e.target.itvId.value,
+      pwd: e.target.pwd.value
     }
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': 'JWT fefege..'
     }
-    axios.post(`${url}/login`, JSON.stringify(data), {headers: headers})
+    axios.post(`http://localhost:9001/managers/login`, JSON.stringify(data), {headers: headers})
       .then(res=>{
-        alert(`${res.data.itvId} 님 환영합니다.`)
-/*         this.props.history.push('/home'); */
+        if(res.data!==''){
+          alert(`${res.data.managerId} 님 환영합니다.`)
+          localStorage.setItem('authId', res.data.managerId)
+          document.location.href='/'
+        }else{
+          alert('아이디 또는 비밀번호가 바르지 않습니다.')
+        }
       })
       .catch(e=>{
-        alert('로그인에 실패하였습니다.')
+        alert('가입된 회원정보를 찾지 못했습니다.')
       })
   }
 
@@ -79,13 +75,6 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           Admin Login
         </Typography>
-        <RadioGroup
-          name="selection"
-          value={value}
-          onChange={handleChange}
-          row
-        >
-        </RadioGroup>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"

@@ -104,7 +104,7 @@ public class CorporationController {
       try {
          return modelMapper.map(repo.findByCorIdAndPwd(rdto.getCorId(), rdto.getPwd()), CorporationDTO.class);
       } catch (Exception e) {
-         return dto;
+         return null;
       }
    }
 

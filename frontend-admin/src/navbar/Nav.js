@@ -6,39 +6,18 @@ import {
   Drawer,
   CssBaseline,
   AppBar,
-  List,
   Typography,
   Divider,
   IconButton,
-  ListItem,
-  ListItemText,
-  MenuItem,
-  ListItemIcon,
-  Link,
-  Menu,
   Button,
-  ListSubheader,
   Toolbar,
-  Collapse
 } from "@material-ui/core";
 import { red, deepPurple, blue } from "@material-ui/core/colors";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import AssignmentIcon from "@material-ui/icons/Assignment";
-import PetsIcon from "@material-ui/icons/Pets";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import BusinessIcon from "@material-ui/icons/Business";
-import PersonIcon from "@material-ui/icons/Person";
-import OndemandVideoIcon from "@material-ui/icons/OndemandVideo";
-import VoiceChatIcon from "@material-ui/icons/VoiceChat"; //ALIVE
-import SlideshowIcon from "@material-ui/icons/Slideshow"; //PR
-import ListAltIcon from "@material-ui/icons/ListAlt"; //공고
-import RecordVoiceOverIcon from "@material-ui/icons/RecordVoiceOver"; //ALIVE
-import PanToolIcon from "@material-ui/icons/PanTool"; //PR
-import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive"; //공고
-import SwitchVideoIcon from "@material-ui/icons/SwitchVideo"; //ALIVE
-import HomeIcon from "@material-ui/icons/Home"; 
+
+import NavSide from './NavSide'
 
 const drawerWidth = 240;
 
@@ -105,10 +84,6 @@ const useStyles = makeStyles(theme => ({
   },
   nested: {
     paddingLeft: theme.spacing(4)
-  },
-  list_item: {
-    paddingTop: 20,
-    paddingBottom: 20
   }
 }));
 
@@ -116,10 +91,6 @@ const Navbar = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [subOnOff, setSubOnOff] = React.useState(false);
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const openEl = Boolean(anchorEl);
 
   function handleDrawerOpen() {
     setOpen(true);
@@ -128,21 +99,16 @@ const Navbar = () => {
   function handleDrawerClose() {
     setOpen(false);
   }
-  function handleMenu(event) {
-    setAnchorEl(event.currentTarget);
-  }
 
-  function handleClose() {
-    setAnchorEl(null);
-  }
-
-  function handleSubOnOff() {
-    setSubOnOff(!subOnOff);
+  function handleLogout(){
+    localStorage.removeItem('authId')
+    document.location.href = '/'
   }
 
   return (
     <div className={classes.root}>
       <CssBaseline />
+      {localStorage.getItem('authId') ?
       <AppBar
         position="static" //fixed에서 변경
         className={clsx(classes.appBar, {
@@ -162,8 +128,10 @@ const Navbar = () => {
           <Typography variant="h6" className={classes.title} noWrap>
             JOB A LIVE 관리자
           </Typography>
+          <Button color="inherit" onClick={handleLogout}>Logout</Button>
         </Toolbar>
       </AppBar>
+      : <p/>}
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -184,45 +152,8 @@ const Navbar = () => {
         </div>
         <Divider />
         {/* <ListSubheader inset>Admin</ListSubheader> */}
-        <List>
-          {["Home", "PR", "Alive", "Corporation", "Interviewer", "Notice"].map(
-            (text, index) => (
-              <ListItem
-                button
-                component="a"
-                href={'/' +text + "Admin"}
-                className={classes.list_item}
-              >
-                {
-                  <ListItemIcon>
-                    {index === 0 ? (
-                      <HomeIcon />
-                    ) : index === 1 ? (
-                      <PanToolIcon />
-                    ) : index === 2 ? (
-                      <VoiceChatIcon />
-                    ) : index === 3 ? (
-                      <BusinessIcon />
-                    ) : index === 4 ? (
-                      <PersonIcon />
-                    ) : (
-                      <NotificationsActiveIcon />
-                    )}
-                  </ListItemIcon>
-                }
-                <ListItemText primary={text} />
-              </ListItem>
-            )
-          )}
-        </List>
+        <NavSide/>
       </Drawer>
-      {/* <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open
-        })}
-      >
-        <div className={classes.drawerHeader} />
-      </main> */}
     </div>
   );
 };
