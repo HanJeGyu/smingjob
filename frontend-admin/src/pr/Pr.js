@@ -31,7 +31,7 @@ export default class Pr extends Component {
   goDetail = seq => {
     alert("seq:" + seq);
     // localStorage.pradminSeq=seq;
-    window.location = "http://localhost:9000/prDetail/" + seq;
+    window.open("http://localhost:3000/prDetail/" + seq, '_blank');
   };
 
   render() {
@@ -51,7 +51,7 @@ export default class Pr extends Component {
 
           onRowClick={(event, rowData) => {
             alert('rowData'+ rowData.prSeq);
-            // this.goDetail(rowData.prSeq);
+            this.goDetail(rowData.prSeq);
           }}
 
           editable={{

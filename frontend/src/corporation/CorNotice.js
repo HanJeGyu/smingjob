@@ -75,6 +75,12 @@ class CorNotice extends React.Component {
         this.setState({open:false})
     };
 
+    goDetail = noticeSeq => {
+        alert("seq:" + noticeSeq);
+        // localStorage.pradminSeq=seq;
+        window.open("/NoticeDetail/" + noticeSeq, '_blank');
+      };
+
     render(){
         const { classes } = this.props
         
@@ -85,7 +91,11 @@ class CorNotice extends React.Component {
                 title="공고목록"
                 columns={this.state.columns}
                 data={this.state.data}
-                onRowClick={this.handleClick}
+                onRowClick={(event, rowData) => {
+                    alert('rowData'+ rowData.noticeSeq);
+                    this.goDetail(rowData.noticeSeq);
+                  }}
+
                 editable={{
                 }}
             />

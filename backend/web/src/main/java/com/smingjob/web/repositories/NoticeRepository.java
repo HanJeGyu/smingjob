@@ -16,7 +16,7 @@ public interface NoticeRepository extends JpaRepository<Notice, Long>{
     /* public Optional<Notice> findByTitle(String title); */
     public Optional<Notice> findByNoticeSeq(Long noticeSeq);
 
-    @Query("SELECT n.title AS title, n.startDate AS noticeStartDate, "
+    @Query("SELECT n.noticeSeq AS noticeSeq, n.title AS title, n.startDate AS noticeStartDate, "
         + "n.startTime AS noticeStartTime, a.startDate AS aliveStartDate, "
         + "a.startTime AS aliveStartTime, a.state AS state, a.liveSeq AS liveSeq "
         + "FROM Notice n JOIN n.alive a "

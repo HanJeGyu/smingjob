@@ -94,8 +94,7 @@ export default class Main extends Component {
   render() {
     return (
       <div className="main">
-        <h1>Galleria</h1>
-        <span>{this.state.test}</span>
+        <h1>자기 PR + {this.state.prSeq}</h1>
 
       {/* 기업만 아이콘들 보이게 처리. */}
       {/* 이미 스크랩 했을 시 채워진 하트, 스크랩 한 적 없으면 빈 하트로 표시*/}
