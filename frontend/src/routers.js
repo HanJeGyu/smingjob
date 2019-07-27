@@ -15,7 +15,7 @@ import InterviewerPr from './interviewer/Pr'
 import CorporationNotice from './corporation/CorNotice'
 import CorporationModify from './corporation/Modify'
 import CorporationPr from './corporation/Pr'
-import PRUpload from "./pr/PRUpload"
+import PRUpload from "./pr/PrUpload"
 import PRDetail from "./pr/Detail"
 import PR from "./pr/PR"
 import PRTest2 from "./pr/PRtest2"
