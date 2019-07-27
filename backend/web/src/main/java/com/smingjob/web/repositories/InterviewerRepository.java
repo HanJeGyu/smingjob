@@ -33,20 +33,5 @@ public interface InterviewerRepository extends JpaRepository<Interviewer, Long>{
         + "  WHERE itvId = ?1")
     public void updateByItvId(String itvId, String pwd, String name, String phone, 
                                 String email, String area, String location);
- 
-    //NativeQuery
-/*     @Modifying
-    @Transactional
-    @Query(value="UPDATE interviewer"
-                + "  SET pwd = ?2, "
-                + "      name = ?3, "
-                + "      phone = ?4, "
-                + "      email = ?5, "
-                + "      area = ?6, "
-                + "      location = ?7 "
-                + "WHERE itv_id = ?1", nativeQuery = true)
-    public void updateByItvId(String itvId, String pwd, String name, String phone, 
-                                String email, String area, String location); */
-    
 
 }

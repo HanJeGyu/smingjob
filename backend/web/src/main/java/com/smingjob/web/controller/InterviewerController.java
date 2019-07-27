@@ -73,29 +73,6 @@ public class InterviewerController {
       return modelMapper.map(repo.findByItvSeq(Long.parseLong(itvSeq)).get(), InterviewerDTO.class);
    }
 
-   @PostMapping("/upload")
-   public HashMap<String, String> save(@RequestBody InterviewerDTO dto) {
-      // System.out.println("업로드"+dto.toString());
-      HashMap<String, String> map = new HashMap<>();
-
-      // private String itvId, pwd, name, birth, phone, email, area, location,
-      // dateJoin;
-      Interviewer entity = new Interviewer();
-      entity.setItvId(dto.getItvId());
-      entity.setPwd(dto.getPwd());
-      entity.setName(dto.getName());
-      entity.setBirth(dto.getBirth());
-      entity.setPhone(dto.getPhone());
-      entity.setEmail(dto.getEmail());
-      entity.setArea(dto.getArea());
-      entity.setLocation(dto.getLocation());
-
-      // System.out.println("entity 저장:"+entity.toString());
-      repo.save(entity);
-      map.put("result", "SUCCESS");
-      return map;
-   }
-
    @PutMapping("/modify")
    public HashMap<String, String> modify(@RequestBody InterviewerDTO rdto) {
       HashMap<String, String> map = new HashMap<>();
@@ -108,11 +85,9 @@ public class InterviewerController {
    @PostMapping("/login")
    public InterviewerDTO login(@RequestBody InterviewerDTO rdto) {
       try {
-/*          Predicate<Interviewer> predicate;
-         boolean re = predicate.test(repo.findByItvId((rdto.getItvId())).; */
          return modelMapper.map(repo.findByItvIdAndPwd(rdto.getItvId(), rdto.getPwd()), InterviewerDTO.class);
       } catch (Exception e) {
-         return dto;
+         return null;
       }
    }
 

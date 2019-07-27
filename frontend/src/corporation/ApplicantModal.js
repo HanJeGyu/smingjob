@@ -21,7 +21,7 @@ class ApplicantModal extends React.Component {
       this.state={
           columns: [
             { title: '면접자명', field: 'name' },
-            { field: 'numOnOff', emptyValue: '연락처보기' },
+            { field: 'numOnOff', emptyValue: '연락처보기', cellStyle: {width: 250} },
             { title: '연락처', field: 'phone', hidden: true },
             { title: '면접자SEQ', field: 'itvSeq', hidden: true },
           ],
@@ -80,7 +80,7 @@ class ApplicantModal extends React.Component {
           <div className={classes.tableWrapper} >
               <MaterialTable
                   className={classes.table}
-                  title="지원목록"
+                  title="면접자 목록"
                   columns={this.state.columns}
                   data={this.state.data}
                   onRowClick={this.handleClick}
