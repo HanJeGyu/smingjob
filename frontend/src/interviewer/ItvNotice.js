@@ -40,6 +40,10 @@ class ItvNotice extends React.Component {
         })
     }
 
+    handleClick=(e, rowData)=>{
+        
+    }
+
     render(){
         const { classes } = this.props
         return (
@@ -49,6 +53,7 @@ class ItvNotice extends React.Component {
                     title="지원목록"
                     columns={this.state.columns}
                     data={this.state.data}
+                    onRowClick={this.handleClick}
                     editable={{
                     }}
                 />

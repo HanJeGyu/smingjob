@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import { Container, CssBaseline, Grid, TextField, Button, Box } from '@material-ui/core';
+import { Container, CssBaseline, Grid, TextField, Button, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 
@@ -156,6 +156,7 @@ class Modify extends React.Component {
             axios.put(`http://localhost:9000/interviewers/modify`,JSON.stringify(data),{headers: headers})
                 .then(res=>{
                     alert('회원정보가 수정 되었습니다.')
+                    this.props.history.push('/')
                 })
                 .catch(e=>{
                     alert('회원정보 수정되지 못했습니다.')
@@ -166,145 +167,115 @@ class Modify extends React.Component {
     render(){
         const { classes } = this.props
         return(
-            <Container component="main" maxWidth="lg">
+            <Container component="main" maxWidth="sm">
                 <CssBaseline/>
                 <form className={classes.form} noValidate onSubmit={this.handleSubmit} onChange={this.handleChange}>
-                    <Grid container>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                이름
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                    <Typography variant="h6" gutterBottom>
+                        회원정보 수정 
+                    </Typography> 
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} sm={12}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="이름"
                                 id="name"
                                 name="name"
                                 value={this.state.name}
+                                inputProps={{maxLength: 16}}
                                 autoFocus
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                아이디
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="아이디"
                                 id="itvId"
                                 name="itvId"
                                 value={this.state.itvId}
                                 disabled
                             />
-                        </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                비밀번호
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        </Grid> 
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="비밀번호"
                                 id="pwd"
                                 name="pwd"
                                 value={this.state.pwd}
+                                inputProps={{maxLength: 18}}
                                 type="password"
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                생년월일
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="생년월일"
                                 id="birth"
                                 name="birth"
                                 value={this.state.birth}
                                 disabled
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                휴대폰번호
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="휴대폰번호"
                                 id="phone"
                                 name="phone"
-                                inputProps={{maxLength: 13}}
                                 value={this.state.phone}
+                                inputProps={{maxLength: 13}}
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                이메일주소
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={12}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="이메일주소"
                                 id="email"
                                 name="email"
                                 value={this.state.email}
+                                inputProps={{maxLength: 97}}
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                산업/직군
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={12}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="희망산업/직군"
                                 id="area"
                                 name="area"
                                 value={this.state.area}
+                                inputProps={{maxLength: 33}}
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                희망근무지
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={12}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="희망근무지"
                                 id="location"
                                 name="location"
                                 value={this.state.location}
+                                inputProps={{maxLength: 33}}
                             />
                         </Grid>
                     </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        수정하기
-                    </Button>
+                    <Grid xs={12} sm={12}>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                        >
+                            수정하기
+                        </Button>
+                    </Grid>
                 </form>
             </Container>
         )

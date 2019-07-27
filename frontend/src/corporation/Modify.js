@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import { Container, CssBaseline, Grid, TextField, Button, Box } from '@material-ui/core';
+import { Container, CssBaseline, Grid, TextField, Button, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 
@@ -159,180 +159,118 @@ class Modify extends React.Component {
     render(){
         const { classes } = this.props
         return(
-            <Container component="main" maxWidth="lg">
+            <Container component="main" maxWidth="md">
                 <CssBaseline/>
                 <form className={classes.form} noValidate onSubmit={this.handleSubmit} onChange={this.handleChange}>
-                    <Grid container>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                사업자등록번호
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                    <Typography variant="h6" gutterBottom>
+                        정보 수정 
+                    </Typography> 
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="사업자등록번호"
                                 id="corRegNo"
                                 name="corRegNo"
                                 value={this.state.corRegNo}
                                 disabled
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                회사명
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="회사명"
                                 id="name"
                                 name="name"
                                 value={this.state.name}
                                 inputProps={{maxLength: 33}}
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                대표명
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
-                                id="ceoName"
-                                name="ceoName"
-                                value={this.state.ceoName}
-                                inputProps={{maxLength: 16}}
-                            />
-                        </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                업종
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
-                                fullWidth
-                                margin="normal"
-                                variant="outlined"
+                                label="업종"
                                 id="area"
                                 name="area"
                                 value={this.state.area}
                                 inputProps={{maxLength: 33}}
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                지역
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="지역"
                                 id="city"
                                 name="city"
                                 value={this.state.city}
                                 inputProps={{maxLength: 33}}
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                홈페이지
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={12}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="홈페이지"
                                 id="homepage"
                                 name="homepage"
                                 value={this.state.homepage}
                                 inputProps={{maxLength: 99}}
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                가입자명
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="가입자명"
                                 id="pmName"
                                 name="pmName"
                                 value={this.state.pmName}
                                 inputProps={{maxLength: 16}}
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                가입자연락처
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="가입자연락처"
                                 id="pmPhone"
                                 name="pmPhone"
                                 value={this.state.pmPhone}
                                 inputProps={{maxLength: 13}}
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                가입자이메일
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={12}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="가입자이메일"
                                 id="pmEmail"
                                 name="pmEmail"
                                 value={this.state.pmEmail}
                                 inputProps={{maxLength: 97}}
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                아이디
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="아이디"
                                 id="corId"
                                 name="corId"
                                 value={this.state.corId}
                                 disabled
                             />
                         </Grid>
-                        <Grid sm={1}>
-                            <Box lineHeight={6}>
-                                비밀번호
-                            </Box>
-                        </Grid>
-                        <Grid sm={11}>
-                            <TextField
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
                                 fullWidth
                                 margin="normal"
-                                variant="outlined"
+                                label="비밀번호"
                                 id="pwd"
                                 name="pwd"
                                 value={this.state.pwd}
@@ -340,6 +278,7 @@ class Modify extends React.Component {
                                 type="password"
                             />
                         </Grid>
+                        
                     </Grid>
                     <Button
                         type="submit"
