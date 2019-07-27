@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 public interface PrRepository extends JpaRepository<Pr, Long> {
 
     public List<Pr> findByItvSeq(Long itvSeq);
+    public List<Pr> findByPrSeq(Long prSeq);
 
     @Query("select p from Pr p where p.title like %?1% or p.content like %?1% or p.name like %?1% "
             + "or p.prLocation like %?1%  or p.tagLocation like %?1% or p.tagAttribute like %?1% "

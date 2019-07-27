@@ -23,4 +23,6 @@ public interface ApplicantRepository extends JpaRepository<Applicant, Long>{
 
     @Query("select count(a) from Applicant a where a.itvSeq =?1 and a.notice.noticeSeq =?2")
     public String countApply(Long itvSeq, Long noticeSeq);
+
+    
 }

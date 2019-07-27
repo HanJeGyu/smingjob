@@ -1,6 +1,10 @@
 package com.smingjob.web.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,10 +98,11 @@ public class PrController {
         return repo.corFindAllById(Long.parseLong(corSeq));
     }
 
-    @GetMapping("/PrDetail/{id}")
-    public PrDTO findById(@PathVariable String id) {
-        return modelMapper.map(repo.findById(Long.parseLong(id)).orElseThrow(EntityNotFoundException::new),
-                PrDTO.class);
+    @GetMapping("/PrDetail/{prSeq}")
+    public PrDTO findByPrSeq(@PathVariable String prSeq) {
+        System.out.println("prSeq:"+prSeq);       
+        return modelMapper.map(repo.findByPrSeq(Long.parseLong(prSeq)).get(0), PrDTO.class);
+        
     }
 
     @PostMapping("/upload")
@@ -106,7 +111,10 @@ public class PrController {
         HashMap<String, String> map = new HashMap<>();
         
         Pr entity = new Pr();
-        entity.setPrSeq(dto.getPrSeq());
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+        String date = df.format(cal.getTime());
+        
         entity.setItvSeq(dto.getItvSeq());
         entity.setPhone(dto.getPhone());
         entity.setName(dto.getName());
@@ -116,7 +124,8 @@ public class PrController {
         entity.setTagLocation(dto.getTagLocation());
         entity.setTagAttribute(dto.getTagAttribute());
         entity.setTagCareer(dto.getTagCareer());
-        entity.setDateUpload(dto.getDateUpload());
+        entity.setPrLocation(dto.getPrLocation());
+        entity.setDateUpload(date);
         entity.setUrl(dto.getUrl());
 
         // System.out.println("entity 저장:"+entity.toString());

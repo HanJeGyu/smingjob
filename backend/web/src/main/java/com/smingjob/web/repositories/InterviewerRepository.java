@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface InterviewerRepository extends JpaRepository<Interviewer, Long>{
 
     public Optional<Interviewer> findByItvId(String itvId);
+    public Optional<Interviewer> findByItvSeq(Long itvSeq);
     public Interviewer findByItvIdAndPwd(String itvId, String pwd);
 
     //JPQL

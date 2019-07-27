@@ -10,7 +10,8 @@ var storage = multer.diskStorage({
     cb(null, 'public')
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' +file.originalname )
+    name = Date.now() + '-' +file.originalname
+    cb(null, name )
   }
 })
 
@@ -24,8 +25,9 @@ app.post('/upload',function(req, res) {
            } else if (err) {
                return res.status(500).json(err)
            }
-      return res.status(200).send(req.file)
-
+      return res.status(200).send(req.file),
+      console.log("filename:"+req.file.filename)
+      
     })
 
 });

@@ -67,6 +67,11 @@ public class InterviewerController {
       public InterviewerDTO findByItvId(@PathVariable String itvid) {
       return modelMapper.map(repo.findByItvId(itvid).get(), InterviewerDTO.class);
    }
+   
+   @GetMapping("/pr/{itvSeq}")
+      public InterviewerDTO findByItvSeq(@PathVariable String itvSeq) {
+      return modelMapper.map(repo.findByItvSeq(Long.parseLong(itvSeq)).get(), InterviewerDTO.class);
+   }
 
    @PostMapping("/upload")
    public HashMap<String, String> save(@RequestBody InterviewerDTO dto) {
