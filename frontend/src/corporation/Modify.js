@@ -130,30 +130,55 @@ class Modify extends React.Component {
 
     handleSubmit=(e)=>{
         e.preventDefault();
-        const data = {
-            corId: e.target.corId.value,
-            pwd: e.target.pwd.value,
-            name: e.target.name.value,
-            ceoName: e.target.ceoName.value,
-            area: e.target.area.value,
-            pmName: e.target.pmName.value,
-            pmPhone: e.target.pmPhone.value,
-            pmEmail: e.target.pmEmail.value,
-            city: e.target.city.value,
-            homepage: e.target.homepage.value
+        if(document.activeElement.id==='modify'){
+            const data = {
+                corId: e.target.corId.value,
+                pwd: e.target.pwd.value,
+                name: e.target.name.value,
+                ceoName: e.target.ceoName.value,
+                area: e.target.area.value,
+                pmName: e.target.pmName.value,
+                pmPhone: e.target.pmPhone.value,
+                pmEmail: e.target.pmEmail.value,
+                city: e.target.city.value,
+                homepage: e.target.homepage.value
+            }
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'JWT fefege..'
+            }
+            axios.put(`http://localhost:9000/corporations/modify`,JSON.stringify(data),{headers: headers})
+                .then(res=>{
+                    if(res.data.result==='SUCCESS'){
+                        alert('회원정보가 수정 되었습니다.')
+                        this.props.history.push('/')
+                    }else if(res.data.result==='FAIL'){
+                        alert('회원정보 수정 실패')
+                    }
+                })
+                .catch(e=>{
+                    alert('회원정보 수정 실패')
+                })
+        }else if(document.activeElement.id==='del'){
+            const delyn = window.confirm('정말로 탈퇴 하시겠습니까?')
+            if(delyn===true){
+                axios.delete(`http://localhost:9000/corporations/${localStorage.getItem('authSeq')}`)
+                .then(res=>{
+                    if(res.data.result==='SUCCESS'){
+                        alert('회원탈퇴 처리 되었습니다.')
+                        localStorage.removeItem('authSeq')
+                        localStorage.removeItem('authId')
+                        localStorage.removeItem('authType')
+                        document.location.href='/'
+                    }else if(res.data.result==='FAIL'){
+                        alert('회원 탈퇴에 실패하였습니다.')
+                    }
+                })
+                .catch(e=>{
+                    alert('회원 탈퇴에 실패하였습니다.')
+                })
+            }
         }
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': 'JWT fefege..'
-        }
-        axios.put(`http://localhost:9000/corporations/modify`,JSON.stringify(data),{headers: headers})
-            .then(res=>{
-                alert('회원정보가 수정 되었습니다.')
-                window.location.reload();
-            })
-            .catch(e=>{
-                alert('회원정보 수정 실패')
-            })
     }
 
     render(){
@@ -166,7 +191,7 @@ class Modify extends React.Component {
                         정보 수정 
                     </Typography> 
                     <Grid container spacing={3}>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={4}>
                             <TextField 
                                 fullWidth
                                 margin="normal"
@@ -177,7 +202,7 @@ class Modify extends React.Component {
                                 disabled
                             />
                         </Grid>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={4}>
                             <TextField 
                                 fullWidth
                                 margin="normal"
@@ -186,6 +211,17 @@ class Modify extends React.Component {
                                 name="name"
                                 value={this.state.name}
                                 inputProps={{maxLength: 33}}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <TextField 
+                                fullWidth
+                                margin="normal"
+                                label="대표명"
+                                id="ceoName"
+                                name="ceoName"
+                                value={this.state.ceoName}
+                                inputProps={{maxLength: 16}}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -278,17 +314,33 @@ class Modify extends React.Component {
                                 type="password"
                             />
                         </Grid>
-                        
+                        <Grid item xs={12} sm={6}>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                id="modify"
+                                name="modify"
+                                className={classes.submit}
+                            >
+                                수정하기
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                id="del"
+                                name="del"
+                                className={classes.submit}
+                            >
+                                탈퇴하기
+                            </Button>
+                        </Grid>
                     </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        가입하기
-                    </Button>
                 </form>
             </Container>
         )

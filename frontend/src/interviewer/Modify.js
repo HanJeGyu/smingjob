@@ -128,39 +128,64 @@ class Modify extends React.Component {
 
     handleSubmit=(e)=>{
         e.preventDefault();
-        const checkStr = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-        if(e.target.itvId.value===''){
-            alert('아이디는 필수 입력정보 입니다.')
-        }else if(e.target.pwd.value===''){
-            alert('비밀번호를 입력해주세요.')
-        }else if(e.target.name.value===''){
-            alert('이름은 필수 입력정보 입니다.')
-        }else if(e.target.email.value===''){
-            alert('이메일은 필수 입력정보 입니다.')
-        }else if((e.target.email.value).match(checkStr)===null){
-            alert('이메일 형식이 옳바르지 않습니다.')
-        }else{
-            const data = {
-                itvId: e.target.itvId.value,
-                pwd: e.target.pwd.value,
-                name: e.target.name.value,
-                phone: e.target.phone.value,
-                email: e.target.email.value,
-                area: e.target.area.value,
-                location: e.target.location.value
+        if(document.activeElement.id==='modify'){
+            const checkStr = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+            if(e.target.itvId.value===''){
+                alert('아이디는 필수 입력정보 입니다.')
+            }else if(e.target.pwd.value===''){
+                alert('비밀번호를 입력해주세요.')
+            }else if(e.target.name.value===''){
+                alert('이름은 필수 입력정보 입니다.')
+            }else if(e.target.email.value===''){
+                alert('이메일은 필수 입력정보 입니다.')
+            }else if((e.target.email.value).match(checkStr)===null){
+                alert('이메일 형식이 옳바르지 않습니다.')
+            }else{
+                const data = {
+                    itvId: e.target.itvId.value,
+                    pwd: e.target.pwd.value,
+                    name: e.target.name.value,
+                    phone: e.target.phone.value,
+                    email: e.target.email.value,
+                    area: e.target.area.value,
+                    location: e.target.location.value
+                }
+                const headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'JWT fefege..'
+                }
+                axios.put(`http://localhost:9000/interviewers/modify`,JSON.stringify(data),{headers: headers})
+                    .then(res=>{
+                        if(res.data.result==='SUCCESS'){
+                            alert('회원정보가 수정 되었습니다.')
+                            this.props.history.push('/')
+                        }else if(res.data.result==='FAIL'){
+                            alert('회원정보 수정 실패')
+                        }
+                    })
+                    .catch(e=>{
+                        alert('회원정보 수정되지 못했습니다.')
+                    })
             }
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': 'JWT fefege..'
-            }
-            axios.put(`http://localhost:9000/interviewers/modify`,JSON.stringify(data),{headers: headers})
+        }else if(document.activeElement.id==='del'){
+            const delyn = window.confirm('정말로 탈퇴 하시겠습니까?')
+            if(delyn===true){
+                axios.delete(`http://localhost:9000/interviewers/${localStorage.getItem('authSeq')}`)
                 .then(res=>{
-                    alert('회원정보가 수정 되었습니다.')
-                    this.props.history.push('/')
+                    if(res.data.result==='SUCCESS'){
+                        alert('회원탈퇴 처리 되었습니다.')
+                        localStorage.removeItem('authSeq')
+                        localStorage.removeItem('authId')
+                        localStorage.removeItem('authType')
+                        document.location.href='/'
+                    }else if(res.data.result==='FAIL'){
+                        alert('회원 탈퇴에 실패하였습니다.')
+                    }
                 })
                 .catch(e=>{
-                    alert('회원정보 수정되지 못했습니다.')
+                    alert('회원 탈퇴에 실패하였습니다.')
                 })
+            }
         }
     }
 
@@ -264,17 +289,32 @@ class Modify extends React.Component {
                                 inputProps={{maxLength: 33}}
                             />
                         </Grid>
-                    </Grid>
-                    <Grid xs={12} sm={12}>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                        >
-                            수정하기
-                        </Button>
+                        <Grid item xs={12} sm={6}>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                id="modify"
+                                name="modify"
+                                className={classes.submit}
+                            >
+                                수정하기
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                id="del"
+                                name="del"
+                                className={classes.submit}
+                            >
+                                탈퇴하기
+                            </Button>
+                        </Grid>
                     </Grid>
                 </form>
             </Container>

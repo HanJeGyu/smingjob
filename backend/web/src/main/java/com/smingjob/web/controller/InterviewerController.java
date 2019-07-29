@@ -39,9 +39,18 @@ public class InterviewerController {
    @Autowired
    ModelMapper modelMapper;
 
-   @DeleteMapping("/{id}")
-   public void deleteById(@PathVariable String id) {
-      repo.deleteById(Long.parseLong(id));
+   @DeleteMapping("/{itvSeq}")
+   public HashMap<String, Object> deleteById(@PathVariable String itvSeq) {
+      HashMap<String, Object> map = new HashMap<>();
+      try{
+         repo.deleteById(Long.parseLong(itvSeq));
+         map.put("result", "SUCCESS");
+      }
+      catch(Exception e){
+         System.out.println(e);
+         map.put("result", "FAIL");
+      }
+      return map;
    }
 
    @GetMapping("")
@@ -63,6 +72,11 @@ public class InterviewerController {
             InterviewerDTO.class);
    }
 
+   @GetMapping("/checkId/{itvId}")
+   public Long checkId(@PathVariable String itvId) {
+      return repo.countByItvId(itvId);
+   }
+
    @GetMapping("/{itvid}")
       public InterviewerDTO findByItvId(@PathVariable String itvid) {
       return modelMapper.map(repo.findByItvId(itvid).get(), InterviewerDTO.class);
@@ -76,9 +90,15 @@ public class InterviewerController {
    @PutMapping("/modify")
    public HashMap<String, String> modify(@RequestBody InterviewerDTO rdto) {
       HashMap<String, String> map = new HashMap<>();
-      repo.updateByItvId(rdto.getItvId(), rdto.getPwd(), rdto.getName(), 
-                        rdto.getPhone(), rdto.getEmail(), rdto.getArea(), rdto.getLocation());
-      map.put("result", "SUCCESS");
+      try{
+         repo.updateByItvId(rdto.getItvId(), rdto.getPwd(), rdto.getName(), 
+                           rdto.getPhone(), rdto.getEmail(), rdto.getArea(), rdto.getLocation());
+         map.put("result", "SUCCESS");
+      }
+      catch(Exception e){
+         System.out.println(e);
+         map.put("result", "FAIL");
+      }
       return map;
    }
 
@@ -92,8 +112,8 @@ public class InterviewerController {
    }
 
    @PostMapping("/join")
-   public HashMap<String, String> join(@RequestBody InterviewerDTO rdto) {
-      HashMap<String, String> map = new HashMap<>();
+   public HashMap<String, Object> join(@RequestBody InterviewerDTO rdto) {
+      HashMap<String, Object> map = new HashMap<>();
       SimpleDateFormat yyyymmdd = new SimpleDateFormat("yyyyMMdd");
       String dateJoin = yyyymmdd.format(new Date());
       try {
@@ -109,12 +129,11 @@ public class InterviewerController {
                               .dateJoin(dateJoin)
                               .build());
          map.put("result", "SUCCESS");
-         return map;
       }catch(Exception e){
          System.out.println("회원가입 error : " + e);
          map.put("result", "FAIL");
-         return map;
      }
+     return map;
    }
    
 }

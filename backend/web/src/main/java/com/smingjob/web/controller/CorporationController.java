@@ -37,9 +37,18 @@ public class CorporationController {
    @Autowired CorporationRepository repo;
    @Autowired ModelMapper modelMapper;
 
-   @DeleteMapping("/{id}")
-   public void	deleteById(@PathVariable String id){    
-      repo.deleteById(Long.parseLong(id));
+   @DeleteMapping("/{corSeq}")
+   public HashMap<String, Object> deleteById(@PathVariable String corSeq){    
+      HashMap<String, Object> map = new HashMap<>();
+      try{
+         repo.deleteById(Long.parseLong(corSeq));
+         map.put("result", "SUCCESS");
+      }
+      catch(Exception e){
+         System.out.println(e);
+         map.put("result", "FAIL");
+      }
+      return map;
    }
  
    @GetMapping("")
@@ -51,7 +60,7 @@ public class CorporationController {
             list.add(cop);
          }
          System.out.println(list);        
-   return list;
+      return list;
    }
 
    @GetMapping("/CorporationContent/{id}")
@@ -61,40 +70,29 @@ public class CorporationController {
             CorporationDTO.class);
    }
 
+   @GetMapping("/checkId/{corId}")
+   public Long checkId(@PathVariable String corId) {
+      return repo.countByCorId(corId);
+   }
+
    @GetMapping("/{corId}")
    public CorporationDTO findByCorId(@PathVariable String corId) {
       return modelMapper.map(repo.findByCorId(corId).get(), CorporationDTO.class);
    }
 
-   @PostMapping("/upload")
-   public HashMap<String, String> save(@RequestBody CorporationDTO dto) {
-   //    System.out.println("업로드"+dto.toString());
-      HashMap<String, String> map = new HashMap<>();
-
-      Corporation entity = new Corporation();
-      entity.setCorId(dto.getCorId());
-      entity.setPwd(dto.getPwd());
-      entity.setName(dto.getName()); 
-      entity.setCeoName(dto.getCeoName()); 
-      entity.setArea(dto.getArea());
-      entity.setPmName(dto.getPmName());
-      entity.setPmPhone(dto.getPmPhone());
-      entity.setHomepage(dto.getHomepage());
-      entity.setCity(dto.getCity());
-      entity.setDateJoin(dto.getDateJoin());
-
-      repo.save(entity);
-      map.put("result", "SUCCESS");
-      return map;
-   }   
-
    @PutMapping("/modify")
    public HashMap<String, String> modify(@RequestBody CorporationDTO rdto) {
       HashMap<String, String> map = new HashMap<>();
-      repo.updateByCorId(rdto.getCorId(), rdto.getPwd(), rdto.getName(), 
-                        rdto.getCeoName(), rdto.getArea(), rdto.getPmName(),
-                        rdto.getPmPhone(), rdto.getPmEmail(), rdto.getCity(), rdto.getHomepage());
-      map.put("result", "SUCCESS");
+      try{
+         repo.updateByCorId(rdto.getCorId(), rdto.getPwd(), rdto.getName(), 
+                           rdto.getCeoName(), rdto.getArea(), rdto.getPmName(),
+                           rdto.getPmPhone(), rdto.getPmEmail(), rdto.getCity(), rdto.getHomepage());
+         map.put("result", "SUCCESS");
+      }
+      catch(Exception e){
+         System.out.println(e);
+         map.put("result", "FAIL");
+      }
       return map;
 
    }

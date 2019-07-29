@@ -53,7 +53,7 @@ export default function FullWidthTabs() {
     }
 
     return (
-        <Container component="main" maxWidth="auto">
+        <Container component="main" maxWidth="md">
             <CssBaseline/>
             <div className={classes.paper}>
                 <AppBar position="static" color="default">
@@ -68,8 +68,8 @@ export default function FullWidthTabs() {
                     <Tab label="기업회원가입" />
                     </Tabs>
                 </AppBar>
-                {value === 0 && <TabContainer dir={theme.direction}><InterviewerJoin/></TabContainer>}
-                {value === 1 && <TabContainer dir={theme.direction}><CorporationJoin/></TabContainer>}
+                {value === 0 && <InterviewerJoin/>}
+                {value === 1 && <CorporationJoin/>}
             </div>
         </Container>
     );

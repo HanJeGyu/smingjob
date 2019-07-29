@@ -19,6 +19,7 @@ public interface CorporationRepository extends JpaRepository<Corporation, Long>{
 
     public Optional<Corporation> findByCorId(String corId);
     public Corporation findByCorIdAndPwd(String corId, String pwd);
+    public Long countByCorId(String corId);
 
     @Modifying
     @Transactional

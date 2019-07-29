@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, CssBaseline, TextField, Button } from '@material-ui/core';
+import { Container, CssBaseline, Grid, TextField, Button } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
@@ -10,20 +10,12 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.common.white,
       },
     },
-    paper: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
-    },
     form: {
-      width: '100%', // Fix IE 11 issue
+        margin: theme.spacing(1),
+        width: '100%', // Fix IE 11 issue
     },
     submit: {
-      margin: theme.spacing(3, 0, 2),
+        margin: theme.spacing(3, 0, 2),
     },
   }));
 
@@ -82,6 +74,26 @@ export default function Join(){
                 })
                 .catch(e=>{
                     alert('회원가입에 실패하였습니다.')
+                })
+        }
+    }
+
+    function handleFocusout(e){
+        if(e.target.value!==''){
+            const target = e.target
+            axios.get(`http://localhost:9000/corporations/checkId/${e.target.value}`)
+                .then(res=>{
+                    if(res.data>0){
+                        alert(`이미 가입된 아이디가 존재합니다.`)
+                        setTimeout(function(){
+                            target.focus()
+                        }, 10)
+                    }else if(res.data===0){
+                        alert('사용가능한 아이디입니다.')
+                    }
+                })
+                .catch(e=>{
+                    alert('서버 통신 에러')
                 })
         }
     }
@@ -200,139 +212,153 @@ export default function Join(){
     }
 
     return(
-        <Container component="main" maxWidth="auto">
+        <Container component="main" maxWidth="md">
             <CssBaseline/>
             <form className={classes.form} noValidate onSubmit={handleSubmit} onChange={handleValidation}>
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="corRegNo"
-                    name="corRegNo"
-                    label="사업자등록번호"
-                    inputProps={{maxLength: 12}}
-                    autoFocus
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="name"
-                    name="name"
-                    label="회사명"
-                    inputProps={{maxLength: 33}}
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="ceoName"
-                    name="ceoName"
-                    label="대표명"
-                    inputProps={{maxLength: 16}}
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="area"
-                    name="area"
-                    label="업종"
-                    inputProps={{maxLength: 33}}
-                />
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    variant="outlined"
-                    id="city"
-                    name="city"
-                    label="지역"
-                    inputProps={{maxLength: 33}}
-                />
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    variant="outlined"
-                    id="homepage"
-                    name="homepage"
-                    label="홈페이지"
-                    inputProps={{maxLength: 99}}
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="pmName"
-                    name="pmName"
-                    label="가입자명"
-                    inputProps={{maxLength: 16}}
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="pmPhone"
-                    name="pmPhone"
-                    label="가입자연락처"
-                    inputProps={{maxLength: 13}}
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="pmEmail"
-                    name="pmEmail"
-                    label="가입자이메일"
-                    inputProps={{maxLength: 97}}
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="corId"
-                    name="corId"
-                    label="아이디"
-                    inputProps={{maxLength: 25}}
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="pwd"
-                    name="pwd"
-                    label="비밀번호"
-                    type="password"
-                    inputProps={{maxLength: 18}}
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="pwdchk"
-                    name="pwdchk"
-                    label="비밀번호 확인"
-                    type="password"
-                    inputProps={{maxLength: 18}}
-                />
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                >
-                    가입하기
-                </Button>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} sm={4}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            id="corRegNo"
+                            name="corRegNo"
+                            label="사업자등록번호"
+                            inputProps={{maxLength: 12}}
+                            autoFocus
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                        <TextField
+                            fullWidth
+                            required
+                            margin="normal"
+                            id="name"
+                            name="name"
+                            label="회사명"
+                            inputProps={{maxLength: 33}}
+                        />
+                    </Grid> 
+                    <Grid item xs={12} sm={4}>
+                        <TextField
+                            fullWidth
+                            required
+                            margin="normal"
+                            id="ceoName"
+                            name="ceoName"
+                            label="대표명"
+                            inputProps={{maxLength: 16}}
+                        />
+                    </Grid> 
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            margin="normal"
+                            label="업종"
+                            id="area"
+                            name="area"
+                            inputProps={{maxLength: 33}}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            margin="normal"
+                            label="지역"
+                            id="city"
+                            name="city"
+                            inputProps={{maxLength: 33}}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
+                        <TextField 
+                            fullWidth
+                            margin="normal"
+                            label="홈페이지"
+                            id="homepage"
+                            name="homepage"
+                            inputProps={{maxLength: 99}}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            label="가입자명"
+                            id="pmName"
+                            name="pmName"
+                            inputProps={{maxLength: 16}}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            label="아이디"
+                            id="corId"
+                            name="corId"
+                            inputProps={{maxLength: 18}}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            label="비밀번호"
+                            id="pwd"
+                            name="pwd"
+                            inputProps={{maxLength: 18}}
+                            type="password"
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            id="pwdchk"
+                            name="pwdchk"
+                            label="비밀번호 확인"
+                            type="password"
+                            inputProps={{maxLength: 18}}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            margin="normal"
+                            label="가입자연락처"
+                            id="pmPhone"
+                            name="pmPhone"
+                            inputProps={{maxLength: 13}}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            margin="normal"
+                            label="가입자이메일"
+                            id="pmEmail"
+                            name="pmEmail"
+                            inputProps={{maxLength: 70}}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
+                        <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        >
+                            가입하기
+                        </Button>
+                    </Grid>
+                </Grid>
             </form>
         </Container>
     )

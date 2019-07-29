@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, CssBaseline, TextField, Button } from '@material-ui/core';
+import { Container, CssBaseline, Grid, TextField, Button } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
         },
     },
     form: {
+        margin: theme.spacing(1),
         width: '100%', // Fix IE 11 issue.
     },
     submit: {
@@ -64,6 +65,26 @@ export default function Join(){
                 })
                 .catch(e=>{
                     alert('회원가입에 실패하였습니다.')
+                })
+        }
+    }
+
+    function handleFocusout(e){
+        if(e.target.value!==''){
+            const target = e.target
+            axios.get(`http://localhost:9000/interviewers/checkId/${e.target.value}`)
+                .then(res=>{
+                    if(res.data>0){
+                        alert('이미 가입된 아이디가 존재합니다.')
+                        setTimeout(function(){
+                            target.focus()
+                        }, 10)
+                    }else if(res.data===0){
+                        alert('사용가능한 아이디입니다.')
+                    }
+                })
+                .catch(e=>{
+                    alert('서버 통신 에러')
                 })
         }
     }
@@ -158,109 +179,123 @@ export default function Join(){
     }
 
     return(
-        <Container component="main" maxWidth="auto">
+        <Container component="main" maxWidth="md">
             <CssBaseline/>
             <form className={classes.form} noValidate onSubmit={handleSubmit} onChange={handleValidation}>
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="name"
-                    name="name"
-                    label="이름"
-                    inputProps={{maxLength: 16}}
-                    autoFocus
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="itvId"
-                    name="itvId"
-                    inputProps={{maxLength: 25}}
-                    label="아이디"
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="pwd"
-                    name="pwd"
-                    label="비밀번호"
-                    inputProps={{maxLength: 18}}
-                    type="password"
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="pwdchk"
-                    name="pwdchk"
-                    label="비밀번호 확인"
-                    inputProps={{maxLength: 18}}
-                    type="password"
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="birth"
-                    name="birth"
-                    label="생년월일 6자리"
-                    inputProps={{maxLength: 6}}
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="phone"
-                    name="phone"
-                    label="휴대폰번호"
-                    inputProps={{maxLength: 13}}
-                />
-                <TextField
-                    fullWidth
-                    required
-                    margin="normal"
-                    variant="outlined"
-                    id="email"
-                    name="email"
-                    label="이메일"
-                    inputProps={{maxLength: 97}}
-                />
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    variant="outlined"
-                    id="area"
-                    name="area"
-                    label="희망산업/직군"
-                    inputProps={{maxLength: 33}}
-                />
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    variant="outlined"
-                    id="location"
-                    name="location"
-                    label="희망근무지"
-                    inputProps={{maxLength: 33}}
-                />
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                >
-                    가입하기
-                </Button>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            label="이름"
+                            id="name"
+                            name="name"
+                            inputProps={{maxLength: 16}}
+                            autoFocus
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            label="아이디"
+                            id="itvId"
+                            name="itvId"
+                            inputProps={{maxLength: 18}}
+                            onBlur={handleFocusout}
+                        />
+                    </Grid> 
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            label="비밀번호"
+                            id="pwd"
+                            name="pwd"
+                            inputProps={{maxLength: 18}}
+                            type="password"
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            id="pwdchk"
+                            name="pwdchk"
+                            label="비밀번호 확인"
+                            inputProps={{maxLength: 18}}
+                            type="password"
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            label="생년월일"
+                            id="birth"
+                            name="birth"
+                            inputProps={{maxLength: 6}}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            label="휴대폰번호"
+                            id="phone"
+                            name="phone"
+                            inputProps={{maxLength: 13}}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            label="이메일주소"
+                            id="email"
+                            name="email"
+                            inputProps={{maxLength: 70}}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
+                        <TextField 
+                            fullWidth
+                            margin="normal"
+                            label="희망산업/직군"
+                            id="area"
+                            name="area"
+                            inputProps={{maxLength: 33}}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
+                        <TextField 
+                            fullWidth
+                            margin="normal"
+                            label="희망근무지"
+                            id="location"
+                            name="location"
+                            inputProps={{maxLength: 33}}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
+                        <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        >
+                            가입하기
+                        </Button>
+                    </Grid>
+                </Grid>
             </form>
         </Container>
     )

@@ -44,6 +44,12 @@ class Login extends React.Component {
     this.setState({value:e.target.value})
   }
 
+  handleReplace=(e)=>{
+    if((e.target.value).search(/\s/) != -1){
+      e.target.value = e.target.value.replace(' ','')
+    }
+  }
+
   handleSubmit=(e)=>{
     e.preventDefault();
     if(e.target.loginId.value===""){
@@ -97,13 +103,6 @@ class Login extends React.Component {
             localStorage.setItem('authId', res.data.corId)
             localStorage.setItem('authType', this.state.value)
             document.location.href='/'
-  /*           this.props.dispatch({
-              type:'LOGIN', 
-              authSeq: res.data.itvSeq, 
-              authId: res.data.itvId,
-              authType: this.state.value
-              })
-            this.props.history.push('/') */
           }else{
             alert('아이디 또는 비밀번호가 바르지 않습니다.')
           }
@@ -147,6 +146,7 @@ class Login extends React.Component {
               id="loginId"
               name="loginId"
               label="아이디"
+              onChange={this.handleReplace}
               autoFocus
             />
             <TextField
@@ -159,6 +159,7 @@ class Login extends React.Component {
               label="비밀번호"
               type="password"
               autoComplete="current-password"
+              onChange={this.handleReplace}
             />
             <Button
               type="submit"

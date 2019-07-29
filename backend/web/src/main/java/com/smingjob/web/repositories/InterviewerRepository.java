@@ -19,6 +19,7 @@ public interface InterviewerRepository extends JpaRepository<Interviewer, Long>{
     public Optional<Interviewer> findByItvId(String itvId);
     public Optional<Interviewer> findByItvSeq(Long itvSeq);
     public Interviewer findByItvIdAndPwd(String itvId, String pwd);
+    public Long countByItvId(String itvId);
 
     //JPQL
     @Modifying
