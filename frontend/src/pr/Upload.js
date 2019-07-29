@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './PRUpload.css'
+import './Upload.css'
 import axios from 'axios'
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
