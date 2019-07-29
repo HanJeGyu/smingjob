@@ -65,16 +65,17 @@ public class AliveController {
       HashMap<String, String> map = new HashMap<>();
 
       Alive entity = new Alive();
-      entity.setLiveSeq(dto.getLiveSeq());
       entity.setCorSeq(dto.getCorSeq());
       entity.setCorName(dto.getCorName());
-      entity.setState(dto.getState());
-      entity.setStartDate(dto.getStartDate());
+      entity.setNoticeSeq(dto.getNoticeSeq());
       entity.setArea(dto.getArea());
       entity.setCareer(dto.getCareer());
       entity.setItvSeq(dto.getItvSeq());
       entity.setItvName(dto.getItvName());
       entity.setItvPhone(dto.getItvPhone());
+      entity.setStartDate(dto.getStartDate());
+      entity.setStartTime(dto.getStartTime());
+      entity.setState(dto.getState());
 
       // System.out.println("entity 저장:"+entity.toString());
       repo.save(entity);

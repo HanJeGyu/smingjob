@@ -44,7 +44,7 @@ const ShareControls: React.SFC = () => (
 
       return (
         <Container>
-          <JoinButton onClick={shareAll}>Join call</JoinButton>
+          <JoinButton onClick={shareAll}>면접방 입장</JoinButton>
         </Container>
       );
     }}

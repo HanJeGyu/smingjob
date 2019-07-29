@@ -32,11 +32,18 @@ changePage=(pageNum,offset)=> {
       
   })
   }
-  detail(seq){
-    console.log("seq:"+seq);
-    localStorage.aliveSeq=seq;
-     window.location = '/AliveDetail/'+localStorage.aliveSeq; 
-    
+  detail(url){
+    let pwd = url.split('=');
+    alert(pwd[1]);
+    let inputPwd = prompt("비밀번호를 입력하세요.");
+    if(inputPwd === pwd[1]) {
+      window.open (url, '_blank');
+    } else {
+      alert('비밀번호가 다릅니다. 마이페이지에서 확인해주세요.');
+    }
+    console.log("url:"+url);
+    // localStorage.aliveSeq=seq;
+    //  window.location = '/AliveDetail/'+localStorage.aliveSeq; 
 } 
   render(){ 
     let cardGrid ={
@@ -85,7 +92,7 @@ changePage=(pageNum,offset)=> {
        <Container style ={cardGrid}  maxWidth="md">
        <Grid container spacing={6} >
        {data && data.slice(this.state.minValue,this.state.maxValue).map(alive => 
-       <Grid item key={alive} xs={12} sm={6} md={4} onClick={()=>this.detail(alive.liveSeq)}>
+       <Grid item key={alive} xs={12} sm={6} md={4} onClick={()=>this.detail(alive.url)}>
             <Card style ={card} /* onClick={this.detail(id)} */>           
               <CardContent style ={cardContent}>                        
                 <Typography style ={area} variant="h10" gutterBottom>
