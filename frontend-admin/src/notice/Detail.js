@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import axios from 'axios'
 import Button from '@material-ui/core/Button';
+import MaterialTable from 'material-table';
 
 export default class NoticeDetail extends React.Component {
 
@@ -23,7 +24,16 @@ export default class NoticeDetail extends React.Component {
       corName: '',
       startDate: '',
       startTime:'',
-
+      applicants:[],
+      appcolumns: [
+        { title: '이름', field: 'name'}, 
+        { title: '생년월일', field: 'birth' },  
+        { title: '연락처', field: 'phone' }, 
+        { title: '이메일', field: 'email'}, 
+        { title: '희망직무', field: 'area'}, 
+        { title: '희망지역', field: 'location'},                    
+        { title: '지원상태', field: 'appState'},                    
+        ],
     
     };
    
@@ -39,7 +49,21 @@ export default class NoticeDetail extends React.Component {
            console.log(e.res)
         })
    
-}
+    axios.get('http://localhost:9001/applicants/'+seq)
+    .then(res =>{
+       this.setState({applicants: res.data})
+    })
+       .catch(e=>{ })   
+    }
+   
+changeAppState=(seq)=>{   
+      axios.put('http://localhost:9001/applicants/'+seq)
+              .then(res=>{       
+                window.location.reload();
+              })
+              .catch(e=>{                
+              })
+  } 
 
 gomodify(seq){
   localStorage.noticeSeq = seq  ;
@@ -62,6 +86,9 @@ gomodify(seq){
       fontWeight:'bold',
       letterSpacing: '2px',
       color:'#336699'
+    }
+    let btn_m={     
+      marginBottom:'20px',
     }
     let codes = this.state.content
     
@@ -102,7 +129,7 @@ gomodify(seq){
                   fullWidth                               
                 />
               </Grid>
-              <Grid item xs={12}>   
+              <Grid item xs={12}> 모집개요  
                 <div  dangerouslySetInnerHTML={ {__html: codes} }></div>           
               </Grid>     
 
@@ -129,18 +156,23 @@ gomodify(seq){
          
        
           </Grid> 
-
-          <Button size="small" color="primary">
-                      View
-                    </Button>
-                    <Button size="small" color="primary" onClick={()=>this.gomodify(this.state.noticeSeq)}>
-                      수정
-                    </Button>
-
-          <Grid item xs={12}>
-          지원자 목록 
-
+          <Grid >
+             <Button size="large" style={btn_m}  color="primary" 
+                onClick={()=>this.gomodify(this.state.noticeSeq)}>
+               수정
+             </Button>
           </Grid>
+          <Grid item xs={12}>         
+          <MaterialTable title="지원자 관리" 
+                columns={this.state.appcolumns} 
+                data={this.state.applicants}  
+                 onRowClick={(event, rowData)=> {
+                    console.log('rowData', rowData.applicantSeq);
+                    this.changeAppState(rowData.applicantSeq);                     
+                  }}
+                />  
+          </Grid>
+
           </Container>
          
           </React.Fragment>

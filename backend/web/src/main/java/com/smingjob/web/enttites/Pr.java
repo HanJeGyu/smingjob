@@ -50,6 +50,7 @@ public class Pr implements Serializable {
     @Column(name="date_upload") private String dateUpload; 
     @Column(name="pr_location") private String prLocation; 
     @Column(name="url") private String url;
+    @Column(name="email") private String email;
 
 /*     @ManyToOne
     @JoinColumn(name = "itv_seq")
@@ -64,14 +65,15 @@ public class Pr implements Serializable {
 
         return "Pr :[prSeq:"+prSeq+",itvSeq:" +itvSeq+", phone:"+phone+", name:"+name+", title:"+title+", content:"+content+
        ", area:"+area+", tagLocation:"+tagLocation+", tagAttribute:"+tagAttribute+", tagCareer:"+tagCareer+", dateUpload:"+dateUpload +
-       ", prLocation:"+prLocation + ", url:"+url +  "]";
+       ", prLocation:"+prLocation + ", url:"+url + ", email:"+email + "]";
     }
 
 
     //생성자
     @Builder
     private Pr(Long itvSeq, String phone, String name,
-    String title, String content, String area, String tagLocation, String tagAttribute, String tagCareer, String dateUpload, String prLocation, String url){
+    String title, String content, String area, String tagLocation, String tagAttribute,
+     String tagCareer, String dateUpload, String prLocation, String url, String email){
         this.itvSeq = itvSeq;
         this.phone =phone;
         this.name = name;
@@ -84,6 +86,7 @@ public class Pr implements Serializable {
         this.dateUpload = dateUpload;
         this.prLocation = prLocation;
         this.url = url;
+        this.email = email;
     }
     
 }

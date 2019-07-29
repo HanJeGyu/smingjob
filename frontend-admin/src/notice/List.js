@@ -52,7 +52,9 @@ export default class NoticeList extends React.Component{
     }
     goDetail=(seq)=>{
     console.log("seq:"+seq);
+
     localStorage.noticeadminSeq=seq;
+    console.log("notice:" +localStorage.noticeadminSeq)
     window.location = '/noticeDetail/'+localStorage.noticeadminSeq; 
     } 
      
@@ -86,7 +88,7 @@ export default class NoticeList extends React.Component{
                     console.log('rowData', rowData.noticeSeq);  
                     this.goDetail(rowData.noticeSeq);                  
                   }}
-                editable={{
+                editable={{                   
                     onRowDelete: oldData =>
                         new Promise(resolve => {
                             setTimeout(() => {

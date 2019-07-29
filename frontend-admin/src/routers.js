@@ -5,22 +5,21 @@ import {Redirect} from "react-router-dom";
 
 import Home from './common/Home'
 import Login from './common/Login'
-import CorporationAdmin from './admin/Corporation'
-import InterviewerAdmin from "./admin/Interviewer"
-import NoticeDetail from './notice/NoticeDetailAdmin'
-import NoticeList from './notice/NoticeList'
-import NoticeUpload from './notice/NoticeUpload'
-import NoticeModify from './notice/NoticeModify'
-import NoticeDetailAdmin from './notice/NoticeDetailAdmin'
+import CorporationAdmin from './corporation/Corporation'
+import InterviewerAdmin from "./interviewer/Interviewer"
+import NoticeDetail from './notice/Detail'
+import NoticeList from './notice/List'
+import NoticeUpload from './notice/Upload'
+import NoticeModify from './notice/Modify'
+import NoticeDetailAdmin from './notice/Detail'
 import Join from './common/Join'
 import InterviewerModify from './interviewer/Modify'
 import CorporationModify from './corporation/Modify'
 import PrAdmin from "./pr/Pr"
-import AliveAdmin from "./admin/Alive"
-import AliveDetail from "./admin/AliveDetail"
+import AliveAdmin from "./alive/Alive"
+import AliveDetail from "./alive/Detail"
 import LoginAdmin from "./common/Login"
-import Test from "./notice/ApplicantList"
-import PRDetail from "./pr/PRDetail";
+
 
 export const routerConfig = [
     {
@@ -81,10 +80,6 @@ export const routerConfig = [
         component: PrAdmin
     },
     {
-        path: '/prDetail',
-        component: PRDetail
-    },
-    {
         path: '/aliveAdmin',
         component: AliveAdmin
     },
@@ -96,8 +91,5 @@ export const routerConfig = [
         path: '/homeAdmin',
         component: LoginAdmin
     },
-    {
-        path: '/test',
-        component: Test
-    }
+
 ]

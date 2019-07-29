@@ -127,6 +127,7 @@ public class PrController {
         entity.setPrLocation(dto.getPrLocation());
         entity.setDateUpload(date);
         entity.setUrl(dto.getUrl());
+        entity.setEmail(dto.getEmail());
 
         // System.out.println("entity 저장:"+entity.toString());
         repo.save(entity);
@@ -151,7 +152,7 @@ public class PrController {
         entity.setTagCareer(dto.getTagCareer());
         entity.setDateUpload(dto.getDateUpload());
         entity.setUrl(dto.getUrl());
-        
+        entity.setEmail(dto.getEmail());
         // System.out.println("entity 저장:"+entity.toString());
         repo.save(entity);
         map.put("result", "SUCCESS");

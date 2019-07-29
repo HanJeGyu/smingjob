@@ -46,7 +46,7 @@ changePage=(pageNum,offset)=> {
   detail(seq){
     console.log("seq:"+seq);
      localStorage.prSeq=seq;
-     window.location = '/PRDetail/'+localStorage.prSeq;    
+     window.location = '/PRDetail'    
   
 } 
 typing=(e)=>{

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import MaterialTable from "material-table";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
 import axios from "axios";
 
 export default class Pr extends Component {
@@ -29,8 +28,8 @@ export default class Pr extends Component {
     });
   }
   goDetail = seq => {
-    alert("seq:" + seq);
-    // localStorage.pradminSeq=seq;
+   /*  alert("seq:" + seq); */
+    localStorage.prSeq=seq;
     window.open("http://localhost:3000/prDetail/" + seq, '_blank');
   };
 
@@ -50,7 +49,7 @@ export default class Pr extends Component {
           style={style}
 
           onRowClick={(event, rowData) => {
-            alert('rowData'+ rowData.prSeq);
+        /*     alert('rowData'+ rowData.prSeq); */
             this.goDetail(rowData.prSeq);
           }}
 
