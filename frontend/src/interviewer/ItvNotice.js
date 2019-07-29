@@ -23,7 +23,8 @@ class ItvNotice extends React.Component {
                 { title: '회사명', field: 'corName' },
                 { title: '접수시작일', field: 'startDate', type: 'numeric' },
                 { title: '접수시작시간', field: 'startTime', type: 'numeric' },
-                { title: '접수상태', field: 'state', lookup: { 0: '미지원', 1: '접수중', 2: '접수완료', 3: '지원실패', 99: '참여불가'}},
+                { title: '접수상태', field: 'state'},
+                //{ title: '접수상태', field: 'state', lookup: { 0: '미지원', 1: '접수중', 2: '접수완료', 3: '지원실패', 99: '참여불가'}},
             ],
             data: []
         }
@@ -41,7 +42,7 @@ class ItvNotice extends React.Component {
     }
 
     handleClick=(e, rowData)=>{
-        
+        this.props.history.pushState(rowData.noticeSeq, '/notice')
     }
 
     render(){

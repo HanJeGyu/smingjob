@@ -31,7 +31,7 @@ public interface AwaiterRepository extends JpaRepository<Awaiter, Long>{
     @Modifying
     @Transactional
     @Query("UPDATE Awaiter a"
-        + "    SET a.result = '3' "
+        + "    SET a.result = '연락처열람' "
         + "  WHERE a.alive.liveSeq = ?1"
         + "    AND a.interviewer.itvSeq = ?2")
     public void updateResult(Long liveSeq, Long itvSeq);

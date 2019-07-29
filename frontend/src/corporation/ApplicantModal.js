@@ -58,7 +58,6 @@ class ApplicantModal extends React.Component {
       }
       axios.put(`http://localhost:9000/awaiters/lookphone`, JSON.stringify(data), {headers: headers})
         .then(res=>{
-          console.log('연결성공')
         })
         .catch(e=>{
           alert('서버연결에 실패하였습니다.\n관리자에게 문의해 주세요')

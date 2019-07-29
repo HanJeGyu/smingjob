@@ -300,6 +300,7 @@ export default function Join(){
                             label="아이디"
                             id="corId"
                             name="corId"
+                            onBlur={handleFocusout}
                             inputProps={{maxLength: 18}}
                         />
                     </Grid>

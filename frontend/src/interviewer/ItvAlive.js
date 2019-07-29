@@ -22,7 +22,8 @@ class ItvAlive extends React.Component {
                 { title: '회사명', field: 'corName' },
                 { title: '면접일', field: 'startDate', type: 'numeric' },
                 { title: '면접시작시간', field: 'startTime', type: 'numeric' },
-                { title: '면접결과', field: 'result', lookup: { 0: '미진행', 1: '면접예정', 2: '미열람', 3: '매칭성공', 3: '실패'}},
+                { title: '면접결과', field: 'result'},
+                //{ title: '면접결과', field: 'result', lookup: { 0: '미진행', 1: '면접예정', 2: '미열람', 3: '매칭성공', 3: '실패'}},
             ],
             data: []
         }

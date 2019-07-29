@@ -57,7 +57,6 @@ const Account = () => {
                 open={openEl}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleSubOnOff}>My account{subOnOff ? <ExpandLess /> : <ExpandMore />}</MenuItem>
                 {localStorage.getItem('authType')==="1" ? 
                 <Collapse in={subOnOff} timeout="auto" unmountOnExit>
