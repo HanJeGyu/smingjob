@@ -72,10 +72,9 @@ class CorNotice extends React.Component {
         this.setState({open:false})
     };
 
-    goDetail = noticeSeq => {
-        alert("seq:" + noticeSeq);
-        // sessionStorage.pradminSeq=seq;
-        window.open("/NoticeDetail/" + noticeSeq, '_blank');
+    goDetail = noticeSeq => {       
+        sessionStorage.noticeSeq=noticeSeq;
+        window.open("/NoticeDetail");
       };
 
     render(){
@@ -87,8 +86,7 @@ class CorNotice extends React.Component {
                 title="공고목록"
                 columns={this.state.columns}
                 data={this.state.data}
-                onRowClick={(event, rowData) => {
-                    alert('rowData'+ rowData.noticeSeq);
+                onRowClick={(event, rowData) => {                   
                     this.goDetail(rowData.noticeSeq);
                   }}
 
