@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 export default class Main extends Component {
   constructor() {
@@ -43,6 +44,7 @@ export default class Main extends Component {
     })
     .catch(e=>{           
        console.log(e.res)
+      
     })
 
 
@@ -53,6 +55,8 @@ export default class Main extends Component {
     .then(res => {
        this.setState({countNum : res.data }); 
        console.log("count:"+res.data.countNum)
+       console.log("authseq:"+sessionStorage.authSeq)
+       console.log("itvseq:"+this.state.itvSeq)
     })
     .catch(e => {});
   }
@@ -72,8 +76,7 @@ export default class Main extends Component {
         .post(`http://localhost:9000/scraps/`, JSON.stringify(data), {
           headers: headers
         })
-        .then(res => {
-          // this.setState({scrapSeq : res.data});
+        .then(res => {         
           this.setState({countNum : 1});
           alert("찜하기!");
         })
@@ -106,24 +109,23 @@ export default class Main extends Component {
   render() {
     let style = {
         marginTop:"100px",  
-    }
-    
-    let btn = {   
-      margin:"auto",     
-      padding:"10px"      
-    }
+    } 
     let margin={
       margin:"70px"
     }
     let align={
       marginLeft:"90%"
     }
+    let btn={
+      margin:"auto"
+    }
    
+    const itvSeq = this.state.itvSeq
     return (
         <React.Fragment> 
     
 
-    {sessionStorage.getItem('authType') === '2' ?
+    {sessionStorage.getItem('authSeq') == itvSeq || sessionStorage.getItem('authType') === '2' ?
         
          <Container  style={style} maxWidth="md" >
          <Typography variant="h6" gutterBottom>
@@ -169,12 +171,11 @@ export default class Main extends Component {
                   label="연락처"
                   fullWidth
                   autoComplete="phone"
-                  value='영상하단의 핸드폰 아이콘을 클릭하면 연락처를 확인할 수 있으며, 구직자에 열람여부가 알려집니다.'                 
+                  value='영상하단의 핸드폰 아이콘을 클릭하면 연락처를 확인할 수 있으며, 구직자에게 열람여부가 알려집니다.'                 
                 />
               </Grid>  
               <Grid container spacing={10}><p style={margin}></p></Grid> 
-              <Grid>            
-               {/*  {this.state.url} */}
+              <Grid>                       
               <video width="900"  controls>
                   <source type="video/mp4" key={this.state.url} src={this.state.url}  /> 
               </video> 
@@ -237,6 +238,10 @@ export default class Main extends Component {
                   value={this.state.tagCareer}
                 />
               </Grid>    
+              <Grid container spacing={10}><p style={margin}></p></Grid>
+              {sessionStorage.getItem('authSeq') == itvSeq ?
+              <Button color="primary" variant="contained" style={btn}>삭제</Button>
+              : '' }
               <Grid container spacing={10}><p style={margin}></p></Grid>
         </Grid>
        

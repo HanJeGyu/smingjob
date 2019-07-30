@@ -95,25 +95,30 @@ componentWillMount=()=>{
     console.log("itvID:"+sessionStorage.authSeq);
     axios.get(`http://localhost:9000/interviewers/pr/${seq}`)
         .then(res=>{
-           this.setState(res.data)
-          
+           this.setState(res.data)          
         })
-        .catch(e=>{           
-        
+        .catch(e=>{                   
         })
 }
     render(){
         let style = {
-            marginTop:"100px",   
-                
-        }
-        
+            marginTop:"100px",                   
+        }        
         let btn = {   
           margin:"auto",     
           padding:"10px"      
         }
         let margin={
           margin:"70px"
+        }
+        let margin2={
+          margin:"40px"
+        }
+        let margin3={
+          margin:"50px"
+        }
+        let btn_up={
+          marginLeft:"80%"
         }
     return (        
         <React.Fragment>
@@ -122,7 +127,15 @@ componentWillMount=()=>{
          <Typography variant="h6" gutterBottom>
              PR동영상 업로드
             </Typography>
-          
+            <Grid container spacing={10}><p style={margin3}></p></Grid>
+            <Grid class="offset-md-3 col-md-6">               
+                    <div class="form-group files">
+                        <label>** PR 동영상을 첨부 후 동영상 업로드버튼을 꼭 클릭해주세요  </label>
+                        <input type="file" name="file" onChange={this.onChangeHandler}/>
+                     </div>
+                     <Button  color="primary" variant="contained" type="button" style={btn_up}  onClick={this.onClickHandler}>동영상 업로드(*필수)</Button>
+                </Grid>
+                <Grid container spacing={10}><p style={margin2}></p></Grid>
            <Grid container spacing={3}>
               <Grid item xs={12} >
                 <TextField            
@@ -230,20 +243,11 @@ componentWillMount=()=>{
                   onChange={this.handleChange}
                 />
               </Grid>    
-              <Grid container spacing={10}><p style={margin}></p></Grid>
-           
-                <Grid class="offset-md-3 col-md-6">               
-                    <div class="form-group files">
-                        <label>자기pr동영상 올리기 </label>
-                        <input type="file" name="file" onChange={this.onChangeHandler}/>
-                     </div>
-                     <Button type="button"  onClick={this.onClickHandler}>동영상 업로드(*필수)</Button>
-                </Grid>
-           
             <Grid container spacing={10}><p style={margin}></p></Grid>
           <Grid container spacing={3}>
-            <Button size="large" style={btn} color="primary"  type="submit">게시물 업로드</Button>   </Grid>
+            <Button color="primary" size="large"  variant="contained" style={btn} type="submit">게시물 업로드</Button>   </Grid>
              </Grid>
+             <Grid container spacing={10}><p style={margin}></p></Grid>
         </Container>
         </form>
   </React.Fragment>

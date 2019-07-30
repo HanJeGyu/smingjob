@@ -5,16 +5,12 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import IconButton from '@material-ui/core/IconButton';
-import FirstPageIcon from '@material-ui/icons/FirstPage';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import LastPageIcon from '@material-ui/icons/LastPage';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import axios from 'axios'
 import Pagination from "material-ui-flat-pagination";
-
+import Button from '@material-ui/core/Button';
 
 
 export default class PR extends React.Component{
@@ -36,19 +32,21 @@ changePage=(pageNum,offset)=> {
                   offset});
 
 }
-  componentDidMount(){
+componentDidMount(){
     axios.get('http://localhost:9000/prs')
     .then(res=>{
       const prs = res.data;
       this.setState({prs});      
   })
   }
-  detail(seq){
+detail=(seq)=>{
     console.log("seq:"+seq);
      sessionStorage.prSeq=seq;
-     window.location = '/PRDetail'    
-  
+     window.location = '/PRDetail'      
 } 
+upload=()=>{
+  window.location = '/PRUpload'   
+}
 typing=(e)=>{
   this.setState({keyword: e.target.value})
   console.log(this.state.keyword);
@@ -123,6 +121,12 @@ searching=(e)=>{
       textAlign:'center',
       margin:'3%'
     }
+    let margin={
+      marginBottom: '10%',      
+    }
+    let btn={
+      width : '100%'
+    }
   let data = this.state.prs;
 
   return(  
@@ -147,7 +151,7 @@ searching=(e)=>{
           </form>
 
 
-       <Container style ={cardGrid}  maxWidth="md">
+       <Container style ={cardGrid}  maxWidth="md">       
        <Grid container spacing={6} >
         {data && data.slice(this.state.minValue,this.state.maxValue).map(pr => 
         <Grid item key={pr} xs={12} sm={6} md={4} onClick={()=>this.detail(pr.prSeq)}>
@@ -183,6 +187,9 @@ searching=(e)=>{
                   offset={this.state.offset}
                   onClick={(e, offset) =>this.changePage(offset/6+1, offset)}
                 /> </div>
+                  <Grid container spacing={10}><p style={margin}></p></Grid>
+                <Button color="primary" size="large" variant="contained" style={btn} onClick={this.upload}>내 PR올리기</Button>  
+                <Grid container spacing={10}><p style={margin}></p></Grid>
               </Container>
               </React.Fragment>
             
