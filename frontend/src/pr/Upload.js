@@ -52,7 +52,7 @@ export default class PRtest2 extends Component {
             tagCareer:event.target.tagCareer.value,
             name:this.state.name,
             prLocation:event.target.prLocation.value,
-            itvSeq:localStorage.authSeq,
+            itvSeq:sessionStorage.authSeq,
             url: this.state.url  ,
             email: event.target.email.value      
        };
@@ -91,8 +91,8 @@ export default class PRtest2 extends Component {
 }
 
 componentWillMount=()=>{
-    const seq = localStorage.authSeq;
-    console.log("itvID:"+localStorage.authSeq);
+    const seq = sessionStorage.authSeq;
+    console.log("itvID:"+sessionStorage.authSeq);
     axios.get(`http://localhost:9000/interviewers/pr/${seq}`)
         .then(res=>{
            this.setState(res.data)

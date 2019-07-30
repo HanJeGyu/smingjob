@@ -30,7 +30,7 @@ class ItvAlive extends React.Component {
     }
 
     componentDidMount(){
-        const itvSeq = localStorage.getItem('authSeq')
+        const itvSeq = sessionStorage.getItem('authSeq')
         axios.get(`http://localhost:9000/awaiters/aliveList/${itvSeq}`)
         .then(res=>{
             this.setState({data: res.data});

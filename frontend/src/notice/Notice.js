@@ -42,9 +42,9 @@ changePage=(pageNum,offset)=> {
 
    detail(seq){
     console.log("seq:"+seq);
-    localStorage.noticeSeq=seq;
-    window.location = '/NoticeDetail/'+localStorage.noticeSeq;      
-   /*  document.location.href = '/NoticeDetail'+localStorage.noticeSeq  */
+    sessionStorage.noticeSeq=seq;
+    window.location = '/NoticeDetail/'+sessionStorage.noticeSeq;      
+   /*  document.location.href = '/NoticeDetail'+sessionStorage.noticeSeq  */
 } 
 
 

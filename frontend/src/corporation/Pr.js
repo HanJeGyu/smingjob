@@ -24,7 +24,7 @@ class Pr extends React.Component {
   }
 
   componentDidMount() {
-    const corId = localStorage.getItem("authSeq");
+    const corId = sessionStorage.getItem("authSeq");
     axios
       .get(`http://localhost:9000/prs/cor/${corId}`)
       .then(res => {

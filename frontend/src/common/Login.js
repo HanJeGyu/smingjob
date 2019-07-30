@@ -63,6 +63,7 @@ class Login extends React.Component {
       }
       if(this.state.value==='1'){
         const url = 'http://localhost:9000/interviewers'
+        //const url = 'http://15.164.216.105/interviewers'
         const data = {
           itvId: e.target.loginId.value,
           pwd: e.target.pwd.value
@@ -71,9 +72,9 @@ class Login extends React.Component {
         .then(res=>{
           if(res.data!==''){
             alert(`${res.data.name} 님 환영합니다.`)
-            localStorage.setItem('authSeq', res.data.itvSeq)
-            localStorage.setItem('authId', res.data.itvId)
-            localStorage.setItem('authType', this.state.value)
+            sessionStorage.setItem('authSeq', res.data.itvSeq)
+            sessionStorage.setItem('authId', res.data.itvId)
+            sessionStorage.setItem('authType', this.state.value)
             document.location.href='/'
   /*           this.props.dispatch({
               type:'LOGIN', 
@@ -99,9 +100,9 @@ class Login extends React.Component {
         .then(res=>{
           if(res.data!==''){
             alert(`${res.data.name} 님 환영합니다.`)
-            localStorage.setItem('authSeq', res.data.corSeq)
-            localStorage.setItem('authId', res.data.corId)
-            localStorage.setItem('authType', this.state.value)
+            sessionStorage.setItem('authSeq', res.data.corSeq)
+            sessionStorage.setItem('authId', res.data.corId)
+            sessionStorage.setItem('authType', this.state.value)
             document.location.href='/'
           }else{
             alert('아이디 또는 비밀번호가 바르지 않습니다.')

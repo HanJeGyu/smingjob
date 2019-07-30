@@ -29,7 +29,7 @@ class Modify extends React.Component {
         }
     }
     componentDidMount(){
-        const itvSeq = localStorage.getItem('authId')
+        const itvSeq = sessionStorage.getItem('authId')
         axios.get(`http://localhost:9000/interviewers/${itvSeq}`)
             .then(res=>{
                 this.setState(res.data)
@@ -170,13 +170,13 @@ class Modify extends React.Component {
         }else if(document.activeElement.id==='del'){
             const delyn = window.confirm('정말로 탈퇴 하시겠습니까?')
             if(delyn===true){
-                axios.delete(`http://localhost:9000/interviewers/${localStorage.getItem('authSeq')}`)
+                axios.delete(`http://localhost:9000/interviewers/${sessionStorage.getItem('authSeq')}`)
                 .then(res=>{
                     if(res.data.result==='SUCCESS'){
                         alert('회원탈퇴 처리 되었습니다.')
-                        localStorage.removeItem('authSeq')
-                        localStorage.removeItem('authId')
-                        localStorage.removeItem('authType')
+                        sessionStorage.removeItem('authSeq')
+                        sessionStorage.removeItem('authId')
+                        sessionStorage.removeItem('authType')
                         document.location.href='/'
                     }else if(res.data.result==='FAIL'){
                         alert('회원 탈퇴에 실패하였습니다.')

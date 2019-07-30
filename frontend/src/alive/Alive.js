@@ -42,8 +42,8 @@ changePage=(pageNum,offset)=> {
       alert('비밀번호가 다릅니다. 마이페이지에서 확인해주세요.');
     }
     console.log("url:"+url);
-    // localStorage.aliveSeq=seq;
-    //  window.location = '/AliveDetail/'+localStorage.aliveSeq; 
+    // sessionStorage.aliveSeq=seq;
+    //  window.location = '/AliveDetail/'+sessionStorage.aliveSeq; 
 } 
   render(){ 
     let cardGrid ={
