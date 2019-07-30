@@ -32,16 +32,39 @@ changePage=(pageNum,offset)=> {
       
   })
   }
-  detail(url){
-    let pwd = url.split('=');
-    alert(pwd[1]);
-    let inputPwd = prompt("비밀번호를 입력하세요.");
-    if(inputPwd === pwd[1]) {
-      window.open (url, '_blank');
-    } else {
-      alert('비밀번호가 다릅니다. 마이페이지에서 확인해주세요.');
+  detail(url, state){
+    // 현재 날짜와 DB 날짜 비교해서 같으면 시간 비교 > 같으면 면접중으로 , 날짜가 아직 안 됬으면 대기중 , 날짜가 지났으면 종료
+    
+    // alert(state);
+    if (state === '진행 예정') {
+      alert('면접 진행 예정입니다.')
+    } else if(state === '진행중') {
+      if (url === null) {
+        alert('채팅방이 존재하지 않습니다.');
+      } else {
+        let pwd = url.split('=');
+        alert(pwd[1]);
+        let inputPwd = prompt("비밀번호를 입력하세요.");
+    
+        if(inputPwd === pwd[1]) {
+          window.open (url, '_blank');
+        } else {
+          if(inputPwd === '' || inputPwd === null) {
+            alert('비밀번호를 입력해주세요!');
+          } else {
+            alert('비밀번호가 다릅니다. 마이페이지에서 확인해주세요.');
+          }
+        }
+    
+        console.log("url:"+url);
+      }
+    } else if(state === '종료'){
+      alert('종료된 면접입니다.');
     }
-    console.log("url:"+url);
+
+
+
+   
     // sessionStorage.aliveSeq=seq;
     //  window.location = '/AliveDetail/'+sessionStorage.aliveSeq; 
 } 
@@ -92,7 +115,7 @@ changePage=(pageNum,offset)=> {
        <Container style ={cardGrid}  maxWidth="md">
        <Grid container spacing={6} >
        {data && data.slice(this.state.minValue,this.state.maxValue).map(alive => 
-       <Grid item key={alive} xs={12} sm={6} md={4} onClick={()=>this.detail(alive.url)}>
+       <Grid item key={alive} xs={12} sm={6} md={4} onClick={()=>this.detail(alive.url, alive.state)}>
             <Card style ={card} /* onClick={this.detail(id)} */>           
               <CardContent style ={cardContent}>                        
                 <Typography style ={area} variant="h10" gutterBottom>
