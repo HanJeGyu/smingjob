@@ -8,7 +8,7 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { ToastContainer, toast } from 'react-toastify';
+import { typography } from '@material-ui/system';
 
 export default class PRtest2 extends Component {
     constructor(props) {
@@ -25,21 +25,23 @@ export default class PRtest2 extends Component {
             prLocation:'',
             itvSeq:'',
             url: '',
-            email: ''
+            email: '',
+            selectedFile: null,
+            loaded:''
           }
        
       }
-      handleChange=(e)=>{
+    handleChange=(e)=>{
         this.setState({[e.target.name]: e.target.value})
        /*  console.log(e) */
       }
   
-      changeTextData = (text) => {
+    changeTextData = (text) => {
         this.setState({content: text})
         /* console.log(text);    */  
       }
   
-      handleSubmit = (event) =>{
+    handleSubmit = (event) =>{
          event.preventDefault();    
   
         const prs = {
@@ -62,17 +64,20 @@ export default class PRtest2 extends Component {
                data: prs,
                headers: {           
               'Content-Type': 'application/json'
-               }, 
-              
-             });
+               },               
+             }).then(res=>{
+               alert("업로드 완료: "+this.state.title)
+              window.location.replace("http://localhost:3000/pr");
+            }).catch(e => {});
+             
       }   
+
     onChangeHandler=event=>{     
         console.log(event.target.files[0]);
         this.setState({
             selectedFile: event.target.files[0],
             loaded: 0,
-          });
-   
+          });    
 }
 
     onClickHandler = () => {
@@ -87,7 +92,7 @@ export default class PRtest2 extends Component {
             /* console.log(res.data.filename); */
             this.setState({url:res.data.filename})
             console.log("url:"+this.state.url)
-        })
+        }).catch(e => {});
 }
 
 componentWillMount=()=>{
@@ -198,11 +203,11 @@ componentWillMount=()=>{
                   onChange={this.handleChange}
                 />
               </Grid>  
-              <Grid item xs={12}>
+              <Grid item xs={12}>                             
               <CKEditor
                     id="content"                    
                     editor={ ClassicEditor }
-                    data="<p>자기소개<p>"
+                    data="<p>자기소개를 간략하게 적어주세요.<p>"
                     onInit={ editor => {                        
                         console.log( 'Editor is ready to use!', editor );
                     } }

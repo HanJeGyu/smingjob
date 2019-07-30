@@ -35,9 +35,8 @@ changePage=(pageNum,offset)=> {
     axios.get('http://localhost:9000/notices')
     .then(res=>{
       const notices = res.data;
-      this.setState({notices});
-      
-  })
+      this.setState({notices});      
+  }).catch(e => {});
   }
 
    detail(seq){
@@ -62,7 +61,7 @@ changePage=(pageNum,offset)=> {
           const notices = res.data;
           this.setState({notices});
           console.log("data:"+res.data)
-      })
+      }).catch(e => {});
     
 } 
   render(){

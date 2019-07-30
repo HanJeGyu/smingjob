@@ -72,15 +72,14 @@ gomodify(seq){
     render(){     
        
 
-      let style = {
+    let style = {
         marginTop:"100px",  
-    }    
-    let btn = {   
-      margin:"auto",     
-      padding:"10px"      
-    }
+    }      
     let margin={
-      margin:"70px"
+      margin:"5%"
+    } 
+    let margin2={
+      margin:"6%"
     } 
     let taggrid={
       fontWeight:'bold',
@@ -89,6 +88,7 @@ gomodify(seq){
     }
     let btn_m={     
       marginBottom:'20px',
+      marginLeft:'90%'
     }
     let codes = this.state.content
     
@@ -149,19 +149,17 @@ gomodify(seq){
                   label="접수시각"
                   value={this.state.startTime}
                    />
-              </Grid> 
-     
-          <Grid container spacing={10}><p style={margin}></p></Grid>
-         
-         
+              </Grid>      
+          <Grid container spacing={10}><p style={margin}></p></Grid>   
        
           </Grid> 
           <Grid >
-             <Button size="large" style={btn_m}  color="primary" 
+             <Button size="large" variant="contained" color="primary" style={btn_m}
                 onClick={()=>this.gomodify(this.state.noticeSeq)}>
                수정
              </Button>
           </Grid>
+          <Grid container spacing={10}><p style={margin2}></p></Grid>
           <Grid item xs={12}>         
           <MaterialTable title="지원자 관리" 
                 columns={this.state.appcolumns} 
@@ -172,7 +170,7 @@ gomodify(seq){
                   }}
                 />  
           </Grid>
-
+          <Grid container spacing={10}><p style={margin2}></p></Grid>  
           </Container>
          
           </React.Fragment>

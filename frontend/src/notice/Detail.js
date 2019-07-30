@@ -112,6 +112,7 @@ axios.post('http://localhost:9000/applicants/'+itv+'apply'+notiSeq,
               />
             </Grid>
             <Grid item xs={12}>   
+            <Typography variant="h10" gutterBottom>모집개요</Typography>
               <div  dangerouslySetInnerHTML={ {__html: codes} }></div>           
             </Grid>     
 
@@ -134,7 +135,7 @@ axios.post('http://localhost:9000/applicants/'+itv+'apply'+notiSeq,
             </Grid> 
           <Grid container spacing={10}><p style={margin}></p></Grid>
           <Grid container spacing={3}>
-            <Button size="Large" style={btn} color="primary" onClick={this.apply}>지원하기</Button>   </Grid>
+            <Button size="large" variant="contained" color="primary" style={btn}  onClick={this.apply}>지원하기</Button>   </Grid>
           </Grid> 
 
          

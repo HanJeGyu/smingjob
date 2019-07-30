@@ -3,15 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
 import axios from 'axios'
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -68,7 +61,8 @@ export default class NoticeUpload extends React.Component {
        
        axios.put(`http://localhost:9001/notices/modify/${seq}`,JSON.stringify(notices),{headers: headers})
             .then(res=>{       
-              /*   window.location.reload() */
+                 alert("변경 완료: "+this.state.title)
+                 window.location.reload() 
             })
             .catch(e=>{                
             })
@@ -244,7 +238,7 @@ export default class NoticeUpload extends React.Component {
               </Grid> 
           <Grid container spacing={10}><p style={margin}></p></Grid>
           <Grid container spacing={3}>
-            <Button size="Large" style={btn} color="primary"  type="submit">수정</Button>   </Grid>
+            <Button size="large" variant="contained" color="primary" style={btn} type="submit">수정</Button>   </Grid>
           </Grid>
             </Container>
             </form>
@@ -254,9 +248,3 @@ export default class NoticeUpload extends React.Component {
       )
     }
 }
- /*   const [selectedDate, setSelectedDate] = React.useState(new Date('2019-07-14T18:00:00'));
-
-    handleDateChange(date) {
-      setSelectedDate(date);
-    } 
-    */

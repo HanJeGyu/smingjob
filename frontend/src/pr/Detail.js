@@ -213,6 +213,7 @@ export default class Main extends Component {
                }
                
               <Grid item xs={12}>   
+              <Typography variant="h10" gutterBottom>자기소개</Typography>
                 <div  dangerouslySetInnerHTML={ {__html: this.state.content} }></div>           
               </Grid>
               <Grid item xs={12} sm={4}>
