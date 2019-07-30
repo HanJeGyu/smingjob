@@ -25,7 +25,7 @@ class Pr extends React.Component {
     }
 
     componentDidMount(){
-        const itvId = localStorage.getItem('authSeq')
+        const itvId = sessionStorage.getItem('authSeq')
         axios.get(`http://localhost:9000/prs/${itvId}`)
         .then(res=>{
             const prs = res.data;

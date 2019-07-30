@@ -13,8 +13,8 @@ export default class Main extends Component {
     super();
     this.state = {     
       scrapSeq: '',
-      corSeq: localStorage.getItem("authSeq"),
-      prSeq: localStorage.prSeq,
+      corSeq: sessionStorage.getItem("authSeq"),
+      prSeq: sessionStorage.prSeq,
       countNum: '',
       phone:'',
       title:'',
@@ -123,7 +123,7 @@ export default class Main extends Component {
         <React.Fragment> 
     
 
-    {localStorage.getItem('authType') === '2' ?
+    {sessionStorage.getItem('authType') === '2' ?
         
          <Container  style={style} maxWidth="md" >
          <Typography variant="h6" gutterBottom>

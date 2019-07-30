@@ -103,9 +103,9 @@ const Navbar = (props) => {
   }
   
   function handleLogout(){
-    localStorage.removeItem('authSeq')
-    localStorage.removeItem('authId')
-    localStorage.removeItem('authType')
+    sessionStorage.removeItem('authSeq')
+    sessionStorage.removeItem('authId')
+    sessionStorage.removeItem('authType')
     //this.props.history.push('/')
     document.location.href = '/'
   }
@@ -132,10 +132,10 @@ const Navbar = (props) => {
           <Typography variant="h6" className={classes.title} noWrap>
             JOB A LIVE
           </Typography>
-          {localStorage.getItem('authSeq') ? 
+          {sessionStorage.getItem('authSeq') ? 
             <Button color="inherit" onClick={handleLogout}>Logout</Button>
             : <p><Button color="inherit" href="/login">Login</Button><Button color="inherit" href="/join">Join</Button></p>}
-          {localStorage.getItem('authId') && (
+          {sessionStorage.getItem('authId') && (
             <Account></Account>
           )}
         </Toolbar>

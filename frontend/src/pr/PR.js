@@ -45,7 +45,7 @@ changePage=(pageNum,offset)=> {
   }
   detail(seq){
     console.log("seq:"+seq);
-     localStorage.prSeq=seq;
+     sessionStorage.prSeq=seq;
      window.location = '/PRDetail'    
   
 } 

@@ -43,19 +43,20 @@ public class Alive implements Serializable {
     @Column(name="start_date") private String startDate;
     @Column(name="start_time") private String startTime;
     @Column(name="state") private String state;
+    @Column(name="url") private String url;
 
     @Override
     public String toString(){
         return "Alive :[live_seq:" + liveSeq + ",cor_seq:" + corSeq + ", cor_name:" + corName + ",notice_seq" + noticeSeq + ", state:" + state
         + ", start_date:" + startDate+ ", start_time" + startTime + ", area:" + area + ", career:" + career 
-        + ", itv_seq:" + itvSeq + ", itv_name:" + itvName + ", itv_phone:" + itvPhone + "]";
+        + ", itv_seq:" + itvSeq + ", itv_name:" + itvName + ", itv_phone:" + itvPhone + ", url:" + url + "]";
     }
 
 
     //생성자
     @Builder
     private Alive(Long corSeq, String corName, Long noticeSeq, String state, String startDate, String startTime,
-                 String area, String career, Long itvSeq, String itvName, String itvPhone){
+                 String area, String career, Long itvSeq, String itvName, String itvPhone, String url){
         this.corSeq = corSeq;
         this.corName =corName;
         this.noticeSeq = noticeSeq;
@@ -67,6 +68,7 @@ public class Alive implements Serializable {
         this.itvSeq = itvSeq;
         this.itvName = itvName;
         this.itvPhone = itvPhone;
+        this.url = url;
     }
     
 }

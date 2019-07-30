@@ -54,7 +54,7 @@ class CorNotice extends React.Component {
     }
     
     componentDidMount=()=>{
-        const corSeq = localStorage.getItem('authSeq')
+        const corSeq = sessionStorage.getItem('authSeq')
         axios.get(`http://localhost:9000/notices/noticeLiveList/${corSeq}`)
             .then(res=>{
                 this.setState({data: res.data})
@@ -77,7 +77,7 @@ class CorNotice extends React.Component {
 
     goDetail = noticeSeq => {
         alert("seq:" + noticeSeq);
-        // localStorage.pradminSeq=seq;
+        // sessionStorage.pradminSeq=seq;
         window.open("/NoticeDetail/" + noticeSeq, '_blank');
       };
 

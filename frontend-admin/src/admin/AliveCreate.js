@@ -29,7 +29,8 @@ export default class AliveCreate extends React.Component {
       itvPhone: "",
       startDate: "",
       startTime: "",
-      state: ""
+      state: "",
+      url: "",
     };
   }
 
@@ -56,7 +57,8 @@ export default class AliveCreate extends React.Component {
       itvPhone: event.target.itvPhone.value,
       startDate: event.target.startDate.value,
       startTime: event.target.startTime.value,
-      state: "진행중"
+      state: "진행중",
+      url: event.target.url.value,
     };
     axios({
       method: "post",

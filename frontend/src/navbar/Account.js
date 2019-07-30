@@ -58,7 +58,7 @@ const Account = () => {
                 onClose={handleClose}
             >
                 <MenuItem onClick={handleSubOnOff}>My account{subOnOff ? <ExpandLess /> : <ExpandMore />}</MenuItem>
-                {localStorage.getItem('authType')==="1" ? 
+                {sessionStorage.getItem('authType')==="1" ? 
                 <Collapse in={subOnOff} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                     <Link href="/interviewerNotice" underline="none" color="inherit">

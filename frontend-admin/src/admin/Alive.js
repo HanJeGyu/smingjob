@@ -31,11 +31,20 @@ export default class Alive extends Component {
       window.location.reload();
     })
   }
-  goDetail=(seq)=>{
+/*   goDetail=(seq)=>{
     console.log("seq:"+seq);
     localStorage.aliveadminSeq=seq;
     window.location = '/aliveDetail/'+localStorage.aliveadminSeq; 
-    } 
+    } */
+  
+    createAlive=()=>{
+      alert('면접방 생성');
+      // window.open ('http://localhost:8080/', '_blank');
+  /*     let name = "ysh";
+      let content = "dd";
+      window.location = 'http://localhost:8080?'+name+":"+content */
+      window.location = '/AliveCreate';
+    }
 
   render() {
       let state = this.state;
@@ -49,12 +58,20 @@ export default class Alive extends Component {
           title="면접 관리"
           columns={state.columns}
           data={state.alives}
+          actions={[
+            {
+              icon: 'add',
+              tooltip: 'Add alive',
+              isFreeAction: true,
+              onClick: (event) => this.createAlive()
+            }
+          ]}
           style= {style}
-          onRowClick={(event, rowData)=> {             
+/*           onRowClick={(event, rowData)=> {             
             this.goDetail(rowData.liveSeq);                  
-          }}
+          }} */
           editable={{
-            onRowAdd: newData =>
+/*             onRowAdd: newData =>
               new Promise(resolve => {
                 setTimeout(() => {
                   resolve();
@@ -71,7 +88,7 @@ export default class Alive extends Component {
                 //   data[data.indexOf(oldData)] = newData;
                 //   setState({ ...state, data });
                 }, 600);
-              }),
+              }), */
             onRowDelete: oldData =>
               new Promise(resolve => {
                 setTimeout(() => {

@@ -13,7 +13,7 @@ import lombok.Data;
 @Lazy
 public class AliveDTO {
     private Long liveSeq, corSeq, itvSeq;
-    private String corName, state, startDate, startTime, area, career, itvName, itvPhone, url;
+    private String corName, state, startDate, startTime, area, career, itvName, itvPhone;
     
 }
 

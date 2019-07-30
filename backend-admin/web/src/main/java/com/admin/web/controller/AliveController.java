@@ -77,6 +77,7 @@ public class AliveController {
       entity.setStartDate(dto.getStartDate());
       entity.setStartTime(dto.getStartTime());
       entity.setState(dto.getState());
+      entity.setUrl(dto.getUrl());
 
       // System.out.println("entity 저장:"+entity.toString());
       repo.save(entity);
