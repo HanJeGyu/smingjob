@@ -41,10 +41,10 @@ public class PrController {
     @Autowired
     ModelMapper modelMapper;
 
-    //개인마이페이지-내 PR목록에서 삭제 +기업마이페이지-내가 스크랩한 PR목록에서 삭제
+    //개인마이페이지-내 PR목록, 기업마이페이지-내가 스크랩한 PR목록
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable String id) {
-        // System.out.println("deleteById title :" +id);
+        System.out.println("=======================delete");
         repo.deleteById(Long.parseLong(id));
     }
 
@@ -121,8 +121,7 @@ public class PrController {
 
     //수정은 못하게 할건데 혹시 몰라 적어둠
     @PutMapping("/modify/{id}")
-    public HashMap<String, String> modify(@RequestBody PrDTO dto, @PathVariable String id) {
-        // System.out.println("수정"+dto.toString());
+    public HashMap<String, String> modify(@RequestBody PrDTO dto, @PathVariable String id) {        
         HashMap<String, String> map = new HashMap<>();
         Pr entity = repo.findById(Long.parseLong(id)).get();
         entity.setPrSeq(Long.parseLong(id));
@@ -137,8 +136,7 @@ public class PrController {
         entity.setTagCareer(dto.getTagCareer());
         entity.setDateUpload(dto.getDateUpload());
         entity.setUrl(dto.getUrl());
-        entity.setEmail(dto.getEmail());
-        // System.out.println("entity 저장:"+entity.toString());
+        entity.setEmail(dto.getEmail());        
         repo.save(entity);
         map.put("result", "SUCCESS");
         return map;

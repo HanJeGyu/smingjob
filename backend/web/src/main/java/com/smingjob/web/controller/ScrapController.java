@@ -45,16 +45,12 @@ public class ScrapController {
         dto.setDateScrap(dateScrap);
         dto.setCorSeq(rdto.getCorSeq());
         dto.setPrSeq(rdto.getPrSeq());
-
         Corporation cors = new Corporation();
         cors.setCorSeq(rdto.getCorSeq());
-
         Scrap scr = modelMapper.map(dto, Scrap.class);
         scr.setCorporation(cors);
         repo.save(scr);
-
-        long scrapSeq = scr.getScrapSeq();
-        System.out.println("scrapSeq===="+scrapSeq);
+        long scrapSeq = scr.getScrapSeq();       
         return scrapSeq;
     }
 

@@ -43,16 +43,14 @@ public class NoticeController {
 
    //공고 검색
   @GetMapping("/search/{keyword}")
-   public Iterable<NoticeDTO> search(@PathVariable String keyword){
-      /* System.out.println("search 진입"+keyword); */
+   public Iterable<NoticeDTO> search(@PathVariable String keyword){    
        Iterable<Notice> entities = repo.searchAll(keyword);
        List<NoticeDTO> list = new ArrayList<>();
        for(Notice s: entities){
             NoticeDTO noti = modelMapper.map(s, NoticeDTO.class);
             list.add(noti);
          }      
-        // System.out.println("noti"+entities);
-        
+              
     return list;
    }
 

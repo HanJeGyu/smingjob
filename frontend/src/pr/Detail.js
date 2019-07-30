@@ -105,7 +105,14 @@ export default class Main extends Component {
  Phone=()=>{
   alert("이메일:"+ this.state.email+"    연락처: "+this.state.phone);
  }
-
+ delete(){
+   const seq = sessionStorage.prSeq;
+   console.log("seq:"+seq)
+   axios.delete('http://localhost:9000/prs/'+seq).then(res=>{
+    window.open("http://localhost:3000/pr");
+  }).catch(e => {});
+};
+ 
   render() {
     let style = {
         marginTop:"100px",  
@@ -189,7 +196,7 @@ export default class Main extends Component {
                   onClick={this.SendScrap}
                 /> 
                 
-               <StayCurrentPortraitIcon color="Primary"
+               <StayCurrentPortraitIcon color="primary"
                fontSize="large"  onClick={this.Phone}/>
               </Grid>
               : 
@@ -200,7 +207,7 @@ export default class Main extends Component {
                 fontSize="large"
                 onClick={this.SendScrap} /> 
                 
-               <StayCurrentPortraitIcon color="Primary"
+               <StayCurrentPortraitIcon color="primary"
                 fontSize="large" onClick={this.Phone} />
               </Grid>
                }
@@ -240,7 +247,7 @@ export default class Main extends Component {
               </Grid>    
               <Grid container spacing={10}><p style={margin}></p></Grid>
               {sessionStorage.getItem('authSeq') == itvSeq ?
-              <Button color="primary" variant="contained" style={btn}>삭제</Button>
+              <Button color="primary" variant="contained" style={btn} onClick={this.delete}>삭제</Button>
               : '' }
               <Grid container spacing={10}><p style={margin}></p></Grid>
         </Grid>
