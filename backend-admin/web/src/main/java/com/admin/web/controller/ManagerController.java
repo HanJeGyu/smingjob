@@ -23,6 +23,7 @@ public class ManagerController {
     @Autowired
     ManagerRepository repo;
 
+    //관리자로긴
     @PostMapping("/login")
     public Manager login(@RequestBody ManagerDTO rdto) {
         try {

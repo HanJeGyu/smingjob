@@ -12,12 +12,8 @@ import NoticeList from './notice/List'
 import NoticeUpload from './notice/Upload'
 import NoticeModify from './notice/Modify'
 import NoticeDetailAdmin from './notice/Detail'
-import Join from './common/Join'
-import InterviewerModify from './interviewer/Modify'
-import CorporationModify from './corporation/Modify'
 import PrAdmin from "./pr/Pr"
 import AliveAdmin from "./alive/Alive"
-import AliveDetail from "./alive/Detail"
 import AliveCreate from "./alive/Create"
 
 export const routerConfig = [
@@ -63,29 +59,13 @@ export const routerConfig = [
         component: InterviewerAdmin
     },
     {
-        path: '/join',
-        component: Join
-    },
-    {
-        path: '/interviewerModify',
-        component: InterviewerModify
-    },
-    {
-        path: '/corporationModify',
-        component: CorporationModify
-    },
-    {
         path: '/prAdmin',
         component: PrAdmin
     },
     {
         path: '/aliveAdmin',
         component: AliveAdmin
-    },
-    {
-        path: '/aliveDetail',
-        component: AliveDetail
-    },
+    }, 
     {
         path: '/aliveCreate',
         component: AliveCreate

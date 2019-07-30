@@ -1,19 +1,13 @@
 import React from 'react';
 import MaterialTable from 'material-table';
-import { makeStyles} from "@material-ui/core/styles";
 import axios from 'axios'
 import Button from '@material-ui/core/Button';
-import { ExpansionPanelDetails } from '@material-ui/core';
-import { tsConstructSignatureDeclaration } from '@babel/types';
 
 
-
-export default class NoticeList extends React.Component{
-    
+export default class NoticeList extends React.Component{    
 
     constructor(props){
-        super(props)
-        
+        super(props)        
 
     this.state={
         notices: [],

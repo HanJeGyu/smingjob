@@ -38,11 +38,13 @@ public class CorporationController {
    @Autowired CorporationRepository repo;
    @Autowired ModelMapper modelMapper;
 
+   //삭제
    @DeleteMapping("/{id}")
    public void	deleteById(@PathVariable String id){    
       repo.deleteById(Long.parseLong(id));
    }
  
+   //기업회원 리스트
    @GetMapping("")
    public Iterable<CorporationDTO> findAll(){
       Iterable<Corporation> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "corSeq"));
@@ -53,28 +55,5 @@ public class CorporationController {
          }
          System.out.println(list);        
    return list;
-   }
-
-   @GetMapping("/CorporationContent/{id}")
-   public CorporationDTO findById(@PathVariable String id) {
-   return modelMapper.map(repo.findById(Long.parseLong(id))
-            .orElseThrow(EntityNotFoundException::new),
-            CorporationDTO.class);
-   }
-
-   @GetMapping("/{corId}")
-   public CorporationDTO findByCorId(@PathVariable String corId) {
-      return modelMapper.map(repo.findByCorId(corId).get(), CorporationDTO.class);
-   } 
-
-   @PutMapping("/modify")
-   public HashMap<String, String> modify(@RequestBody CorporationDTO rdto) {
-      HashMap<String, String> map = new HashMap<>();
-      repo.updateByCorId(rdto.getCorId(), rdto.getPwd(), rdto.getName(), 
-                        rdto.getCeoName(), rdto.getArea(), rdto.getPmName(),
-                        rdto.getPmPhone(), rdto.getCity(), rdto.getHomepage());
-      map.put("result", "SUCCESS");
-      return map;
-
-   }
+   }   
 }

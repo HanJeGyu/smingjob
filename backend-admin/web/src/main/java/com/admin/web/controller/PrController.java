@@ -37,38 +37,28 @@ public class PrController {
     @Autowired
     ModelMapper modelMapper;
 
+    //삭제
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable String id) {
-        // System.out.println("deleteById title :" +id);
+    public void deleteById(@PathVariable String id) {        
         repo.deleteById(Long.parseLong(id));
     }
 
+    //PR리스트
     @GetMapping("")
     public List<Map<String,Object>> findAll() {
         return repo.getPrList();
     }
 
-/*     @GetMapping("")
-    public Iterable<PrDTO> findAll() {
-        Iterable<Pr> entities = repo.findAll();
-        // System.out.println("findall 진입");
-        List<PrDTO> list = new ArrayList<>();
-        for (Pr s : entities) {
-            PrDTO pr = modelMapper.map(s, PrDTO.class);
-            list.add(pr);
-        }
-        return list;
-    } */
-
+    //...
     @GetMapping("/PrDetail/{id}")
     public PrDTO findById(@PathVariable String id) {
         return modelMapper.map(repo.findById(Long.parseLong(id)).orElseThrow(EntityNotFoundException::new),
                 PrDTO.class);
     }
 
+    //수정은 안쓸듯
     @PutMapping("/modify/{id}")
     public HashMap<String, String> modify(@RequestBody PrDTO dto, @PathVariable String id) {
-        // System.out.println("수정"+dto.toString());
         HashMap<String, String> map = new HashMap<>();
         Pr entity = repo.findById(Long.parseLong(id)).get();
         entity.setPrSeq(Long.parseLong(id));
@@ -82,7 +72,6 @@ public class PrController {
         entity.setTagCareer(dto.getTagCareer());
         entity.setDateUpload(dto.getDateUpload());
 
-        // System.out.println("entity 저장:"+entity.toString());
         repo.save(entity);
         map.put("result", "SUCCESS");
         return map;

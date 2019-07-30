@@ -37,11 +37,13 @@ public class InterviewerController {
    @Autowired
    ModelMapper modelMapper;
 
+   //삭제
    @DeleteMapping("/{id}")
    public void deleteById(@PathVariable String id) {
       repo.deleteById(Long.parseLong(id));
    }
 
+   //개인회원리스트
    @GetMapping("")
    public Iterable<InterviewerDTO> findAll() {
       Iterable<Interviewer> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "itvSeq"));
@@ -55,23 +57,4 @@ public class InterviewerController {
       return list;
    }
 
-   @GetMapping("/InterviewerContent/{id}")
-   public InterviewerDTO findById(@PathVariable String id) {
-      return modelMapper.map(repo.findById(Long.parseLong(id)).orElseThrow(EntityNotFoundException::new),
-            InterviewerDTO.class);
-   }
-
-   @GetMapping("/{itvid}")
-      public InterviewerDTO findByItvId(@PathVariable String itvid) {
-      return modelMapper.map(repo.findByItvId(itvid).get(), InterviewerDTO.class);
-   }
-
-   @PutMapping("/modify")
-   public HashMap<String, String> modify(@RequestBody InterviewerDTO rdto) {
-      HashMap<String, String> map = new HashMap<>();
-      repo.updateByItvId(rdto.getItvId(), rdto.getPwd(), rdto.getName(), 
-                        rdto.getPhone(), rdto.getEmail(), rdto.getArea(), rdto.getLocation());
-      map.put("result", "SUCCESS");
-      return map;
-   }
 }

@@ -36,12 +36,13 @@ public class AliveController {
    @Autowired
    ModelMapper modelMapper;
 
+   //삭제
    @DeleteMapping("/{id}")
    public void deleteById(@PathVariable String id) {
-      // System.out.println("deleteById title :" +id);
       repo.deleteById(Long.parseLong(id));
    }
 
+   //면접리스트
    @GetMapping("")
    public Iterable<AliveDTO> findAll() {
       Iterable<Alive> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "liveSeq"));
@@ -53,12 +54,7 @@ public class AliveController {
       return list;
    }
 
-   @GetMapping("/AliveContent/{id}")
-   public AliveDTO findById(@PathVariable String id) {
-      return modelMapper.map(repo.findById(Long.parseLong(id)).orElseThrow(EntityNotFoundException::new),
-            AliveDTO.class);
-   }
-
+   //면접 업로드
    @PostMapping("/upload")
    public HashMap<String, String> save(@RequestBody AliveDTO dto) {
       // System.out.println("업로드"+dto.toString());
@@ -77,16 +73,14 @@ public class AliveController {
       entity.setStartTime(dto.getStartTime());
       entity.setState(dto.getState());
       entity.setUrl(dto.getUrl());
-
-      // System.out.println("entity 저장:"+entity.toString());
       repo.save(entity);
       map.put("result", "SUCCESS");
       return map;
    }
 
+   //면접 수정 안할건데 일단 써놈
    @PutMapping("/modify/{id}")
    public HashMap<String, String> modify(@RequestBody AliveDTO dto, @PathVariable String id) {
-      // System.out.println("수정"+dto.toString());
       HashMap<String, String> map = new HashMap<>();
       Alive entity = repo.findById(Long.parseLong(id)).get();
       entity.setLiveSeq(Long.parseLong(id));

@@ -35,16 +35,16 @@ public class NoticeController {
     @Autowired NoticeRepository repo;
     @Autowired ApplicantRepository apprepo;
 
-    @DeleteMapping("/{id}")
+   //삭제 
+   @DeleteMapping("/{id}")
    public void	deleteById(@PathVariable String id){    
-        // System.out.println("deleteById title :" +id);   
         repo.deleteById(Long.parseLong(id));
    }
 
+   //공고리스트
    @GetMapping("")
    public Iterable<NoticeDTO> findAll(){
        Iterable<Notice> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "noticeSeq"));
-    //    System.out.println("findall 진입");
        List<NoticeDTO> list = new ArrayList<>();
        for(Notice s: entities){
             NoticeDTO noti = modelMapper.map(s, NoticeDTO.class);
@@ -52,24 +52,15 @@ public class NoticeController {
          }        
     return list;
    }
-   @GetMapping("/noticeDetail/{id}")
-   public NoticeDTO findById(@PathVariable String id) {
-    return modelMapper.map(repo.findById(Long.parseLong(id))
-            .orElseThrow(EntityNotFoundException::new),
-            NoticeDTO.class);
-           
-   }
 
+   //디테일  
    @GetMapping("/{noticeSeq}")
    public NoticeDTO findByNoticeSeq(@PathVariable String noticeSeq) {
    return modelMapper.map(repo.findByNoticeSeq(Long.parseLong(noticeSeq)).get(), NoticeDTO.class);
-          
 }
-   
-
+   //업로드
    @PostMapping("/upload")
    public HashMap<String, String> save(@RequestBody NoticeDTO dto) {
-    //    System.out.println("업로드"+dto.toString());
        HashMap<String, String> map = new HashMap<>();
        Notice entity = new Notice();
        entity.setTitle(dto.getTitle());
@@ -84,14 +75,14 @@ public class NoticeController {
        entity.setTagAttribute(dto.getTagAttribute());
        entity.setTagCareer(dto.getTagCareer());
   
-    //    System.out.println("entity 저장:"+entity.toString());
        repo.save(entity);
        map.put("result", "SUCCESS");
       return map;
    }   
+
+   //수정
    @PutMapping("/modify/{noticeSeq}")
    public HashMap<String, String> modify(@RequestBody NoticeDTO dto,@PathVariable String noticeSeq) {
-    //    System.out.println("수정"+dto.toString());
        HashMap<String, String> map = new HashMap<>();
        Notice entity = repo.findByNoticeSeq(Long.parseLong(noticeSeq)).get();
        entity.setNoticeSeq(Long.parseLong(noticeSeq));
@@ -105,9 +96,8 @@ public class NoticeController {
        entity.setStartTime(dto.getStartTime());
        entity.setTagLocation(dto.getTagLocation());
        entity.setTagAttribute(dto.getTagAttribute());
-       entity.setTagCareer(dto.getTagCareer());
-  
-    //    System.out.println("entity 저장:"+entity.toString());
+       entity.setTagCareer(dto.getTagCareer());  
+   
        repo.save(entity);
        map.put("result", "SUCCESS");
       return map;
