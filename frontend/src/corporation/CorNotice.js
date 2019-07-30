@@ -68,17 +68,15 @@ class CorNotice extends React.Component {
         if(e.target.innerHTML==='면접자목록'){
             this.setState({liveSeq: rowData.liveSeq})
             this.setState({open: true})
+        }else{
+            sessionStorage.noticeSeq=noticeSeq;
+            window.open("/NoticeDetail");
         }
     }
 
     handleClose = () => {
         this.setState({open:false})
     };
-
-    goDetail = noticeSeq => {       
-        sessionStorage.noticeSeq=noticeSeq;
-        window.open("/NoticeDetail");
-      };
 
     render(){
         const { classes } = this.props
@@ -89,12 +87,7 @@ class CorNotice extends React.Component {
                 title="공고목록"
                 columns={this.state.columns}
                 data={this.state.data}
-                onRowClick={(event, rowData) => {                   
-                    this.goDetail(rowData.noticeSeq);
-                  }}
-
-                editable={{
-                }}
+                onRowClick={this.handleClick()}
             />
             <Modal
             aria-labelledby="simple-modal-title"

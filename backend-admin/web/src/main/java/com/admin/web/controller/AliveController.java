@@ -73,8 +73,15 @@ public class AliveController {
       entity.setStartTime(dto.getStartTime());
       entity.setState(dto.getState());
       entity.setUrl(dto.getUrl());
-      repo.save(entity);
-      map.put("result", "SUCCESS");
+
+      try {
+         repo.save(entity);
+         map.put("liveSeq", repo.findByNoticeSeq(dto.getNoticeSeq()).getLiveSeq().toString());
+         map.put("result", "SUCCESS");
+      } catch (Exception e) {
+         System.out.println("면접 생성 error" + e);
+         map.put("result", "FAIL");
+      }
       return map;
    }
 
