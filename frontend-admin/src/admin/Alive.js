@@ -33,8 +33,8 @@ export default class Alive extends Component {
   }
 /*   goDetail=(seq)=>{
     console.log("seq:"+seq);
-    localStorage.aliveadminSeq=seq;
-    window.location = '/aliveDetail/'+localStorage.aliveadminSeq; 
+    sessionStorage.aliveadminSeq=seq;
+    window.location = '/aliveDetail/'+sessionStorage.aliveadminSeq; 
     } */
   
     createAlive=()=>{

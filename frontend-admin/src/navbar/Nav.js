@@ -101,14 +101,14 @@ const Navbar = () => {
   }
 
   function handleLogout(){
-    localStorage.removeItem('authId')
+    sessionStorage.removeItem('authId')
     document.location.href = '/'
   }
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {localStorage.getItem('authId') ?
+      {sessionStorage.getItem('authId') ?
       <AppBar
         position="static" //fixed에서 변경
         className={clsx(classes.appBar, {

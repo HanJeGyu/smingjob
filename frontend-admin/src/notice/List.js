@@ -53,9 +53,9 @@ export default class NoticeList extends React.Component{
     goDetail=(seq)=>{
     console.log("seq:"+seq);
 
-    localStorage.noticeadminSeq=seq;
-    console.log("notice:" +localStorage.noticeadminSeq)
-    window.location = '/noticeDetail/'+localStorage.noticeadminSeq; 
+    sessionStorage.noticeadminSeq=seq;
+    console.log("notice:" +sessionStorage.noticeadminSeq)
+    window.location = '/noticeDetail/'+sessionStorage.noticeadminSeq; 
     } 
      
        

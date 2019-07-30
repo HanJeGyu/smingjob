@@ -29,7 +29,7 @@ export default class Pr extends Component {
   }
   goDetail = seq => {
    /*  alert("seq:" + seq); */
-    localStorage.prSeq=seq;
+    sessionStorage.prSeq=seq;
     window.open("http://localhost:3000/prDetail/" + seq, '_blank');
   };
 

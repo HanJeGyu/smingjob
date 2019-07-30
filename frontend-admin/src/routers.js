@@ -18,17 +18,16 @@ import CorporationModify from './corporation/Modify'
 import PrAdmin from "./pr/Pr"
 import AliveAdmin from "./admin/Alive"
 import AliveDetail from "./alive/Detail"
-import LoginAdmin from "./common/Login"
 import AliveCreate from "./admin/AliveCreate"
 
 export const routerConfig = [
     {
         path: '/',
         exact: true,
-        component: () => <Redirect to="/home" />
+        component: () => <Redirect to="/HomeAdmin" />
     },
     {
-        path: '/home',
+        path: '/HomeAdmin',
         component: Home
     },
     {
@@ -86,10 +85,6 @@ export const routerConfig = [
     {
         path: '/aliveDetail',
         component: AliveDetail
-    },
-    {
-        path: '/homeAdmin',
-        component: LoginAdmin
     },
     {
         path: '/aliveCreate',
