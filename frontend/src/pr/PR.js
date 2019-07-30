@@ -41,8 +41,8 @@ componentDidMount(){
   }
 detail=(seq)=>{
     console.log("seq:"+seq);
-     sessionStorage.prSeq=seq;
-     window.location = '/PRDetail'      
+    sessionStorage.prSeq=seq;
+    window.location = '/PRDetail'      
 } 
 upload=()=>{
   window.location = '/PRUpload'   
