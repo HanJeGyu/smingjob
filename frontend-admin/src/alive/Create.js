@@ -59,12 +59,10 @@ export default class AliveCreate extends React.Component {
       itvPhone: event.target.itvPhone.value,
       startDate: event.target.startDate.value,
       startTime: event.target.startTime.value,
-      state: "진행중",
+      state: "대기중",
       url: event.target.url.value
       // url: "http://localhost:8080/?room=" + Math.floor(Math.random()*100000000 + 1),
     };
-
-    alert(alives.url);
 
     axios({
       method: "post",
@@ -73,7 +71,13 @@ export default class AliveCreate extends React.Component {
       headers: {
         "Content-Type": "application/json"
       }
-    });
+    })
+/*     .then(res => {
+      alert('생성 완료!');
+      window.location = '/Alive';
+    }) */
+    alert('생성 완료!');
+    window.location = '/AliveAdmin'; 
   };
 
   render() {
