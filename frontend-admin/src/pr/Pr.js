@@ -29,7 +29,7 @@ export default class Pr extends Component {
   }
   goDetail = seq => {
     sessionStorage.prSeq=seq;
-    window.open("http://localhost:3000/prDetail/" + seq, '_blank');
+    window.location.replace("http://localhost:3001/PrAdminDetail");
   };
 
   render() {

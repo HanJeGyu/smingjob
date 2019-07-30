@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { typography } from '@material-ui/system';
+import { subMinutes } from 'date-fns';
 
 export default class PRtest2 extends Component {
     constructor(props) {
@@ -26,8 +27,7 @@ export default class PRtest2 extends Component {
             itvSeq:'',
             url: '',
             email: '',
-            selectedFile: null,
-            loaded:''
+            selectedFile: null,           
           }
        
       }
@@ -40,36 +40,42 @@ export default class PRtest2 extends Component {
         this.setState({content: text})
         /* console.log(text);    */  
       }
-  
+    
     handleSubmit = (event) =>{
-         event.preventDefault();    
-  
-        const prs = {
-            phone:this.state.phone,
-            title:event.target.title.value,
-            content:this.state.content,
-            area:event.target.area.value,
-            tagLocation:event.target.tagLocation.value,
-            tagAttribute:event.target.tagAttribute.value,
-            tagCareer:event.target.tagCareer.value,
-            name:this.state.name,
-            prLocation:event.target.prLocation.value,
-            itvSeq:sessionStorage.authSeq,
-            url: this.state.url  ,
-            email: event.target.email.value      
-       };
-          axios({
-               method: 'post',
-               url: 'http://localhost:9000/prs/upload',
-               data: prs,
-               headers: {           
-              'Content-Type': 'application/json'
-               },               
-             }).then(res=>{
-               alert("업로드 완료: "+this.state.title)
-              window.location.replace("http://localhost:3000/pr");
-            }).catch(e => {});
+         event.preventDefault();  
+         const prs = {
+          phone:this.state.phone,
+          title:event.target.title.value,
+          content:this.state.content,
+          area:event.target.area.value,
+          tagLocation:event.target.tagLocation.value,
+          tagAttribute:event.target.tagAttribute.value,
+          tagCareer:event.target.tagCareer.value,
+          name:this.state.name,
+          prLocation:event.target.prLocation.value,
+          itvSeq:sessionStorage.authSeq,
+          url: this.state.url,
+          email: event.target.email.value      
+     };
+         const data = new FormData() 
+         data.append('file', this.state.selectedFile)   
+
+         axios.post("http://localhost:8000/upload",data,{})
+         .then(res => {
+             console.log(res.statusText);  
+             console.log("filename:"+res.data.filename)              
+             this.setState({url:res.data.filename})            
              
+         }).catch(e => {});         
+        
+         axios.post("http://localhost:9000/prs/upload", prs,{})
+         .then(res=>{         
+           alert("업로드 완료: "+this.state.title)
+           alert("url"+this.state.url)
+           window.location.replace("http://localhost:3000/pr"); 
+       }).catch(e => {});  
+               
+              
       }   
 
     onChangeHandler=event=>{     
@@ -97,7 +103,6 @@ export default class PRtest2 extends Component {
 
 componentWillMount=()=>{
     const seq = sessionStorage.authSeq;
-    console.log("itvID:"+sessionStorage.authSeq);
     axios.get(`http://localhost:9000/interviewers/pr/${seq}`)
         .then(res=>{
            this.setState(res.data)          

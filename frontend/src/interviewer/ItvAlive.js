@@ -1,20 +1,10 @@
 import React from 'react';
 import MaterialTable from 'material-table';
-import { withStyles } from "@material-ui/core/styles";
+
 import axios from 'axios'
 
-const useStyles = theme => ({
-    table: {
-        width: '100%',
-        minWidth: 1500,
-        margin: "100px 50px"
-    },
-    tableWrapper: {
-        overflowX: 'auto',
-    }
-}); 
 
-class ItvAlive extends React.Component {
+export default class ItvAlive extends React.Component {
     constructor(props){
         super(props)
         this.state={
@@ -41,20 +31,23 @@ class ItvAlive extends React.Component {
     }
 
     render(){
-        const { classes } = this.props
+        let style = {
+            margin:"100px 50px",
+            marginBottom:"0"
+        }
         return (
-            <div className={classes.tableWrapper} >
+            
                 <MaterialTable
-                    className={classes.table}
+                    style ={style}
                     title="면접목록"
                     columns={this.state.columns}
                     data={this.state.data}
                     editable={{
                 }}
             />
-            </div>
+            
         );
     }
 }
 
-export default withStyles(useStyles)(ItvAlive);
+

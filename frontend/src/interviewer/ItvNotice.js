@@ -1,20 +1,10 @@
 import React from 'react';
 import MaterialTable from 'material-table';
-import { withStyles } from "@material-ui/core/styles";
 import axios from 'axios'
 
-const useStyles = theme => ({
-    table: {
-        width: '100%',
-        minWidth: 1500,
-        margin: "100px 50px"
-    },
-    tableWrapper: {
-        overflowX: 'auto',
-    }
-}); 
 
-class ItvNotice extends React.Component {
+
+export default  class ItvNotice extends React.Component {
     constructor(props){
         super(props)
         this.state={
@@ -26,7 +16,8 @@ class ItvNotice extends React.Component {
                 { title: '접수상태', field: 'state'},
                 //{ title: '접수상태', field: 'state', lookup: { 0: '미지원', 1: '접수중', 2: '접수완료', 3: '지원실패', 99: '참여불가'}},
             ],
-            data: []
+            data: [],
+          
         }
     }
 
@@ -41,26 +32,36 @@ class ItvNotice extends React.Component {
         })
     }
 
-    handleClick=(e, rowData)=>{
-        this.props.history.pushState(rowData.noticeSeq, '/notice')
-    }
+    goDetail = noticeSeq => {     
+        sessionStorage.noticeSeq=noticeSeq;
+        window.open("/NoticeDetail");
+      };
+
+  /*   handleClick=(e, rowData)=>{
+       this.props.history.pushState(rowData.noticeSeq, '/notice') 
+    } */
 
     render(){
-        const { classes } = this.props
+        let style = {
+            margin:"100px 50px",
+            marginBottom:"0"
+        }     
+
+       
         return (
-            <div className={classes.tableWrapper} >
-                <MaterialTable
-                    className={classes.table}
+          
+                <MaterialTable                   
                     title="지원목록"
+                    style={style}
                     columns={this.state.columns}
                     data={this.state.data}
-                    onRowClick={this.handleClick}
-                    editable={{
-                    }}
+                    onRowClick={(event, rowData) => {                   
+                    this.goDetail(rowData.noticeSeq);
+                  }}
+                    
                 />
-            </div>
+            
         );
     }
 }
 
-export default withStyles(useStyles)(ItvNotice);

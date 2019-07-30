@@ -43,8 +43,7 @@ public class PrController {
 
     //개인마이페이지-내 PR목록, 기업마이페이지-내가 스크랩한 PR목록
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable String id) {
-        System.out.println("=======================delete");
+    public void deleteById(@PathVariable String id) {       
         repo.deleteById(Long.parseLong(id));
     }
 

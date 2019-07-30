@@ -43,9 +43,9 @@ class Pr extends React.Component {
     });
   }
 
-  goDetail = prSeq => {
-    alert("seq:" + prSeq);
-    window.open("/PRDetail/" + prSeq, "_blank");
+  goDetail = prSeq => {   
+    sessionStorage.prSeq =prSeq
+    window.open("/PRDetail" );
   };
 
   render() {
@@ -57,8 +57,7 @@ class Pr extends React.Component {
           title="PR 스크랩"
           columns={state.columns}
           data={state.prs}
-          onRowClick={(event, rowData) => {
-            alert("rowData" + rowData.prSeq);
+          onRowClick={(event, rowData) => {           
             this.goDetail(rowData.prSeq);
           }}
           editable={{

@@ -12,9 +12,7 @@ import Button from '@material-ui/core/Button';
 export default class Main extends Component {
   constructor() {
     super();
-    this.state = {     
-      scrapSeq: '',
-      corSeq: sessionStorage.getItem("authSeq"),
+    this.state = {    
       prSeq: sessionStorage.prSeq,
       countNum: '',
       phone:'',
@@ -34,74 +32,19 @@ export default class Main extends Component {
   }
 
   
-  componentDidMount() {
-    //prdetail 데이터 불러옴      
+  componentDidMount() {    
     console.log("seq:"+this.state.prSeq)
-    axios.get(`http://localhost:9000/prs/PrDetail/` + this.state.prSeq)
+    axios.get(`http://localhost:9001/prs/PrDetail/` + this.state.prSeq)
     .then(res=>{
        this.setState(res.data)
-       console.log(res.data)      
+       console.log(res.data)
     })
     .catch(e=>{           
        console.log(e.res)
       
     })
-
-
-    // 만약 현재 기업 seq랑 현재 pr seq가 일치하는 데이터가 있으면
-    //click을 true로 없으면 false로 셋팅함.
-    axios
-    .get(`http://localhost:9000/scraps/${this.state.corSeq}/${this.state.prSeq}`)
-    .then(res => {
-       this.setState({countNum : res.data }); 
-       console.log("count:"+res.data.countNum)
-       console.log("authseq:"+sessionStorage.authSeq)
-       console.log("itvseq:"+this.state.itvSeq)
-    })
-    .catch(e => {});
   }
-  
-  SendScrap = () => {
-    if (this.state.countNum < 1) {
-      const data = {
-        corSeq: this.state.corSeq,
-        prSeq: this.state.prSeq
-      };
-
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: "JWT fefege.."
-      };
-      axios
-        .post(`http://localhost:9000/scraps/`, JSON.stringify(data), {
-          headers: headers
-        })
-        .then(res => {         
-          this.setState({countNum : 1});
-          alert("찜하기!");
-        })
-        .catch(e => {});
-
-    } else {
-        axios
-        .get(`http://localhost:9000/scraps/getScrapSeq/${this.state.corSeq}/${this.state.prSeq}`)
-        .then(res => {
-           this.setState({scrapSeq : res.data }); 
-           axios
-           .delete(`http://localhost:9000/scraps/${this.state.scrapSeq}`)
-           .then(e => {
-             this.setState({countNum : 0});
-             alert("찜하기 취소");
-           })
-           .catch(e => {});
-        })
-        .catch(e=>{
-          alert("실패");
-        }) 
-      
-  
-    }
-  };
+ 
  Phone=()=>{
   alert("이메일:"+ this.state.email+"    연락처: "+this.state.phone);
  }
@@ -111,7 +54,7 @@ export default class Main extends Component {
    axios.delete('http://localhost:9000/prs/'+seq).then(res=>{
     window.open("http://localhost:3000/pr");
   }).catch(e => {});
-};
+}
  
   render() {
     let style = {
@@ -130,10 +73,6 @@ export default class Main extends Component {
     const itvSeq = this.state.itvSeq
     return (
         <React.Fragment> 
-    
-
-    {sessionStorage.getItem('authSeq') == itvSeq || sessionStorage.getItem('authType') === '2' ?
-        
          <Container  style={style} maxWidth="md" >
          <Typography variant="h6" gutterBottom>
          {this.state.title}  
@@ -145,8 +84,7 @@ export default class Main extends Component {
                   id="name"
                   name="name"
                   label="이름"
-                  fullWidth
-                  autoComplete="name"
+                  fullWidth                  
                   value={this.state.name}                  
                 />
               </Grid> 
@@ -156,8 +94,7 @@ export default class Main extends Component {
                   id="area"
                   name="area"
                   label="희망직무"
-                  fullWidth
-                  autoComplete="area"
+                  fullWidth                  
                   value={this.state.area}  
                 />
               </Grid> 
@@ -166,51 +103,34 @@ export default class Main extends Component {
                   id="prLocation"
                   name="pr_location"
                   label="희망지역"
-                  fullWidth
-                  autoComplete="prLocation"
+                  fullWidth                 
                   value={this.state.prLocation}
                 />
               </Grid>
-              <Grid item xs={12} >
+              <Grid item xs={6} >
                 <TextField            
                   id="phone"
                   name="phone"
                   label="연락처"
-                  fullWidth
-                  autoComplete="phone"
-                  value='영상하단의 핸드폰 아이콘을 클릭하면 연락처를 확인할 수 있으며, 구직자에게 열람여부가 알려집니다.'                 
+                  fullWidth                 
+                  value={this.state.phone}               
                 />
               </Grid>  
+              <Grid item xs={6} >
+                <TextField            
+                  id="email"
+                  name="email"
+                  label="이메일"
+                  fullWidth                  
+                  value={this.state.email}                 
+                />
+              </Grid>
               <Grid container spacing={10}><p style={margin}></p></Grid> 
               <Grid>                       
               <video width="900"  controls>
                   <source type="video/mp4" key={this.state.url} src={this.state.url}  /> 
               </video> 
-              </Grid>
-            {this.state.countNum >= 1 ?
-              <Grid style={align}>             
-                <FavoriteIcon
-                  className="favorite_icon"
-                  color="error"
-                  fontSize="large"
-                  onClick={this.SendScrap}
-                /> 
-                
-               <StayCurrentPortraitIcon color="primary"
-               fontSize="large"  onClick={this.Phone}/>
-              </Grid>
-              : 
-              <Grid style={align}>   
-              <FavoriteBorderIcon
-                className="favorite_border_icon"
-                color="error"
-                fontSize="large"
-                onClick={this.SendScrap} /> 
-                
-               <StayCurrentPortraitIcon color="primary"
-                fontSize="large" onClick={this.Phone} />
-              </Grid>
-               }
+              </Grid>          
                
               <Grid item xs={12}>   
               <Typography variant="h10" gutterBottom>자기소개</Typography>
@@ -221,8 +141,7 @@ export default class Main extends Component {
                   id="tagLocation"
                   name="tag_Location"
                   label="#위치 태그"
-                  fullWidth
-                  autoComplete="tag_Location"
+                  fullWidth                 
                   value={this.state.tagLocation}
                 />
               </Grid>
@@ -231,8 +150,7 @@ export default class Main extends Component {
                   id="tagAttribute"
                   name="tag_attribute"
                   label="#특성 태그"
-                  fullWidth
-                  autoComplete="tag_attribute"
+                  fullWidth                
                   value={this.state.tagAttribute}
                 />
               </Grid>
@@ -241,20 +159,16 @@ export default class Main extends Component {
                   id="tagCareer"
                   name="tag_career"
                   label="#요구경력 태그"
-                  fullWidth
-                  autoComplete="tag_career"
+                  fullWidth                 
                   value={this.state.tagCareer}
                 />
               </Grid>    
-              <Grid container spacing={10}><p style={margin}></p></Grid>
-              {sessionStorage.getItem('authSeq') == itvSeq ?
+              <Grid container spacing={10}><p style={margin}></p></Grid>             
               <Button color="primary" variant="contained" style={btn} onClick={this.delete}>삭제</Button>
-              : '' }
+              
               <Grid container spacing={10}><p style={margin}></p></Grid>
-        </Grid>
-       
-  </Container>    
-    : '기업로그인 해주세요' }
+          </Grid>       
+        </Container>      
       </React.Fragment>
     );
   }

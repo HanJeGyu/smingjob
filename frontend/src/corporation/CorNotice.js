@@ -11,13 +11,10 @@ const top = 50 + Math.round(Math.random() * 20) - 10;
 const left = 50 + Math.round(Math.random() * 20) - 10;
 
 const useStyles = theme => ({
-    table: {
-        width: '100%',
-        minWidth: 1500,
-        margin: "100px 50px"
-    },
+    
     tableWrapper: {
-        overflowX: 'auto',
+        margin:"100px 50px",
+        marginBottom:"0"
     },
     modal: {
         top: `${top}%`,
@@ -86,8 +83,7 @@ class CorNotice extends React.Component {
         
         return (
             <div className={classes.tableWrapper} >
-            <MaterialTable
-                className={classes.table}
+            <MaterialTable               
                 title="공고목록"
                 columns={this.state.columns}
                 data={this.state.data}

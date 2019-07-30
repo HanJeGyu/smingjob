@@ -94,7 +94,6 @@ public class AliveController {
       entity.setItvName(dto.getItvName());
       entity.setItvPhone(dto.getItvPhone());
 
-      // System.out.println("entity 저장:"+entity.toString());
       repo.save(entity);
       map.put("result", "SUCCESS");
       return map;

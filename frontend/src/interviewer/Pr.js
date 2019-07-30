@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const useStyles = theme => ({
     table: {
-        margin:"100px",
+        margin:"100px 50px",
         marginBottom:"0"
     }
 }); 
@@ -20,7 +20,8 @@ class Pr extends React.Component {
                 { title: "제목", field: "title" },
                 { title: "스크랩 수", field: "count"},      
                 { title: "업로드일자", field: "dateUpload"},
-            ]
+            ],
+            itvSeq: sessionStorage.getItem('authSeq')
         };
     }
 
@@ -43,6 +44,12 @@ class Pr extends React.Component {
         });
       }
 
+    goDetail = prSeq => {  
+        sessionStorage.authSeq = this.state.itvSeq         
+        sessionStorage.prSeq=prSeq;
+        window.open("/prDetail");
+      };
+
     render(){
         let state = this.state;
         const { classes } = this.props
@@ -61,7 +68,9 @@ class Pr extends React.Component {
                     }, 600);
                 }),
             }}
-            onRowClick
+            onRowClick={(event, rowData) => {                   
+                this.goDetail(rowData.prSeq);
+              }}
             />
             </div>
         );

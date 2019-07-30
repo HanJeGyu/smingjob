@@ -13,6 +13,7 @@ import NoticeUpload from './notice/Upload'
 import NoticeModify from './notice/Modify'
 import NoticeDetailAdmin from './notice/Detail'
 import PrAdmin from "./pr/Pr"
+import PrAdminDetail from "./pr/Detail"
 import AliveAdmin from "./alive/Alive"
 import AliveCreate from "./alive/Create"
 
@@ -69,5 +70,9 @@ export const routerConfig = [
     {
         path: '/aliveCreate',
         component: AliveCreate
+    },
+    {
+        path: '/prAdminDetail',
+        component: PrAdminDetail
     },
 ]
