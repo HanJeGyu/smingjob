@@ -37,6 +37,7 @@ public class CorporationController {
    @Autowired CorporationRepository repo;
    @Autowired ModelMapper modelMapper;
 
+   //탈퇴
    @DeleteMapping("/{corSeq}")
    public HashMap<String, Object> deleteById(@PathVariable String corSeq){    
       HashMap<String, Object> map = new HashMap<>();
@@ -50,25 +51,20 @@ public class CorporationController {
       }
       return map;
    }
- 
 
-   @GetMapping("/CorporationContent/{id}")
-   public CorporationDTO findById(@PathVariable String id) {
-   return modelMapper.map(repo.findById(Long.parseLong(id))
-            .orElseThrow(EntityNotFoundException::new),
-            CorporationDTO.class);
-   }
-
+   //가입시 ID중복확인
    @GetMapping("/checkId/{corId}")
    public Long checkId(@PathVariable String corId) {
       return repo.countByCorId(corId);
    }
 
+   //기업 마이페이지 정보불러옴
    @GetMapping("/{corId}")
    public CorporationDTO findByCorId(@PathVariable String corId) {
       return modelMapper.map(repo.findByCorId(corId).get(), CorporationDTO.class);
    }
 
+   //정보수정
    @PutMapping("/modify")
    public HashMap<String, String> modify(@RequestBody CorporationDTO rdto) {
       HashMap<String, String> map = new HashMap<>();
@@ -86,6 +82,7 @@ public class CorporationController {
 
    }
 
+   //로긴
    @PostMapping("/login")
    public CorporationDTO login(@RequestBody CorporationDTO rdto) {
       try {
@@ -95,6 +92,7 @@ public class CorporationController {
       }
    }
 
+   //가입
    @PostMapping("/join")
    public HashMap<String, String> join(@RequestBody CorporationDTO rdto) {
       System.out.println("진입확인");

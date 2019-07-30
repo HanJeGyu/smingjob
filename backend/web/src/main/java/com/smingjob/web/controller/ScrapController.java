@@ -22,9 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * ScrapController
- */
+
 @RestController
 @RequestMapping("/scraps")
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
@@ -38,6 +36,7 @@ public class ScrapController {
     @Autowired
     ModelMapper modelMapper;
 
+    //스크랩 insert
     @PostMapping("/")
     public Long Scrap(@RequestBody ScrapDTO rdto) {
         HashMap<String, String> map = new HashMap<>();
@@ -59,25 +58,21 @@ public class ScrapController {
         return scrapSeq;
     }
 
+    //스크랩 delete
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable String id) {
-        // System.out.println("deleteById title :" +id);
+    public void deleteById(@PathVariable String id) {        
         repo.deleteById(Long.parseLong(id));
     }
 
+    //스크랩 카운트 
     @GetMapping("/{corSeq}/{prSeq}")
     public String checkCount(@PathVariable String corSeq, @PathVariable String prSeq) {
-      /*   System.out.println("corSeq====="+corSeq);
-        System.out.println("prSeq======"+prSeq);
-        System.out.println("count====="+repo.checkCount(corSeq, prSeq)); */
         return repo.checkCount(corSeq, prSeq);
     }
 
+    //스크랩 delete를 위한 스크랩seq 찾기
     @GetMapping("/getScrapSeq/{corSeq}/{prSeq}")
     public String getScrapSeq(@PathVariable String corSeq, @PathVariable String prSeq) {
-       /*  System.out.println("corSeq====="+corSeq);
-        System.out.println("prSeq======"+prSeq);
-        System.out.println("count====="+repo.checkCount(corSeq, prSeq)); */
         return repo.getScrapSeq(corSeq, prSeq);
     }
     

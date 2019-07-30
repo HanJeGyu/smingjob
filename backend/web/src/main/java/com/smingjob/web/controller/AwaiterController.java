@@ -31,19 +31,19 @@ public class AwaiterController {
     @Autowired
     AwaiterDTO dto;
 
-    /* 개인회원 마이페이지 지원현황 */
+    // 개인회원 마이페이지에서 면접현황 리스트
     @GetMapping("/aliveList/{itvSeq}")
     public List<Map<String,Object>> aliveList(@PathVariable String itvSeq) {
         return repo.findAliveList(Long.parseLong(itvSeq));
     }
 
-    /* 기업회원 마이페이지 공고목록-면접자목록(modal) */
+    // 기업회원 마이페이지 공고목록-면접자목록(modal)
     @GetMapping("/{liveSeq}")
     public List<Map<String,Object>> awaiterList(@PathVariable String liveSeq) {
         return repo.findAwaiterList(Long.parseLong(liveSeq));
     } 
 
-    /* 기업이 면접자 연락처 열람 */
+    // 기업이 면접자 연락처 열람 
     @PutMapping("/lookphone")
     public void lookphone(@RequestBody AwaiterDTO rdto) {
         repo.updateResult(rdto.getLiveSeq(), rdto.getItvSeq());

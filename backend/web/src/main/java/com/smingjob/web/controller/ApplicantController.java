@@ -30,7 +30,7 @@ public class ApplicantController {
     @Autowired
     ModelMapper modelMapper;
 
-    /* 개인회원 마이페이지 지원현황 */
+    //개인회원 마이페이지에서 지원현황 리스트
        @GetMapping("/noticeList/{itvSeq}")
     public List<Map<String,Object>> noticeList(@PathVariable String itvSeq) {
         return repo.getNoticeList(Long.parseLong(itvSeq));

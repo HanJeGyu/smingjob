@@ -29,16 +29,10 @@ public class NoticeController {
    @Autowired ModelMapper modelMapper;
    @Autowired NoticeRepository repo;
  
-   @DeleteMapping("/{id}")
-   public void	deleteById(@PathVariable String id){    
-        // System.out.println("deleteById title :" +id);   
-        repo.deleteById(Long.parseLong(id));
-   }
-
+   //공고 리스트
    @GetMapping("")
    public Iterable<NoticeDTO> findAll(){
-       Iterable<Notice> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "noticeSeq"));
-    //    System.out.println("findall 진입");
+       Iterable<Notice> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "noticeSeq"));    
        List<NoticeDTO> list = new ArrayList<>();
        for(Notice s: entities){
             NoticeDTO noti = modelMapper.map(s, NoticeDTO.class);
@@ -47,6 +41,7 @@ public class NoticeController {
     return list;
    }
 
+   //공고 검색
   @GetMapping("/search/{keyword}")
    public Iterable<NoticeDTO> search(@PathVariable String keyword){
       /* System.out.println("search 진입"+keyword); */
@@ -60,20 +55,14 @@ public class NoticeController {
         
     return list;
    }
- 
-   @GetMapping("/noticeDetail/{id}")
-   public NoticeDTO findById(@PathVariable String id) {
-    return modelMapper.map(repo.findById(Long.parseLong(id))
-            .orElseThrow(EntityNotFoundException::new),
-            NoticeDTO.class);
-   }
 
+   //공고디테일
    @GetMapping("/{noticeSeq}")
    public NoticeDTO findByNoticeSeq(@PathVariable String noticeSeq) {
       return modelMapper.map(repo.findByNoticeSeq(Long.parseLong(noticeSeq)).get(), NoticeDTO.class);
    } 
 
-   /* 기업회원 마이페이지 공고 목록 */
+   // 기업회원 마이페이지에서 공고리스트  
    @GetMapping("/noticeLiveList/{corSeq}")
    public List<Map<String, Object>> noticeLiveList(@PathVariable String corSeq){
       return repo.getNoticeLiveList(Long.parseLong(corSeq));

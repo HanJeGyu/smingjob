@@ -41,26 +41,26 @@ public class PrController {
     @Autowired
     ModelMapper modelMapper;
 
+    //마이페이지-내 pr목록에서 삭제
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable String id) {
         // System.out.println("deleteById title :" +id);
         repo.deleteById(Long.parseLong(id));
     }
 
+    //PR리스트
     @GetMapping("")
     public Iterable<PrDTO> findAll() {
-        Iterable<Pr> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "prSeq"));
-        // System.out.println("findall 진입");
+        Iterable<Pr> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "prSeq"));        
         List<PrDTO> list = new ArrayList<>();
         for (Pr s : entities) {
             PrDTO pr = modelMapper.map(s, PrDTO.class);
-            list.add(pr);
-            // System.out.println(list);
+            list.add(pr);         
         }
-
         return list;
     }
 
+    //PR 검색
     @GetMapping("/search/{keyword}")
     public Iterable<PrDTO> search(@PathVariable String keyword) {
         Iterable<Pr> entities = repo.searchAll(keyword);        
@@ -72,33 +72,27 @@ public class PrController {
         return list;
     }
 
-
+    //개인 마이페이지에서 본인PR목록
     @GetMapping("{itvSeq}")
     public List<Map<String, Object>> findAllAndCount(@PathVariable String itvSeq) {
-/*         List<Pr> entities = repo.findByItvSeq(Long.parseLong(itvSeq));
-        for (Pr s : entities) {
-        } */
         return repo.findAllAndCount(Long.parseLong(itvSeq));
     }
 
-
-    // 기업이 스크랩한 목록 불러옴
+    // 기업 마이페이지에서 스크랩한 PR목록
     @GetMapping("/cor/{corSeq}")
-    public List<Map<String, Object>> findAllById(@PathVariable String corSeq) {
- 
+    public List<Map<String, Object>> findAllById(@PathVariable String corSeq) { 
         return repo.corFindAllById(Long.parseLong(corSeq));
     }
 
+    //PR디테일
     @GetMapping("/PrDetail/{prSeq}")
-    public PrDTO findByPrSeq(@PathVariable String prSeq) {
-        System.out.println("prSeq:"+prSeq);       
-        return modelMapper.map(repo.findByPrSeq(Long.parseLong(prSeq)).get(0), PrDTO.class);
-        
+    public PrDTO findByPrSeq(@PathVariable String prSeq) {      
+        return modelMapper.map(repo.findByPrSeq(Long.parseLong(prSeq)).get(0), PrDTO.class);        
     }
 
+    //PR업로드
     @PostMapping("/upload")
-    public HashMap<String, String> save(@RequestBody PrDTO dto) {
-        // System.out.println("업로드"+dto.toString());
+    public HashMap<String, String> save(@RequestBody PrDTO dto) {      
         HashMap<String, String> map = new HashMap<>();
         
         Pr entity = new Pr();
@@ -119,13 +113,13 @@ public class PrController {
         entity.setDateUpload(date);
         entity.setUrl(dto.getUrl());
         entity.setEmail(dto.getEmail());
-
-        // System.out.println("entity 저장:"+entity.toString());
+       
         repo.save(entity);
         map.put("result", "SUCCESS");
         return map;
     }
 
+    //수정은 못하게 할건데 혹시 몰라 적어둠
     @PutMapping("/modify/{id}")
     public HashMap<String, String> modify(@RequestBody PrDTO dto, @PathVariable String id) {
         // System.out.println("수정"+dto.toString());
