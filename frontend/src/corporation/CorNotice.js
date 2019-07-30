@@ -41,8 +41,11 @@ class CorNotice extends React.Component {
                 { title: '면접일', field: 'aliveStartDate', type: 'numeric' },
                 { title: '면접시작시각', field: 'aliveStartTime', type: 'numeric' },
                 { title: '진행상태', field: 'state'},
+                { title: '면접방', field: 'url', emptyValue: '이동'},
+                { title: '비밀번호', field: 'pwd'},
                 { field: 'list2', emptyValue: '면접자목록' },
-                { title: '면접자목록SEQ', field: 'liveSeq', hidden: true }
+                { title: '면접자목록SEQ', field: 'liveSeq', hidden: true },
+                
             ],
             data: [],
             open: false,
