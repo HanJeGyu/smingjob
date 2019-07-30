@@ -40,7 +40,7 @@ class CorNotice extends React.Component {
                 { title: '접수시작시각', field: 'noticeStartTime', type: 'numeric' },
                 { title: '면접일', field: 'aliveStartDate', type: 'numeric' },
                 { title: '면접시작시각', field: 'aliveStartTime', type: 'numeric' },
-                { title: '진행상태', field: 'state', lookup: { 1: '접수중', 2: '면접예정', 3: '종료', 99: '중단'}},
+                { title: '진행상태', field: 'state'},
                 { field: 'list2', emptyValue: '면접자목록' },
                 { title: '면접자목록SEQ', field: 'liveSeq', hidden: true }
             ],
