@@ -12,6 +12,7 @@ import com.smingjob.web.repositories.NoticeRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +37,7 @@ public class NoticeController {
 
    @GetMapping("")
    public Iterable<NoticeDTO> findAll(){
-       Iterable<Notice> entities = repo.findAll();
+       Iterable<Notice> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "noticeSeq"));
     //    System.out.println("findall 진입");
        List<NoticeDTO> list = new ArrayList<>();
        for(Notice s: entities){

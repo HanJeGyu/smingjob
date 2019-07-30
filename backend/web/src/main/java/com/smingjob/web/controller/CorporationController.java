@@ -51,17 +51,6 @@ public class CorporationController {
       return map;
    }
  
-   @GetMapping("")
-   public Iterable<CorporationDTO> findAll(){
-      Iterable<Corporation> entities = repo.findAll();
-      List<CorporationDTO> list = new ArrayList<>();
-      for(Corporation s: entities){
-            CorporationDTO cop = modelMapper.map(s, CorporationDTO.class);
-            list.add(cop);
-         }
-         System.out.println(list);        
-      return list;
-   }
 
    @GetMapping("/CorporationContent/{id}")
    public CorporationDTO findById(@PathVariable String id) {

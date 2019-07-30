@@ -14,6 +14,7 @@ import com.admin.web.repositories.CorporationRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +45,7 @@ public class CorporationController {
  
    @GetMapping("")
    public Iterable<CorporationDTO> findAll(){
-      Iterable<Corporation> entities = repo.findAll();
+      Iterable<Corporation> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "corSeq"));
       List<CorporationDTO> list = new ArrayList<>();
       for(Corporation s: entities){
             CorporationDTO cop = modelMapper.map(s, CorporationDTO.class);

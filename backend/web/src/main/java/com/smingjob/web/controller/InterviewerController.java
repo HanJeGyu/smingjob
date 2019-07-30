@@ -53,18 +53,7 @@ public class InterviewerController {
       return map;
    }
 
-   @GetMapping("")
-   public Iterable<InterviewerDTO> findAll() {
-      Iterable<Interviewer> entities = repo.findAll();
-      System.out.println("findalldddd 진입");
-      List<InterviewerDTO> list = new ArrayList<>();
-      for (Interviewer s : entities) {
-         InterviewerDTO live = modelMapper.map(s, InterviewerDTO.class);
-         list.add(live);
-         System.out.println(list);
-      }
-      return list;
-   }
+
 
    @GetMapping("/InterviewerContent/{id}")
    public InterviewerDTO findById(@PathVariable String id) {

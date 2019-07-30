@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import MaterialTable from "material-table";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
 import axios from "axios";
 
 export default class Alive extends Component {

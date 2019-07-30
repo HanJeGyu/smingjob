@@ -12,6 +12,7 @@ import com.admin.web.repositories.InterviewerRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +44,7 @@ public class InterviewerController {
 
    @GetMapping("")
    public Iterable<InterviewerDTO> findAll() {
-      Iterable<Interviewer> entities = repo.findAll();
+      Iterable<Interviewer> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "itvSeq"));
       System.out.println("findalldddd 진입");
       List<InterviewerDTO> list = new ArrayList<>();
       for (Interviewer s : entities) {

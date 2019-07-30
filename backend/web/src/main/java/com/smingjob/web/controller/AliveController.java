@@ -11,6 +11,7 @@ import com.smingjob.web.repositories.AliveRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +40,7 @@ public class AliveController {
 
    @GetMapping("")
    public Iterable<AliveDTO> findAll() {
-      Iterable<Alive> entities = repo.findAll();
+      Iterable<Alive> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "aliveSeq"));
       // System.out.println("findall 진입");
       List<AliveDTO> list = new ArrayList<>();
       for (Alive s : entities) {

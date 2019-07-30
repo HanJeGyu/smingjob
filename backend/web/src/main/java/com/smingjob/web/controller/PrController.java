@@ -18,6 +18,7 @@ import com.smingjob.web.repositories.PrRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +49,7 @@ public class PrController {
 
     @GetMapping("")
     public Iterable<PrDTO> findAll() {
-        Iterable<Pr> entities = repo.findAll();
+        Iterable<Pr> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "prSeq"));
         // System.out.println("findall 진입");
         List<PrDTO> list = new ArrayList<>();
         for (Pr s : entities) {
@@ -84,17 +85,7 @@ public class PrController {
     // 기업이 스크랩한 목록 불러옴
     @GetMapping("/cor/{corSeq}")
     public List<Map<String, Object>> findAllById(@PathVariable String corSeq) {
-        
-/*         List<Pr> entities = repo.corFindAllById(Long.parseLong(corSeq));
-        List<PrDTO> list = new ArrayList<>();
-        for (Pr s : entities) {
-            PrDTO pr = modelMapper.map(s, PrDTO.class);
-            list.add(pr);
-            System.out.println("list찍음======================="+list);
-            // System.out.println(list);
-         }
-         return list; */
-        // return repo.findAllAndCount(Long.parseLong(corSeq));
+ 
         return repo.corFindAllById(Long.parseLong(corSeq));
     }
 
