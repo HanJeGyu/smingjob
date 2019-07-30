@@ -54,6 +54,9 @@ public class Corporation implements Serializable{
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "corporation")
     private List<Scrap> scraps;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "corporation")
+    private List<Notice> notices;
+
     @Override
     public String toString(){
         return "corporation :[corId:"+corId+",pwd:" +pwd+", corRegNo:"+corRegNo+", name:"+name+", ceoName:"+ceoName+", area:"+area+

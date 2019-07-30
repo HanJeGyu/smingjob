@@ -19,8 +19,8 @@ public interface NoticeRepository extends JpaRepository<Notice, Long>{
     @Query("SELECT n.noticeSeq AS noticeSeq, n.title AS title, n.startDate AS noticeStartDate, "
         + "n.startTime AS noticeStartTime, a.startDate AS aliveStartDate, "
         + "a.startTime AS aliveStartTime, a.state AS state, a.liveSeq AS liveSeq "
-        + "FROM Notice n JOIN n.alive a "
-        + "WHERE a.corSeq = ?1")
+        + "FROM Notice n LEFT JOIN n.alive a "
+        + "WHERE n.corporation.corSeq = ?1")
     public List<Map<String, Object>> getNoticeLiveList(Long corSeq);
 
     @Query("select n from Notice n where n.corName like %?1% or n.title like %?1% or n.tagLocation like %?1% "
