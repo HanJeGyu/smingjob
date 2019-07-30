@@ -44,8 +44,7 @@ public class AliveController {
 
    @GetMapping("")
    public Iterable<AliveDTO> findAll() {
-      Iterable<Alive> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "aliveSeq"));
-      // System.out.println("findall 진입");
+      Iterable<Alive> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "liveSeq"));
       List<AliveDTO> list = new ArrayList<>();
       for (Alive s : entities) {
          AliveDTO live = modelMapper.map(s, AliveDTO.class);

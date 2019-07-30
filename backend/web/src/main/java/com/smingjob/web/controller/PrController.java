@@ -41,7 +41,7 @@ public class PrController {
     @Autowired
     ModelMapper modelMapper;
 
-    //마이페이지-내 pr목록에서 삭제
+    //개인마이페이지-내 PR목록에서 삭제 +기업마이페이지-내가 스크랩한 PR목록에서 삭제
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable String id) {
         // System.out.println("deleteById title :" +id);

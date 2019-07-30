@@ -16,9 +16,9 @@ import Join from './common/Join'
 import InterviewerModify from './interviewer/Modify'
 import CorporationModify from './corporation/Modify'
 import PrAdmin from "./pr/Pr"
-import AliveAdmin from "./admin/Alive"
+import AliveAdmin from "./alive/Alive"
 import AliveDetail from "./alive/Detail"
-import AliveCreate from "./admin/AliveCreate"
+import AliveCreate from "./alive/Create"
 
 export const routerConfig = [
     {
