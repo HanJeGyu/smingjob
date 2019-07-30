@@ -30,7 +30,9 @@ export default class AliveCreate extends React.Component {
       startDate: "",
       startTime: "",
       state: "",
-      url: "",
+      url:
+        "http://localhost:8080/?room=" +
+        Math.floor(Math.random() * 100000000 + 1)
     };
   }
 
@@ -58,8 +60,12 @@ export default class AliveCreate extends React.Component {
       startDate: event.target.startDate.value,
       startTime: event.target.startTime.value,
       state: "진행중",
-      url: event.target.url.value,
+      url: event.target.url.value
+      // url: "http://localhost:8080/?room=" + Math.floor(Math.random()*100000000 + 1),
     };
+
+    alert(alives.url);
+
     axios({
       method: "post",
       url: "http://localhost:9001/alives/upload",
@@ -172,17 +178,19 @@ export default class AliveCreate extends React.Component {
                   onChange={this.handleChange}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  id="url"
-                  name="url"
-                  label="면접방 URL"
-                  fullWidth
-                  autoComplete="url"
-                  defaultValue="djdlsfdjlfdajfl"
-                  onChange={this.handleChange}
-                />
-              </Grid>
+              {
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    id="url"
+                    name="url"
+                    label="면접방 URL"
+                    fullWidth
+                    autoComplete="url"
+                    defaultValue={this.state.url}
+                    onChange={this.handleChange}
+                  />
+                </Grid>
+              }
               <Grid item xs={4} sm={2}>
                 <TextField
                   id="startDate"
