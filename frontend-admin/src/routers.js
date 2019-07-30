@@ -16,10 +16,10 @@ import Join from './common/Join'
 import InterviewerModify from './interviewer/Modify'
 import CorporationModify from './corporation/Modify'
 import PrAdmin from "./pr/Pr"
-import AliveAdmin from "./alive/Alive"
+import AliveAdmin from "./admin/Alive"
 import AliveDetail from "./alive/Detail"
 import LoginAdmin from "./common/Login"
-
+import AliveCreate from "./admin/AliveCreate"
 
 export const routerConfig = [
     {
@@ -91,5 +91,8 @@ export const routerConfig = [
         path: '/homeAdmin',
         component: LoginAdmin
     },
-
+    {
+        path: '/aliveCreate',
+        component: AliveCreate
+    },
 ]
