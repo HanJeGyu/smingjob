@@ -39,7 +39,7 @@ export default class NoticeDetail extends React.Component {
    
   }
   componentWillMount=()=>{
-    const seq = localStorage.noticeadminSeq;  
+    const seq = sessionStorage.noticeadminSeq;  
     axios.get('http://localhost:9001/notices/'+seq)
         .then(res=>{
             this.setState(res.data)
@@ -66,8 +66,8 @@ changeAppState=(seq)=>{
   } 
 
 gomodify(seq){
-  localStorage.noticeSeq = seq  ;
-  window.location ="/noticemodify/"+ localStorage.noticeSeq 
+  sessionStorage.noticeSeq = seq  ;
+  window.location ="/noticemodify/"+ sessionStorage.noticeSeq 
 }
     render(){     
        

@@ -54,7 +54,7 @@ export default function Login() {
       .then(res=>{
         if(res.data!==''){
           alert(`${res.data.managerId} 님 환영합니다.`)
-          localStorage.setItem('authId', res.data.managerId)
+          sessionStorage.setItem('authId', res.data.managerId)
           document.location.href='/'
         }else{
           alert('아이디 또는 비밀번호가 바르지 않습니다.')

@@ -64,7 +64,7 @@ export default class NoticeUpload extends React.Component {
       'Content-Type': 'application/json',
       'Authorization': 'JWT fefege..'
        }
-       const seq = localStorage.noticeSeq;
+       const seq = sessionStorage.noticeSeq;
        
        axios.put(`http://localhost:9001/notices/modify/${seq}`,JSON.stringify(notices),{headers: headers})
             .then(res=>{       
@@ -76,7 +76,7 @@ export default class NoticeUpload extends React.Component {
     
 
     componentWillMount=()=>{
-        const seq = localStorage.noticeSeq;
+        const seq = sessionStorage.noticeSeq;
         axios.get(`http://localhost:9001/notices/${seq}`)
             .then(res=>{
                this.setState(res.data)
