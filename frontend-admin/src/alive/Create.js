@@ -69,11 +69,6 @@ export default class AliveCreate extends React.Component {
     .then(res=>{
       if(res.data.result==='SUCCESS'){
         alert('생성 완료!');
-/*         const awaiters = {
-          liveSeq: res.data.liveSeq, 
-          noticeSeq: event.target.noticeSeq.value
-        } */
-        console.log(res.data.liveSeq)
         // 면접자 목록 생성
         axios.post(`http://localhost:9001/awaiters`,{liveSeq:res.data.liveSeq, noticeSeq:noticeSeq},{headers: headers})
         .then(res=>{
