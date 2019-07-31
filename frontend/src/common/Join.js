@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, useTheme, Tabs, Tab,
+import { makeStyles, Tabs, Tab,
         AppBar, Container, CssBaseline } 
         from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -45,7 +45,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function FullWidthTabs() {
     const classes = useStyles();
-    const theme = useTheme();
     const [value, setValue] = useState(0);
 
     function handleChange(event, newValue) {

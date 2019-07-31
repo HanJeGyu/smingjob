@@ -101,7 +101,7 @@ export default function Join(){
         if(e.target.name!=='area' && e.target.name!=='email'
             && e.target.name!=='pwd' && e.target.name!=='pwdchk'
             && e.target.name!=='birth'){
-            const checkStr = /[`~!@#$%^&*{}<>()+=_|\-\-\\\'\"\.\,;:\/?]/gi;
+            const checkStr = /[`~!@#$%^&*{}<>()+=_|\-\-\\'".,;:/?]/gi;
             e.target.value = e.target.value.replace(checkStr,'')
 /*             if(checkChar.test(e.target.value)){
                 e.target.value = e.target.value.replace(checkChar,'')

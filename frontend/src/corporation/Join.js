@@ -111,7 +111,7 @@ export default function Join(){
         if(e.target.name==='corRegNo' || e.target.name==='name'
             || e.target.name==='ceoName' || e.target.name==='pmName'
             || e.target.name==='pmPhone' || e.target.name==='corId'){
-            const checkStr = /[`~!@#$%^&*{}<>()+=_|\-\-\\\'\"\.\,;:\/?]/gi;
+            const checkStr = /[`~!@#$%^&*{}<>()+=_|\-\-\\'".,;:/?]/gi;
             e.target.value = e.target.value.replace(checkStr,'')
         }
         // 한글 제거 : 사업자번호, 연락처, 아이디
@@ -139,13 +139,13 @@ export default function Join(){
             if(checkStr.test(num.substr(0,3))){
                 if(num.length < 10) {
                     phone = num;
-                }else if(num.length == 10) {
+                }else if(num.length === 10) {
                     phone += num.substr(0, 3);
                     phone += "-";
                     phone += num.substr(3, 3);
                     phone += "-";
                     phone += num.substr(6);
-                }else if(num.length == 11){
+                }else if(num.length === 11){
                     phone += num.substr(0, 3);
                     phone += "-";
                     phone += num.substr(3, 4);
@@ -156,25 +156,25 @@ export default function Join(){
             // 일반전화 일때
                 if(num.length < 9) {
                     phone = num;
-                }else if(num.length == 9) {
+                }else if(num.length === 9) {
                     phone = num.substr(0, 2);
                     phone += "-";
                     phone += num.substr(2, 3);
                     phone += "-";
                     phone += num.substr(5);
-                }else if(num.length == 10 && num.substr(0,2) == '02') {
+                }else if(num.length === 10 && num.substr(0,2) === '02') {
                     phone = num.substr(0, 2);
                     phone += "-";
                     phone += num.substr(2, 4);
                     phone += "-";
                     phone += num.substr(6);
-                }else if(num.length == 10 && num.substr(0,2) != '02') {
+                }else if(num.length === 10 && num.substr(0,2) !== '02') {
                     phone = num.substr(0, 3);
                     phone += "-";
                     phone += num.substr(3, 3);
                     phone += "-";
                     phone += num.substr(6);
-                }else if(num.length == 11) {
+                }else if(num.length === 11) {
                     phone = num.substr(0, 3);
                     phone += "-";
                     phone += num.substr(3, 4);

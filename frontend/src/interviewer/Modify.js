@@ -43,14 +43,14 @@ class Modify extends React.Component {
         e.preventDefault();
          /* 공백 제거 */
         if(e.target.name!=='area' && e.target.name!=='location'){
-            if((e.target.value).search(/\s/) != -1){
+            if((e.target.value).search(/\s/) !== -1){
                 e.target.value = e.target.value.replace(' ','')
             }
         }
        /*  특수문자 제거 : 이름, 아이디, 생년월일, 휴대폰번호, 산업/직군, 근무지 */
         if(e.target.name!=='area' && e.target.name!=='email'
             && e.target.name!=='pwd'){
-            const checkStr = /[`~!@#$%^&*{}<>()+=_|\-\-\\\'\"\.\,;:\/?]/gi;
+            const checkStr = /[`~!@#$%^&*{}<>()+=_|\-\-\\'".,;:/?]/gi;
             e.target.value = e.target.value.replace(checkStr,'')
         }
         /*  한글 제거 : 아이디, 생년월일, 휴대폰번호 */
@@ -78,13 +78,13 @@ class Modify extends React.Component {
             if(checkStr.test(num.substr(0,3))){
                 if(num.length < 10) {
                     phone = num;
-                }else if(num.length == 10) {
+                }else if(num.length === 10) {
                     phone += num.substr(0, 3);
                     phone += "-";
                     phone += num.substr(3, 3);
                     phone += "-";
                     phone += num.substr(6);
-                }else if(num.length == 11){
+                }else if(num.length === 11){
                     phone += num.substr(0, 3);
                     phone += "-";
                     phone += num.substr(3, 4);
@@ -95,25 +95,25 @@ class Modify extends React.Component {
             /*  일반전화 일때 */
                 if(num.length < 9) {
                     phone = num;
-                }else if(num.length == 9) {
+                }else if(num.length === 9) {
                     phone = num.substr(0, 2);
                     phone += "-";
                     phone += num.substr(2, 3);
                     phone += "-";
                     phone += num.substr(5);
-                }else if(num.length == 10 && num.substr(0,2) == '02') {
+                }else if(num.length === 10 && num.substr(0,2) === '02') {
                     phone = num.substr(0, 2);
                     phone += "-";
                     phone += num.substr(2, 4);
                     phone += "-";
                     phone += num.substr(6);
-                }else if(num.length == 10 && num.substr(0,2) != '02') {
+                }else if(num.length === 10 && num.substr(0,2) !== '02') {
                     phone = num.substr(0, 3);
                     phone += "-";
                     phone += num.substr(3, 3);
                     phone += "-";
                     phone += num.substr(6);
-                }else if(num.length == 11) {
+                }else if(num.length === 11) {
                     phone = num.substr(0, 3);
                     phone += "-";
                     phone += num.substr(3, 4);

@@ -45,7 +45,7 @@ class Login extends React.Component {
   }
 
   handleReplace=(e)=>{
-    if((e.target.value).search(/\s/) != -1){
+    if((e.target.value).search(/\s/) !== -1){
       e.target.value = e.target.value.replace(' ','')
     }
   }

@@ -154,7 +154,7 @@ changePage=(pageNum,offset)=> {
                 <Typography  style ={tags} gutterBottom variant="h6" >
                   #{notice.tagLocation}  #{notice.tagAttribute}  #{notice.tagArea}
                 </Typography>
-                <Typography><p /></Typography>    
+                <Typography><p/></Typography>
                 <Typography style ={state} >
                 {notice.state}
                 </Typography>

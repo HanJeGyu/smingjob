@@ -53,7 +53,7 @@ class Modify extends React.Component {
         // 특수문자 제거 : 사업자번호, 회사명, 대표명, 가입자명, 연락처, 아이디
         if(e.target.name==='name' || e.target.name==='ceoName' 
             || e.target.name==='pmName' || e.target.name==='pmPhone'){
-            const checkStr = /[`~!@#$%^&*{}<>()+=_|\-\-\\\'\"\.\,;:\/?]/gi;
+            const checkStr = /[`~!@#$%^&*{}<>()+=_|\-\-\\'".,;:/?]/gi;
             e.target.value = e.target.value.replace(checkStr,'')
         }
         // 한글 제거 : 사업자번호, 연락처, 아이디
