@@ -41,11 +41,9 @@ class CorNotice extends React.Component {
                 { title: '면접일', field: 'aliveStartDate', type: 'numeric' },
                 { title: '면접시작시각', field: 'aliveStartTime', type: 'numeric' },
                 { title: '진행상태', field: 'state'},
-                { title: '면접방', field: 'url', emptyValue: '이동'},
-                { title: '비밀번호', field: 'pwd'},
+                { title: '면접방', emptyValue: '이동'},
                 { field: 'list2', emptyValue: '면접자목록' },
                 { title: '면접자목록SEQ', field: 'liveSeq', hidden: true },
-                
             ],
             data: [],
             open: false,
@@ -68,7 +66,33 @@ class CorNotice extends React.Component {
         if(e.target.innerHTML==='면접자목록'){
             this.setState({liveSeq: rowData.liveSeq})
             this.setState({open: true})
-        }else{
+        } else if(e.target.innerHTML==='이동') {
+            if (rowData.state === '진행 예정') {
+                alert('면접 진행 예정입니다.')
+              } else if(rowData.state === '진행중') {
+                if (rowData.url === null) {
+                  alert('채팅방이 존재하지 않습니다.');
+                } else {
+                  let pwd = rowData.url.split('=');
+                  alert('비밀번호: ' + pwd[1]);
+                  let inputPwd = prompt("비밀번호를 입력하세요.");
+              
+                  if(inputPwd === pwd[1]) {
+                    // window.open (url, '_blank');
+                    window.open(rowData.url);
+                  } else {
+                    if(inputPwd === '' || inputPwd === null) {
+                      alert('비밀번호를 입력해주세요!');
+                    } else {
+                      alert('비밀번호가 다릅니다. 다시 입력해주세요.');
+                    }
+                  }
+              
+                }
+              } else if(rowData.state === '종료'){
+                alert('종료된 면접입니다.');
+              }
+        } else{
             sessionStorage.noticeSeq=rowData.noticeSeq;
             window.open("/NoticeDetail");
         }

@@ -40,36 +40,59 @@ export default class AliveCreate extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
+    const noticeSeq = event.target.noticeSeq.value;
     const alives = {
       corSeq: event.target.corSeq.value,
       corName: event.target.corName.value,
       noticeSeq: event.target.noticeSeq.value,
       area: event.target.area.value,
       career: event.target.career.value,
-      itvSeq: event.target.itvSeq.value,
-      itvName: event.target.itvName.value,
-      itvPhone: event.target.itvPhone.value,
       startDate: event.target.startDate.value,
       startTime: event.target.startTime.value,
       state: "대기중",
       url: event.target.url.value
       // url: "http://localhost:8080/?room=" + Math.floor(Math.random()*100000000 + 1),
     };
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'JWT fefege..'
+    }
+    axios.post('http://localhost:9001/alives/upload',JSON.stringify(alives),{headers: headers})
+    .then(res=>{
+      if(res.data.result==='SUCCESS'){
+        alert('생성 완료!');
+        // 면접자 목록 생성
+        axios.post(`http://localhost:9001/awaiters`,{liveSeq:res.data.liveSeq, noticeSeq:noticeSeq},{headers: headers})
+        .then(res=>{
+          if(res.data.result==='SUCCESS'){
+            alert('면접자 목록 생성 성공');
+          }else{
+            alert('면접자 목록을 만드는 중 문제가 발생하였습니다.');
+          }
+        })
+        .catch(e=>{
+          alert('면접자 목록을 만드는데 실패하였습니다.')
+        })
+      }else{
+        alert('면접 방을 만드는 과정에서 문제가 발생하였습니다.');
+      }
+    })
+    .catch(e=>{
+      alert('면접 방을 만드는데 실패 하였습니다.')
+    })
 
-    axios({
+    
+
+/*     axios({
       method: "post",
       url: "http://localhost:9001/alives/upload",
       data: alives,
       headers: {
         "Content-Type": "application/json"
       }
-    })
-/*     .then(res => {
-      alert('생성 완료!');
-      window.location = '/Alive';
-    }) */
+    }) 
     alert('생성 완료!');
-    window.location = '/AliveAdmin'; 
+    window.location = '/AliveAdmin'; */
   };
 
   render() {
@@ -140,37 +163,6 @@ export default class AliveCreate extends React.Component {
                   label="경력사항 (신입/경력/경력무관/인턴)"
                   fullWidth
                   autoComplete="career"
-                  onChange={this.handleChange}
-                />
-              </Grid>
-
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  id="itvSeq"
-                  name="itvSeq"
-                  label="면접자 번호"
-                  fullWidth
-                  autoComplete="itvSeq"
-                  onChange={this.handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  id="itvName"
-                  name="itvName"
-                  label="면접자 이름"
-                  fullWidth
-                  autoComplete="itvName"
-                  onChange={this.handleChange}
-                />
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                <TextField
-                  id="itvPhone"
-                  name="itvPhone"
-                  label="면접자 연락처"
-                  fullWidth
-                  autoComplete="itvPhone"
                   onChange={this.handleChange}
                 />
               </Grid>
