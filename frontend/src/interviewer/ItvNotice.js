@@ -2,8 +2,6 @@ import React from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios'
 
-
-
 export default  class ItvNotice extends React.Component {
     constructor(props){
         super(props)
@@ -14,10 +12,8 @@ export default  class ItvNotice extends React.Component {
                 { title: '접수시작일', field: 'startDate', type: 'numeric' },
                 { title: '접수시작시간', field: 'startTime', type: 'numeric' },
                 { title: '접수상태', field: 'state'},
-                //{ title: '접수상태', field: 'state', lookup: { 0: '미지원', 1: '접수중', 2: '접수완료', 3: '지원실패', 99: '참여불가'}},
             ],
             data: [],
-          
         }
     }
 
@@ -35,11 +31,7 @@ export default  class ItvNotice extends React.Component {
     goDetail = noticeSeq => {     
         sessionStorage.noticeSeq=noticeSeq;
         window.open("/NoticeDetail");
-      };
-
-  /*   handleClick=(e, rowData)=>{
-       this.props.history.pushState(rowData.noticeSeq, '/notice') 
-    } */
+    };
 
     render(){
         let style = {
@@ -47,20 +39,16 @@ export default  class ItvNotice extends React.Component {
             marginBottom:"0"
         }     
 
-       
         return (
-          
-                <MaterialTable                   
-                    title="지원목록"
-                    style={style}
-                    columns={this.state.columns}
-                    data={this.state.data}
-                    onRowClick={(event, rowData) => {                   
-                    this.goDetail(rowData.noticeSeq);
-                  }}
-                    
-                />
-            
+            <MaterialTable                   
+                title="지원목록"
+                style={style}
+                columns={this.state.columns}
+                data={this.state.data}
+                onRowClick={(event, rowData) => {                   
+                this.goDetail(rowData.noticeSeq);
+                }}
+            />
         );
     }
 }

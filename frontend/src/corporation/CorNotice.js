@@ -62,7 +62,7 @@ class CorNotice extends React.Component {
             .catch(e=>{
                 alert('데이터를 불러오지 못했습니다.\n관리자에게 문의해 주세요')
             })
-      })
+        })
     }
 
     handleClick=(e, rowData)=>{
