@@ -69,7 +69,7 @@ class CorNotice extends React.Component {
             this.setState({liveSeq: rowData.liveSeq})
             this.setState({open: true})
         }else{
-            sessionStorage.noticeSeq=noticeSeq;
+            sessionStorage.noticeSeq=rowData.noticeSeq;
             window.open("/NoticeDetail");
         }
     }
@@ -87,7 +87,7 @@ class CorNotice extends React.Component {
                 title="공고목록"
                 columns={this.state.columns}
                 data={this.state.data}
-                onRowClick={this.handleClick()}
+                onRowClick={this.handleClick}
             />
             <Modal
             aria-labelledby="simple-modal-title"
