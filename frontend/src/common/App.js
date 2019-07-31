@@ -10,7 +10,7 @@ function App() {
     <div className='wrapper'>
       <Navbar />
       <div className="content">
-        {routerConfig.map(route => (<Route path={route.path} exact={route.exact} component={route.component} />))}
+        {routerConfig.map((route, index) => (<Route path={route.path} key={index} exact={route.exact} component={route.component} />))}
       </div>
       <Footer />
     </div>

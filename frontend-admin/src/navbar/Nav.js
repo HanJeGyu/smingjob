@@ -12,7 +12,7 @@ import {
   Button,
   Toolbar,
 } from "@material-ui/core";
-import { red, deepPurple, blue } from "@material-ui/core/colors";
+import {  blue } from "@material-ui/core/colors";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";

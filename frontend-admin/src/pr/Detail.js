@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import StayCurrentPortraitIcon from "@material-ui/icons/StayCurrentPortrait";
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid';
@@ -57,20 +54,16 @@ export default class Main extends Component {
 }
  
   render() {
-    let style = {
+    let style = {    
         marginTop:"100px",  
     } 
     let margin={
       margin:"70px"
-    }
-    let align={
-      marginLeft:"90%"
-    }
+    }   
     let btn={
       margin:"auto"
     }
    
-    const itvSeq = this.state.itvSeq
     return (
         <React.Fragment> 
          <Container  style={style} maxWidth="md" >

@@ -1,32 +1,49 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import Container from "@material-ui/core/Container";
-import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker
-} from "@material-ui/pickers";
+import { Typography, TextField, Container, Modal, withStyles } from "@material-ui/core";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
-import PropTypes from "prop-types";
-import CKEditor from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-export default class AliveCreate extends React.Component {
+import NoticeModal from './NoticeModal'
+
+const top = 50 + Math.round(Math.random() * 20) - 10;
+const left = 50 + Math.round(Math.random() * 20) - 10;
+
+const useStyles = theme => ({
+    modal: {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
+        position: 'absolute',
+        width: 1000,
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 4),
+        outline: 'none',
+    },
+    container: {
+      marginTop: '100px'
+    },
+    btn: {
+      margin: 'auto',
+      padding: '10px'
+    },
+    space: {
+      margin: '70px'
+    }
+});
+
+class AliveCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      open: false,
       corSeq: "",
       corName: "",
       noticeSeq: "",
       area: "",
       career: "",
-      itvSeq: "",
-      itvName: "",
-      itvPhone: "",
       startDate: "",
       startTime: "",
       state: "",
@@ -40,9 +57,19 @@ export default class AliveCreate extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  changeTextData = text => {
-    this.setState({ content: text });
-    console.log(text);
+  handleClick = e => {
+    this.setState({open:true})
+  }
+
+  handleClose = rowData => {
+    if(typeof rowData.noticeSeq!=='undefined'){
+      this.setState({corSeq:rowData.corSeq})
+      this.setState({corName:rowData.corName})
+      this.setState({noticeSeq:rowData.noticeSeq})
+      this.setState({career:rowData.career})
+      this.setState({area:rowData.area})
+    }
+    this.setState({open:false})
   };
 
   handleSubmit = event => {
@@ -74,6 +101,7 @@ export default class AliveCreate extends React.Component {
         .then(res=>{
           if(res.data.result==='SUCCESS'){
             alert('면접자 목록 생성 성공');
+            window.location = '/AliveAdmin';
           }else{
             alert('면접자 목록을 만드는 중 문제가 발생하였습니다.');
           }
@@ -88,40 +116,19 @@ export default class AliveCreate extends React.Component {
     .catch(e=>{
       alert('면접 방을 만드는데 실패 하였습니다.')
     })
-
-    
-
-/*     axios({
-      method: "post",
-      url: "http://localhost:9001/alives/upload",
-      data: alives,
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }) 
-    alert('생성 완료!');
-    window.location = '/AliveAdmin'; */
   };
 
   render() {
-    let style = {
-      marginTop: "100px"
-    };
-
-    let btn = {
-      margin: "auto",
-      padding: "10px"
-    };
-    let margin = {
-      margin: "70px"
-    };
+    const { classes } = this.props
     return (
       <React.Fragment>
-        <form onSubmit={this.handleSubmit}>
-          <Container style={style} maxWidth="md">
+        <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
+          <Container className={classes.container} maxWidth="md">
             <Typography variant="h6" gutterBottom>
               면접 방 생성
             </Typography>
+            <Grid item xs={12} sm={4}>
+            </Grid>
             <Grid container spacing={3}>
               <Grid item xs={12} sm={4}>
                 <TextField
@@ -130,10 +137,10 @@ export default class AliveCreate extends React.Component {
                   label="기업 번호"
                   fullWidth
                   autoComplete="corSeq"
-                  onChange={this.handleChange}
+                  value={this.state.corSeq}
+                  onClick={this.handleClick}
                 />
               </Grid>
-
               <Grid item xs={12} sm={4}>
                 <TextField
                   id="corName"
@@ -141,7 +148,8 @@ export default class AliveCreate extends React.Component {
                   label="기업명"
                   fullWidth
                   autoComplete="corName"
-                  onChange={this.handleChange}
+                  value={this.state.corName}
+                  onClick={this.handleClick}
                 />
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -151,7 +159,8 @@ export default class AliveCreate extends React.Component {
                   label="공고 번호"
                   fullWidth
                   autoComplete="noticeSeq"
-                  onChange={this.handleChange}
+                  value={this.state.noticeSeq}
+                  onClick={this.handleClick}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -161,7 +170,7 @@ export default class AliveCreate extends React.Component {
                   label="직무"
                   fullWidth
                   autoComplete="area"
-                  onChange={this.handleChange}
+                  value={this.state.area}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -171,7 +180,7 @@ export default class AliveCreate extends React.Component {
                   label="경력사항 (신입/경력/경력무관/인턴)"
                   fullWidth
                   autoComplete="career"
-                  onChange={this.handleChange}
+                  value={this.state.career}
                 />
               </Grid>
               {
@@ -183,7 +192,6 @@ export default class AliveCreate extends React.Component {
                     fullWidth
                     autoComplete="url"
                     defaultValue={this.state.url}
-                    onChange={this.handleChange}
                   />
                 </Grid>
               }
@@ -194,7 +202,6 @@ export default class AliveCreate extends React.Component {
                   label="면접일"
                   type="date"
                   defaultValue="2019-07-24"
-                  onChange={this.handleChange}
                   InputLabelProps={{
                     shrink: true
                   }}
@@ -207,7 +214,6 @@ export default class AliveCreate extends React.Component {
                   label="면접시각"
                   type="time"
                   defaultValue="12:00"
-                  onChange={this.handleChange}
                   InputLabelProps={{
                     shrink: true
                   }}
@@ -218,17 +224,29 @@ export default class AliveCreate extends React.Component {
               </Grid>
 
               <Grid container spacing={10}>
-                <p style={margin} />
+                <p className={classes.space} />
               </Grid>
               <Grid container spacing={3}>
-                <Button size="large" style={btn} color="primary" type="submit">
+                <Button size="large" className={classes.btn} color="primary" type="submit">
                   Upload
                 </Button>{" "}
               </Grid>
             </Grid>
           </Container>
         </form>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.open}
+          onClose={this.handleClose}
+          >
+            <div className={classes.modal}>
+              <NoticeModal callClose={this.handleClose} />
+            </div>
+        </Modal>
       </React.Fragment>
     );
   }
 }
+
+export default withStyles(useStyles)(AliveCreate)

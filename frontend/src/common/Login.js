@@ -45,7 +45,7 @@ class Login extends React.Component {
   }
 
   handleReplace=(e)=>{
-    if((e.target.value).search(/\s/) != -1){
+    if((e.target.value).search(/\s/) !== -1){
       e.target.value = e.target.value.replace(' ','')
     }
   }
@@ -105,7 +105,7 @@ class Login extends React.Component {
             sessionStorage.setItem('authType', this.state.value)
             document.location.href='/'
           }else{
-            alert('아이디 또는 비밀번호가 바르지 않습니다.')
+            alert('아이디 또는 비밀번호를 찾을 수 없습니다.')
           }
         })
         .catch(e=>{

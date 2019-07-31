@@ -1,5 +1,4 @@
-import {reouterMiddleware} from 'connected-react-router'
-import {applyMiddleware, compose, createStore} from 'redux'
+import {applyMiddleware, createStore} from 'redux'
 import createBrowserHistory from 'history/createBrowserHistory';
 import reducers from '../reducers'
 

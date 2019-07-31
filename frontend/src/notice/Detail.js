@@ -5,7 +5,6 @@ import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import axios from 'axios'
 import Button from '@material-ui/core/Button';
-import { textAlign } from '@material-ui/system';
 
 export default class NoticeDetail extends React.Component {
 

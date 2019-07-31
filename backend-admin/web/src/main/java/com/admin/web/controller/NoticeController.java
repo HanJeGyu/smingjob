@@ -3,6 +3,7 @@ package com.admin.web.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -33,7 +34,6 @@ public class NoticeController {
     @Autowired NoticeDTO notice;    
     @Autowired ModelMapper modelMapper;
     @Autowired NoticeRepository repo;
-    @Autowired ApplicantRepository apprepo;
 
    //삭제 
    @DeleteMapping("/{id}")
@@ -44,13 +44,19 @@ public class NoticeController {
    //공고리스트
    @GetMapping("")
    public Iterable<NoticeDTO> findAll(){
-       Iterable<Notice> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "noticeSeq"));
-       List<NoticeDTO> list = new ArrayList<>();
-       for(Notice s: entities){
-            NoticeDTO noti = modelMapper.map(s, NoticeDTO.class);
-            list.add(noti);
-         }        
-    return list;
+      Iterable<Notice> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "noticeSeq"));
+      List<NoticeDTO> list = new ArrayList<>();
+      for(Notice s: entities){
+         NoticeDTO noti = modelMapper.map(s, NoticeDTO.class);
+         list.add(noti);
+      }
+      return list;
+   }
+
+   //공고리스트
+   @GetMapping("/noneAlive")
+   public List<Map<String, Object>> noneAliveList(){
+      return repo.noneAliveList();
    }
 
    //디테일  

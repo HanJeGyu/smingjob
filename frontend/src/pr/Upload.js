@@ -8,8 +8,6 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { typography } from '@material-ui/system';
-import { subMinutes } from 'date-fns';
 
 export default class PRtest2 extends Component {
     constructor(props) {
@@ -24,10 +22,10 @@ export default class PRtest2 extends Component {
             tagCareer:'',
             name:'',
             prLocation:'',
-            itvSeq:'',
-            url: '',
+            itvSeq:'',           
             email: '',
-            selectedFile: null,           
+            selectedFile: null,    
+            url:''       
           }
        
       }
@@ -41,8 +39,20 @@ export default class PRtest2 extends Component {
         /* console.log(text);    */  
       }
     
-    handleSubmit = (event) =>{
-         event.preventDefault();  
+    handleSubmit = async(event) =>{
+  
+        /*  const data = new FormData() 
+         data.append('file', this.state.selectedFile)  
+        
+        await axios.post("http://localhost:8000/upload",data,{})
+         .then(res => {
+             console.log(res.statusText);  
+             console.log("filename:"+res.data.filename)  
+             sessionStorage.url=res.data.filename            
+             this.setState({url:res.data.filename})            
+             alert("url2: "+this.state.url)
+         }).catch(e => {});      
+       */
          const prs = {
           phone:this.state.phone,
           title:event.target.title.value,
@@ -56,26 +66,14 @@ export default class PRtest2 extends Component {
           itvSeq:sessionStorage.authSeq,
           url: this.state.url,
           email: event.target.email.value      
-     };
-         const data = new FormData() 
-         data.append('file', this.state.selectedFile)   
-
-         axios.post("http://localhost:8000/upload",data,{})
-         .then(res => {
-             console.log(res.statusText);  
-             console.log("filename:"+res.data.filename)              
-             this.setState({url:res.data.filename})            
-             
-         }).catch(e => {});         
-        
-         axios.post("http://localhost:9000/prs/upload", prs,{})
-         .then(res=>{         
-           alert("업로드 완료: "+this.state.title)
-           alert("url"+this.state.url)
+         };
+         
+          axios.post("http://localhost:9000/prs/upload", prs,{})
+         .then(res=>{                  
+           alert("url: "+this.state.url)
            window.location.replace("http://localhost:3000/pr"); 
-       }).catch(e => {});  
-               
-              
+       }).catch(e => {});
+
       }   
 
     onChangeHandler=event=>{     
@@ -85,20 +83,20 @@ export default class PRtest2 extends Component {
             loaded: 0,
           });    
 }
-
-    onClickHandler = () => {
+   onClickHandler = () => {
         console.log("upload")
         const data = new FormData() 
         data.append('file', this.state.selectedFile)      
         console.log(this.state.selectedFile.type);     
 
-        axios.post("http://localhost:8000/upload",data,{})
+       axios.post("http://localhost:8000/upload",data,{})
         .then(res => {
             console.log(res.statusText);           
-            /* console.log(res.data.filename); */
+            console.log(res.data.filename); 
+           /*  sessionStorage.url = res.data.filename */
             this.setState({url:res.data.filename})
-            console.log("url:"+this.state.url)
-        }).catch(e => {});
+           
+        }).catch(e => {});  
 }
 
 componentWillMount=()=>{
@@ -138,8 +136,8 @@ componentWillMount=()=>{
              PR동영상 업로드
             </Typography>
             <Grid container spacing={10}><p style={margin3}></p></Grid>
-            <Grid class="offset-md-3 col-md-6">               
-                    <div class="form-group files">
+            <Grid className="offset-md-3 col-md-6">               
+                    <div className="form-group files">
                         <label>** PR 동영상을 첨부 후 동영상 업로드버튼을 꼭 클릭해주세요  </label>
                         <input type="file" name="file" onChange={this.onChangeHandler}/>
                      </div>

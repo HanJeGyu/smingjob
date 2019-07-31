@@ -2,7 +2,6 @@ import React from 'react';
 import MaterialTable from 'material-table';
 import { withStyles } from "@material-ui/core/styles";
 import axios from 'axios'
-import { blue } from '@material-ui/core/colors';
 import Modal from '@material-ui/core/Modal';
 
 import ApplicantModal from './ApplicantModal'

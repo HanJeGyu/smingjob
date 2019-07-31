@@ -132,7 +132,7 @@ export default class Main extends Component {
         <React.Fragment> 
     
 
-    {sessionStorage.getItem('authSeq') == itvSeq || sessionStorage.getItem('authType') === '2' ?
+    {sessionStorage.getItem('authSeq') === itvSeq || sessionStorage.getItem('authType') === '2' ?
         
          <Container  style={style} maxWidth="md" >
          <Typography variant="h6" gutterBottom>
@@ -247,7 +247,7 @@ export default class Main extends Component {
                 />
               </Grid>    
               <Grid container spacing={10}><p style={margin}></p></Grid>
-              {sessionStorage.getItem('authSeq') == itvSeq ?
+              {sessionStorage.getItem('authSeq') === itvSeq ?
               <Button color="primary" variant="contained" style={btn} onClick={this.delete}>삭제</Button>
               : '' }
               <Grid container spacing={10}><p style={margin}></p></Grid>
