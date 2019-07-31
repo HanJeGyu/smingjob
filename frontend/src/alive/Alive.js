@@ -43,7 +43,6 @@ changePage=(pageNum,offset)=> {
         alert('채팅방이 존재하지 않습니다.');
       } else {
         let pwd = url.split('=');
-        alert(pwd[1]);
         let inputPwd = prompt("비밀번호를 입력하세요.");
     
         if(inputPwd === pwd[1]) {
