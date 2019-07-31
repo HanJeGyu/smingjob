@@ -49,7 +49,7 @@ public class AwaiterController {
                 Awaiter awa = new Awaiter();
                 awa.setInterviewer(interviewer);
                 awa.setAlive(alive);
-                awa.setResult("면접예정");
+                awa.setResult("미열람");
                 
                 entities.add(awa);
             }
