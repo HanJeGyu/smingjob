@@ -21,7 +21,8 @@ export default class PR extends React.Component{
         minValue: 0,
         maxValue: 6,          
         offset:0 ,
-        keyword:''
+        keyword:'',
+        seq:''
   } 
 }
 
@@ -36,11 +37,11 @@ componentDidMount(){
     axios.get('http://localhost:9000/prs')
     .then(res=>{
       const prs = res.data;
-      this.setState({prs});      
+      this.setState({prs});          
   })
   }
-detail=(seq)=>{
-    console.log("seq:"+seq);
+  
+detail=(seq)=>{    
     sessionStorage.prSeq=seq;
     window.location = '/PRDetail'      
 } 
@@ -188,7 +189,9 @@ searching=(e)=>{
                   onClick={(e, offset) =>this.changePage(offset/6+1, offset)}
                 /> </div>
                   <Grid container spacing={10}><p style={margin}></p></Grid>
+                  {sessionStorage.getItem('authType') === '1' ?
                 <Button color="primary" size="large" variant="contained" style={btn} onClick={this.upload}>내 PR올리기</Button>  
+                :''}
                 <Grid container spacing={10}><p style={margin}></p></Grid>
               </Container>
               </React.Fragment>
