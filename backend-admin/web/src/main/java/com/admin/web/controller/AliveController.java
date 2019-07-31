@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-
 import com.admin.web.domain.AliveDTO;
 import com.admin.web.enttites.Alive;
 import com.admin.web.repositories.AliveRepository;
@@ -57,7 +55,6 @@ public class AliveController {
    //면접 업로드
    @PostMapping("/upload")
    public HashMap<String, String> save(@RequestBody AliveDTO dto) {
-      // System.out.println("업로드"+dto.toString());
       HashMap<String, String> map = new HashMap<>();
 
       Alive entity = new Alive();
@@ -79,7 +76,7 @@ public class AliveController {
          map.put("liveSeq", repo.findByNoticeSeq(dto.getNoticeSeq()).getLiveSeq().toString());
          map.put("result", "SUCCESS");
       } catch (Exception e) {
-         System.out.println("면접 생성 error" + e);
+         System.out.println("면접 생성 error : " + e);
          map.put("result", "FAIL");
       }
       return map;
