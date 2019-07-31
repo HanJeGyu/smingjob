@@ -53,13 +53,17 @@ class CorNotice extends React.Component {
     
     componentDidMount=()=>{
         const corSeq = sessionStorage.getItem('authSeq')
-        axios.get(`http://localhost:9000/notices/noticeLiveList/${corSeq}`)
+        
+        axios.get('http://localhost:9000/alives')
+        .then(res=>{
+            axios.get(`http://localhost:9000/notices/noticeLiveList/${corSeq}`)
             .then(res=>{
                 this.setState({data: res.data})
             })
             .catch(e=>{
                 alert('데이터를 불러오지 못했습니다.\n관리자에게 문의해 주세요')
             })
+      })
     }
 
     handleClick=(e, rowData)=>{

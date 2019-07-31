@@ -12,7 +12,7 @@ export default class ItvAlive extends React.Component {
         { title: "면접일", field: "startDate", type: "numeric" },
         { title: "면접시작시간", field: "startTime", type: "numeric" },
         { title: "진행 상태", field: "state" },
-        { title: "면접방", emptyValue: "이동" },
+        // { title: "면접방", emptyValue: "이동" },
         { title: "면접결과", field: "result" }
         //{ title: '면접결과', field: 'result', lookup: { 0: '미진행', 1: '면접예정', 2: '미열람', 3: '매칭성공', 3: '실패'}},
       ],
@@ -22,18 +22,22 @@ export default class ItvAlive extends React.Component {
 
   componentDidMount() {
     const itvSeq = sessionStorage.getItem("authSeq");
-    axios
-      .get(`http://localhost:9000/awaiters/aliveList/${itvSeq}`)
-      .then(res => {
-        this.setState({ data: res.data });
-      })
-      .catch(e => {
-        alert("데이터를 불러오지 못했습니다.");
-      });
+
+    axios.get("http://localhost:9000/alives").then(res => {
+
+      axios
+        .get(`http://localhost:9000/awaiters/aliveList/${itvSeq}`)
+        .then(res => {
+          this.setState({ data: res.data });
+        })
+        .catch(e => {
+          alert("데이터를 불러오지 못했습니다.");
+        });
+    });
   }
 
   handleClick = (e, rowData) => {
-    if (e.target.innerHTML === "이동") {
+    // if (e.target.innerHTML === "이동") {
       if (rowData.state === "진행 예정") {
         alert("면접 진행 예정입니다.");
       } else if (rowData.state === "진행중") {
@@ -58,7 +62,7 @@ export default class ItvAlive extends React.Component {
       } else if (rowData.state === "종료") {
         alert("종료된 면접입니다.");
       }
-    }
+    // }
   };
 
   render() {
