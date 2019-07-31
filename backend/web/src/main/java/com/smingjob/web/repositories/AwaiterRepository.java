@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface AwaiterRepository extends JpaRepository<Awaiter, Long>{
     
     @Query("SELECT live.corName AS corName, live.startDate AS startDate, "
-        + "live.startTime AS startTime, a.result AS result "
+        + "live.startTime AS startTime, a.result AS result, live.state AS state, live.url AS url "
         + "FROM Awaiter a JOIN a.interviewer itv JOIN a.alive live  "
         + "WHERE itv.itvSeq = ?1")
     public List<Map<String,Object>> findAliveList(Long itvSeq);
