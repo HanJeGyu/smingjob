@@ -62,11 +62,13 @@ class AliveCreate extends React.Component {
   }
 
   handleClose = rowData => {
-    this.setState({corSeq:rowData.corSeq})
-    this.setState({corName:rowData.corName})
-    this.setState({noticeSeq:rowData.noticeSeq})
-    this.setState({career:rowData.career})
-    this.setState({area:rowData.area})
+    if(typeof rowData.noticeSeq!=='undefined'){
+      this.setState({corSeq:rowData.corSeq})
+      this.setState({corName:rowData.corName})
+      this.setState({noticeSeq:rowData.noticeSeq})
+      this.setState({career:rowData.career})
+      this.setState({area:rowData.area})
+    }
     this.setState({open:false})
   };
 
