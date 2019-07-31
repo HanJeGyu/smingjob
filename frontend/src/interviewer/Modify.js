@@ -41,40 +41,40 @@ class Modify extends React.Component {
 
     handleChange=(e)=>{
         e.preventDefault();
-        // 공백 제거
+         /* 공백 제거 */
         if(e.target.name!=='area' && e.target.name!=='location'){
             if((e.target.value).search(/\s/) != -1){
                 e.target.value = e.target.value.replace(' ','')
             }
         }
-        // 특수문자 제거 : 이름, 아이디, 생년월일, 휴대폰번호, 산업/직군, 근무지
+       /*  특수문자 제거 : 이름, 아이디, 생년월일, 휴대폰번호, 산업/직군, 근무지 */
         if(e.target.name!=='area' && e.target.name!=='email'
             && e.target.name!=='pwd'){
             const checkStr = /[`~!@#$%^&*{}<>()+=_|\-\-\\\'\"\.\,;:\/?]/gi;
             e.target.value = e.target.value.replace(checkStr,'')
         }
-        // 한글 제거 : 아이디, 생년월일, 휴대폰번호
+        /*  한글 제거 : 아이디, 생년월일, 휴대폰번호 */
         if(e.target.name!=='area' && e.target.name!=='location'
             && e.target.name!=='email' && e.target.name!=='name'){
             const checkStr = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/gi
             e.target.value = e.target.value.replace(checkStr, '')
         }
-        // 영문 제거 : 생년월일, 휴대폰번호
+        /*  영문 제거 : 생년월일, 휴대폰번호 */
         if(e.target.name==='phone'){
             const checkStr = /[a-zA-Z]/gi
             e.target.value = e.target.value.replace(checkStr, '')
         }
-        // 숫자 제거 : 이름
+        /*  숫자 제거 : 이름 */
         if(e.target.name==='name'){
             const checkStr = /[0-9]/gi
             e.target.value = e.target.value.replace(checkStr,'')
         }
-        // 하이픈(-) 추가
+        /*  하이픈(-) 추가 */
         if(e.target.name==='phone'){
             const num = e.target.value.replace(/[^0-9]/g, '')
             const checkStr = /^01([0|1|6|7|8|9]?)$/;
             let phone = ''
-            // 휴대전화 일때
+            /*  휴대전화 일때 */
             if(checkStr.test(num.substr(0,3))){
                 if(num.length < 10) {
                     phone = num;
@@ -92,7 +92,7 @@ class Modify extends React.Component {
                     phone += num.substr(7);
                 }
             }else{ 
-            // 일반전화 일때
+            /*  일반전화 일때 */
                 if(num.length < 9) {
                     phone = num;
                 }else if(num.length == 9) {

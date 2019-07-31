@@ -94,7 +94,7 @@ class Modify extends React.Component {
                     phone += num.substr(7);
                 }
             }else{ 
-            // 일반전화 일때
+            /*  일반전화 일때 */
                 if(num.length < 9) {
                     phone = num;
                 }else if(num.length === 9) {

@@ -4,24 +4,23 @@ import { makeStyles, useTheme, Drawer, CssBaseline, AppBar,
         List, Typography, Divider, IconButton, ListItem, 
         ListItemText, ListItemIcon, Button, Toolbar } 
         from "@material-ui/core";
-import { red, deepPurple, blue, yellow } from "@material-ui/core/colors";
+import {blue} from "@material-ui/core/colors";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
-import VoiceChatIcon from "@material-ui/icons/VoiceChat"; //ALIVE
-import PanToolIcon from "@material-ui/icons/PanTool"; //PR
-import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive"; //공고
-import HomeIcon from "@material-ui/icons/Home"; //Home
-import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer"; //FAQ
+import VoiceChatIcon from "@material-ui/icons/VoiceChat"; /* ALIVE */
+import PanToolIcon from "@material-ui/icons/PanTool"; /* PR */
+import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive"; /* 공고 */
+import HomeIcon from "@material-ui/icons/Home"; /* Home */
+import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer"; /* FAQ */
 
 import Account from './Account'
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    // display: "relative",
+  root: {   
     flexGrow: 1,
   },
 
