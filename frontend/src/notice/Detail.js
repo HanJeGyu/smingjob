@@ -40,16 +40,18 @@ export default class NoticeDetail extends React.Component {
         })
 }
 apply=()=>{
-console.log("지원");
 const itv = sessionStorage.authSeq;
 const notiSeq = sessionStorage.noticeSeq;
-console.log(itv, notiSeq);
 
 axios.post('http://localhost:9000/applicants/'+itv+'apply'+notiSeq,
  {
   itvSeq: ''
 })
-.then( response => { console.log(response) } )
+.then( response => {
+   console.log(response)
+   alert("지원 완료")
+   
+  } )
 .catch( response => { console.log(response) } );
 }
 
