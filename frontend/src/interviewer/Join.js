@@ -97,9 +97,10 @@ export default function Join(){
                 e.target.value = e.target.value.replace(' ','')
             }
         }
-        // 특수문자 제거 : 이름, 아이디, 생년월일, 휴대폰번호, 산업/직군, 근무지
+        // 특수문자 제거 : 이름, 아이디, 휴대폰번호, 산업/직군, 근무지
         if(e.target.name!=='area' && e.target.name!=='email'
-            && e.target.name!=='pwd' && e.target.name!=='pwdchk'){
+            && e.target.name!=='pwd' && e.target.name!=='pwdchk'
+            && e.target.name!=='birth'){
             const checkStr = /[`~!@#$%^&*{}<>()+=_|\-\-\\\'\"\.\,;:\/?]/gi;
             e.target.value = e.target.value.replace(checkStr,'')
 /*             if(checkChar.test(e.target.value)){
@@ -234,12 +235,14 @@ export default function Join(){
                     <Grid item xs={12} sm={6}>
                         <TextField 
                             fullWidth
-                            required
                             margin="normal"
                             label="생년월일"
                             id="birth"
                             name="birth"
-                            inputProps={{maxLength: 6}}
+                            type="date"
+                            InputLabelProps={{
+                                shrink: true
+                            }}
                         />
                     </Grid>
                     <Grid item xs={12} sm={6}>
