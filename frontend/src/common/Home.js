@@ -18,9 +18,10 @@ export default class Home extends Component {
            /*   overflowX: 'hidden',   */
         }
         
-        let video={            
+        let video={     
+            position: 'fixed',       
             width:'100%',
-            height: '100%',
+           /*  height: '100%', */
             /* position: 'fixed', */
             background: 'rgba(0, 0, 0, 0.8)' ,
             /* height: '100vh',
@@ -28,13 +29,12 @@ export default class Home extends Component {
         }
         let cover={
             position: 'fixed',
-            bottom: '37%',
+            bottom: '40%',
             height: '30%',
-            width: '35%',
+            width: '35%',           
             marginLeft: '33%',            
-            background: 'rgba(5, 5, 25, 0.7)'
-                                                                     
-           
+            background: 'rgba(5, 5, 25, 0.7)',
+            paddingTop: '1%'
         }
       let font={
         color:'white',
