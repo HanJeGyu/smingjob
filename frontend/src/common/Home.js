@@ -8,21 +8,18 @@ export default class Home extends Component {
     render () {
         let body={
             margin : '0',
-            padding : '0',
-            
+            padding : '0',            
             zIndex: '1000',
            /*  position: 'fixed', */
             width: '100%', height: '100%', 
             left: '0', top: '0',   
-            
            /*   overflowX: 'hidden',   */
         }
         
         let video={     
             position: 'fixed',       
             width:'100%',
-           /*  height: '100%', */
-            /* position: 'fixed', */
+           /*  height: '100%', */            
             background: 'rgba(0, 0, 0, 0.8)' ,
             /* height: '100vh',
             backgroundSize: 'cover' */
@@ -34,7 +31,8 @@ export default class Home extends Component {
             width: '35%',           
             marginLeft: '33%',            
             background: 'rgba(5, 5, 25, 0.7)',
-            paddingTop: '1%'
+            
+            
         }
       let font={
         color:'white',

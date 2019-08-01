@@ -41,9 +41,14 @@ componentDidMount(){
   })
   }
   
-detail=(seq)=>{    
+detail=(seq,itvSeq)=>{    
+    if(sessionStorage.authSeq == itvSeq || sessionStorage.authType === '2'){   
     sessionStorage.prSeq=seq;
-    window.location = '/PRDetail'      
+    window.location = '/PRDetail'  
+  }else{
+    alert('권한이 없습니다')
+  }  
+
 } 
 upload=()=>{
   window.location = '/PRUpload'   
@@ -155,7 +160,7 @@ searching=(e)=>{
        <Container style ={cardGrid}  maxWidth="md">       
        <Grid container spacing={6} >
         {data && data.slice(this.state.minValue,this.state.maxValue).map(pr => 
-        <Grid item key={pr} xs={12} sm={6} md={4} onClick={()=>this.detail(pr.prSeq)}>
+        <Grid item key={pr} xs={12} sm={6} md={4} onClick={()=>this.detail(pr.prSeq,pr.itvSeq)}>
             <Card style ={card} >           
               <CardContent style ={cardContent}>  
                 <Typography><p /></Typography>                       

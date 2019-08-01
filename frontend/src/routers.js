@@ -18,6 +18,7 @@ import PRDetail from "./pr/Detail"
 import PRUpload from "./pr/Upload"
 import PR from "./pr/PR"
 import Alive from "./alive/Alive" 
+import FAQ from "./common/FAQ"
 
 
 
@@ -34,6 +35,10 @@ export const routerConfig = [
     {
         path: '/notice',
         component: Notice
+    },
+    {
+        path: '/faq',
+        component: FAQ
     },
     {
         path: '/noticeDetail',
