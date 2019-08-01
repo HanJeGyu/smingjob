@@ -71,7 +71,7 @@ export default class PRtest2 extends Component {
           axios.post("http://localhost:9000/prs/upload", prs,{})
          .then(res=>{  
           alert("업로드 완료: "+this.state.title) 
-           window.location.replace("http://localhost:3000/pr");
+           window.location.replace("/pr");
        }).catch(e => {});
 
       }   
