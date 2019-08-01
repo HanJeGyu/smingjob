@@ -69,9 +69,9 @@ export default class PRtest2 extends Component {
          };
          
           axios.post("http://localhost:9000/prs/upload", prs,{})
-         .then(res=>{                  
-           alert("url: "+this.state.url)
-           window.location.replace("http://localhost:3000/pr"); 
+         .then(res=>{  
+          alert("업로드 완료: "+this.state.title) 
+           window.location.replace("http://localhost:3000/pr");
        }).catch(e => {});
 
       }   
@@ -83,19 +83,18 @@ export default class PRtest2 extends Component {
             loaded: 0,
           });    
 }
-   onClickHandler = () => {
-        console.log("upload")
+   onClickHandler = () => {      
         const data = new FormData() 
         data.append('file', this.state.selectedFile)      
-        console.log(this.state.selectedFile.type);     
+   /*      console.log(this.state.selectedFile.type); */     
 
        axios.post("http://localhost:8000/upload",data,{})
         .then(res => {
-            console.log(res.statusText);           
-            console.log(res.data.filename); 
+          /*   console.log(res.statusText);           
+            console.log(res.data.filename);  */
            /*  sessionStorage.url = res.data.filename */
             this.setState({url:res.data.filename})
-           
+           alert("동영상 업로드")
         }).catch(e => {});  
 }
 
@@ -225,7 +224,7 @@ componentWillMount=()=>{
                 <TextField            
                   id="tagLocation"
                   name="tag_Location"
-                  label="#위치 태그"
+                  label="#위치 태그 ex)서울"
                   fullWidth
                   autoComplete="tag_Location"
                   onChange={this.handleChange}
@@ -235,7 +234,7 @@ componentWillMount=()=>{
                 <TextField            
                   id="tagAttribute"
                   name="tag_attribute"
-                  label="#특성 태그"
+                  label="#특성 태그 ex)성실한"
                   fullWidth
                   autoComplete="tag_attribute"
                   onChange={this.handleChange}
@@ -245,7 +244,7 @@ componentWillMount=()=>{
                 <TextField            
                   id="tagCareer"
                   name="tag_career"
-                  label="#요구경력 태그"
+                  label="#요구경력 태그 ex)신입"
                   fullWidth
                   autoComplete="tag_career"
                   onChange={this.handleChange}

@@ -113,6 +113,7 @@ export default class Main extends Component {
   }).catch(e => {});
 };
  
+
   render() {
     let style = {
         marginTop:"100px",  
@@ -132,7 +133,7 @@ export default class Main extends Component {
         <React.Fragment> 
     
 
-    {sessionStorage.getItem('authSeq') === itvSeq || sessionStorage.getItem('authType') === '2' ?
+    {sessionStorage.getItem('authSeq') == itvSeq || sessionStorage.getItem('authType') === '2' ?
         
          <Container  style={style} maxWidth="md" >
          <Typography variant="h6" gutterBottom>
@@ -254,7 +255,7 @@ export default class Main extends Component {
         </Grid>
        
   </Container>    
-    : '기업로그인 해주세요' }
+    : '' }
       </React.Fragment>
     );
   }
