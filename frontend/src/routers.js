@@ -7,6 +7,7 @@ import Notice from './notice/Notice'
 import Login from './common/Login'
 import NoticeDetail from './notice/Detail'
 import Join from './common/Join'
+import Findpwd from './common/Findpwd'
 import InterviewerNotice from './interviewer/ItvNotice'
 import InterviewerAlive from './interviewer/ItvAlive'
 import InterviewerModify from './interviewer/Modify'
@@ -47,6 +48,10 @@ export const routerConfig = [
     {
         path: '/login',
         component: Login
+    },
+    {
+        path: '/findpwd',
+        component: Findpwd
     },
     {
         path: '/join',

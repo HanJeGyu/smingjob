@@ -1,9 +1,9 @@
 import React from 'react';
-import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Link,
+import {Avatar, Button, CssBaseline, TextField, 
+        FormControlLabel, Link, withStyles,
         Grid, Typography, Container, RadioGroup, Radio} from '@material-ui/core';
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import { connect } from 'react-redux'
 
@@ -63,7 +63,6 @@ class Login extends React.Component {
       }
       if(this.state.value==='1'){
         const url = 'http://localhost:9000/interviewers'
-        //const url = 'http://15.164.216.105/interviewers'
         const data = {
           itvId: e.target.loginId.value,
           pwd: e.target.pwd.value
@@ -172,9 +171,14 @@ class Login extends React.Component {
               Sign In
             </Button>
             <Grid container>
-              <Grid item>
-                <Link href="/join" variant="body2">
+              <Grid item xs>
+                <Link href="/join" >
                   {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="/findpwd" >
+                  Forgot password?
                 </Link>
               </Grid>
             </Grid>
