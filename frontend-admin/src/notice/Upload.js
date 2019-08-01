@@ -62,7 +62,7 @@ export default class NoticeUpload extends React.Component {
              },             
            }).then(res=>{
             alert("공고 업로드: "+this.state.title)
-            window.location.replace("http://localhost:3001/noticeAdmin");
+            window.location.replace("/noticeAdmin");
           }).catch(e => {});
     }        
 
