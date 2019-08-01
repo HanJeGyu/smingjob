@@ -41,15 +41,12 @@ export default class Main extends Component {
       
     })
   }
- 
- Phone=()=>{
-  alert("이메일:"+ this.state.email+"    연락처: "+this.state.phone);
- }
+
  delete(){
    const seq = sessionStorage.prSeq;
    console.log("seq:"+seq)
-   axios.delete('http://localhost:9000/prs/'+seq).then(res=>{
-    window.open("http://localhost:3000/pr");
+   axios.delete('http://localhost:9001/prs/'+seq).then(res=>{
+   window.location.replace("http://localhost:3001/prAdmin");
   }).catch(e => {});
 }
  
