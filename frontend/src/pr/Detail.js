@@ -109,7 +109,7 @@ export default class Main extends Component {
    const seq = sessionStorage.prSeq;
    console.log("seq:"+seq)
    axios.delete('http://localhost:9000/prs/'+seq).then(res=>{
-    window.open("http://localhost:3000/pr");
+    window.open("/pr");
   }).catch(e => {});
 };
  
