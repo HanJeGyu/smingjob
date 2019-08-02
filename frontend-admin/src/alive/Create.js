@@ -84,7 +84,7 @@ class AliveCreate extends React.Component {
       career: event.target.career.value,
       startDate: event.target.startDate.value,
       startTime: event.target.startTime.value,
-      state: "대기중",
+      state: "진행 예정",
       url: event.target.url.value
       // url: "http://localhost:8080/?room=" + Math.floor(Math.random()*100000000 + 1),
     };
