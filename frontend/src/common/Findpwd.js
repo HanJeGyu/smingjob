@@ -71,7 +71,7 @@ class Findpwd extends React.Component{
                 axios.get(`http://localhost:9000/corporations/checkId/${findId}`)
                     .then(res=>{
                         if(res.data>0){
-                            axios.put(`http://localhost:9000/interviewers/sendMail/${findId}`)
+                            axios.put(`http://localhost:9000/corporations/sendMail/${findId}`)
                                 .then(res=>{
                                     if(res.data.result==='SUCCESS'){
                                         this.setState({chktext:'가입된 이메일로 임시 비밀번호를 보냈습니다.\n임시 비밀번호로 로그인 해주세요'})
