@@ -21,6 +21,7 @@ export default class NoticeList extends React.Component{
             { title: '접수일', field: 'startDate', type: 'numeric' },      
             { title: '접수시각', field: 'startTime', type: 'numeric'},                     
             ],
+        dummy: ''
             
     }
 }
@@ -37,24 +38,19 @@ export default class NoticeList extends React.Component{
         window.location = '/NoticeUpload';
 
     }
-    delete(id){
-        alert(id);
+    delete(id){       
         axios.delete('http://localhost:9001/notices/' + id)
         .then(res => {
-            
+            window.location.reload();
         })
     }
     goDetail=(seq)=>{
-    console.log("seq:"+seq);
-
-    sessionStorage.noticeadminSeq=seq;
-    console.log("notice:" +sessionStorage.noticeadminSeq)
+    sessionStorage.noticeadminSeq=seq;    
     window.location = '/noticeDetail/'+sessionStorage.noticeadminSeq; 
     } 
      
        
-    render(){
-        /* let seq= state.notices.noticeSeq */
+    render(){        
         let state = this.state;
         let style = {
             margin:"100px 50px",
@@ -72,14 +68,9 @@ export default class NoticeList extends React.Component{
             <div>
                 <MaterialTable title="공고 관리" 
                 columns={state.columns} 
-                data={state.notices}                 
-               
-               /* onRowClick={(e) => {
-                  seq= e.dataItem.noticeSeq
-                   this.detail(this.state.notices.noticeSeq)}} */
+                data={state.notices}                                
                 style={style}
-                onRowClick={(event, rowData)=> {
-                    console.log('rowData', rowData.noticeSeq);  
+                onRowClick={(event, rowData)=> {                   
                     this.goDetail(rowData.noticeSeq);                  
                   }}
                 editable={{                   
@@ -87,8 +78,7 @@ export default class NoticeList extends React.Component{
                         new Promise(resolve => {
                             setTimeout(() => {
                                 resolve();
-                                this.delete(oldData.noticeSeq);
-                                console.log("seq"+oldData.noticeSeq)
+                                this.delete(oldData.noticeSeq);                                
                             }, 600);
                         }),
                  

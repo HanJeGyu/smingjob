@@ -58,31 +58,24 @@ public class AliveController {
          String dbTime = live.getStartTime().replace(":", "");
          String dbDayPlusTime = dbDay + dbTime;
          Date dbDate = dateFormat.parse(dbDayPlusTime);
-/*          System.out.println(dbDate);
-
-         System.out.println("=----------------");
+/*          
          System.out.println((now.getTime() - dbDate.getTime()) / 60000); */
 
          Long stateTime = (now.getTime() - dbDate.getTime()) / 60000;
 
-         if (-10 <= stateTime && stateTime <= 70) {
-            // System.out.println("진행중");
+         if (-10 <= stateTime && stateTime <= 70) {          
             state = "진행중";
-         } else if (stateTime < -10) {
-            // System.out.println("진행 예정");
+         } else if (stateTime < -10) {    
             state = "진행 예정";
-         } else if (stateTime > 70) {
-            // System.out.println("종료");
+         } else if (stateTime > 70) {      
             state = "종료";
          }
 
          // System.out.println(live.getLiveSeq());
 
          // DB의 state값과 실제 state를 비교함.
-         if (live.getState().equals(state)) {
-            // System.out.println("값이 같음");
-         } else {
-            // System.out.println("값이 다름");
+         if (live.getState().equals(state)) {         
+         } else {      
             repo.updateState(live.getLiveSeq(), state);
             live.setState(state);
          }
