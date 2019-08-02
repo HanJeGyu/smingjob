@@ -96,6 +96,11 @@ class Join extends React.Component{
                 .catch(e=>{
                     alert('서버 통신 에러')
                 })
+        }else{
+            this.setState({
+                helpLabel: '',
+                errorYN: false
+            })
         }
     }
 

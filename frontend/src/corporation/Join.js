@@ -88,7 +88,6 @@ class Join extends React.Component{
 
     handleFocusout=(e)=>{
         if(e.target.value!==''){
-            const target = e.target
             axios.get(`http://localhost:9000/corporations/checkId/${e.target.value}`)
                 .then(res=>{
                     if(res.data>0){
@@ -106,6 +105,11 @@ class Join extends React.Component{
                 .catch(e=>{
                     alert('서버 통신 에러')
                 })
+        }else{
+            this.setState({
+                helpLabel: '',
+                errorYN: false
+            })
         }
     }
 
@@ -237,8 +241,10 @@ class Join extends React.Component{
                                 label="아이디"
                                 id="corId"
                                 name="corId"
-                                onBlur={this.handleFocusout}
                                 inputProps={{maxLength: 18}}
+                                onBlur={this.handleFocusout}
+                                helperText={this.state.helpLabel}
+                                FormHelperTextProps={{error: this.state.errorYN}}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -266,6 +272,30 @@ class Join extends React.Component{
                                 inputProps={{maxLength: 18}}
                             />
                         </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                                fullWidth
+                                required
+                                margin="normal"
+                                id="name"
+                                name="name"
+                                label="회사명"
+                                inputProps={{maxLength: 33}}
+                            />
+                        </Grid> 
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
+                                fullWidth
+                                required
+                                margin="normal"
+                                id="corRegNo"
+                                name="corRegNo"
+                                label="사업자등록번호"
+                                inputProps={{maxLength: 12}}
+                                autoFocus
+                            />
+                        </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
@@ -280,13 +310,11 @@ class Join extends React.Component{
                         <Grid item xs={12} sm={6}>
                             <TextField 
                                 fullWidth
-                                required
                                 margin="normal"
-                                id="corRegNo"
-                                name="corRegNo"
-                                label="사업자등록번호"
-                                inputProps={{maxLength: 12}}
-                                autoFocus
+                                label="업종"
+                                id="area"
+                                name="area"
+                                inputProps={{maxLength: 33}}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
