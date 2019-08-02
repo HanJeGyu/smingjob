@@ -237,7 +237,7 @@ class Join extends React.Component{
                                 label="아이디"
                                 id="corId"
                                 name="corId"
-                                onBlur={handleFocusout}
+                                onBlur={this.handleFocusout}
                                 inputProps={{maxLength: 18}}
                             />
                         </Grid>
