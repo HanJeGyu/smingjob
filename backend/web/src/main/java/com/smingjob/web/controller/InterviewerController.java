@@ -1,12 +1,19 @@
 package com.smingjob.web.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Properties;
+import java.util.UUID;
+import java.util.function.Predicate;
 
-import javax.persistence.EntityNotFoundException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
 
 import com.smingjob.web.domain.InterviewerDTO;
 import com.smingjob.web.enttites.Interviewer;
@@ -51,7 +58,6 @@ public class InterviewerController {
       }
       return map;
    }
-
 
    //회원가입시 ID중복확인
    @GetMapping("/checkId/{itvId}")
@@ -122,5 +128,43 @@ public class InterviewerController {
      }
      return map;
    }
-   
+
+   // 임시비밀번호발급, 이메일 보내기
+   @PutMapping("/sendMail/{itvId}")
+   public HashMap<String, Object> sendMail(@PathVariable String itvId){
+      HashMap<String, Object> map = new HashMap<>();
+      String em = repo.findEmailByItvId(itvId);
+      String pwd = UUID.randomUUID().toString().replace("-","").substring(0,10);
+
+      Properties prop = System.getProperties();
+      prop.put("mail.smtp.host", "smtp.gmail.com"); 
+      prop.put("mail.smtp.auth", "true"); 
+      prop.put("mail.smtp.port", 465);
+      prop.put("mail.smtp.ssl.enable", "true"); 
+      prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+      
+      Session session = Session.getInstance(prop, new Authenticator() {
+         protected PasswordAuthentication getPasswordAuthentication(){
+            return new PasswordAuthentication("jobalive01@gmail.com", "smingjob1");
+         }
+      });
+
+      try {
+         MimeMessage msg = new MimeMessage(session);
+         msg.setFrom(new InternetAddress(em));
+         msg.setRecipient(Message.RecipientType.TO, new InternetAddress(em));
+         msg.setSubject("job A live 임시 비밀번호 발급");
+         msg.setContent("<html><body>아래에 발급된 비밀번호로 로그인 해주세요.<h3>" 
+                  + pwd + "</h3></body></html>", "text/html; charset=euc-kr");
+         Transport.send(msg);
+
+         repo.updatePwdByItvId(itvId, pwd);
+
+         map.put("result", "SUCCESS");
+      } catch (Exception e) {
+         System.out.println(e);
+         map.put("result", "FAIL");
+      }
+      return map;
+   }
 }

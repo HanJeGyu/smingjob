@@ -43,18 +43,6 @@ public class AliveController {
       repo.deleteById(Long.parseLong(id));
    }
 
-   //면접리스트
-/*    @GetMapping("")
-   public Iterable<AliveDTO> findAll() {
-      Iterable<Alive> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "liveSeq"));
-      List<AliveDTO> list = new ArrayList<>();
-      for (Alive s : entities) {
-         AliveDTO live = modelMapper.map(s, AliveDTO.class);
-         list.add(live);
-      }
-      return list;
-   } */
-
    @GetMapping("")
    public Iterable<AliveDTO> findAll() throws ParseException {
       Iterable<Alive> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "liveSeq"));
@@ -75,23 +63,16 @@ public class AliveController {
          Long stateTime = (now.getTime() - dbDate.getTime()) / 60000;
 
          if (-10 <= stateTime && stateTime <= 70) {
-            // System.out.println("진행중");
             state = "진행중";
          } else if (stateTime < -10) {
-            // System.out.println("진행 예정");
             state = "진행 예정";
          } else if (stateTime > 70) {
-            // System.out.println("종료");
             state = "종료";
          }
 
-         // System.out.println(live.getLiveSeq());
-
          // DB의 state값과 실제 state를 비교함.
          if (live.getState().equals(state)) {
-            // System.out.println("값이 같음");
          } else {
-            // System.out.println("값이 다름");
             repo.updateState(live.getLiveSeq(), state);
             live.setState(state);
          }
@@ -131,24 +112,4 @@ public class AliveController {
       return map;
    }
 
-   //면접 수정 안할건데 일단 써놈
-   @PutMapping("/modify/{id}")
-   public HashMap<String, String> modify(@RequestBody AliveDTO dto, @PathVariable String id) {
-      HashMap<String, String> map = new HashMap<>();
-      Alive entity = repo.findById(Long.parseLong(id)).get();
-      entity.setLiveSeq(Long.parseLong(id));
-      entity.setCorSeq(dto.getCorSeq());
-      entity.setCorName(dto.getCorName());
-      entity.setState(dto.getState());
-      entity.setStartDate(dto.getStartDate());
-      entity.setArea(dto.getArea());
-      entity.setCareer(dto.getCareer());
-      entity.setItvSeq(dto.getItvSeq());
-      entity.setItvName(dto.getItvName());
-      entity.setItvPhone(dto.getItvPhone());
-
-      repo.save(entity);
-      map.put("result", "SUCCESS");
-      return map;
-   }
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import {Avatar, Button, CssBaseline, TextField, Grid,
-    withStyles, Typography, Container, InputBase } from '@material-ui/core';
+    withStyles, Typography, Container, RadioGroup,
+    FormControlLabel, Radio } from '@material-ui/core';
     
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import axios from 'axios';
@@ -34,41 +35,54 @@ class Findpwd extends React.Component{
     constructor(){
         super()
         this.state = {
-            chktext: ''
+            chktext: '',
+            value: '1'
         }
     }
 
-    handleSubmit=async(e)=>{
+    handleChange=(e)=>{
+        this.setState({value:e.target.value})
+    }
+
+    handleSubmit=(e)=>{
         e.preventDefault()
         let findId = e.target.findId.value
         if(findId===''){
             this.setState({chktext:'아이디를 입력해주세요'})
         }else{
-            // 개인회원에서 체크
-            let count = 0
-            await axios.get(`http://localhost:9000/interviewers/checkId/${findId}`)
-                .then(res=>{
-                    if(res.data===0){
-                        count = count+1
-                        console.log('진입확인1')
-                        console.log(count)
-                        // 기업회원에서 체크
-                        
-                    }
-                })
-            await axios.get(`http://localhost:9000/corporations/checkId/${findId}`)
-                .then(res=>{
-                    if(res.data===0){
-                        count = count+1
-                        console.log('진입확인2')
-                        console.log(count)
-                    }
-                })
-            console.log(`마지막 ${count}`)
-            if(count===2){
-                console.log('텍스트변경')
-                this.setState({chktext:'입력한 아이디가 존재하지 않습니다.'})
+            if(this.state.value==='1'){
+                // 개인회원 체크
+                axios.get(`http://localhost:9000/interviewers/checkId/${findId}`)
+                    .then(res=>{
+                        if(res.data>0){
+                            axios.put(`http://localhost:9000/interviewers/sendMail/${findId}`)
+                                .then(res=>{
+                                    if(res.data.result==='SUCCESS'){
+                                        this.setState({chktext:'가입된 이메일로 임시 비밀번호를 보냈습니다.\n임시 비밀번호로 로그인 해주세요'})
+                                    }
+                                })
+                        }else{
+                            this.setState({chktext:'입력한 아이디가 존재하지 않습니다.'})
+                        }
+                    })
+
+            }else if(this.state.value==='2'){
+                // 기업회원 체크
+                axios.get(`http://localhost:9000/corporations/checkId/${findId}`)
+                    .then(res=>{
+                        if(res.data>0){
+                            axios.put(`http://localhost:9000/interviewers/sendMail/${findId}`)
+                                .then(res=>{
+                                    if(res.data.result==='SUCCESS'){
+                                        this.setState({chktext:'가입된 이메일로 임시 비밀번호를 보냈습니다.\n임시 비밀번호로 로그인 해주세요'})
+                                    }
+                                })
+                        }else{
+                            this.setState({chktext:'입력한 아이디가 존재하지 않습니다.'})
+                        }
+                    })
             }
+                
         }
     }
 
@@ -84,6 +98,15 @@ class Findpwd extends React.Component{
                 <Typography component="h1" variant="h5">
                     비밀번호 찾기
                 </Typography>
+                <RadioGroup
+                    name="selection"
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                    row
+                >
+                    <FormControlLabel value="1" control={<Radio />} label="개인회원" />
+                    <FormControlLabel value="2" control={<Radio />} label="기업회원" />
+                </RadioGroup>
                 <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
                     <Grid container>
                         <Grid item xs={12} sm={9}>

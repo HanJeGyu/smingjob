@@ -13,6 +13,8 @@ import com.admin.web.repositories.AwaiterRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,12 @@ public class AwaiterController {
     AwaiterRepository repo;
     @Autowired
     ApplicantRepository appRepo;
+
+    // 관리자 ALIVE-면접자목록 모달
+    @GetMapping("/{liveSeq}")
+    public List<Map<String,Object>> awaiterList(@PathVariable String liveSeq) {
+        return repo.findAwaiterList(Long.parseLong(liveSeq));
+    }
 
     /* 면접방 생성시 면접자 목록 생성 */
     @PostMapping("")

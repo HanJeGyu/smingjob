@@ -21,6 +21,16 @@ public interface InterviewerRepository extends JpaRepository<Interviewer, Long>{
     public Interviewer findByItvIdAndPwd(String itvId, String pwd);
     public Long countByItvId(String itvId);
 
+    @Query("SELECT i.email FROM Interviewer i WHERE i.itvId = ?1")
+    public String findEmailByItvId(String itvId);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Interviewer "
+        + "    SET pwd = ?2 "
+        + "  WHERE itvId = ?1")
+    public void updatePwdByItvId(String itvId, String pwd);
+
     //JPQL
     @Modifying
     @Transactional

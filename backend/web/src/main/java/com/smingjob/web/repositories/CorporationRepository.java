@@ -21,6 +21,16 @@ public interface CorporationRepository extends JpaRepository<Corporation, Long>{
     public Corporation findByCorIdAndPwd(String corId, String pwd);
     public Long countByCorId(String corId);
 
+    @Query("SELECT c.pmEmail FROM Corporation c WHERE c.corId = ?1")
+    public String findPmEmailByCorId(String corId);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Corporation "
+        + "    SET pwd = ?2 "
+        + "  WHERE corId = ?1")
+    public void updatePwdByCorId(String corId, String pwd);
+
     @Modifying
     @Transactional
     @Query("UPDATE Corporation"
