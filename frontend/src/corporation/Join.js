@@ -267,6 +267,17 @@ class Join extends React.Component{
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
+                            <TextField
+                                fullWidth
+                                required
+                                margin="normal"
+                                id="ceoName"
+                                name="ceoName"
+                                label="대표명"
+                                inputProps={{maxLength: 16}}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
                             <TextField 
                                 fullWidth
                                 required
@@ -278,7 +289,6 @@ class Join extends React.Component{
                                 autoFocus
                             />
                         </Grid>
-
                         <Grid item xs={12} sm={6}>
                             <TextField 
                                 fullWidth
