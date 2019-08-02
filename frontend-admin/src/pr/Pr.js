@@ -42,13 +42,10 @@ export default class Pr extends Component {
       <div>
         <MaterialTable
           title="자기 PR 관리"
-          columns={state.columns}
-          // onRowClick="moodal"
+          columns={state.columns}          
           data={state.pr}
           style={style}
-
           onRowClick={(event, rowData) => {
-        /*     alert('rowData'+ rowData.prSeq); */
             this.goDetail(rowData.prSeq);
           }}
 

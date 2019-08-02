@@ -61,8 +61,8 @@ export default class NoticeUpload extends React.Component {
             'Content-Type': 'application/json'
              },             
            }).then(res=>{
-            alert("공고 업로드: "+this.state.title)
-            window.location.replace("/noticeAdmin");
+            alert("업로드 완료: "+this.state.title)
+            window.location ="/noticeAdmin"
           }).catch(e => {});
     }        
 

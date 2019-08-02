@@ -135,7 +135,7 @@ axios.post('http://localhost:9000/applicants/'+itv+'apply'+notiSeq,
                  />
             </Grid> 
           <Grid container spacing={10}><p style={margin}></p></Grid>
-          {sessionStorage.getItem('authType') === '1' ?
+          {sessionStorage.getItem('authType') === '1' && this.state.state === '진행중' ?
           <Grid container spacing={3}>
             <Button size="large" variant="contained" color="primary" style={btn}  onClick={this.apply}>지원하기</Button>   
             </Grid>

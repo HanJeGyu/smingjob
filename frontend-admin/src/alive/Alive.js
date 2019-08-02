@@ -61,7 +61,7 @@ export default class Alive extends Component {
           actions={[
             {
               icon: 'add',
-              tooltip: 'Add alive',
+              tooltip: '면접방 생성',
               isFreeAction: true,
               onClick: (event) => this.createAlive()
             }

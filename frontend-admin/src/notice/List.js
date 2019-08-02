@@ -1,6 +1,7 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios'
+import {  Modal} from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 
 
@@ -21,7 +22,7 @@ export default class NoticeList extends React.Component{
             { title: '접수일', field: 'startDate', type: 'numeric' },      
             { title: '접수시각', field: 'startTime', type: 'numeric'},                     
             ],
-        dummy: ''
+     
             
     }
 }
@@ -33,8 +34,7 @@ export default class NoticeList extends React.Component{
             this.setState({notices});
         })
     }
-    upload(e){
-        e.preventDefault();
+    upload=(e)=>{
         window.location = '/NoticeUpload';
 
     }
@@ -44,11 +44,12 @@ export default class NoticeList extends React.Component{
             window.location.reload();
         })
     }
-    goDetail=(seq)=>{
+    goDetail=(seq)=>{   
     sessionStorage.noticeadminSeq=seq;    
     window.location = '/noticeDetail/'+sessionStorage.noticeadminSeq; 
     } 
      
+   
        
     render(){        
         let state = this.state;
@@ -56,20 +57,22 @@ export default class NoticeList extends React.Component{
             margin:"100px 50px",
             marginBottom:"0"
         }
-        let btn = {
-            marginLeft:"50px",
-            padding:"0",
-            paddingTop:"5px"
-        
-        }
-        let upload = this.upload
-
+       
         return(
+            <React.Fragment>
             <div>
                 <MaterialTable title="공고 관리" 
                 columns={state.columns} 
                 data={state.notices}                                
                 style={style}
+                actions={[
+                    {
+                      icon: 'add',
+                      tooltip: '공고 업로드',
+                      isFreeAction: true,
+                      onClick: (event) => this.upload()
+                    }
+                  ]}
                 onRowClick={(event, rowData)=> {                   
                     this.goDetail(rowData.noticeSeq);                  
                   }}
@@ -84,9 +87,10 @@ export default class NoticeList extends React.Component{
                  
                 }}
                 
-                />
-                <Button size="large" color="primary" style={btn} onClick={upload}>Upload</Button>  
+                />                 
             </div>
+
+            </React.Fragment>
         )
     }
 }
