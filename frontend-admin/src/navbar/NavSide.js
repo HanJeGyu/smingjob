@@ -20,7 +20,7 @@ const NavSide = () =>{
     const classes = useStyles();
     return (
         <List>
-          {["Home", "PR", "Alive", "Corporation", "Interviewer", "Notice"].map(
+          {[ "PR", "Alive", "Corporation", "Interviewer", "Notice"].map(
             (text, index) => (
               <ListItem
                 button
@@ -30,9 +30,7 @@ const NavSide = () =>{
               >
                 {
                   <ListItemIcon>
-                    {index === 0 ? (
-                      <HomeIcon />
-                    ) : index === 1 ? (
+                    {index === 1 ? (
                       <PanToolIcon />
                     ) : index === 2 ? (
                       <VoiceChatIcon />

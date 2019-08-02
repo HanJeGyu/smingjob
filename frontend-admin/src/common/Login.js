@@ -55,7 +55,7 @@ export default function Login() {
         if(res.data!==''){
           alert(`${res.data.managerId} 님 환영합니다.`)
           sessionStorage.setItem('authId', res.data.managerId)
-          document.location.href='/'
+          document.location.href='/CorporationAdmin'
         }else{
           alert('아이디 또는 비밀번호가 바르지 않습니다.')
         }
