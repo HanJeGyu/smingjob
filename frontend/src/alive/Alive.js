@@ -33,9 +33,8 @@ changePage=(pageNum,offset)=> {
   })
   }
   detail(url, state){
-    // 현재 날짜와 DB 날짜 비교해서 같으면 시간 비교 > 같으면 면접중으로 , 날짜가 아직 안 됬으면 대기중 , 날짜가 지났으면 종료
-    
-    // alert(state);
+    // 현재 날짜와 DB 날짜 비교해서 같으면 시간 비교 > 같으면 면접중으로 , 날짜가 아직 안 됬으면 대기중 , 날짜가 지났으면 종료    
+ 
     if (state === '진행 예정') {
       alert('면접 진행 예정입니다.')
     } else if(state === '진행중') {
@@ -62,10 +61,6 @@ changePage=(pageNum,offset)=> {
     }
 
 
-
-   
-    // sessionStorage.aliveSeq=seq;
-    //  window.location = '/AliveDetail/'+sessionStorage.aliveSeq; 
 } 
   render(){ 
     let cardGrid ={
@@ -84,24 +79,27 @@ changePage=(pageNum,offset)=> {
       color: '#404040',      
     }
     let date={
+      fontSize: '25px',
       textAlign: 'center',
       color: '#3e4444 ',
       fontWeight: 'bold',
     }
     let time={
+      fontSize: '25px',
       textAlign: 'center',
       color: '#3e4444 ',
       letterSpacing: '6px',
       fontWeight: 'bold',
     }
     let title ={
+      fontSize: '35px',
       textAlign: 'center',
       color: '#336699 ',
       fontWeight: 'bold'
     }
     let state = {
       textAlign: 'right',
-      color: 'SteelBlue',
+      color: '#ba3838',
       fontWeight: 'bold'
     }
     let page={
@@ -121,14 +119,14 @@ changePage=(pageNum,offset)=> {
                   {alive.area} - {alive.career}
                 </Typography> 
                 <Typography><p /></Typography>      
-                <Typography style={date} variant="h5" gutterBottom>
+                <Typography style={date}  gutterBottom>
                   {alive.startDate}
                 </Typography>  
-                <Typography style={time} variant="h5" gutterBottom>
+                <Typography style={time}  gutterBottom>
                   {alive.startTime}
                 </Typography>        
                 <Typography><p /></Typography>                    
-                <Typography style={title} gutterBottom variant="h3" component="h2" >
+                <Typography style={title} gutterBottom component="h2" >
                   {alive.corName}
                 </Typography>        
                 <Typography><p /></Typography>    

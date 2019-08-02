@@ -103,12 +103,13 @@ searching=(e)=>{
     } 
 
     let name={
+      fontSize: '33px',
         textAlign: 'center',
         letterSpacing: '8px',
         color: '#336699 ',
         fontWeight: 'bold'
     }
-    let title ={    
+    let title ={          
       color: '#3e4444 ',
       fontWeight: 'bold'
     }
@@ -118,6 +119,7 @@ searching=(e)=>{
       fontWeight: 'bold'
     }
     let tags= {     
+      fontSize: '15px',
       color: 'SteelBlue ',
       fontWeight: 'bold',
       letterSpacing: '1.5px',
@@ -164,7 +166,7 @@ searching=(e)=>{
             <Card style ={card} >           
               <CardContent style ={cardContent}>  
                 <Typography><p /></Typography>                       
-                <Typography style={name} gutterBottom variant="h4" component="h2" >
+                <Typography style={name} gutterBottom component="h2" >
                   {pr.name}
                 </Typography>
                 <Typography><p /></Typography>  
@@ -172,7 +174,7 @@ searching=(e)=>{
                 {pr.title}
                 </Typography>
                 <Typography><p /></Typography> 
-                <Typography  style ={tags} gutterBottom variant="h8" >
+                <Typography  style ={tags} gutterBottom >
                   #{pr.tagLocation}  #{pr.tagAttribute}  #{pr.tagCareer}
                 </Typography>
                 <Typography><p /></Typography>    

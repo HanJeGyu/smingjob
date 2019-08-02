@@ -1,8 +1,7 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios'
-import {  Modal} from "@material-ui/core";
-import Button from '@material-ui/core/Button';
+
 
 
 export default class NoticeList extends React.Component{    

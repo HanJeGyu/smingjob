@@ -7,7 +7,8 @@ import axios from 'axios'
 import Button from '@material-ui/core/Button';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import NoticeModal from './NoticeModal'
+import { Modal } from "@material-ui/core";
 
 export default class NoticeUpload extends React.Component {
 
@@ -25,6 +26,7 @@ export default class NoticeUpload extends React.Component {
       corName: '',
       startDate:'',
       startTime:'',
+      open: false
     };   
   }
  
@@ -64,15 +66,24 @@ export default class NoticeUpload extends React.Component {
             alert("업로드 완료: "+this.state.title)
             window.location ="/noticeAdmin"
           }).catch(e => {});
-    }        
-
+    }  
+        
+    handleClick = e => {
+      this.setState({open:true})
+    }
+  
+    handleClose = rowData => {
+      if(typeof rowData.corSeq!=='undefined'){
+        this.setState({tagLocation:rowData.city})     
+        this.setState({corName:rowData.name})       
+      }
+      this.setState({open:false})
+    };
       
     render(){     
       let style = {
-        marginTop:"100px",   
-            
-    }
-    
+        marginTop:"100px", 
+    }    
     let btn = {   
       margin:"auto",     
       padding:"10px"      
@@ -80,10 +91,17 @@ export default class NoticeUpload extends React.Component {
     let margin={
       margin:"70px"
     }
+    let modal= {      
+      position: 'absolute',
+      width: 1000,   
+      border: '2px solid #000',   
+      outline: 'none',
+      margin: '15%'
+  }
       return(
       <React.Fragment>
          <form onSubmit={this.handleSubmit}>
-        <Container  style={style} maxWidth="md" >
+        <Container style={style} maxWidth="md" >
             <Typography variant="h6" gutterBottom>
               공고 업로드
             </Typography>
@@ -105,6 +123,8 @@ export default class NoticeUpload extends React.Component {
                   label="기업명"
                   fullWidth
                   autoComplete="corName"
+                  value={this.state.corName}
+                  onClick={this.handleClick}
                   onChange={this.handleChange}
                 />
               </Grid> 
@@ -150,6 +170,7 @@ export default class NoticeUpload extends React.Component {
                   label="#위치 태그"
                   fullWidth
                   autoComplete="tag_Location"
+                  value={this.state.tagLocation}
                   onChange={this.handleChange}
                 />
               </Grid>
@@ -212,6 +233,16 @@ export default class NoticeUpload extends React.Component {
           </Grid>
             </Container>
             </form>
+            <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.open}
+          onClose={this.handleClose}
+          >
+            <div style={modal}>
+              <NoticeModal callClose={this.handleClose} />
+            </div>
+        </Modal>
           </React.Fragment>
 
 

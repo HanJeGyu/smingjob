@@ -38,7 +38,8 @@ const useStyles = theme => ({
   area: {
     color: '#404040',
   },
-  title: {
+  title: {  
+    fontSize: '33px',
     textAlign: 'center',
     color: '#336699 ',
     fontWeight: 'bold'
@@ -49,6 +50,8 @@ const useStyles = theme => ({
     fontWeight: 'bold'
   },
   tags: {
+    fontSize: '15px',
+    fontWeight:'bold',
     textAlign: 'center',
     color: 'SteelBlue '
   },
@@ -139,12 +142,12 @@ class Notice extends React.Component{
                     {notice.area} - {notice.career}
                   </Typography> 
                   <Typography><p /></Typography>                       
-                  <Typography className={classes.title} gutterBottom variant="h4" component="h2" >
+                  <Typography className={classes.title} gutterBottom  component="h2" >
                     {notice.corName}
                   </Typography>
                   <Typography><p /></Typography>    
-                  <Typography  className={classes.tags} gutterBottom variant="h6" >
-                    #{notice.tagLocation}  #{notice.tagAttribute}  #{notice.tagArea}
+                  <Typography  className={classes.tags} gutterBottom  >
+                    #{notice.tagLocation}  #{notice.tagAttribute}  #{notice.tagCareer}
                   </Typography>
                   <Typography><p/></Typography>
                   <Typography className={classes.state} >

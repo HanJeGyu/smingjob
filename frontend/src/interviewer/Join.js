@@ -11,8 +11,8 @@ const useStyles = makeStyles(theme => ({
         },
     },
     form: {
-        margin: theme.spacing(1),
-        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(5),
+        width: '100%', 
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
@@ -199,6 +199,19 @@ export default function Join(){
                     <Grid item xs={12} sm={6}>
                         <TextField 
                             fullWidth
+                            margin="normal"
+                            label="생년월일"
+                            id="birth"
+                            name="birth"
+                            type="date"
+                            InputLabelProps={{
+                                shrink: true
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
                             required
                             margin="normal"
                             label="아이디"
@@ -208,6 +221,7 @@ export default function Join(){
                             onBlur={handleFocusout}
                         />
                     </Grid> 
+                    
                     <Grid item xs={12} sm={6}>
                         <TextField 
                             fullWidth
@@ -220,6 +234,7 @@ export default function Join(){
                             type="password"
                         />
                     </Grid>
+                    <Grid item xs={12} sm={6}></Grid>
                     <Grid item xs={12} sm={6}>
                         <TextField 
                             fullWidth
@@ -232,19 +247,7 @@ export default function Join(){
                             type="password"
                         />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField 
-                            fullWidth
-                            margin="normal"
-                            label="생년월일"
-                            id="birth"
-                            name="birth"
-                            type="date"
-                            InputLabelProps={{
-                                shrink: true
-                            }}
-                        />
-                    </Grid>
+                
                     <Grid item xs={12} sm={6}>
                         <TextField 
                             fullWidth
@@ -267,7 +270,7 @@ export default function Join(){
                             inputProps={{maxLength: 70}}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={12}>
+                    <Grid item xs={12} sm={6}>
                         <TextField 
                             fullWidth
                             margin="normal"
@@ -277,7 +280,7 @@ export default function Join(){
                             inputProps={{maxLength: 33}}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={12}>
+                    <Grid item xs={12} sm={6}>
                         <TextField 
                             fullWidth
                             margin="normal"

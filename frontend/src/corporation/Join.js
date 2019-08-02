@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
       },
     },
     form: {
-        margin: theme.spacing(1),
+        marginTop: theme.spacing(5),
         width: '100%', // Fix IE 11 issue
     },
     submit: {
@@ -216,7 +216,56 @@ export default function Join(){
             <CssBaseline/>
             <form className={classes.form} noValidate onSubmit={handleSubmit} onChange={handleValidation}>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            label="아이디"
+                            id="corId"
+                            name="corId"
+                            onBlur={handleFocusout}
+                            inputProps={{maxLength: 18}}
+                        />
+                    </Grid>
+                  
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            label="비밀번호"
+                            id="pwd"
+                            name="pwd"
+                            inputProps={{maxLength: 18}}
+                            type="password"
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={6}></Grid>
+                    <Grid item xs={12} sm={6}>
+                        <TextField 
+                            fullWidth
+                            required
+                            margin="normal"
+                            id="pwdchk"
+                            name="pwdchk"
+                            label="비밀번호 확인"
+                            type="password"
+                            inputProps={{maxLength: 18}}
+                        />
+                    </Grid>
+                <Grid item xs={12} sm={6}>
+                        <TextField
+                            fullWidth
+                            required
+                            margin="normal"
+                            id="name"
+                            name="name"
+                            label="회사명"
+                            inputProps={{maxLength: 33}}
+                        />
+                    </Grid> 
+                    <Grid item xs={12} sm={6}>
                         <TextField 
                             fullWidth
                             required
@@ -228,18 +277,8 @@ export default function Join(){
                             autoFocus
                         />
                     </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <TextField
-                            fullWidth
-                            required
-                            margin="normal"
-                            id="name"
-                            name="name"
-                            label="회사명"
-                            inputProps={{maxLength: 33}}
-                        />
-                    </Grid> 
-                    <Grid item xs={12} sm={4}>
+                 
+                    <Grid item xs={12} sm={6}>
                         <TextField
                             fullWidth
                             required
@@ -270,7 +309,7 @@ export default function Join(){
                             inputProps={{maxLength: 33}}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={12}>
+                    <Grid item xs={12} sm={6}>
                         <TextField 
                             fullWidth
                             margin="normal"
@@ -281,68 +320,33 @@ export default function Join(){
                         />
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={4}>
                         <TextField 
                             fullWidth
                             required
                             margin="normal"
-                            label="가입자명"
+                            label="담당자명"
                             id="pmName"
                             name="pmName"
                             inputProps={{maxLength: 16}}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField 
-                            fullWidth
-                            required
-                            margin="normal"
-                            label="아이디"
-                            id="corId"
-                            name="corId"
-                            onBlur={handleFocusout}
-                            inputProps={{maxLength: 18}}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField 
-                            fullWidth
-                            required
-                            margin="normal"
-                            label="비밀번호"
-                            id="pwd"
-                            name="pwd"
-                            inputProps={{maxLength: 18}}
-                            type="password"
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField 
-                            fullWidth
-                            required
-                            margin="normal"
-                            id="pwdchk"
-                            name="pwdchk"
-                            label="비밀번호 확인"
-                            type="password"
-                            inputProps={{maxLength: 18}}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
+                   
+                    <Grid item xs={12} sm={4}>
                         <TextField 
                             fullWidth
                             margin="normal"
-                            label="가입자연락처"
+                            label="담당자 연락처"
                             id="pmPhone"
                             name="pmPhone"
                             inputProps={{maxLength: 13}}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} sm={4}>
                         <TextField 
                             fullWidth
                             margin="normal"
-                            label="가입자이메일"
+                            label="담당자 이메일"
                             id="pmEmail"
                             name="pmEmail"
                             inputProps={{maxLength: 70}}
