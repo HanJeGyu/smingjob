@@ -11,7 +11,7 @@ import axios from 'axios';
 
 const store = configureStore(history);
 
-axios.defaults.baseURL = ''
+axios.defaults.baseURL = 'http://localhost:9000'
 
 ReactDOM.render(
     <Provider store={store}>
