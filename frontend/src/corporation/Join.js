@@ -48,7 +48,7 @@ class Join extends React.Component{
         }else if(e.target.pmEmail.value===''){
             alert('가입자이메일은 필수 입력정보 입니다.')
         }else if((e.target.pmEmail.value).match(checkStr)===null){
-            alert('이메일 형식이 옳바르지 않습니다.')
+            alert('이메일 형식이 올바르지 않습니다.')
         }else if(e.target.corId.value===''){
             alert('아이디는 필수 입력정보 입니다.')
         }else if(e.target.pwd.value===''){
