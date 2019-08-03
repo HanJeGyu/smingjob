@@ -23,6 +23,7 @@ const NavSide = () =>{
           {[ "PR", "Alive", "Corporation", "Interviewer", "Notice"].map(
             (text, index) => (
               <ListItem
+                key={index}
                 button
                 component="a"
                 href={'/' +text + "Admin"}

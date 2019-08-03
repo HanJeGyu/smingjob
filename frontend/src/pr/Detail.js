@@ -37,7 +37,7 @@ export default class Main extends Component {
   componentDidMount() {
     //prdetail 데이터 불러옴      
     console.log("seq:"+this.state.prSeq)
-    axios.get(`http://localhost:9000/prs/PrDetail/` + this.state.prSeq)
+    axios.get(`/prs/PrDetail/` + this.state.prSeq)
     .then(res=>{
        this.setState(res.data)
        console.log(res.data)      
@@ -51,7 +51,7 @@ export default class Main extends Component {
     // 만약 현재 기업 seq랑 현재 pr seq가 일치하는 데이터가 있으면
     //click을 true로 없으면 false로 셋팅함.
     axios
-    .get(`http://localhost:9000/scraps/${this.state.corSeq}/${this.state.prSeq}`)
+    .get(`/scraps/${this.state.corSeq}/${this.state.prSeq}`)
     .then(res => {
        this.setState({countNum : res.data }); 
        console.log("count:"+res.data.countNum)
@@ -73,7 +73,7 @@ export default class Main extends Component {
         Authorization: "JWT fefege.."
       };
       axios
-        .post(`http://localhost:9000/scraps/`, JSON.stringify(data), {
+        .post(`/scraps/`, JSON.stringify(data), {
           headers: headers
         })
         .then(res => {         
@@ -84,11 +84,11 @@ export default class Main extends Component {
 
     } else {
         axios
-        .get(`http://localhost:9000/scraps/getScrapSeq/${this.state.corSeq}/${this.state.prSeq}`)
+        .get(`/scraps/getScrapSeq/${this.state.corSeq}/${this.state.prSeq}`)
         .then(res => {
            this.setState({scrapSeq : res.data }); 
            axios
-           .delete(`http://localhost:9000/scraps/${this.state.scrapSeq}`)
+           .delete(`/scraps/${this.state.scrapSeq}`)
            .then(e => {
              this.setState({countNum : 0});
              alert("찜하기 취소");
@@ -108,7 +108,7 @@ export default class Main extends Component {
  delete(){
    const seq = sessionStorage.prSeq;
    console.log("seq:"+seq)
-   axios.delete('http://localhost:9000/prs/'+seq).then(res=>{
+   axios.delete('/prs/'+seq).then(res=>{
     window.open("/pr");
   }).catch(e => {});
 };

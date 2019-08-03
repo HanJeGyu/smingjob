@@ -30,7 +30,7 @@ export default class NoticeDetail extends React.Component {
   }
   componentWillMount=()=>{
     const seq = sessionStorage.noticeSeq;  
-    axios.get(`http://localhost:9000/notices/${seq}`)
+    axios.get(`/notices/${seq}`)
         .then(res=>{
             this.setState(res.data)
            console.log(res.data)
@@ -43,7 +43,7 @@ apply=()=>{
 const itv = sessionStorage.authSeq;
 const notiSeq = sessionStorage.noticeSeq;
 
-axios.post('http://localhost:9000/applicants/'+itv+'apply'+notiSeq,
+axios.post('/applicants/'+itv+'apply'+notiSeq,
  {
   itvSeq: ''
 })

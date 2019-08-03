@@ -62,7 +62,7 @@ class Login extends React.Component {
         'Authorization': 'JWT fefege..'
       }
       if(this.state.value==='1'){
-        const url = 'http://localhost:9000/interviewers'
+        const url = '/interviewers'
         const data = {
           itvId: e.target.loginId.value,
           pwd: e.target.pwd.value
@@ -90,7 +90,7 @@ class Login extends React.Component {
           alert('가입된 회원정보를 찾지 못했습니다.')
         })
       }else if(this.state.value==='2'){
-        const url = 'http://localhost:9000/corporations'
+        const url = '/corporations'
         const data = {
           corId: e.target.loginId.value,
           pwd: e.target.pwd.value

@@ -25,7 +25,7 @@ changePage=(pageNum,offset)=> {
 
 }
   componentDidMount(){
-    axios.get('http://localhost:9000/alives')
+    axios.get('/alives')
     .then(res=>{
       const alives = res.data;
       this.setState({alives});

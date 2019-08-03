@@ -1,5 +1,4 @@
 import React from 'react';
-import '../App.css';
 import Navbar from '../navbar/Nav'
 import Footer from '../footer/Footer'
 import { routerConfig } from '../routers'

@@ -19,7 +19,7 @@ export default  class ItvNotice extends React.Component {
 
     componentDidMount(){
         const itvSeq = sessionStorage.getItem('authSeq')
-        axios.get(`http://localhost:9000/applicants/noticeList/${itvSeq}`)
+        axios.get(`/applicants/noticeList/${itvSeq}`)
         .then(res=>{
             this.setState({data: res.data});
         })

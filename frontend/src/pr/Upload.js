@@ -68,7 +68,7 @@ export default class PRtest2 extends Component {
           email: event.target.email.value      
          };
          
-          axios.post("http://localhost:9000/prs/upload", prs,{})
+          axios.post("/prs/upload", prs,{})
          .then(res=>{  
           alert("업로드 완료: "+this.state.title) 
            window.location.replace("/pr");
@@ -100,7 +100,7 @@ export default class PRtest2 extends Component {
 
 componentWillMount=()=>{
     const seq = sessionStorage.authSeq;
-    axios.get(`http://localhost:9000/interviewers/pr/${seq}`)
+    axios.get(`/interviewers/pr/${seq}`)
         .then(res=>{
            this.setState(res.data)          
         })

@@ -80,7 +80,7 @@ class Notice extends React.Component{
   }
 
   componentDidMount(){
-    axios.get('http://localhost:9000/notices')
+    axios.get('/notices')
       .then(res=>{
         const notices = res.data;
         this.setState({notices});      
@@ -101,7 +101,7 @@ class Notice extends React.Component{
   searching=(e)=>{
     e.preventDefault();          
     const key =this.state.keyword;
-    axios.get('http://localhost:9000/notices/search/'+key)
+    axios.get('/notices/search/'+key)
       .then(res=>{
         const notices = res.data;
         this.setState({notices});

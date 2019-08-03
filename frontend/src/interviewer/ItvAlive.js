@@ -21,9 +21,9 @@ export default class ItvAlive extends React.Component {
   componentDidMount() {
     const itvSeq = sessionStorage.getItem("authSeq");
 
-    axios.get("http://localhost:9000/alives")
+    axios.get("/alives")
       .then(res => {
-        axios.get(`http://localhost:9000/awaiters/aliveList/${itvSeq}`)
+        axios.get(`/awaiters/aliveList/${itvSeq}`)
           .then(res => {
             this.setState({ data: res.data });
           })
