@@ -32,7 +32,7 @@ public class NoticeController {
    //공고 리스트
    @GetMapping("")
    public Iterable<NoticeDTO> findAll(){
-       Iterable<Notice> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "noticeSeq"));    
+       Iterable<Notice> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "startDate"));    
        List<NoticeDTO> list = new ArrayList<>();
        for(Notice s: entities){
             NoticeDTO noti = modelMapper.map(s, NoticeDTO.class);
