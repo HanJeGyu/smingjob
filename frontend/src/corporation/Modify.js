@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const useStyles = theme => ({
     form: {
-        marginTop: theme.spacing(4),
+        marginTop: theme.spacing(10),
         width: '100%', // Fix IE 11 issue.
     },
     submit: {
@@ -190,19 +190,31 @@ class Modify extends React.Component {
                     <Typography variant="h6" gutterBottom>
                         정보 수정 
                     </Typography> 
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} sm={4}>
+                    <Grid container spacing={3}>                     
+                        <Grid item xs={12} sm={6}>
                             <TextField 
                                 fullWidth
                                 margin="normal"
-                                label="사업자등록번호"
-                                id="corRegNo"
-                                name="corRegNo"
-                                value={this.state.corRegNo}
+                                label="아이디"
+                                id="corId"
+                                name="corId"
+                                value={this.state.corId}
                                 disabled
                             />
                         </Grid>
-                        <Grid item xs={12} sm={4}>
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
+                                fullWidth
+                                margin="normal"
+                                label="비밀번호"
+                                id="pwd"
+                                name="pwd"
+                                value={this.state.pwd}
+                                inputProps={{maxLength: 18}}
+                                type="password"
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
                             <TextField 
                                 fullWidth
                                 margin="normal"
@@ -213,7 +225,19 @@ class Modify extends React.Component {
                                 inputProps={{maxLength: 33}}
                             />
                         </Grid>
-                        <Grid item xs={12} sm={4}>
+                        <Grid item xs={12} sm={6}>
+                            <TextField 
+                                fullWidth
+                                margin="normal"
+                                label="사업자등록번호"
+                                id="corRegNo"
+                                name="corRegNo"
+                                value={this.state.corRegNo}
+                                disabled
+                            />
+                        </Grid>
+                        
+                        <Grid item xs={12} sm={6}>
                             <TextField 
                                 fullWidth
                                 margin="normal"
@@ -246,7 +270,7 @@ class Modify extends React.Component {
                                 inputProps={{maxLength: 33}}
                             />
                         </Grid>
-                        <Grid item xs={12} sm={12}>
+                        <Grid item xs={12} sm={6}>
                             <TextField 
                                 fullWidth
                                 margin="normal"
@@ -258,62 +282,40 @@ class Modify extends React.Component {
                             />
                         </Grid>
 
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={4}>
                             <TextField 
                                 fullWidth
                                 margin="normal"
-                                label="가입자명"
+                                label="담당자명"
                                 id="pmName"
                                 name="pmName"
                                 value={this.state.pmName}
                                 inputProps={{maxLength: 16}}
                             />
                         </Grid>
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={4}>
                             <TextField 
                                 fullWidth
                                 margin="normal"
-                                label="가입자연락처"
+                                label="담당자 연락처"
                                 id="pmPhone"
                                 name="pmPhone"
                                 value={this.state.pmPhone}
                                 inputProps={{maxLength: 13}}
                             />
                         </Grid>
-                        <Grid item xs={12} sm={12}>
+                        <Grid item xs={12} sm={4}>
                             <TextField 
                                 fullWidth
                                 margin="normal"
-                                label="가입자이메일"
+                                label="담당자이메일"
                                 id="pmEmail"
                                 name="pmEmail"
                                 value={this.state.pmEmail}
                                 inputProps={{maxLength: 97}}
                             />
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField 
-                                fullWidth
-                                margin="normal"
-                                label="아이디"
-                                id="corId"
-                                name="corId"
-                                value={this.state.corId}
-                                disabled
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField 
-                                fullWidth
-                                margin="normal"
-                                label="비밀번호"
-                                id="pwd"
-                                name="pwd"
-                                value={this.state.pwd}
-                                inputProps={{maxLength: 18}}
-                                type="password"
-                            />
-                        </Grid>
+                        
                         <Grid item xs={12} sm={6}>
                             <Button
                                 type="submit"
