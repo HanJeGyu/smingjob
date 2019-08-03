@@ -111,7 +111,8 @@ searching=(e)=>{
     }
     let title ={          
       color: '#3e4444 ',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      paddingLeft: '8px'
     }
     let state = {
       textAlign: 'right',
@@ -175,7 +176,7 @@ searching=(e)=>{
                 </Typography>
                 <Typography><p /></Typography> 
                 <Typography  style ={tags} gutterBottom >
-                  #{pr.tagLocation}  #{pr.tagAttribute}  #{pr.tagCareer}
+                  #{pr.tagLocation}  #{pr.tagAttribute}  #{pr.area}
                 </Typography>
                 <Typography><p /></Typography>    
                 <Typography style ={state} >
