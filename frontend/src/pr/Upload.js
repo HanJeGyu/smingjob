@@ -116,7 +116,7 @@ componentWillMount=()=>{
           padding:"10px"      
         }
         let margin={
-          margin:"70px"
+          margin:"30px"
         }
         let margin2={
           margin:"40px"
@@ -250,11 +250,11 @@ componentWillMount=()=>{
                   onChange={this.handleChange}
                 />
               </Grid>    
-            <Grid container spacing={10}><p style={margin}></p></Grid>
+            <Grid container><p style={margin}></p></Grid>
           <Grid container spacing={3}>
             <Button color="primary" size="large"  variant="contained" style={btn} type="submit">게시물 업로드</Button>   </Grid>
              </Grid>
-             <Grid container spacing={10}><p style={margin}></p></Grid>
+             <Grid container><p style={margin}></p></Grid>
         </Container>
         </form>
   </React.Fragment>
