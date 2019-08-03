@@ -32,7 +32,7 @@ class Alive extends Component {
     this.state = {
       alives: [],
       columns: [
-        { title: "기업이름", field: "corName" },
+        { title: "기업명", field: "corName" },
         { title: "진행상태", field: "state" },
         { title: "시작일시", field: "startDate" },
         { title: "모집 직군", field: "area" },
@@ -45,7 +45,7 @@ class Alive extends Component {
   }
 
   componentDidMount=()=>{
-    axios.get("http://localhost:9001/alives")
+    axios.get("/alives")
     .then(res=>{
       const alives = res.data;
       this.setState({alives})
@@ -64,7 +64,7 @@ class Alive extends Component {
   };
 
   del=(id)=>{
-    axios.delete("http://localhost:9001/alives/" + id)
+    axios.delete("/alives/" + id)
     .then(res => {
       window.location.reload();
     })

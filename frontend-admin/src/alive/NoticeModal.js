@@ -30,7 +30,7 @@ class NoticeModal extends React.Component {
   }
 
   componentDidMount(){
-    axios.get(`http://localhost:9001/notices/noneAlive`)
+    axios.get(`/notices/noneAlive`)
       .then(res=>{
         this.setState({data: res.data});
       })

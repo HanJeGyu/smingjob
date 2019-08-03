@@ -18,14 +18,14 @@ export default class corporations extends Component {
   };
 
   componentDidMount() {
-    axios.get(`http://localhost:9001/corporations`).then(res => {
+    axios.get(`/corporations`).then(res => {
       const corporations = res.data;
       this.setState({ corporations });
     });
   }
 
   delete(seq) {
-    axios.delete("http://localhost:9001/corporations/" + seq).then(res => {
+    axios.delete("/corporations/" + seq).then(res => {
       window.location.reload();
     });
   }

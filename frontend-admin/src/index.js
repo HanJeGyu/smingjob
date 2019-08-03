@@ -8,8 +8,11 @@ import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux'
 import {ConnectedRouter} from 'connected-react-router'
 import configureStore, {history} from './stores'
+import axios from 'axios';
 
 const store = configureStore();
+
+axios.defaults.baseURL = 'http://localhost:9001'
 
 ReactDOM.render(
     <Provider store={store}>

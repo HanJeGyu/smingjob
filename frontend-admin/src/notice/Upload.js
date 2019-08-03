@@ -57,7 +57,7 @@ export default class NoticeUpload extends React.Component {
      };
         axios({
              method: 'post',
-             url: 'http://localhost:9001/notices/upload',
+             url: '/notices/upload',
              data: notices,
              headers: {           
             'Content-Type': 'application/json'

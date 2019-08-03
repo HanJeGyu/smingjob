@@ -50,7 +50,7 @@ export default function Login() {
       'Content-Type': 'application/json',
       'Authorization': 'JWT fefege..'
     }
-    axios.post(`http://localhost:9001/managers/login`, JSON.stringify(data), {headers: headers})
+    axios.post(`/managers/login`, JSON.stringify(data), {headers: headers})
       .then(res=>{
         if(res.data!==''){
           alert(`${res.data.managerId} 님 환영합니다.`)

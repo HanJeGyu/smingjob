@@ -26,7 +26,7 @@ export default class NoticeDetail extends React.Component {
   }
 
   componentDidMount=()=>{
-    axios.get('http://localhost:9001/notices/'+sessionStorage.noticeadminSeq)
+    axios.get('/notices/'+sessionStorage.noticeadminSeq)
       .then(res=>{
         this.setState(res.data)
       })

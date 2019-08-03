@@ -21,7 +21,7 @@ class Awaiters extends React.Component{
     }
 
     componentDidMount=()=>{
-        axios.get(`http://localhost:9001/applicants/${this.props.noticeSeq}`)
+        axios.get(`/applicants/${this.props.noticeSeq}`)
             .then(res =>{
                 this.setState({applicants: res.data})
             })
@@ -39,7 +39,7 @@ class Awaiters extends React.Component{
             'Content-Type': 'application/json',
             'Authorization': 'JWT fefege..'
         }
-        axios.put(`http://localhost:9001/applicants`,JSON.stringify(data),{headers:headers})
+        axios.put(`/applicants`,JSON.stringify(data),{headers:headers})
             .then(res=>{
             })
             .catch(e=>{

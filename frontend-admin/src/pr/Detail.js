@@ -31,7 +31,7 @@ export default class Main extends Component {
   
   componentDidMount() {    
     console.log("seq:"+this.state.prSeq)
-    axios.get(`http://localhost:9001/prs/PrDetail/` + this.state.prSeq)
+    axios.get(`/prs/PrDetail/` + this.state.prSeq)
     .then(res=>{
        this.setState(res.data)
        console.log(res.data)
@@ -45,7 +45,7 @@ export default class Main extends Component {
  delete(){
    const seq = sessionStorage.prSeq;
    console.log("seq:"+seq)
-   axios.delete('http://localhost:9001/prs/'+seq).then(res=>{
+   axios.delete('/prs/'+seq).then(res=>{
    window.location.replace("/prAdmin");
   }).catch(e => {});
 }

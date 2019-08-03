@@ -92,12 +92,12 @@ class AliveCreate extends React.Component {
       'Content-Type': 'application/json',
       'Authorization': 'JWT fefege..'
     }
-    axios.post('http://localhost:9001/alives/upload',JSON.stringify(alives),{headers: headers})
+    axios.post('/alives/upload',JSON.stringify(alives),{headers: headers})
     .then(res=>{
       if(res.data.result==='SUCCESS'){
         alert('생성 완료!');
         // 면접자 목록 생성
-        axios.post(`http://localhost:9001/awaiters`,{liveSeq:res.data.liveSeq, noticeSeq:noticeSeq},{headers: headers})
+        axios.post(`/awaiters`,{liveSeq:res.data.liveSeq, noticeSeq:noticeSeq},{headers: headers})
         .then(res=>{
           if(res.data.result==='SUCCESS'){
             alert('면접자 목록 생성 성공');

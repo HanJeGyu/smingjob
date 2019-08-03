@@ -29,7 +29,7 @@ class AwaiterModal extends React.Component {
   }
 
   componentDidMount(){
-    axios.get(`http://localhost:9001/awaiters/${this.props.liveSeq}`)
+    axios.get(`/awaiters/${this.props.liveSeq}`)
       .then(res=>{
         this.setState({data: res.data});
       })

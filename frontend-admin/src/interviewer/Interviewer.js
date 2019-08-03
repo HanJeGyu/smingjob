@@ -18,14 +18,14 @@ export default class Interviewer extends Component {
   };
 
   componentDidMount() {
-    axios.get("http://localhost:9001/interviewers").then(res => {
+    axios.get("/interviewers").then(res => {
       const interviewers = res.data;
       this.setState({ interviewers });
     });
   }
 
   delete(id) {
-    axios.delete("http://localhost:9001/interviewers/" + id).then(res => {
+    axios.delete("/interviewers/" + id).then(res => {
       window.location.reload();
     });
   }

@@ -29,7 +29,7 @@ class NoticeModal extends React.Component {
   }
 
   componentDidMount(){
-    axios.get(`http://localhost:9001/corporations/`)
+    axios.get(`/corporations/`)
       .then(res=>{
         this.setState({data: res.data});
       })

@@ -59,7 +59,7 @@ export default class NoticeUpload extends React.Component {
        }
        const seq = sessionStorage.noticeSeq;
        
-       axios.put(`http://localhost:9001/notices/modify/${seq}`,JSON.stringify(notices),{headers: headers})
+       axios.put(`/notices/modify/${seq}`,JSON.stringify(notices),{headers: headers})
             .then(res=>{       
                  alert("변경 완료: "+this.state.title)
                  window.location.reload() 
@@ -71,7 +71,7 @@ export default class NoticeUpload extends React.Component {
 
     componentWillMount=()=>{
         const seq = sessionStorage.noticeSeq;
-        axios.get(`http://localhost:9001/notices/${seq}`)
+        axios.get(`/notices/${seq}`)
             .then(res=>{
                this.setState(res.data)
                console.log(res.data)

@@ -27,7 +27,7 @@ export default class NoticeList extends React.Component{
 }
 
     componentDidMount(){
-        axios.get('http://localhost:9001/notices')
+        axios.get('/notices')
         .then(res=>{
             const notices = res.data;
             this.setState({notices});
@@ -38,7 +38,7 @@ export default class NoticeList extends React.Component{
 
     }
     delete(id){       
-        axios.delete('http://localhost:9001/notices/' + id)
+        axios.delete('/notices/' + id)
         .then(res => {
             window.location.reload();
         })
