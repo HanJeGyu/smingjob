@@ -1,11 +1,9 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Container from '@material-ui/core/Container';
+import { Button, Container, Grid, 
+        Typography, TextField } from '@material-ui/core';
 import axios from 'axios'
-import Button from '@material-ui/core/Button';
-import MaterialTable from 'material-table';
+
+import Awaiters from './Awaiters'
 
 export default class NoticeDetail extends React.Component {
 
@@ -24,54 +22,24 @@ export default class NoticeDetail extends React.Component {
       corName: '',
       startDate: '',
       startTime:'',
-      applicants:[],
-      appcolumns: [
-        { title: '이름', field: 'name'}, 
-        { title: '생년월일', field: 'birth' },  
-        { title: '연락처', field: 'phone' }, 
-        { title: '이메일', field: 'email'}, 
-        { title: '희망직무', field: 'area'}, 
-        { title: '희망지역', field: 'location'},                    
-        { title: '지원상태', field: 'appState'},                    
-        ],
-    
     };
-   
   }
-  componentWillMount=()=>{
-    const seq = sessionStorage.noticeadminSeq;  
-    axios.get('http://localhost:9001/notices/'+seq)
-        .then(res=>{
-            this.setState(res.data)
-           console.log(res.data)
-        })
-        .catch(e=>{           
-           console.log(e.res)
-        })
-   
-    axios.get('http://localhost:9001/applicants/'+seq)
-    .then(res =>{
-       this.setState({applicants: res.data})
-    })
-       .catch(e=>{ })   
-    }
-   
-changeAppState=(seq)=>{   
-      axios.put('http://localhost:9001/applicants/'+seq)
-              .then(res=>{       
-                window.location.reload();
-              })
-              .catch(e=>{                
-              })
-  } 
 
-gomodify(seq){
-  sessionStorage.noticeSeq = seq  ;
-  window.location ="/noticemodify/"+ sessionStorage.noticeSeq 
-}
-    render(){     
-       
+  componentDidMount=()=>{
+    axios.get('http://localhost:9001/notices/'+sessionStorage.noticeadminSeq)
+      .then(res=>{
+        this.setState(res.data)
+      })
+      .catch(e=>{           
+      })
+  }
 
+  gomodify(seq){
+    sessionStorage.noticeSeq = seq  ;
+    window.location ="/noticemodify/"+ sessionStorage.noticeSeq 
+  }
+
+  render(){
     let style = {
         marginTop:"100px",  
     }      
@@ -92,9 +60,8 @@ gomodify(seq){
     }
     let codes = this.state.content
     
-   return(
-    <React.Fragment>
-       
+    return(
+      <React.Fragment> 
       <Container  style={style} maxWidth="md" >
             <Typography variant="h6" gutterBottom>
               공고 
@@ -161,22 +128,12 @@ gomodify(seq){
           </Grid>
           <Grid container spacing={10}><p style={margin2}></p></Grid>
           <Grid item xs={12}>         
-          <MaterialTable title="지원자 관리" 
-                columns={this.state.appcolumns} 
-                data={this.state.applicants}  
-                 onRowClick={(event, rowData)=> {
-                    console.log('rowData', rowData.applicantSeq);
-                    this.changeAppState(rowData.applicantSeq);                     
-                  }}
-                />  
+            <Awaiters noticeSeq={sessionStorage.noticeadminSeq}/>
           </Grid>
           <Grid container spacing={10}><p style={margin2}></p></Grid>  
-          </Container>
-         
-          </React.Fragment>
-
-
-      )
-    }
+        </Container>
+      </React.Fragment>
+    )
+  }
 }
 

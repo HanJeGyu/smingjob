@@ -130,11 +130,10 @@ searching=(e)=>{
       textAlign:'center',
       margin:'3%'
     }
-    let margin={
-      marginBottom: '10%',      
-    }
     let btn={
-      width : '100%'
+      width : '100%',
+      marginTop: '10px',
+      marginBottom: '30px'
     }
   let data = this.state.prs;
 
@@ -196,11 +195,9 @@ searching=(e)=>{
                   offset={this.state.offset}
                   onClick={(e, offset) =>this.changePage(offset/6+1, offset)}
                 /> </div>
-                  <Grid container spacing={10}><p style={margin}></p></Grid>
                   {sessionStorage.getItem('authType') === '1' ?
                 <Button color="primary" size="large" variant="contained" style={btn} onClick={this.upload}>내 PR올리기</Button>  
                 :''}
-                <Grid container spacing={10}><p style={margin}></p></Grid>
               </Container>
               </React.Fragment>
             
