@@ -25,7 +25,7 @@ class Pr extends React.Component {
   componentDidMount() {
     const corId = sessionStorage.getItem("authSeq");
     axios
-      .get(`http://localhost:9000/prs/cor/${corId}`)
+      .get(`/prs/cor/${corId}`)
       .then(res => {
         const prs = res.data;
         this.setState({ prs });
@@ -36,7 +36,7 @@ class Pr extends React.Component {
   }
 
   delete(id) {
-    axios.delete("http://localhost:9000/scraps/" + id).then(res => {
+    axios.delete("/scraps/" + id).then(res => {
       alert("삭제완료");
       window.location.reload();
     });

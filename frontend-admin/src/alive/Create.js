@@ -120,6 +120,10 @@ class AliveCreate extends React.Component {
 
   render() {
     const { classes } = this.props
+    const d = new Date()
+    const nowDate = d.getFullYear().toString() + '-'
+        + (d.getMonth()+1<10 ? '0':'') + (d.getMonth()+1).toString() + '-'
+        + (d.getMonth()<10 ? '0':'') + d.getDate().toString()
     return (
       <React.Fragment>
         <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
@@ -201,7 +205,7 @@ class AliveCreate extends React.Component {
                   name="startDate"
                   label="면접일"
                   type="date"
-                  defaultValue="2019-07-24"
+                  defaultValue={nowDate}
                   InputLabelProps={{
                     shrink: true
                   }}

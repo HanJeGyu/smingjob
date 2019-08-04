@@ -11,6 +11,7 @@ import {
   IconButton,
   Button,
   Toolbar,
+  Link,
 } from "@material-ui/core";
 import {  blue } from "@material-ui/core/colors";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -126,7 +127,7 @@ const Navbar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title} noWrap>
-            JOB A LIVE 관리자
+            <Link href="/HomeAdmin" underline="none" color="inherit">JOB A LIVE 관리자</Link>
           </Typography>
           <Button color="inherit" onClick={handleLogout}>Logout</Button>
         </Toolbar>

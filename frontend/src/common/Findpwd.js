@@ -52,10 +52,10 @@ class Findpwd extends React.Component{
         }else{
             if(this.state.value==='1'){
                 // 개인회원 체크
-                axios.get(`http://localhost:9000/interviewers/checkId/${findId}`)
+                axios.get(`/interviewers/checkId/${findId}`)
                     .then(res=>{
                         if(res.data>0){
-                            axios.put(`http://localhost:9000/interviewers/sendMail/${findId}`)
+                            axios.put(`/interviewers/sendMail/${findId}`)
                                 .then(res=>{
                                     if(res.data.result==='SUCCESS'){
                                         this.setState({chktext:'가입된 이메일로 임시 비밀번호를 보냈습니다.\n임시 비밀번호로 로그인 해주세요'})
@@ -68,10 +68,10 @@ class Findpwd extends React.Component{
 
             }else if(this.state.value==='2'){
                 // 기업회원 체크
-                axios.get(`http://localhost:9000/corporations/checkId/${findId}`)
+                axios.get(`/corporations/checkId/${findId}`)
                     .then(res=>{
                         if(res.data>0){
-                            axios.put(`http://localhost:9000/corporations/sendMail/${findId}`)
+                            axios.put(`/corporations/sendMail/${findId}`)
                                 .then(res=>{
                                     if(res.data.result==='SUCCESS'){
                                         this.setState({chktext:'가입된 이메일로 임시 비밀번호를 보냈습니다.\n임시 비밀번호로 로그인 해주세요'})

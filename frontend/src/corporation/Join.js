@@ -76,7 +76,7 @@ class Join extends React.Component{
                 'Content-Type': 'application/json',
                 'Authorization': 'JWT fefege..'
             }
-            axios.post(`http://localhost:9000/corporations/join`,JSON.stringify(data),{headers: headers})
+            axios.post(`/corporations/join`,JSON.stringify(data),{headers: headers})
                 .then(res=>{
                     alert('회원가입 되었습니다.\n로그인 후 이용해 주세요')
                     document.location.href = '/login'
@@ -89,7 +89,7 @@ class Join extends React.Component{
 
     handleFocusout=(e)=>{
         if(e.target.value!==''){
-            axios.get(`http://localhost:9000/corporations/checkId/${e.target.value}`)
+            axios.get(`/corporations/checkId/${e.target.value}`)
                 .then(res=>{
                     if(res.data>0){
                         this.setState({

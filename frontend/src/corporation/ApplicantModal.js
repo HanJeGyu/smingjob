@@ -30,7 +30,7 @@ class ApplicantModal extends React.Component {
   }
 
   componentDidMount(){
-    axios.get(`http://localhost:9000/awaiters/${this.props.liveSeq}`)
+    axios.get(`/awaiters/${this.props.liveSeq}`)
       .then(res=>{
         this.setState({data: res.data});
       })
@@ -56,7 +56,7 @@ class ApplicantModal extends React.Component {
         'Content-Type': 'application/json',
         'Authorization': 'JWT fefege..'
       }
-      axios.put(`http://localhost:9000/awaiters/lookphone`, JSON.stringify(data), {headers: headers})
+      axios.put(`/awaiters/lookphone`, JSON.stringify(data), {headers: headers})
         .then(res=>{
         })
         .catch(e=>{

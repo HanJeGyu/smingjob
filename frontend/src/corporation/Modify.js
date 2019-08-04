@@ -33,7 +33,7 @@ class Modify extends React.Component {
     }
     componentDidMount(){
         const corId = sessionStorage.getItem('authId')
-        axios.get(`http://localhost:9000/corporations/${corId}`)
+        axios.get(`/corporations/${corId}`)
             .then(res=>{
                 this.setState(res.data)
             })
@@ -148,7 +148,7 @@ class Modify extends React.Component {
                 'Content-Type': 'application/json',
                 'Authorization': 'JWT fefege..'
             }
-            axios.put(`http://localhost:9000/corporations/modify`,JSON.stringify(data),{headers: headers})
+            axios.put(`/corporations/modify`,JSON.stringify(data),{headers: headers})
                 .then(res=>{
                     if(res.data.result==='SUCCESS'){
                         alert('회원정보가 수정 되었습니다.')
@@ -163,7 +163,7 @@ class Modify extends React.Component {
         }else if(document.activeElement.id==='del'){
             const delyn = window.confirm('정말로 탈퇴 하시겠습니까?')
             if(delyn===true){
-                axios.delete(`http://localhost:9000/corporations/${sessionStorage.getItem('authSeq')}`)
+                axios.delete(`/corporations/${sessionStorage.getItem('authSeq')}`)
                 .then(res=>{
                     if(res.data.result==='SUCCESS'){
                         alert('회원탈퇴 처리 되었습니다.')

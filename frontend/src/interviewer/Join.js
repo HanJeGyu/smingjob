@@ -67,7 +67,7 @@ class Join extends React.Component{
                 'Content-Type': 'application/json',
                 'Authorization': 'JWT fefege..'
             }
-            axios.post(`http://localhost:9000/interviewers/join`,JSON.stringify(data),{headers: headers})
+            axios.post(`/interviewers/join`,JSON.stringify(data),{headers: headers})
                 .then(res=>{
                     alert('회원가입 되었습니다.\n로그인 후 이용해 주세요')
                     document.location.href = '/login'
@@ -80,7 +80,7 @@ class Join extends React.Component{
 
     handleFocusout=(e)=>{
         if(e.target.value!==''){
-            axios.get(`http://localhost:9000/interviewers/checkId/${e.target.value}`)
+            axios.get(`/interviewers/checkId/${e.target.value}`)
                 .then(res=>{
                     if(res.data>0){
                         this.setState({
@@ -197,6 +197,10 @@ class Join extends React.Component{
 
     render(){
         const {classes} = this.props
+        const d = new Date()
+        const nowDate = (d.getFullYear()-20).toString() + '-'
+            + (d.getMonth()+1<10 ? '0':'') + (d.getMonth()+1).toString() + '-'
+            + (d.getMonth()<10 ? '0':'') + d.getDate().toString()
         return(
             <Container component="main" maxWidth="md">
                 <CssBaseline/>
@@ -222,6 +226,7 @@ class Join extends React.Component{
                                 id="birth"
                                 name="birth"
                                 type="date"
+                                defaultValue={nowDate}
                                 InputLabelProps={{
                                     shrink: true
                                 }}

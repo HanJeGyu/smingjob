@@ -34,7 +34,7 @@ changePage=(pageNum,offset)=> {
 
 }
 componentDidMount(){
-    axios.get('http://localhost:9000/prs')
+    axios.get('/prs')
     .then(res=>{
       const prs = res.data;
       this.setState({prs});          
@@ -62,7 +62,7 @@ searching=(e)=>{
     e.preventDefault();          
     const key =this.state.keyword;
     console.log("key:"+key)
-    axios.get('http://localhost:9000/prs/search/'+key)
+    axios.get('/prs/search/'+key)
     .then(res=>{
       const prs = res.data;
       this.setState({prs});
