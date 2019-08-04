@@ -81,8 +81,7 @@ class CorNotice extends React.Component {
                   let inputPwd = prompt("비밀번호를 입력하세요.");
               
                   if(inputPwd === pwd[1]) {
-                    // window.open (url, '_blank');
-                    window.open(rowData.url);
+                    alert('화상면접은 aws문제로 사용이 불가합니다.');
                   } else {
                     if(inputPwd === '' || inputPwd === null) {
                       alert('비밀번호를 입력해주세요!');

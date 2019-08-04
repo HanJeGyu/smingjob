@@ -42,7 +42,7 @@ componentDidMount(){
   }
   
 detail=(seq,itvSeq)=>{    
-    if(sessionStorage.authSeq == itvSeq || sessionStorage.authType === '2'){   
+    if(sessionStorage.authSeq === itvSeq || sessionStorage.authType === '2'){   
     sessionStorage.prSeq=seq;
     window.location = '/PRDetail'  
   }else{

@@ -33,7 +33,7 @@ changePage=(pageNum,offset)=> {
   })
   }
   detail(url, state){
-    // 현재 날짜와 DB 날짜 비교해서 같으면 시간 비교 > 같으면 면접중으로 , 날짜가 아직 안 됬으면 대기중 , 날짜가 지났으면 종료    
+    // 현재 날짜와 DB 날짜 비교해서 같으면 시간 비교 > 같으면 진행중으로 , 날짜가 아직 안 됬으면 진행예정 , 날짜가 지났으면 종료    
  
     if (state === '진행 예정') {
       alert('면접 진행 예정입니다.')
@@ -45,7 +45,7 @@ changePage=(pageNum,offset)=> {
         let inputPwd = prompt("비밀번호를 입력하세요.");
     
         if(inputPwd === pwd[1]) {
-          window.open (url, '_blank');
+          alert('화상면접은 aws문제로 사용이 불가합니다.');
         } else {
           if(inputPwd === '' || inputPwd === null) {
             alert('비밀번호를 입력해주세요!');

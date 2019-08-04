@@ -134,7 +134,7 @@ export default class Main extends Component {
         <React.Fragment> 
     
 
-    {sessionStorage.getItem('authSeq') == itvSeq || sessionStorage.getItem('authType') === '2' ?
+    {sessionStorage.getItem('authSeq') === itvSeq || sessionStorage.getItem('authType') === '2' ?
         
          <Container  style={style} maxWidth="md" >
          <Typography variant="h6" gutterBottom>
