@@ -86,7 +86,9 @@ export default class NoticeUpload extends React.Component {
       marginTop:"100px", 
     }    
     let btn = {   
-      margin:"auto",     
+      marginRight:"auto",
+      marginLeft:"auto",
+      marginBottom:"30px",          
       padding:"10px"      
     }
     let margin={
