@@ -64,7 +64,8 @@ changePage=(pageNum,offset)=> {
 } 
   render(){ 
     let cardGrid ={
-      paddingTop: '3%',      
+      paddingTop: '3%',     
+      marginBottom:"100px",  
     }
     let  card= {
       height: '100%',

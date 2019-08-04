@@ -7,6 +7,7 @@ import axios from 'axios'
 const useStyles = theme => ({
     form: {
         marginTop: theme.spacing(10),
+        marginBottom: theme.spacing(10),
         width: '100%', // Fix IE 11 issue.
     },
     submit: {

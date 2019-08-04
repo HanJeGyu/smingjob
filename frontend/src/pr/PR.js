@@ -75,6 +75,7 @@ searching=(e)=>{
  
     let cardGrid ={
       paddingTop: '3%',      
+      paddingBottom: '3%',      
     }
     let  card= {
       height: '100%',

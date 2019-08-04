@@ -117,6 +117,7 @@ export default class Main extends Component {
   render() {
     let style = {
         marginTop:"100px",  
+        marginBottom:"100px",  
     } 
     let margin={
       margin:"70px"
@@ -248,7 +249,7 @@ export default class Main extends Component {
                 />
               </Grid>    
               <Grid container spacing={10}><p style={margin}></p></Grid>
-              {sessionStorage.getItem('authSeq') === itvSeq ?
+              {sessionStorage.getItem('authSeq') == itvSeq ?
               <Button color="primary" variant="contained" style={btn} onClick={this.delete}>삭제</Button>
               : '' }
               <Grid container spacing={10}><p style={margin}></p></Grid>

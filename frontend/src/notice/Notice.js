@@ -9,6 +9,7 @@ import Pagination from "material-ui-flat-pagination";
 const useStyles = theme => ({
   cardGrid: {
     paddingTop: '3%',      
+    paddingBottom: '3%',      
   },
   card: {
     height: '100%',

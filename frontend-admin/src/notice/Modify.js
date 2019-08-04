@@ -211,7 +211,7 @@ export default class NoticeUpload extends React.Component {
                   name="startDate"
                   label="접수일"
                   type="date"                                   
-                  defaultValue="2019-05-24"
+                  value={this.state.startDate}
                   onChange={this.handleChange}
                   InputLabelProps={{
                     shrink: true,
@@ -225,7 +225,7 @@ export default class NoticeUpload extends React.Component {
                   name="startTime"
                   label="접수시각"
                   type="time"
-                  defaultValue="11:00"
+                  value={this.state.startTime}
                   onChange={this.handleChange}
                   InputLabelProps={{
                     shrink: true,

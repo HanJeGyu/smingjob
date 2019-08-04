@@ -110,6 +110,7 @@ componentWillMount=()=>{
     render(){
         let style = {
             marginTop:"100px",                   
+            marginBottom:"100px",                   
         }        
         let btn = {   
           margin:"auto",     

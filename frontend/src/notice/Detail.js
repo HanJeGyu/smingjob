@@ -60,6 +60,7 @@ axios.post('http://localhost:9000/applicants/'+itv+'apply'+notiSeq,
 
     let style = {
         marginTop:"100px",  
+        marginBottom:"100px",  
     }    
     let btn = {   
       margin:"auto",     

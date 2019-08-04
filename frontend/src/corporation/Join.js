@@ -12,6 +12,7 @@ const useStyles = theme => ({
     },
     form: {
         marginTop: theme.spacing(5),
+        marginBottom: theme.spacing(5),
         width: '100%'
     },
     submit: {
