@@ -31,19 +31,3 @@
     transform: rotate(360deg);
   }
 }
-
-html {
-  /* background-color: blue; */
-  position: relative;
-  min-height: 100%;
-  margin: 0;
-}
-
-body {
-  min-height: 100%;
-}
-
-.content {
-  margin-bottom: 90px;
-  /* margin-top:20px; */
-}

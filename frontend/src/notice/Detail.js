@@ -63,8 +63,10 @@ axios.post('/applicants/'+itv+'apply'+notiSeq,
         marginBottom:"100px",  
     }    
     let btn = {   
-      margin:"auto",     
-      padding:"10px"      
+      marginRight:"auto",
+      marginLeft:"auto",
+      marginBottom:"30px",       
+      padding:"10px",
     }
     let margin={
       margin:"70px"
