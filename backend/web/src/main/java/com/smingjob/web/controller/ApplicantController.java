@@ -39,8 +39,7 @@ public class ApplicantController {
 
     //공고디테일에서 면접 지원하기
     @PostMapping("/{itvSeq}apply{noticeSeq}")
-    public HashMap<String, String> apply(@PathVariable String itvSeq, @PathVariable String noticeSeq) {   
-        /* System.out.println("======================"+itvSeq+ noticeSeq); */
+    public HashMap<String, String> apply(@PathVariable String itvSeq, @PathVariable String noticeSeq) { 
         HashMap<String, String> map = new HashMap<>();
      
         Long count = Long.parseLong( repo.countApply(Long.parseLong(itvSeq), Long.parseLong(noticeSeq)));

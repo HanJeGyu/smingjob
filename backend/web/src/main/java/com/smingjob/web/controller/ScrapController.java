@@ -1,10 +1,8 @@
 package com.smingjob.web.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import com.smingjob.web.domain.ScrapDTO;
 import com.smingjob.web.enttites.Corporation;

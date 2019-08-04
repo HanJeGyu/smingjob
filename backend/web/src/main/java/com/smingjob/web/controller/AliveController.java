@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -38,7 +37,6 @@ public class AliveController {
 
    @DeleteMapping("/{id}")
    public void deleteById(@PathVariable String id) {
-      // System.out.println("deleteById title :" +id);
       repo.deleteById(Long.parseLong(id));
    }
 
@@ -58,8 +56,6 @@ public class AliveController {
          String dbTime = live.getStartTime().replace(":", "");
          String dbDayPlusTime = dbDay + dbTime;
          Date dbDate = dateFormat.parse(dbDayPlusTime);
-/*          
-         System.out.println((now.getTime() - dbDate.getTime()) / 60000); */
 
          Long stateTime = (now.getTime() - dbDate.getTime()) / 60000;
 
@@ -71,9 +67,6 @@ public class AliveController {
             state = "종료";
          }
 
-         // System.out.println(live.getLiveSeq());
-
-         // DB의 state값과 실제 state를 비교함.
          if (live.getState().equals(state)) {         
          } else {      
             repo.updateState(live.getLiveSeq(), state);

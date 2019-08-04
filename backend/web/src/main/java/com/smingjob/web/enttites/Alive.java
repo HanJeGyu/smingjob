@@ -44,9 +44,6 @@ public class Alive implements Serializable {
     @Column(name="start_time") private String startTime;
     @Column(name="area") private String area; 
     @Column(name="career") private String career; 
-    @Column(name="itv_seq") private Long itvSeq; 
-    @Column(name="itv_name") private String itvName; 
-    @Column(name="itv_phone") private String itvPhone; 
     @Column(name="url") private String url; 
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "alive")
@@ -60,13 +57,13 @@ public class Alive implements Serializable {
     public String toString(){
         return "Alive :[live_seq:" + liveSeq + ",cor_seq:" + corSeq + ", cor_name:" + corName + ", state:" + state
         + ", start_date:" + startDate+ ", start_time" + startTime + ", area:" + area + ", career:" + career 
-        + ", itv_seq:" + itvSeq + ", itv_name:" + itvName + ", itv_phone:" + itvPhone + ",url" + url + "]";
+        + ", url" + url + "]";
     }
 
     //생성자
     @Builder
     private Alive(Long corSeq, String corName, String state, String startDate, String startTime,
-                 String area, String career, Long itvSeq, String itvName, String itvPhone, String url){
+                 String area, String career, String url){
         this.corSeq = corSeq;
         this.corName =corName;
         this.state = state;
@@ -74,9 +71,6 @@ public class Alive implements Serializable {
         this.startTime = startTime;
         this.area = area;
         this.career = career;
-        this.itvSeq = itvSeq;
-        this.itvName = itvName;
-        this.itvPhone = itvPhone;
         this.url = url;
     }
     

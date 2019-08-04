@@ -1,17 +1,12 @@
 package com.smingjob.web.controller;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityNotFoundException;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.smingjob.web.domain.PrDTO;
 import com.smingjob.web.enttites.Pr;
 import com.smingjob.web.repositories.PrRepository;
