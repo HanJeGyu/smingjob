@@ -7,6 +7,8 @@ import axios from 'axios'
 import Button from '@material-ui/core/Button';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import NoticeModal from './NoticeModal'
+import { Modal } from "@material-ui/core";
 
 export default class NoticeUpload extends React.Component {
 
@@ -24,9 +26,12 @@ export default class NoticeUpload extends React.Component {
       corName: '',
       startDate:'',
       startTime:'',
+      open: false
     };   
   }
- 
+  handleClick = e => {
+    this.setState({open:true})
+  }
   handleChange=(e)=>{
     this.setState({[e.target.name]: e.target.value})
   }
@@ -225,6 +230,16 @@ export default class NoticeUpload extends React.Component {
           </Grid>
         </Container>
         </form>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.open}
+          onClose={this.handleClose}
+          >
+            <div style={modal}>
+              <NoticeModal callClose={this.handleClose} />
+            </div>
+        </Modal>
       </React.Fragment>
     )
   }

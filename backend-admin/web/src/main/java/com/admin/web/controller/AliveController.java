@@ -45,7 +45,7 @@ public class AliveController {
 
    @GetMapping("")
    public Iterable<AliveDTO> findAll() throws ParseException {
-      Iterable<Alive> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "liveSeq"));
+      Iterable<Alive> entities = repo.findAll(Sort.by(Sort.Direction.DESC, "startDate"));
       List<AliveDTO> list = new ArrayList<>();
 
       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmm");
