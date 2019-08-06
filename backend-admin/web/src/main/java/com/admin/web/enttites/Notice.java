@@ -38,6 +38,7 @@ public class Notice implements Serializable{
         
     @Column(name="title") private String title;
     @Column(name="cor_name") private String corName;
+    @Column(name="cor_Seq") private Long corSeq;
     @Column(name="content") private String content;    
     @Column(name="state")private String state;
     @Column(name="career")private String career ;
@@ -48,9 +49,6 @@ public class Notice implements Serializable{
     @Column(name="tag_attribute")private String tagAttribute ;
     @Column(name="tag_career")private String tagCareer;
 
- 
-   
-
     @Override
     public String toString(){
         return String.format("고객정보 No: %d|n" + "ID: %s", noticeSeq, title,corName,
@@ -59,10 +57,11 @@ public class Notice implements Serializable{
     }
 
     @Builder
-    private Notice(String title, String corName, String content,
+    private Notice(String title, Long corSeq, String corName, String content,
     String state,String career,String area,String startDate,String startTime,
     String tagLocation,String tagAttribute,String tagCareer){       
         this.title = title;
+        this.corSeq = corSeq; 
         this.corName = corName;        
         this.content = content;
         this.state = state;

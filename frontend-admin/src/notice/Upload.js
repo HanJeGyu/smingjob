@@ -23,6 +23,7 @@ export default class NoticeUpload extends React.Component {
       tagAttribute:'',
       tagCareer:'',
       state:'',
+      corSeq: '',
       corName: '',
       startDate:'',
       startTime:'',
@@ -51,6 +52,7 @@ export default class NoticeUpload extends React.Component {
       tagAttribute: event.target.tagAttribute.value,
       tagCareer: event.target.tagCareer.value,
       state: '진행중',
+      corSeq: this.state.corSeq,
       corName: event.target.corName.value,  
       startDate: event.target.startDate.value,
       startTime: event.target.startTime.value,
@@ -72,7 +74,8 @@ export default class NoticeUpload extends React.Component {
   handleClose = rowData => {
     if(typeof rowData.corSeq!=='undefined'){
       this.setState({tagLocation:rowData.city})     
-      this.setState({corName:rowData.name})       
+      this.setState({corName:rowData.name}) 
+      this.setState({corSeq:rowData.corSeq}) 
     }
     this.setState({open:false})
   };

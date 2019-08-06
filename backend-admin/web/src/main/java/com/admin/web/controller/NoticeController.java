@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.persistence.EntityNotFoundException;
 
 import com.admin.web.domain.NoticeDTO;
+import com.admin.web.enttites.Corporation;
 import com.admin.web.enttites.Notice;
 import com.admin.web.repositories.ApplicantRepository;
 import com.admin.web.repositories.NoticeRepository;
@@ -70,8 +71,9 @@ public class NoticeController {
        HashMap<String, String> map = new HashMap<>();
        Notice entity = new Notice();
        entity.setTitle(dto.getTitle());
+       entity.setCorSeq(dto.getCorSeq());
        entity.setCorName(dto.getCorName());
-       entity.setContent(dto.getContent());        
+       entity.setContent(dto.getContent());
        entity.setState(dto.getState());
        entity.setCareer(dto.getCareer());
        entity.setArea(dto.getArea());

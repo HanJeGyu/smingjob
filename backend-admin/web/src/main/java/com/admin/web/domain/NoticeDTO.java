@@ -9,7 +9,7 @@ import lombok.Data;
 @Component
 @Lazy
 public class NoticeDTO {
-   private Long noticeSeq;     
+   private Long noticeSeq, corSeq;
    private String title,
          corName,
          content,
