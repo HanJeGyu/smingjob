@@ -10,7 +10,7 @@
     "@material-ui/icons": "^4.2.1",
     "@material-ui/pickers": "^3.1.2",
     "@material-ui/system": "^4.3.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.5.0",
